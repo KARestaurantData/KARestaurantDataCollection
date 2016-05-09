@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6F0754121CE0506700F7BB95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754111CE0506700F7BB95 /* AppDelegate.swift */; };
+		6F0754141CE0506700F7BB95 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754131CE0506700F7BB95 /* ViewController.swift */; };
+		6F0754171CE0506700F7BB95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F0754151CE0506700F7BB95 /* Main.storyboard */; };
+		6F0754191CE0506700F7BB95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F0754181CE0506700F7BB95 /* Assets.xcassets */; };
+		6F07541C1CE0506700F7BB95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F07541A1CE0506700F7BB95 /* LaunchScreen.storyboard */; };
+		6F0754271CE0506700F7BB95 /* KARestaurantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754261CE0506700F7BB95 /* KARestaurantTests.swift */; };
+		6F0754321CE0506700F7BB95 /* KARestaurantUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754311CE0506700F7BB95 /* KARestaurantUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6F0754231CE0506700F7BB95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F0754061CE0506700F7BB95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F07540D1CE0506700F7BB95;
+			remoteInfo = KARestaurant;
+		};
+		6F07542E1CE0506700F7BB95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F0754061CE0506700F7BB95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F07540D1CE0506700F7BB95;
+			remoteInfo = KARestaurant;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6F07540E1CE0506700F7BB95 /* KARestaurant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KARestaurant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F0754111CE0506700F7BB95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6F0754131CE0506700F7BB95 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6F0754161CE0506700F7BB95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6F0754181CE0506700F7BB95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6F07541B1CE0506700F7BB95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6F07541D1CE0506700F7BB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F0754221CE0506700F7BB95 /* KARestaurantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KARestaurantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F0754261CE0506700F7BB95 /* KARestaurantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KARestaurantTests.swift; sourceTree = "<group>"; };
+		6F0754281CE0506700F7BB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F07542D1CE0506700F7BB95 /* KARestaurantUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KARestaurantUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F0754311CE0506700F7BB95 /* KARestaurantUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KARestaurantUITests.swift; sourceTree = "<group>"; };
+		6F0754331CE0506700F7BB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6F07540B1CE0506700F7BB95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F07541F1CE0506700F7BB95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F07542A1CE0506700F7BB95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6F0754051CE0506700F7BB95 = {
+			isa = PBXGroup;
+			children = (
+				6F0754101CE0506700F7BB95 /* KARestaurant */,
+				6F0754251CE0506700F7BB95 /* KARestaurantTests */,
+				6F0754301CE0506700F7BB95 /* KARestaurantUITests */,
+				6F07540F1CE0506700F7BB95 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6F07540F1CE0506700F7BB95 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6F07540E1CE0506700F7BB95 /* KARestaurant.app */,
+				6F0754221CE0506700F7BB95 /* KARestaurantTests.xctest */,
+				6F07542D1CE0506700F7BB95 /* KARestaurantUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6F0754101CE0506700F7BB95 /* KARestaurant */ = {
+			isa = PBXGroup;
+			children = (
+				6F0754111CE0506700F7BB95 /* AppDelegate.swift */,
+				6F0754131CE0506700F7BB95 /* ViewController.swift */,
+				6F0754151CE0506700F7BB95 /* Main.storyboard */,
+				6F0754181CE0506700F7BB95 /* Assets.xcassets */,
+				6F07541A1CE0506700F7BB95 /* LaunchScreen.storyboard */,
+				6F07541D1CE0506700F7BB95 /* Info.plist */,
+			);
+			path = KARestaurant;
+			sourceTree = "<group>";
+		};
+		6F0754251CE0506700F7BB95 /* KARestaurantTests */ = {
+			isa = PBXGroup;
+			children = (
+				6F0754261CE0506700F7BB95 /* KARestaurantTests.swift */,
+				6F0754281CE0506700F7BB95 /* Info.plist */,
+			);
+			path = KARestaurantTests;
+			sourceTree = "<group>";
+		};
+		6F0754301CE0506700F7BB95 /* KARestaurantUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6F0754311CE0506700F7BB95 /* KARestaurantUITests.swift */,
+				6F0754331CE0506700F7BB95 /* Info.plist */,
+			);
+			path = KARestaurantUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6F07540D1CE0506700F7BB95 /* KARestaurant */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F0754361CE0506700F7BB95 /* Build configuration list for PBXNativeTarget "KARestaurant" */;
+			buildPhases = (
+				6F07540A1CE0506700F7BB95 /* Sources */,
+				6F07540B1CE0506700F7BB95 /* Frameworks */,
+				6F07540C1CE0506700F7BB95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KARestaurant;
+			productName = KARestaurant;
+			productReference = 6F07540E1CE0506700F7BB95 /* KARestaurant.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6F0754211CE0506700F7BB95 /* KARestaurantTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F0754391CE0506700F7BB95 /* Build configuration list for PBXNativeTarget "KARestaurantTests" */;
+			buildPhases = (
+				6F07541E1CE0506700F7BB95 /* Sources */,
+				6F07541F1CE0506700F7BB95 /* Frameworks */,
+				6F0754201CE0506700F7BB95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6F0754241CE0506700F7BB95 /* PBXTargetDependency */,
+			);
+			name = KARestaurantTests;
+			productName = KARestaurantTests;
+			productReference = 6F0754221CE0506700F7BB95 /* KARestaurantTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6F07542C1CE0506700F7BB95 /* KARestaurantUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F07543C1CE0506700F7BB95 /* Build configuration list for PBXNativeTarget "KARestaurantUITests" */;
+			buildPhases = (
+				6F0754291CE0506700F7BB95 /* Sources */,
+				6F07542A1CE0506700F7BB95 /* Frameworks */,
+				6F07542B1CE0506700F7BB95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6F07542F1CE0506700F7BB95 /* PBXTargetDependency */,
+			);
+			name = KARestaurantUITests;
+			productName = KARestaurantUITests;
+			productReference = 6F07542D1CE0506700F7BB95 /* KARestaurantUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6F0754061CE0506700F7BB95 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = KARestaurant;
+				TargetAttributes = {
+					6F07540D1CE0506700F7BB95 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					6F0754211CE0506700F7BB95 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 6F07540D1CE0506700F7BB95;
+					};
+					6F07542C1CE0506700F7BB95 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 6F07540D1CE0506700F7BB95;
+					};
+				};
+			};
+			buildConfigurationList = 6F0754091CE0506700F7BB95 /* Build configuration list for PBXProject "KARestaurant" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6F0754051CE0506700F7BB95;
+			productRefGroup = 6F07540F1CE0506700F7BB95 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6F07540D1CE0506700F7BB95 /* KARestaurant */,
+				6F0754211CE0506700F7BB95 /* KARestaurantTests */,
+				6F07542C1CE0506700F7BB95 /* KARestaurantUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6F07540C1CE0506700F7BB95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F07541C1CE0506700F7BB95 /* LaunchScreen.storyboard in Resources */,
+				6F0754191CE0506700F7BB95 /* Assets.xcassets in Resources */,
+				6F0754171CE0506700F7BB95 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F0754201CE0506700F7BB95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F07542B1CE0506700F7BB95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6F07540A1CE0506700F7BB95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F0754141CE0506700F7BB95 /* ViewController.swift in Sources */,
+				6F0754121CE0506700F7BB95 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F07541E1CE0506700F7BB95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F0754271CE0506700F7BB95 /* KARestaurantTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F0754291CE0506700F7BB95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F0754321CE0506700F7BB95 /* KARestaurantUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6F0754241CE0506700F7BB95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6F07540D1CE0506700F7BB95 /* KARestaurant */;
+			targetProxy = 6F0754231CE0506700F7BB95 /* PBXContainerItemProxy */;
+		};
+		6F07542F1CE0506700F7BB95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6F07540D1CE0506700F7BB95 /* KARestaurant */;
+			targetProxy = 6F07542E1CE0506700F7BB95 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6F0754151CE0506700F7BB95 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6F0754161CE0506700F7BB95 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6F07541A1CE0506700F7BB95 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6F07541B1CE0506700F7BB95 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6F0754341CE0506700F7BB95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6F0754351CE0506700F7BB95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6F0754371CE0506700F7BB95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KARestaurant/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kshrd.KARestaurant;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6F0754381CE0506700F7BB95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KARestaurant/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kshrd.KARestaurant;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6F07543A1CE0506700F7BB95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KARestaurantTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kshrd.KARestaurantTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KARestaurant.app/KARestaurant";
+			};
+			name = Debug;
+		};
+		6F07543B1CE0506700F7BB95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KARestaurantTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kshrd.KARestaurantTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KARestaurant.app/KARestaurant";
+			};
+			name = Release;
+		};
+		6F07543D1CE0506700F7BB95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KARestaurantUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kshrd.KARestaurantUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = KARestaurant;
+			};
+			name = Debug;
+		};
+		6F07543E1CE0506700F7BB95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KARestaurantUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kshrd.KARestaurantUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = KARestaurant;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6F0754091CE0506700F7BB95 /* Build configuration list for PBXProject "KARestaurant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F0754341CE0506700F7BB95 /* Debug */,
+				6F0754351CE0506700F7BB95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6F0754361CE0506700F7BB95 /* Build configuration list for PBXNativeTarget "KARestaurant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F0754371CE0506700F7BB95 /* Debug */,
+				6F0754381CE0506700F7BB95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6F0754391CE0506700F7BB95 /* Build configuration list for PBXNativeTarget "KARestaurantTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F07543A1CE0506700F7BB95 /* Debug */,
+				6F07543B1CE0506700F7BB95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6F07543C1CE0506700F7BB95 /* Build configuration list for PBXNativeTarget "KARestaurantUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F07543D1CE0506700F7BB95 /* Debug */,
+				6F07543E1CE0506700F7BB95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6F0754061CE0506700F7BB95 /* Project object */;
+}
