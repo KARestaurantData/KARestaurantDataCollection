@@ -1,0 +1,10 @@
+PODS:
+  - Device (1.0.1)
+
+DEPENDENCIES:
+  - Device (~> 1.0.1)
+
+SPEC CHECKSUMS:
+  Device: 7ed5b87db148886e8c3cbcdde5dc997baddbe10b
+
+COCOAPODS: 0.39.0
