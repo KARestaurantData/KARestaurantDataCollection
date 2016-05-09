@@ -155,6 +155,9 @@
                                                             <include reference="BWe-I4-ygP"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <segue destination="6bE-09-FD8" kind="show" id="79F-PZ-aNu"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0A-Pm-YUo">
                                                     <rect key="frame" x="247" y="133" width="107" height="30"/>
