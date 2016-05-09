@@ -13,6 +13,10 @@ class LoginTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginTableViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -90,6 +94,13 @@ class LoginTableViewController: UITableViewController {
         case .Screen12_9Inch: print("It's a 12.9 inch screen")
         default:              print("Unknown size")
         }
+    }
+    
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
 
