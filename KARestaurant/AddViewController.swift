@@ -1,10 +1,13 @@
 
 
 import UIKit
-
-class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+import PhotosUI
+import BSImagePicker
+import AssetsLibrary
+class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate{
     // MARK: Properties
     
+    @IBOutlet weak var menuSelectedLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
    
@@ -102,7 +105,30 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
     }
     
     // MARK: Actions
+    @IBAction func showImagePicker(sender: UITapGestureRecognizer) {
+        let vc = BSImagePickerViewController()
+        vc.maxNumberOfSelections = 6
+        
+        bs_presentImagePickerController(vc, animated: true,
+                                        select: { (asset: PHAsset) -> Void in
+              print("Selected image:\(asset)")
+                                            
+         
+                                            
+            }, deselect: { (asset: PHAsset) -> Void in
+                print("Deselected: \(asset)")
+            }, cancel: { (assets: [PHAsset]) -> Void in
+                print("Cancel: \(assets)")
+            }, finish: { (assets: [PHAsset]) -> Void in
+                print("Finish: \(assets)")
+            }, completion: nil)
+    }
     
+    //MARK: collection view
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+
     @IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
         // Hide the keyboard.
         nameTextField.resignFirstResponder()

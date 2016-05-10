@@ -1,11 +1,14 @@
 
 
 import UIKit
+import BSImagePicker
+import Photos
 
 class MealTableViewController: UITableViewController {
     // MARK: Properties
-    
+   
     var rests = [Restaurant]()
+    let vc = BSImagePickerViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +117,10 @@ class MealTableViewController: UITableViewController {
         }
     }
     
-
+//
+      
+    
+    
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? AddViewController, meal = sourceViewController.meal {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
@@ -129,4 +135,6 @@ class MealTableViewController: UITableViewController {
             }
         }
     }
+    //MARK: BSImagePicker
+    
 }

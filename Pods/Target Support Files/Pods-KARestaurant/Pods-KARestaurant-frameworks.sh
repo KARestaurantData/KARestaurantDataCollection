@@ -84,8 +84,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-KARestaurant/BSGridCollectionViewLayout.framework"
+  install_framework "Pods-KARestaurant/BSImagePicker.framework"
   install_framework "Pods-KARestaurant/Device.framework"
+  install_framework "Pods-KARestaurant/UIImageViewModeScaleAspect.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-KARestaurant/BSGridCollectionViewLayout.framework"
+  install_framework "Pods-KARestaurant/BSImagePicker.framework"
   install_framework "Pods-KARestaurant/Device.framework"
+  install_framework "Pods-KARestaurant/UIImageViewModeScaleAspect.framework"
 fi

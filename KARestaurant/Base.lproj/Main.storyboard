@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="86" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQV-Wp-cdh" id="TpD-sJ-fVf">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="r1z-K4-h5D">
@@ -39,7 +39,7 @@
                                                 <constraint firstAttribute="height" constant="30" id="Alc-gg-aXx"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FlD-G9-mfg">
@@ -67,7 +67,7 @@
                                                 <constraint firstAttribute="width" constant="73" id="IrZ-3o-YVH"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -287,19 +287,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6CW-NK-mGa">
-                                <rect key="frame" x="16" y="80" width="343" height="362"/>
+                                <rect key="frame" x="12" y="72" width="351" height="362"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter meal name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jaC-rX-iHd">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="351" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="OEg-fp-J0R">
-                                        <rect key="frame" x="12" y="42" width="320" height="320"/>
+                                        <rect key="frame" x="16" y="42" width="320" height="320"/>
                                         <gestureRecognizers/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="OEg-fp-J0R" secondAttribute="height" multiplier="1:1" id="eS5-Ed-Gj8"/>
-                                        </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="obw-ho-oen" appends="YES" id="ooK-tQ-UCV"/>
                                         </connections>
@@ -310,12 +307,60 @@
                                     <constraint firstItem="jaC-rX-iHd" firstAttribute="leading" secondItem="6CW-NK-mGa" secondAttribute="leading" id="mYS-Oi-eKf"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqm-fn-jIr">
+                                <rect key="frame" x="29" y="602" width="152" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJB-6f-8bu">
+                                <rect key="frame" x="7" y="451" width="356" height="128"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="NOg-Ay-qSX">
+                                        <rect key="frame" x="8" y="8" width="114" height="112"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="114" id="NWY-N1-dH4"/>
+                                            <constraint firstAttribute="height" constant="112" id="Sta-Zz-vkO"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="S9W-gr-fdj">
+                                        <rect key="frame" x="130" y="8" width="114" height="112"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="114" id="rIc-xK-rxG"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="meal2" translatesAutoresizingMaskIntoConstraints="NO" id="18c-zD-ttx">
+                                        <rect key="frame" x="252" y="8" width="114" height="112"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="114" id="KtG-dS-OX3"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="18c-zD-ttx" firstAttribute="leading" secondItem="S9W-gr-fdj" secondAttribute="trailing" constant="8" symbolic="YES" id="11G-ZF-Fmb"/>
+                                    <constraint firstItem="18c-zD-ttx" firstAttribute="top" secondItem="S9W-gr-fdj" secondAttribute="top" id="1bq-gR-CZe"/>
+                                    <constraint firstItem="NOg-Ay-qSX" firstAttribute="top" secondItem="S9W-gr-fdj" secondAttribute="top" id="6b5-JF-fTC"/>
+                                    <constraint firstItem="NOg-Ay-qSX" firstAttribute="bottom" secondItem="RJB-6f-8bu" secondAttribute="bottomMargin" id="FuO-qV-4NN"/>
+                                    <constraint firstItem="S9W-gr-fdj" firstAttribute="leading" secondItem="NOg-Ay-qSX" secondAttribute="trailing" constant="8" symbolic="YES" id="N34-rS-rVq"/>
+                                    <constraint firstItem="NOg-Ay-qSX" firstAttribute="top" secondItem="RJB-6f-8bu" secondAttribute="topMargin" id="ZdM-15-nCW"/>
+                                    <constraint firstItem="NOg-Ay-qSX" firstAttribute="leading" secondItem="RJB-6f-8bu" secondAttribute="leadingMargin" id="cFb-1l-Bwc"/>
+                                    <constraint firstItem="18c-zD-ttx" firstAttribute="bottom" secondItem="S9W-gr-fdj" secondAttribute="bottom" id="dJd-WG-OzM"/>
+                                    <constraint firstAttribute="trailing" secondItem="18c-zD-ttx" secondAttribute="trailing" constant="-10" id="j7Z-nl-uVs"/>
+                                    <constraint firstItem="NOg-Ay-qSX" firstAttribute="bottom" secondItem="S9W-gr-fdj" secondAttribute="bottom" id="t6i-rL-Pbi"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="6CW-NK-mGa" secondAttribute="trailing" id="1ag-Bf-sVg"/>
-                            <constraint firstItem="6CW-NK-mGa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="hJo-p8-r6V"/>
-                            <constraint firstItem="6CW-NK-mGa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="hU0-oR-URX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6CW-NK-mGa" secondAttribute="trailing" constant="-4" id="1ag-Bf-sVg"/>
+                            <constraint firstItem="RJB-6f-8bu" firstAttribute="top" secondItem="6CW-NK-mGa" secondAttribute="bottom" constant="17" id="KDj-Q2-lSi"/>
+                            <constraint firstItem="Jqm-fn-jIr" firstAttribute="top" secondItem="RJB-6f-8bu" secondAttribute="bottom" constant="23" id="VOL-eL-diP"/>
+                            <constraint firstItem="RJB-6f-8bu" firstAttribute="trailing" secondItem="6CW-NK-mGa" secondAttribute="trailing" id="VwM-QU-VZq"/>
+                            <constraint firstItem="RJB-6f-8bu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-9" id="duP-IA-l2P"/>
+                            <constraint firstItem="6CW-NK-mGa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="hJo-p8-r6V"/>
+                            <constraint firstItem="6CW-NK-mGa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-4" id="hU0-oR-URX"/>
+                            <constraint firstItem="Jqm-fn-jIr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="13" id="k3i-B3-4o2"/>
+                            <constraint firstAttribute="bottom" secondItem="RJB-6f-8bu" secondAttribute="bottom" constant="88" id="vl1-c0-VSA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="qx4-RS-RMK">
@@ -332,6 +377,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="menuSelectedLabel" destination="Jqm-fn-jIr" id="8hA-fd-hFi"/>
                         <outlet property="nameTextField" destination="jaC-rX-iHd" id="HZt-YP-Ks2"/>
                         <outlet property="photoImageView" destination="OEg-fp-J0R" id="Qe5-3k-3RY"/>
                         <outlet property="saveButton" destination="zH4-dM-PV7" id="X2o-PZ-U81"/>
@@ -341,11 +387,11 @@
                 <exit id="Tqd-Bz-EwA" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="obw-ho-oen">
                     <connections>
-                        <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="rTo-qd-jvb"/>
+                        <action selector="showImagePicker:" destination="BYZ-38-t0r" id="UMd-ge-gHh"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1925" y="387"/>
+            <point key="canvasLocation" x="1924.5" y="386.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="F27-jt-dmk">
@@ -387,6 +433,7 @@
     <resources>
         <image name="defaultPhoto" width="540" height="540"/>
         <image name="meal1" width="540" height="540"/>
+        <image name="meal2" width="528" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GtT-Vd-w7x"/>
