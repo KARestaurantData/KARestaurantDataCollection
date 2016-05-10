@@ -19,6 +19,7 @@
 		6F0754461CE0510300F7BB95 /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754411CE0510300F7BB95 /* MealTableViewCell.swift */; };
 		6F0754471CE0510400F7BB95 /* MealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754421CE0510300F7BB95 /* MealTableViewController.swift */; };
 		6F0754481CE0510400F7BB95 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754431CE0510300F7BB95 /* Restaurant.swift */; };
+		6F9C2B521CE16CFE0058A479 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9C2B511CE16CFE0058A479 /* User.storyboard */; };
 		AAE5891EBAAF7B9B2D9C75C4 /* Pods_KARestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B5004819D95C92C7737650 /* Pods_KARestaurant.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		6F0754411CE0510300F7BB95 /* MealTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
 		6F0754421CE0510300F7BB95 /* MealTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewController.swift; sourceTree = "<group>"; };
 		6F0754431CE0510300F7BB95 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		6F9C2B511CE16CFE0058A479 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		829D481180FBB97F0A76979C /* Pods-KARestaurant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.debug.xcconfig"; sourceTree = "<group>"; };
 		BBF7508860EC2A71E4FEF057 /* Pods-KARestaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.release.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,6 +178,7 @@
 				6F0754111CE0506700F7BB95 /* AppDelegate.swift */,
 				6F07541A1CE0506700F7BB95 /* LaunchScreen.storyboard */,
 				6F0754151CE0506700F7BB95 /* Main.storyboard */,
+				6F9C2B511CE16CFE0058A479 /* User.storyboard */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F07541C1CE0506700F7BB95 /* LaunchScreen.storyboard in Resources */,
+				6F9C2B521CE16CFE0058A479 /* User.storyboard in Resources */,
 				6F0754191CE0506700F7BB95 /* Images.xcassets in Resources */,
 				6F0754171CE0506700F7BB95 /* Main.storyboard in Resources */,
 			);
