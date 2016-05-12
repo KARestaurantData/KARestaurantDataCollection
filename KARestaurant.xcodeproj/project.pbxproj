@@ -27,6 +27,7 @@
 		6F4DE9C51CE475EE00B68597 /* readme-view in Resources */ = {isa = PBXBuildFile; fileRef = 6F4DE9C41CE475EE00B68597 /* readme-view */; };
 		6F4DE9C71CE4769100B68597 /* readme-model in Resources */ = {isa = PBXBuildFile; fileRef = 6F4DE9C61CE4769100B68597 /* readme-model */; };
 		6F4DE9C91CE476D300B68597 /* readme-controller in Resources */ = {isa = PBXBuildFile; fileRef = 6F4DE9C81CE476D300B68597 /* readme-controller */; };
+		6F4DE9CB1CE4834000B68597 /* Constrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4DE9CA1CE4834000B68597 /* Constrants.swift */; };
 		6F9C2B521CE16CFE0058A479 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9C2B511CE16CFE0058A479 /* User.storyboard */; };
 		AAE5891EBAAF7B9B2D9C75C4 /* Pods_KARestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B5004819D95C92C7737650 /* Pods_KARestaurant.framework */; };
 		DD1367661CE18BAD00658692 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1367651CE18BAD00658692 /* CustomCell.swift */; };
@@ -77,6 +78,7 @@
 		6F4DE9C41CE475EE00B68597 /* readme-view */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-view"; sourceTree = "<group>"; };
 		6F4DE9C61CE4769100B68597 /* readme-model */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-model"; sourceTree = "<group>"; };
 		6F4DE9C81CE476D300B68597 /* readme-controller */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-controller"; sourceTree = "<group>"; };
+		6F4DE9CA1CE4834000B68597 /* Constrants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constrants.swift; sourceTree = "<group>"; };
 		6F9C2B511CE16CFE0058A479 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		829D481180FBB97F0A76979C /* Pods-KARestaurant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.debug.xcconfig"; sourceTree = "<group>"; };
 		BBF7508860EC2A71E4FEF057 /* Pods-KARestaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.release.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.release.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				6F4DE9BF1CE46D6800B68597 /* readme-utility */,
+				6F4DE9CA1CE4834000B68597 /* Constrants.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				6F0754471CE0510400F7BB95 /* MealTableViewController.swift in Sources */,
 				DD1367661CE18BAD00658692 /* CustomCell.swift in Sources */,
 				6F0754461CE0510300F7BB95 /* MealTableViewCell.swift in Sources */,
+				6F4DE9CB1CE4834000B68597 /* Constrants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
