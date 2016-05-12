@@ -19,6 +19,7 @@
 		6F0754461CE0510300F7BB95 /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754411CE0510300F7BB95 /* MealTableViewCell.swift */; };
 		6F0754471CE0510400F7BB95 /* MealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754421CE0510300F7BB95 /* MealTableViewController.swift */; };
 		6F0754481CE0510400F7BB95 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754431CE0510300F7BB95 /* Restaurant.swift */; };
+		6F4DE9B81CE4116400B68597 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4DE9B71CE4116400B68597 /* User.swift */; };
 		6F9C2B521CE16CFE0058A479 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9C2B511CE16CFE0058A479 /* User.storyboard */; };
 		AAE5891EBAAF7B9B2D9C75C4 /* Pods_KARestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B5004819D95C92C7737650 /* Pods_KARestaurant.framework */; };
 		DD1367661CE18BAD00658692 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1367651CE18BAD00658692 /* CustomCell.swift */; };
@@ -63,6 +64,7 @@
 		6F0754411CE0510300F7BB95 /* MealTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
 		6F0754421CE0510300F7BB95 /* MealTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewController.swift; sourceTree = "<group>"; };
 		6F0754431CE0510300F7BB95 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		6F4DE9B71CE4116400B68597 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6F9C2B511CE16CFE0058A479 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		829D481180FBB97F0A76979C /* Pods-KARestaurant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.debug.xcconfig"; sourceTree = "<group>"; };
 		BBF7508860EC2A71E4FEF057 /* Pods-KARestaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.release.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.release.xcconfig"; sourceTree = "<group>"; };
@@ -139,11 +141,13 @@
 		6F0754101CE0506700F7BB95 /* KARestaurant */ = {
 			isa = PBXGroup;
 			children = (
-				DD1367691CE18E5E00658692 /* meal2.png */,
-				DD1367671CE18E5300658692 /* meal3.png */,
-				6F3C432B1CE0885D007EEAB7 /* View Controllers */,
-				6F3C432C1CE0887D007EEAB7 /* Application */,
+				6F4DE9B21CE4110B00B68597 /* Controller */,
+				6F4DE9B01CE410F400B68597 /* Model */,
+				6F4DE9B11CE4110500B68597 /* View */,
 				6F0754181CE0506700F7BB95 /* Images.xcassets */,
+				6F3C432C1CE0887D007EEAB7 /* Application */,
+				6F4DE9B41CE4111E00B68597 /* Services */,
+				6F4DE9B31CE4111200B68597 /* Resources */,
 				6F3C432D1CE088D2007EEAB7 /* Supporting Files */,
 			);
 			path = KARestaurant;
@@ -185,9 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				6F0754111CE0506700F7BB95 /* AppDelegate.swift */,
-				6F07541A1CE0506700F7BB95 /* LaunchScreen.storyboard */,
-				6F0754151CE0506700F7BB95 /* Main.storyboard */,
-				6F9C2B511CE16CFE0058A479 /* User.storyboard */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -206,6 +207,48 @@
 				6F0754401CE0510300F7BB95 /* LoginTableViewController.swift */,
 			);
 			name = "Login Controllers";
+			sourceTree = "<group>";
+		};
+		6F4DE9B01CE410F400B68597 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6F4DE9B71CE4116400B68597 /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6F4DE9B11CE4110500B68597 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6F07541A1CE0506700F7BB95 /* LaunchScreen.storyboard */,
+				6F0754151CE0506700F7BB95 /* Main.storyboard */,
+				6F9C2B511CE16CFE0058A479 /* User.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6F4DE9B21CE4110B00B68597 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6F3C432B1CE0885D007EEAB7 /* View Controllers */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		6F4DE9B31CE4111200B68597 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DD1367691CE18E5E00658692 /* meal2.png */,
+				DD1367671CE18E5300658692 /* meal3.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6F4DE9B41CE4111E00B68597 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		DD1367641CE18B9C00658692 /* Customer cell */ = {
@@ -406,6 +449,7 @@
 				6F0754121CE0506700F7BB95 /* AppDelegate.swift in Sources */,
 				6F0754481CE0510400F7BB95 /* Restaurant.swift in Sources */,
 				6F0754441CE0510300F7BB95 /* AddViewController.swift in Sources */,
+				6F4DE9B81CE4116400B68597 /* User.swift in Sources */,
 				6F0754471CE0510400F7BB95 /* MealTableViewController.swift in Sources */,
 				DD1367661CE18BAD00658692 /* CustomCell.swift in Sources */,
 				6F0754461CE0510300F7BB95 /* MealTableViewCell.swift in Sources */,
