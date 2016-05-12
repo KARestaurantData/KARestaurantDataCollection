@@ -4,7 +4,7 @@ import UIKit
 import PhotosUI
 import BSImagePicker
 import AssetsLibrary
-class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate{
+class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate,UICollectionViewDataSource{
     // MARK: Properties
     
     @IBOutlet weak var menuSelectedLabel: UILabel!
@@ -13,6 +13,10 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    var imgarray = [UIImage]()
+    let rest  = ["KFC","KOI","KOI","KFC"]
+    let images = [UIImage (named: "meal2.png"),UIImage (named: "meal3.png"),UIImage (named: "meal3.png"),UIImage (named: "meal3.png")]
     /*
         This value is either passed by `MealTableViewController` in `prepareForSegue(_:sender:)`
         or constructed as part of adding a new meal.
@@ -104,6 +108,20 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         }
     }
     
+    //MARK: PHasset
+    
+    func getAssetThumbnail(asset: PHAsset) -> UIImage {
+        let manager = PHImageManager.defaultManager()
+        let option = PHImageRequestOptions()
+        var thumbnail = UIImage()
+        option.synchronous = true
+        manager.requestImageForAsset(asset, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
+            thumbnail = result!
+        })
+        return thumbnail
+    }
+    
+    
     // MARK: Actions
     @IBAction func showImagePicker(sender: UITapGestureRecognizer) {
         let vc = BSImagePickerViewController()
@@ -112,23 +130,47 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         bs_presentImagePickerController(vc, animated: true,
                                         select: { (asset: PHAsset) -> Void in
               print("Selected image:\(asset)")
+        self.photoImageView.image = self.getAssetThumbnail(asset)
+        self.imgarray.append(self.getAssetThumbnail(asset))
+                     print(self.imgarray.count)
+        
                                             
-         
-                                            
+        self.collectionView.reloadData()
+                                    
             }, deselect: { (asset: PHAsset) -> Void in
                 print("Deselected: \(asset)")
             }, cancel: { (assets: [PHAsset]) -> Void in
                 print("Cancel: \(assets)")
             }, finish: { (assets: [PHAsset]) -> Void in
                 print("Finish: \(assets)")
-            }, completion: nil)
+                
+                
+        }, completion:nil)
+    }
+    
+    
+    func reloadTable(){
+        self.collectionView.reloadData()
+        
+
     }
     
     //MARK: collection view
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return imgarray.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell =  collectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
+    cell.myImage.image=self.imgarray[indexPath.row]
+             return cell
+        
+        
         
     }
-
+    
+    
+    
     @IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
         // Hide the keyboard.
         nameTextField.resignFirstResponder()
@@ -144,6 +186,17 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         
         presentViewController(imagePickerController, animated: true, completion: nil)
     }
+    //MARK: delete action
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.imgarray.removeAtIndex(indexPath.row)
+        self.collectionView.deleteItemsAtIndexPaths([indexPath])
+        self.collectionView.reloadData()
+        
+    }
 
+    @IBAction func deleteAction(sender: AnyObject) {
+    
+        
+           }
 }
 
