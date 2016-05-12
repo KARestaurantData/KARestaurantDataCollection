@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class User {
     private var _userId : String!
@@ -55,5 +56,13 @@ class User {
         get{
             return _gender
         }
+    }
+    
+    
+    func downloadUserDetail(complete: DownloadComplete){
+//        Alamofire.request(.GET, "url").responseJSON { (request: NSURLRequest?, response: NSHTTPURLResponse?, result: Result<AnyObject>) -> Void in
+//        
+//        
+//        }
     }
 }
