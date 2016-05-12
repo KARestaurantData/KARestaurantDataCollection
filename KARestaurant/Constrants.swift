@@ -6,6 +6,8 @@
 //  Copyright © 2016 KARestaurant. All rights reserved.
 //
 
+
+// This is a global accessable file
 import Foundation
 
 let URL_BASE = "http://"
