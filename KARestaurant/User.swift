@@ -8,14 +8,20 @@
 
 import Foundation
 
-class User: NSObject {
-    private var _userId : NSString!
-    private var _username : NSString!
-    private var _email : NSString!
-    private var _gender : NSString!
+class User {
+    private var _userId : String!
+    private var _username : String!
+    private var _email : String!
+    private var _gender : String!
     
+    init(userId: String, username: String, email: String, gender: String) {
+        _userId = userId
+        _username = username
+        _email = email
+        _gender = gender
+    }
     
-    var userId : NSString{
+    var userId : String{
         set{
             _userId = newValue
         }
@@ -24,7 +30,7 @@ class User: NSObject {
         }
     }
     
-    var username : NSString{
+    var username : String{
         set{
             _username = newValue
         }
@@ -33,7 +39,7 @@ class User: NSObject {
         }
     }
     
-    var email : NSString{
+    var email : String{
         set{
             _email = newValue
         }
@@ -42,19 +48,12 @@ class User: NSObject {
         }
     }
     
-    var gender : NSString{
+    var gender : String{
         set{
             _gender = newValue
         }
         get{
             return _gender
         }
-    }
-    
-    init(userId: NSString, username: NSString, email: NSString, gender: NSString) {
-        _userId = userId
-        _username = username
-        _email = email
-        _gender = gender
     }
 }
