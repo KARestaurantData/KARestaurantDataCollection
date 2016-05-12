@@ -21,6 +21,9 @@
 		6F0754481CE0510400F7BB95 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754431CE0510300F7BB95 /* Restaurant.swift */; };
 		6F9C2B521CE16CFE0058A479 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9C2B511CE16CFE0058A479 /* User.storyboard */; };
 		AAE5891EBAAF7B9B2D9C75C4 /* Pods_KARestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B5004819D95C92C7737650 /* Pods_KARestaurant.framework */; };
+		DD1367661CE18BAD00658692 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1367651CE18BAD00658692 /* CustomCell.swift */; };
+		DD1367681CE18E5300658692 /* meal3.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1367671CE18E5300658692 /* meal3.png */; };
+		DD13676A1CE18E5E00658692 /* meal2.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1367691CE18E5E00658692 /* meal2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		6F9C2B511CE16CFE0058A479 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		829D481180FBB97F0A76979C /* Pods-KARestaurant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.debug.xcconfig"; sourceTree = "<group>"; };
 		BBF7508860EC2A71E4FEF057 /* Pods-KARestaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.release.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.release.xcconfig"; sourceTree = "<group>"; };
+		DD1367651CE18BAD00658692 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		DD1367671CE18E5300658692 /* meal3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meal3.png; path = "Images.xcassets/Sample Images/meal3.imageset/meal3.png"; sourceTree = "<group>"; };
+		DD1367691CE18E5E00658692 /* meal2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meal2.png; path = "Images.xcassets/Sample Images/meal2.imageset/meal2.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +139,8 @@
 		6F0754101CE0506700F7BB95 /* KARestaurant */ = {
 			isa = PBXGroup;
 			children = (
+				DD1367691CE18E5E00658692 /* meal2.png */,
+				DD1367671CE18E5300658692 /* meal3.png */,
 				6F3C432B1CE0885D007EEAB7 /* View Controllers */,
 				6F3C432C1CE0887D007EEAB7 /* Application */,
 				6F0754181CE0506700F7BB95 /* Images.xcassets */,
@@ -162,6 +170,7 @@
 		6F3C432B1CE0885D007EEAB7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DD1367641CE18B9C00658692 /* Customer cell */,
 				6F3C432E1CE08952007EEAB7 /* Login Controllers */,
 				6F0754131CE0506700F7BB95 /* ViewController.swift */,
 				6F07543F1CE0510300F7BB95 /* AddViewController.swift */,
@@ -197,6 +206,14 @@
 				6F0754401CE0510300F7BB95 /* LoginTableViewController.swift */,
 			);
 			name = "Login Controllers";
+			sourceTree = "<group>";
+		};
+		DD1367641CE18B9C00658692 /* Customer cell */ = {
+			isa = PBXGroup;
+			children = (
+				DD1367651CE18BAD00658692 /* CustomCell.swift */,
+			);
+			name = "Customer cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +325,8 @@
 			files = (
 				6F07541C1CE0506700F7BB95 /* LaunchScreen.storyboard in Resources */,
 				6F9C2B521CE16CFE0058A479 /* User.storyboard in Resources */,
+				DD1367681CE18E5300658692 /* meal3.png in Resources */,
+				DD13676A1CE18E5E00658692 /* meal2.png in Resources */,
 				6F0754191CE0506700F7BB95 /* Images.xcassets in Resources */,
 				6F0754171CE0506700F7BB95 /* Main.storyboard in Resources */,
 			);
@@ -388,6 +407,7 @@
 				6F0754481CE0510400F7BB95 /* Restaurant.swift in Sources */,
 				6F0754441CE0510300F7BB95 /* AddViewController.swift in Sources */,
 				6F0754471CE0510400F7BB95 /* MealTableViewController.swift in Sources */,
+				DD1367661CE18BAD00658692 /* CustomCell.swift in Sources */,
 				6F0754461CE0510300F7BB95 /* MealTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
