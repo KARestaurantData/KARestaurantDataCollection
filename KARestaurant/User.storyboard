@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qEQ-MJ-zzO">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -7,10 +7,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Login-->
+        <!--Login and Sing Up-->
         <scene sceneID="csg-3N-hzj">
             <objects>
-                <tableViewController title="Login" id="g3Z-pM-fIY" customClass="LoginTableViewController" customModule="KARestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Login and Sing Up" id="g3Z-pM-fIY" customClass="LoginAndSignUpTableVC" customModule="KARestaurant" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PbC-uK-Ros">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,102 +39,249 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="181" id="yE7-zQ-Aco">
-                                        <rect key="frame" x="0.0" y="307" width="600" height="181"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="330" id="yE7-zQ-Aco">
+                                        <rect key="frame" x="0.0" y="307" width="600" height="224"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yE7-zQ-Aco" id="Uzm-dR-qlS">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="181"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="224"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2aD-Bc-iUe">
-                                                    <rect key="frame" x="108" y="51" width="384" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="d5Z-8a-Kod"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="d5Z-8a-Kod"/>
-                                                        </mask>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LWf-qt-WTs">
+                                                    <rect key="frame" x="8" y="8" width="584" height="210"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQ4-Bh-9Vb">
+                                                            <rect key="frame" x="264" y="0.0" width="56" height="30"/>
+                                                            <subviews>
+                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ge-2s-bAW">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="56" height="30"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="300" id="vTw-mA-IzQ"/>
+                                                                        <constraint firstAttribute="width" constant="590" id="xpM-vl-xRA"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="yGr-Zu-6hh"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <variation key="default">
+                                                                        <mask key="constraints">
+                                                                            <exclude reference="vTw-mA-IzQ"/>
+                                                                            <exclude reference="xpM-vl-xRA"/>
+                                                                            <exclude reference="yGr-Zu-6hh"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="56" height="30"/>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                        <mask key="constraints">
+                                                                            <include reference="vTw-mA-IzQ"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                        <mask key="constraints">
+                                                                            <include reference="xpM-vl-xRA"/>
+                                                                            <include reference="yGr-Zu-6hh"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                </textField>
+                                                            </subviews>
+                                                            <variation key="heightClass=regular" misplaced="YES">
+                                                                <rect key="frame" x="264" y="0.0" width="56" height="30"/>
+                                                            </variation>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gS8-wd-k0G">
+                                                            <rect key="frame" x="250" y="45" width="84" height="30"/>
+                                                            <subviews>
+                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2aD-Bc-iUe">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="84" height="30"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="590" id="5L5-kB-vbn"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="wpy-az-IPH"/>
+                                                                        <constraint firstAttribute="width" constant="300" id="z3W-Fa-R3p"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <variation key="default">
+                                                                        <mask key="constraints">
+                                                                            <exclude reference="5L5-kB-vbn"/>
+                                                                            <exclude reference="wpy-az-IPH"/>
+                                                                            <exclude reference="z3W-Fa-R3p"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="30"/>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                        <mask key="constraints">
+                                                                            <include reference="z3W-Fa-R3p"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                        <mask key="constraints">
+                                                                            <include reference="5L5-kB-vbn"/>
+                                                                            <include reference="wpy-az-IPH"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                </textField>
+                                                            </subviews>
+                                                            <variation key="heightClass=regular" misplaced="YES">
+                                                                <rect key="frame" x="250" y="45" width="84" height="30"/>
+                                                            </variation>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="p3g-tf-92F">
+                                                            <rect key="frame" x="246" y="90" width="93" height="30"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmU-wy-F7l">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="38" height="30"/>
+                                                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <state key="normal" title="Login">
+                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </state>
+                                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="38" height="30"/>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                    </variation>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5p-wp-HBd">
+                                                                    <rect key="frame" x="38" y="0.0" width="55" height="30"/>
+                                                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <state key="normal" title="Sign Up">
+                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </state>
+                                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                                        <rect key="frame" x="38" y="0.0" width="55" height="30"/>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                    </variation>
+                                                                </button>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="Nfx-lb-U9W"/>
+                                                                <constraint firstAttribute="width" constant="590" id="UH1-Cf-heI"/>
+                                                                <constraint firstAttribute="width" constant="300" id="w2g-5Q-5gI"/>
+                                                            </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="Nfx-lb-U9W"/>
+                                                                    <exclude reference="UH1-Cf-heI"/>
+                                                                    <exclude reference="w2g-5Q-5gI"/>
+                                                                </mask>
+                                                            </variation>
+                                                            <variation key="heightClass=regular" misplaced="YES">
+                                                                <rect key="frame" x="246" y="90" width="93" height="30"/>
+                                                            </variation>
+                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                                <mask key="constraints">
+                                                                    <include reference="w2g-5Q-5gI"/>
+                                                                </mask>
+                                                            </variation>
+                                                            <variation key="heightClass=regular-widthClass=regular">
+                                                                <mask key="constraints">
+                                                                    <include reference="Nfx-lb-U9W"/>
+                                                                    <include reference="UH1-Cf-heI"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BmO-el-KKh">
+                                                            <rect key="frame" x="238" y="135" width="108" height="30"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9T-Zu-3VW">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="30"/>
+                                                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="590" id="9kb-j6-ONj"/>
+                                                                        <constraint firstAttribute="width" constant="300" id="Eaz-sl-rLS"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="QWt-0V-maI"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Facebook Login">
+                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </state>
+                                                                    <variation key="default">
+                                                                        <mask key="constraints">
+                                                                            <exclude reference="9kb-j6-ONj"/>
+                                                                            <exclude reference="Eaz-sl-rLS"/>
+                                                                            <exclude reference="QWt-0V-maI"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="108" height="30"/>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                        <mask key="constraints">
+                                                                            <include reference="Eaz-sl-rLS"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                        <mask key="constraints">
+                                                                            <include reference="9kb-j6-ONj"/>
+                                                                            <include reference="QWt-0V-maI"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                </button>
+                                                            </subviews>
+                                                            <variation key="heightClass=regular" misplaced="YES">
+                                                                <rect key="frame" x="238" y="135" width="108" height="30"/>
+                                                            </variation>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AWC-UL-iqa">
+                                                            <rect key="frame" x="238" y="180" width="109" height="30"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbQ-yX-omw">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="109" height="30"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="200" id="SPV-JK-aHu"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="huX-Vw-brk"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Reset Password"/>
+                                                                    <variation key="default">
+                                                                        <mask key="constraints">
+                                                                            <exclude reference="SPV-JK-aHu"/>
+                                                                            <exclude reference="huX-Vw-brk"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="30"/>
+                                                                    </variation>
+                                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                        <mask key="constraints">
+                                                                            <include reference="SPV-JK-aHu"/>
+                                                                            <include reference="huX-Vw-brk"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                </button>
+                                                            </subviews>
+                                                            <variation key="heightClass=regular" misplaced="YES">
+                                                                <rect key="frame" x="238" y="180" width="109" height="30"/>
+                                                            </variation>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="584" height="210"/>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=regular">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                        <mask key="constraints">
-                                                            <include reference="d5Z-8a-Kod"/>
-                                                        </mask>
-                                                    </variation>
-                                                </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ge-2s-bAW">
-                                                    <rect key="frame" x="108" y="8" width="384" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="NKi-aE-XGb"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="NKi-aE-XGb"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=regular">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                        <mask key="constraints">
-                                                            <include reference="NKi-aE-XGb"/>
-                                                        </mask>
-                                                    </variation>
-                                                </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmU-wy-F7l">
-                                                    <rect key="frame" x="108" y="89" width="384" height="30"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="PMb-Z1-Jyg"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Login">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="PMb-Z1-Jyg"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=regular">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                        <mask key="constraints">
-                                                            <include reference="PMb-Z1-Jyg"/>
-                                                        </mask>
-                                                    </variation>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7KS-zG-jQS">
-                                                    <rect key="frame" x="247" y="133" width="107" height="30"/>
-                                                    <state key="normal" title="Create Account"/>
-                                                </button>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bmU-wy-F7l" firstAttribute="top" secondItem="2aD-Bc-iUe" secondAttribute="bottom" constant="8" id="4Wv-r5-C1B"/>
-                                                <constraint firstItem="5ge-2s-bAW" firstAttribute="leading" secondItem="Uzm-dR-qlS" secondAttribute="leadingMargin" constant="100" id="7BU-Pc-6Xh">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="25"/>
-                                                </constraint>
-                                                <constraint firstItem="bmU-wy-F7l" firstAttribute="leading" secondItem="Uzm-dR-qlS" secondAttribute="leadingMargin" constant="100" id="9AT-JN-FAR">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="25"/>
-                                                </constraint>
-                                                <constraint firstItem="7KS-zG-jQS" firstAttribute="top" secondItem="bmU-wy-F7l" secondAttribute="bottom" constant="14" id="G2B-pe-ptJ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="bmU-wy-F7l" secondAttribute="trailing" constant="100" id="VQu-R0-k8B">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="25"/>
-                                                </constraint>
-                                                <constraint firstItem="2aD-Bc-iUe" firstAttribute="top" secondItem="5ge-2s-bAW" secondAttribute="bottom" constant="13" id="dfY-hH-bdD"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="2aD-Bc-iUe" secondAttribute="trailing" constant="100" id="odT-6a-HkY">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="25"/>
-                                                </constraint>
-                                                <constraint firstItem="2aD-Bc-iUe" firstAttribute="leading" secondItem="Uzm-dR-qlS" secondAttribute="leadingMargin" constant="100" id="pS5-bs-ccL">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="25"/>
-                                                </constraint>
-                                                <constraint firstAttribute="trailingMargin" secondItem="5ge-2s-bAW" secondAttribute="trailing" constant="100" id="r7C-rR-UOW">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="25"/>
-                                                </constraint>
-                                                <constraint firstItem="7KS-zG-jQS" firstAttribute="centerX" secondItem="Uzm-dR-qlS" secondAttribute="centerX" id="xOX-BZ-Gty"/>
-                                                <constraint firstAttribute="topMargin" secondItem="5ge-2s-bAW" secondAttribute="top" id="xa1-gY-apf"/>
+                                                <constraint firstItem="LWf-qt-WTs" firstAttribute="top" secondItem="Uzm-dR-qlS" secondAttribute="topMargin" id="6nE-Jv-pBj"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="LWf-qt-WTs" secondAttribute="bottom" id="GpO-7z-zCu"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="LWf-qt-WTs" secondAttribute="trailing" id="K38-7N-TBs"/>
+                                                <constraint firstItem="LWf-qt-WTs" firstAttribute="leading" secondItem="Uzm-dR-qlS" secondAttribute="leadingMargin" id="mvB-BP-iEk"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="GpO-7z-zCu"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=regular">
+                                                <mask key="constraints">
+                                                    <include reference="GpO-7z-zCu"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -145,7 +292,7 @@
                             <outlet property="delegate" destination="g3Z-pM-fIY" id="WeL-aH-m0D"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="4G0-jg-W45"/>
+                    <navigationItem key="navigationItem" id="4G0-jg-W45"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ev-CH-jaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
