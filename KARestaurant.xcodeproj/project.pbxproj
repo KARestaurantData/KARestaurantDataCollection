@@ -15,7 +15,6 @@
 		6F0754271CE0506700F7BB95 /* KARestaurantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754261CE0506700F7BB95 /* KARestaurantTests.swift */; };
 		6F0754321CE0506700F7BB95 /* KARestaurantUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754311CE0506700F7BB95 /* KARestaurantUITests.swift */; };
 		6F0754441CE0510300F7BB95 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F07543F1CE0510300F7BB95 /* AddViewController.swift */; };
-		6F0754451CE0510300F7BB95 /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754401CE0510300F7BB95 /* LoginTableViewController.swift */; };
 		6F0754461CE0510300F7BB95 /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754411CE0510300F7BB95 /* MealTableViewCell.swift */; };
 		6F0754471CE0510400F7BB95 /* MealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754421CE0510300F7BB95 /* MealTableViewController.swift */; };
 		6F0754481CE0510400F7BB95 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754431CE0510300F7BB95 /* Restaurant.swift */; };
@@ -29,6 +28,7 @@
 		6F4DE9C91CE476D300B68597 /* readme-controller in Resources */ = {isa = PBXBuildFile; fileRef = 6F4DE9C81CE476D300B68597 /* readme-controller */; };
 		6F4DE9CB1CE4834000B68597 /* Constrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4DE9CA1CE4834000B68597 /* Constrants.swift */; };
 		6F9C2B521CE16CFE0058A479 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9C2B511CE16CFE0058A479 /* User.storyboard */; };
+		6FE694861CEAB12A009A295D /* LoginAndSignUpTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE694851CEAB12A009A295D /* LoginAndSignUpTableVC.swift */; };
 		AAE5891EBAAF7B9B2D9C75C4 /* Pods_KARestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B5004819D95C92C7737650 /* Pods_KARestaurant.framework */; };
 		DD1367661CE18BAD00658692 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1367651CE18BAD00658692 /* CustomCell.swift */; };
 /* End PBXBuildFile section */
@@ -66,7 +66,6 @@
 		6F0754311CE0506700F7BB95 /* KARestaurantUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KARestaurantUITests.swift; sourceTree = "<group>"; };
 		6F0754331CE0506700F7BB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F07543F1CE0510300F7BB95 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
-		6F0754401CE0510300F7BB95 /* LoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableViewController.swift; sourceTree = "<group>"; };
 		6F0754411CE0510300F7BB95 /* MealTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
 		6F0754421CE0510300F7BB95 /* MealTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewController.swift; sourceTree = "<group>"; };
 		6F0754431CE0510300F7BB95 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -80,6 +79,7 @@
 		6F4DE9C81CE476D300B68597 /* readme-controller */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-controller"; sourceTree = "<group>"; };
 		6F4DE9CA1CE4834000B68597 /* Constrants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constrants.swift; sourceTree = "<group>"; };
 		6F9C2B511CE16CFE0058A479 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		6FE694851CEAB12A009A295D /* LoginAndSignUpTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAndSignUpTableVC.swift; sourceTree = "<group>"; };
 		829D481180FBB97F0A76979C /* Pods-KARestaurant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.debug.xcconfig"; sourceTree = "<group>"; };
 		BBF7508860EC2A71E4FEF057 /* Pods-KARestaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.release.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.release.xcconfig"; sourceTree = "<group>"; };
 		DD1367651CE18BAD00658692 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
@@ -199,12 +199,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6F3C432E1CE08952007EEAB7 /* Login Controllers */ = {
+		6F3C432E1CE08952007EEAB7 /* Login and Signup Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6F0754401CE0510300F7BB95 /* LoginTableViewController.swift */,
+				6FE694851CEAB12A009A295D /* LoginAndSignUpTableVC.swift */,
 			);
-			name = "Login Controllers";
+			name = "Login and Signup Controllers";
 			sourceTree = "<group>";
 		};
 		6F4DE9B01CE410F400B68597 /* Model */ = {
@@ -231,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				6F4DE9C81CE476D300B68597 /* readme-controller */,
-				6F3C432E1CE08952007EEAB7 /* Login Controllers */,
+				6F3C432E1CE08952007EEAB7 /* Login and Signup Controllers */,
 				6F0754131CE0506700F7BB95 /* ViewController.swift */,
 				6F07543F1CE0510300F7BB95 /* AddViewController.swift */,
 				6F0754421CE0510300F7BB95 /* MealTableViewController.swift */,
@@ -475,7 +475,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F0754141CE0506700F7BB95 /* ViewController.swift in Sources */,
-				6F0754451CE0510300F7BB95 /* LoginTableViewController.swift in Sources */,
 				6F0754121CE0506700F7BB95 /* AppDelegate.swift in Sources */,
 				6F0754481CE0510400F7BB95 /* Restaurant.swift in Sources */,
 				6F0754441CE0510300F7BB95 /* AddViewController.swift in Sources */,
@@ -483,6 +482,7 @@
 				6F4DE9B81CE4116400B68597 /* User.swift in Sources */,
 				6F0754471CE0510400F7BB95 /* MealTableViewController.swift in Sources */,
 				DD1367661CE18BAD00658692 /* CustomCell.swift in Sources */,
+				6FE694861CEAB12A009A295D /* LoginAndSignUpTableVC.swift in Sources */,
 				6F0754461CE0510300F7BB95 /* MealTableViewCell.swift in Sources */,
 				6F4DE9CB1CE4834000B68597 /* Constrants.swift in Sources */,
 			);
