@@ -91,26 +91,6 @@ class LoginAndSignUpTableVC: UITableViewController, ValidationDelegate {
     
     // MARK: ValidationDelegate Methods
     func validationSuccessful() {
-        let parameters = [
-            "email": emailTextField.text!,
-            "password": passwordTextField.text!
-        ]
-        
-        let headers = [
-            "Authorization": "Basic S0FBUEkhQCMkOiFAIyRLQUFQSQ==",
-            "Accept": "application/json; charset=utf-8"
-        ]
-        
-        let url = "http://api2.khmeracademy.org/api/authentication/mobilelogin"
-        
-        Alamofire.request(.POST, url, parameters: parameters,  encoding: .JSON, headers: headers).responseJSON { response in
-            let userRespone = Mapper<UserResponse>().map(response.result.value)
-            print(userRespone?.message)
-            
-            let user = userRespone?.user
-            print(user?.email)
-        }
-        
         print("Validation Success!")
         let alert = UIAlertController(title: "Success", message: "You are validated!", preferredStyle: UIAlertControllerStyle.Alert)
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
@@ -152,22 +132,114 @@ class LoginAndSignUpTableVC: UITableViewController, ValidationDelegate {
     
     // MARK: Action
     @IBAction func loginAction(sender: AnyObject) {
-       // validator.validate(self)
+        // validator.validate(self)
+    }
+    
+    func login(){
+        let parameters = [
+            "email": emailTextField.text!,
+            "password": passwordTextField.text!
+        ]
+        
+        let headers = [
+            "Authorization": "Basic S0FBUEkhQCMkOiFAIyRLQUFQSQ==",
+            "Accept": "application/json; charset=utf-8"
+        ]
+        
+        let url = "http://api2.khmeracademy.org/api/authentication/mobilelogin"
+        
+        Alamofire.request(.POST, url, parameters: parameters,  encoding: .JSON, headers: headers).responseJSON { response in
+            let userRespone = Mapper<UserResponse>().map(response.result.value)
+            print(userRespone?.message)
+            
+            let user = userRespone?.user
+            print(user?.email)
+        }
+    }
+    
+    func getRestuarant(){
+        // get restuarant
+        let url = "http://localhost:8080/RESTAURANT_API/v1/api/admin/restaurants"
         let headers = [
             "Authorization": "Basic cmVzdGF1cmFudEFETUlOOnJlc3RhdXJhbnRQQFNTV09SRA==",
             "Accept": "application/json; charset=utf-8"
         ]
         
-        let url = "http://localhost:8080/RESTAURANT_API/v1/api/admin/restaurants"
-        
         Alamofire.request(.GET, url, headers: headers).responseJSON { response in
-            let userRespone = Mapper<ResponseData>().map(response.result.value)
+            let userRespone = Mapper<ResponseRestaurant>().map(response.result.value)
             
-            let data = userRespone?.data![0]
-            print(data?.createdBy?.id)
-
             
+            for restaurent in (userRespone?.data)!{
+                for menu in (restaurent.menus)!{
+                    print(menu.title)
+                }
+            }
         }
+    }
+    
+    
+    func uploadImage(){
+        var imageName = [String]()
+        
+        let pic1 = UIImageJPEGRepresentation(UIImage.init(named: "pic1")!, 1.0)!
+        let pic2 = UIImageJPEGRepresentation(UIImage.init(named: "pic2")!, 1.0)!
+        let pic3 = UIImageJPEGRepresentation(UIImage.init(named: "pic3")!, 1.0)!
+        
+        
+        let urlStr = "http://localhost:8080/RESTAURANT_API/v1/api/admin/upload/multiple"
+        let url = NSURL(string: urlStr)!
+        let headers = [
+            "Authorization": "Basic cmVzdGF1cmFudEFETUlOOnJlc3RhdXJhbnRQQFNTV09SRA==",
+            "Accept": "application/json"
+        ]
+        let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
+        
+        Alamofire.upload(
+            .POST,
+            url,
+            headers: headers,
+            multipartFormData: { multipartFormData in
+                multipartFormData.appendBodyPart(data: pic1, name:"files", fileName: "unicorn", mimeType: "image/jpeg")
+                multipartFormData.appendBodyPart(data: pic2, name:"files", fileName: "sun", mimeType: "image/jpeg")
+                multipartFormData.appendBodyPart(data: pic3, name:"files", fileName: "rainbow", mimeType: "image/jpeg")
+                multipartFormData.appendBodyPart(data: keyJSON, name: "format")
+            },
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .Success(let upload, _, _):
+                    upload.responseJSON { response in
+                        let responeData = Mapper<ImageUploadResponse>().map(response.result.value)
+                        
+                        for image in (responeData?.image)!{
+                            imageName.append(image.imageName!)
+                        }
+                        
+                        let parameters = [
+                            "NAME": "kokpheng",
+                            "DESCRIPTION": "kokpheng",
+                            "ADDRESS": "kokpheng",
+                            "IS_DELIVERY": "1",
+                            "STATUS": "1",
+                            "MENU_IMAGES": imageName,
+                            "RESTAURANT_IMAGES": imageName,
+                            "RESTAURANT_CATEGORY": "hrd",
+                            "LATITUDE": "222",
+                            "LONGITUDE": "222",
+                            "TELEPHONE": "222"
+                        ]
+                        
+                        Alamofire.request(.POST, "http://localhost:8080/RESTAURANT_API/v1/api/admin/restaurants", parameters: parameters as? [String : AnyObject],  encoding: .JSON, headers: headers).responseJSON { response in
+                            
+                            print(response.result.value)
+                            
+                        }
+                        
+                    }
+                case .Failure(let encodingError):
+                    print(encodingError)
+                }
+            }
+        )
         
     }
     
