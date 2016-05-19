@@ -40,10 +40,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="330" id="yE7-zQ-Aco">
-                                        <rect key="frame" x="0.0" y="307" width="600" height="224"/>
+                                        <rect key="frame" x="0.0" y="307" width="600" height="330"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yE7-zQ-Aco" id="Uzm-dR-qlS">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="224"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LWf-qt-WTs">
@@ -71,7 +71,8 @@
                                                                     <variation key="heightClass=regular" misplaced="YES">
                                                                         <rect key="frame" x="0.0" y="0.0" width="56" height="30"/>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                                                                         <mask key="constraints">
                                                                             <include reference="vTw-mA-IzQ"/>
                                                                         </mask>
@@ -87,6 +88,9 @@
                                                             </subviews>
                                                             <variation key="heightClass=regular" misplaced="YES">
                                                                 <rect key="frame" x="264" y="0.0" width="56" height="30"/>
+                                                            </variation>
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="42" y="0.0" width="300" height="30"/>
                                                             </variation>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gS8-wd-k0G">
@@ -111,7 +115,8 @@
                                                                     <variation key="heightClass=regular" misplaced="YES">
                                                                         <rect key="frame" x="0.0" y="0.0" width="84" height="30"/>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                                                                         <mask key="constraints">
                                                                             <include reference="z3W-Fa-R3p"/>
                                                                         </mask>
@@ -128,12 +133,15 @@
                                                             <variation key="heightClass=regular" misplaced="YES">
                                                                 <rect key="frame" x="250" y="45" width="84" height="30"/>
                                                             </variation>
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="42" y="45" width="300" height="30"/>
+                                                            </variation>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="p3g-tf-92F">
-                                                            <rect key="frame" x="246" y="90" width="93" height="30"/>
+                                                            <rect key="frame" x="227" y="90" width="130" height="30"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmU-wy-F7l">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="38" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="55" height="30"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <state key="normal" title="Login">
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -141,12 +149,18 @@
                                                                     <variation key="heightClass=regular" misplaced="YES">
                                                                         <rect key="frame" x="0.0" y="0.0" width="38" height="30"/>
                                                                     </variation>
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                                                    </variation>
                                                                     <variation key="heightClass=regular-widthClass=regular">
                                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                     </variation>
+                                                                    <connections>
+                                                                        <action selector="loginAction:" destination="g3Z-pM-fIY" eventType="touchUpInside" id="a3y-V1-796"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5p-wp-HBd">
-                                                                    <rect key="frame" x="38" y="0.0" width="55" height="30"/>
+                                                                    <rect key="frame" x="75" y="0.0" width="55" height="30"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <state key="normal" title="Sign Up">
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -154,9 +168,15 @@
                                                                     <variation key="heightClass=regular" misplaced="YES">
                                                                         <rect key="frame" x="38" y="0.0" width="55" height="30"/>
                                                                     </variation>
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="160" y="0.0" width="140" height="30"/>
+                                                                    </variation>
                                                                     <variation key="heightClass=regular-widthClass=regular">
                                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                     </variation>
+                                                                    <connections>
+                                                                        <action selector="signUpAction:" destination="g3Z-pM-fIY" eventType="touchUpInside" id="gCl-93-OGG"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -174,7 +194,8 @@
                                                             <variation key="heightClass=regular" misplaced="YES">
                                                                 <rect key="frame" x="246" y="90" width="93" height="30"/>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="42" y="90" width="300" height="30"/>
                                                                 <mask key="constraints">
                                                                     <include reference="w2g-5Q-5gI"/>
                                                                 </mask>
@@ -210,7 +231,8 @@
                                                                     <variation key="heightClass=regular" misplaced="YES">
                                                                         <rect key="frame" x="0.0" y="0.0" width="108" height="30"/>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                                                                         <mask key="constraints">
                                                                             <include reference="Eaz-sl-rLS"/>
                                                                         </mask>
@@ -226,6 +248,9 @@
                                                             </subviews>
                                                             <variation key="heightClass=regular" misplaced="YES">
                                                                 <rect key="frame" x="238" y="135" width="108" height="30"/>
+                                                            </variation>
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="42" y="135" width="300" height="30"/>
                                                             </variation>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AWC-UL-iqa">
@@ -259,10 +284,16 @@
                                                             <variation key="heightClass=regular" misplaced="YES">
                                                                 <rect key="frame" x="238" y="180" width="109" height="30"/>
                                                             </variation>
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="138" y="180" width="109" height="30"/>
+                                                            </variation>
                                                         </stackView>
                                                     </subviews>
                                                     <variation key="heightClass=regular" misplaced="YES">
                                                         <rect key="frame" x="8" y="8" width="584" height="210"/>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="384" height="210"/>
                                                     </variation>
                                                 </stackView>
                                             </subviews>
@@ -293,6 +324,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="4G0-jg-W45"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="5ge-2s-bAW" id="b2e-jt-J0d"/>
+                        <outlet property="passwordTextField" destination="2aD-Bc-iUe" id="XNY-QF-aVJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ev-CH-jaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
