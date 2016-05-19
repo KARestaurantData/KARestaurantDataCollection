@@ -1,22 +1,43 @@
 PODS:
   - Alamofire (3.4.0)
+  - AlamofireObjectMapper (3.0.0):
+    - Alamofire (~> 3.2)
+    - ObjectMapper (~> 1.0)
   - BSGridCollectionViewLayout (1.1.1)
   - BSImagePicker (2.3.0):
     - BSGridCollectionViewLayout (~> 1.1)
     - UIImageViewModeScaleAspect (~> 1.3)
   - Device (1.0.1)
+  - ObjectMapper (1.3.0)
+  - SwiftValidator (3.0.1)
   - UIImageViewModeScaleAspect (1.3)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
+  - AlamofireObjectMapper (~> 3.0)
   - BSImagePicker (~> 2.3)
   - Device (~> 1.0.1)
+  - SwiftValidator (from `https://github.com/jpotts18/SwiftValidator.git`, branch
+    `master`)
+
+EXTERNAL SOURCES:
+  SwiftValidator:
+    :branch: master
+    :git: https://github.com/jpotts18/SwiftValidator.git
+
+CHECKOUT OPTIONS:
+  SwiftValidator:
+    :commit: ca7ec31141d8724fca018e3810dfaed29b7637c1
+    :git: https://github.com/jpotts18/SwiftValidator.git
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
   BSGridCollectionViewLayout: d7304dcb35c6b3b4420c527e9f9b77ff322250f3
   BSImagePicker: 591b28ce4994c44cbc4ac896717c1db9f9fadd18
   Device: 7ed5b87db148886e8c3cbcdde5dc997baddbe10b
+  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
+  SwiftValidator: 461a2c00173f001287a8fa1f12704b87ec8a6bc4
   UIImageViewModeScaleAspect: ec78901acfc20d3782154111a21d34390f8f71ad
 
 COCOAPODS: 0.39.0
