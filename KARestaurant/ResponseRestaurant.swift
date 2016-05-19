@@ -9,10 +9,10 @@
 import Foundation
 import ObjectMapper
 
-class  ResponseData: Mappable {
+class  ResponseRestaurant: Mappable {
     var message : String?
     var code : String?
-    var data : [ResponseRestaurant]?
+    var data : [Restaurants]?
     var pagination : Pagination?
     
     required init?(_ map: Map){
@@ -28,7 +28,7 @@ class  ResponseData: Mappable {
 }
 
 
-class ResponseRestaurant: Mappable{
+class Restaurants: Mappable{
     var id : Int?
     var name : String?
     var restDescription : String?
@@ -154,7 +154,6 @@ class Pagination: Mappable {
     var totalCount : Int?
     var totalPages : Int?
    
-    
     required init?(_ map: Map){
         
     }
