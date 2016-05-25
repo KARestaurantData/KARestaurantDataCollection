@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="X4D-Xd-ZHY">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -10,13 +10,13 @@
         <!--Restaurants-->
         <scene sceneID="GkY-Yy-XVW">
             <objects>
-                <tableViewController id="X4D-Xd-ZHY" customClass="MealTableViewController" customModule="KARestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="X4D-Xd-ZHY" customClass="RestaurantTableViewController" customModule="KARestaurant" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="yuI-Fm-teB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MealTableViewCell" rowHeight="100" id="YQV-Wp-cdh" customClass="MealTableViewCell" customModule="KARestaurant" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RestaurantTableViewCell" rowHeight="100" id="YQV-Wp-cdh" customClass="RestaurantTableViewCell" customModule="KARestaurant" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQV-Wp-cdh" id="TpD-sJ-fVf">
@@ -49,7 +49,6 @@
                                                 <constraint firstAttribute="height" constant="26" id="FF1-IK-Egq"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRB-n6-EMP">
@@ -88,8 +87,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="nameLabel" destination="UBr-gb-KsY" id="wi0-LQ-QIS"/>
-                                    <outlet property="photoImageView" destination="r1z-K4-h5D" id="xfr-zo-kev"/>
+                                    <outlet property="deliveryLabel" destination="kty-Pp-rXJ" id="2QT-MQ-sCm"/>
+                                    <outlet property="descriptionLabel" destination="FlD-G9-mfg" id="Zu5-TR-iRK"/>
+                                    <outlet property="nameLabel" destination="UBr-gb-KsY" id="fUW-Z0-R16"/>
+                                    <outlet property="photoImageView" destination="r1z-K4-h5D" id="Hyq-FL-vL5"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="GtT-Vd-w7x"/>
                                 </connections>
                             </tableViewCell>
@@ -297,6 +298,6 @@
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hfz-VK-jOs"/>
+        <segue reference="GtT-Vd-w7x"/>
     </inferredMetricsTieBreakers>
 </document>

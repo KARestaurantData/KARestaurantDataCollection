@@ -4,13 +4,15 @@ import UIKit
 import PhotosUI
 import BSImagePicker
 import AssetsLibrary
+import Alamofire
+
 class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate,UICollectionViewDataSource{
     // MARK: Properties
     
     @IBOutlet weak var menuSelectedLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
-   
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -18,11 +20,11 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
     let rest  = ["KFC","KOI","KOI","KFC"]
     let images = [UIImage (named: "meal2.png"),UIImage (named: "meal3.png"),UIImage (named: "meal3.png"),UIImage (named: "meal3.png")]
     /*
-        This value is either passed by `MealTableViewController` in `prepareForSegue(_:sender:)`
-        or constructed as part of adding a new meal.
-    */
-    var meal: Restaurant?
-
+     This value is either passed by `MealTableViewController` in `prepareForSegue(_:sender:)`
+     or constructed as part of adding a new meal.
+     */
+    var restaurant: Restaurants?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,11 +32,26 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         nameTextField.delegate = self
         
         // Set up views if editing an existing Meal.
-        if let meal = meal {
-            navigationItem.title = meal.name
-            nameTextField.text   = meal.name
-            photoImageView.image = meal.photo
-//            ratingControl.rating = meal.rating
+        if let restaurant = restaurant {
+            navigationItem.title = restaurant.name
+            nameTextField.text   = restaurant.name
+            // ratingControl.rating = restaurant.rating
+            
+            Alamofire.request(.GET, restaurant.images![0].url!)
+                .responseImage { response in
+                    debugPrint(response)
+                    
+                    print(response.request)
+                    print(response.response)
+                    debugPrint(response.result)
+                    
+                    if let image = response.result.value {
+                        self.photoImageView.image  = image
+                        // print("image downloaded: \(image)")
+                    }
+            }
+            
+            
         }
         
         // Enable the Save button only if the text field has a valid Meal name.
@@ -53,7 +70,7 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         checkValidMealName()
         navigationItem.title = textField.text
     }
-
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         // Disable the Save button while editing.
         saveButton.enabled = false
@@ -101,10 +118,10 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         if saveButton === sender {
             let name = nameTextField.text ?? ""
             let photo = photoImageView.image
-//            let rating = ratingControl.rating
+            //            let rating = ratingControl.rating
             
             // Set the meal to be passed to MealListTableViewController after the unwind segue.
-            meal = Restaurant(name: name, photo: photo, rating: 0)
+            //restaurant = Restaurant(name: name, photo: photo, rating: 0)
         }
     }
     
@@ -129,14 +146,14 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         
         bs_presentImagePickerController(vc, animated: true,
                                         select: { (asset: PHAsset) -> Void in
-              print("Selected image:\(asset)")
-        self.photoImageView.image = self.getAssetThumbnail(asset)
-        self.imgarray.append(self.getAssetThumbnail(asset))
-                     print(self.imgarray.count)
-        
+                                            print("Selected image:\(asset)")
+                                            self.photoImageView.image = self.getAssetThumbnail(asset)
+                                            self.imgarray.append(self.getAssetThumbnail(asset))
+                                            print(self.imgarray.count)
                                             
-        self.collectionView.reloadData()
-                                    
+                                            
+                                            self.collectionView.reloadData()
+                                            
             }, deselect: { (asset: PHAsset) -> Void in
                 print("Deselected: \(asset)")
             }, cancel: { (assets: [PHAsset]) -> Void in
@@ -145,25 +162,25 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
                 print("Finish: \(assets)")
                 
                 
-        }, completion:nil)
+            }, completion:nil)
     }
     
     
     func reloadTable(){
         self.collectionView.reloadData()
         
-
+        
     }
     
     //MARK: collection view
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return imgarray.count
+        return imgarray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell =  collectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
-    cell.myImage.image=self.imgarray[indexPath.row]
-             return cell
+        cell.myImage.image=self.imgarray[indexPath.row]
+        return cell
         
         
         
@@ -193,10 +210,10 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         self.collectionView.reloadData()
         
     }
-
-    @IBAction func deleteAction(sender: AnyObject) {
     
+    @IBAction func deleteAction(sender: AnyObject) {
         
-           }
+        
+    }
 }
 

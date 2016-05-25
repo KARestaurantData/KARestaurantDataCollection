@@ -132,6 +132,7 @@ class LoginAndSignUpTableVC: UITableViewController, ValidationDelegate {
     
     // MARK: Action
     @IBAction func loginAction(sender: AnyObject) {
+        login()
         // validator.validate(self)
     }
     
@@ -141,14 +142,10 @@ class LoginAndSignUpTableVC: UITableViewController, ValidationDelegate {
             "password": passwordTextField.text!
         ]
         
-        let headers = [
-            "Authorization": "Basic S0FBUEkhQCMkOiFAIyRLQUFQSQ==",
-            "Accept": "application/json; charset=utf-8"
-        ]
         
-        let url = "http://api2.khmeracademy.org/api/authentication/mobilelogin"
+        let url = Constant.GlobalConstants.URL_BASE_KA + Constant.GlobalConstants.URL_USER_KA
         
-        Alamofire.request(.POST, url, parameters: parameters,  encoding: .JSON, headers: headers).responseJSON { response in
+        Alamofire.request(.POST, url, parameters: parameters,  encoding: .JSON, headers: Constant.GlobalConstants.headers_ka).responseJSON { response in
             let userRespone = Mapper<UserResponse>().map(response.result.value)
             print(userRespone?.message)
             
@@ -156,27 +153,6 @@ class LoginAndSignUpTableVC: UITableViewController, ValidationDelegate {
             print(user?.email)
         }
     }
-    
-    func getRestuarant(){
-        // get restuarant
-        let url = "http://localhost:8080/RESTAURANT_API/v1/api/admin/restaurants"
-        let headers = [
-            "Authorization": "Basic cmVzdGF1cmFudEFETUlOOnJlc3RhdXJhbnRQQFNTV09SRA==",
-            "Accept": "application/json; charset=utf-8"
-        ]
-        
-        Alamofire.request(.GET, url, headers: headers).responseJSON { response in
-            let userRespone = Mapper<ResponseRestaurant>().map(response.result.value)
-            
-            
-            for restaurent in (userRespone?.data)!{
-                for menu in (restaurent.menus)!{
-                    print(menu.title)
-                }
-            }
-        }
-    }
-    
     
     func uploadImage(){
         var imageName = [String]()
@@ -186,19 +162,16 @@ class LoginAndSignUpTableVC: UITableViewController, ValidationDelegate {
         let pic3 = UIImageJPEGRepresentation(UIImage.init(named: "pic3")!, 1.0)!
         
         
-        let urlStr = "http://localhost:8080/RESTAURANT_API/v1/api/admin/upload/multiple"
-        let url = NSURL(string: urlStr)!
-        let headers = [
-            "Authorization": "Basic cmVzdGF1cmFudEFETUlOOnJlc3RhdXJhbnRQQFNTV09SRA==",
-            "Accept": "application/json"
-        ]
+        let url = Constant.GlobalConstants.URL_BASE + "v1/api/admin/upload/multiple"
+       
         let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
         
         Alamofire.upload(
             .POST,
             url,
-            headers: headers,
+            headers: Constant.GlobalConstants.headers,
             multipartFormData: { multipartFormData in
+                multipartFormData.appendBodyPart(data: "Kokpheng".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "name")
                 multipartFormData.appendBodyPart(data: pic1, name:"files", fileName: "unicorn", mimeType: "image/jpeg")
                 multipartFormData.appendBodyPart(data: pic2, name:"files", fileName: "sun", mimeType: "image/jpeg")
                 multipartFormData.appendBodyPart(data: pic3, name:"files", fileName: "rainbow", mimeType: "image/jpeg")
@@ -228,7 +201,7 @@ class LoginAndSignUpTableVC: UITableViewController, ValidationDelegate {
                             "TELEPHONE": "222"
                         ]
                         
-                        Alamofire.request(.POST, "http://localhost:8080/RESTAURANT_API/v1/api/admin/restaurants", parameters: parameters as? [String : AnyObject],  encoding: .JSON, headers: headers).responseJSON { response in
+                        Alamofire.request(.POST, Constant.GlobalConstants.URL_BASE +  "/v1/api/admin/restaurants", parameters: parameters as? [String : AnyObject],  encoding: .JSON, headers: Constant.GlobalConstants.headers).responseJSON { response in
                             
                             print(response.result.value)
                             

@@ -19,6 +19,10 @@ class  ResponseRestaurant: Mappable {
         
     }
     
+    required init?(){
+        
+    }
+    
     func mapping(map: Map) {
         message <- map["MESSAGE"]
         code <- map["CODE"]
