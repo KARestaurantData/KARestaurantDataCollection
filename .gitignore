@@ -1,0 +1,4 @@
+.DS_Store
+*.xcusersate
+project.xcworkspace/
+xcuserdata/
