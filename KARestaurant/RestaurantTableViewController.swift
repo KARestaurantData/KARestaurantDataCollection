@@ -60,9 +60,9 @@ class RestaurantTableViewController: UITableViewController {
         // Fetches the appropriate restuarant for the data source layout.
         cell.nameLabel.text = restuarant.name
         cell.descriptionLabel.text = restuarant.restDescription
-        cell.deliveryLabel.text = restuarant.isDeliver
+        cell.deliveryLabel.text = restuarant.isDeliver == "1" ? "Delivery" : "No Delivery"
         
-        Alamofire.request(.GET, restuarant.images![0].url!)
+        Alamofire.request(.GET, restuarant.thumbnail!)
             .responseImage { response in
                 debugPrint(response)
                 

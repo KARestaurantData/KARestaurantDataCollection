@@ -240,7 +240,6 @@
 				6F70EA371CF539AA00A4E45A /* Restaurant Controller */,
 				6F3C432E1CE08952007EEAB7 /* Login and Signup Controllers */,
 				6F0754131CE0506700F7BB95 /* ViewController.swift */,
-				6F07543F1CE0510300F7BB95 /* AddViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -286,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				6F70EA351CF539A300A4E45A /* RestaurantTableViewController.swift */,
+				6F07543F1CE0510300F7BB95 /* AddViewController.swift */,
 			);
 			name = "Restaurant Controller";
 			sourceTree = "<group>";
