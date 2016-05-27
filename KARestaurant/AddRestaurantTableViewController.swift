@@ -1,8 +1,8 @@
 //
-//  AddTableViewController.swift
+//  AddRestaurantTableViewController.swift
 //  KARestaurant
 //
-//  Created by Teckchun on 5/19/16.
+//  Created by Kokpheng on 5/27/16.
 //  Copyright © 2016 KARestaurant. All rights reserved.
 //
 
@@ -11,8 +11,7 @@ import PhotosUI
 import BSImagePicker
 import AssetsLibrary
 
-
-class AddTableViewController: UITableViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate,UICollectionViewDataSource {
+class AddRestaurantTableViewController: UITableViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate,UICollectionViewDataSource {
     
     // MARK: Properties
     
@@ -183,28 +182,28 @@ class AddTableViewController: UITableViewController,UITextFieldDelegate, UIImage
     }
     
     //MARK: UITableViewDelegate
-//    override func tableView(tableView: UITableView,
-//                            numberOfRowsInSection section: Int) -> Int {
-//        return imgarray.count
-//    }
-//    
-//    override func tableView(tableView: UITableView,
-//                            cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        
-//        let cell = tableView.dequeueReusableCellWithIdentifier("cell",
-//                                                               forIndexPath: indexPath)
-//        
-//        return cell
-//    }
-//    override func tableView(tableView: UITableView,
-//                            willDisplayCell cell: UITableViewCell,
-//                                            forRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        guard let tableViewCell = cell as? CustomTableViewCell else { return }
-//        
-//        tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
-//    }
-
+    //    override func tableView(tableView: UITableView,
+    //                            numberOfRowsInSection section: Int) -> Int {
+    //        return imgarray.count
+    //    }
+    //
+    //    override func tableView(tableView: UITableView,
+    //                            cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    //
+    //        let cell = tableView.dequeueReusableCellWithIdentifier("cell",
+    //                                                               forIndexPath: indexPath)
+    //
+    //        return cell
+    //    }
+    //    override func tableView(tableView: UITableView,
+    //                            willDisplayCell cell: UITableViewCell,
+    //                                            forRowAtIndexPath indexPath: NSIndexPath) {
+    //
+    //        guard let tableViewCell = cell as? CustomTableViewCell else { return }
+    //
+    //        tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+    //    }
+    
     
     @IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
         // Hide the keyboard.
@@ -233,5 +232,5 @@ class AddTableViewController: UITableViewController,UITextFieldDelegate, UIImage
         
         
     }
-
-   }
+    
+}
