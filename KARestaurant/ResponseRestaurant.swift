@@ -19,6 +19,10 @@ class  ResponseRestaurant: Mappable {
         
     }
     
+    required init?(){
+        
+    }
+    
     func mapping(map: Map) {
         message <- map["MESSAGE"]
         code <- map["CODE"]
@@ -92,13 +96,7 @@ class CreatedBy: Mappable {
 class Menu: Mappable {
     var id : Int?
     var title : String?
-    var menuDescription : String?
-    var restaurant : String?
     var url : String?
-    var type : String?
-    var status : String?
-    var createdDate : String?
-    var createBy : CreatedBy?
     var isThumbmail : String?
     
     required init?(_ map: Map){
@@ -108,13 +106,7 @@ class Menu: Mappable {
     func mapping(map: Map) {
         id <- map["ID"]
         title <- map["TITLE"]
-        menuDescription <- map["DESCRIPTION"]
-        restaurant <- map["RESTARUANT"]
         url <- map["URL"]
-        type <- map["TYPE"]
-        status <- map["STATUS"]
-        createdDate <- map["CREATED_DATE"]
-        createBy <- map["CREATED_BY"]
         isThumbmail <- map["IS_THUMBNAIL"]
     }
 }
