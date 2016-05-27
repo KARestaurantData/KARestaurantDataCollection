@@ -103,7 +103,7 @@
                     <navigationItem key="navigationItem" title="Restaurants" id="eSY-WF-TJg">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5IV-og-BzF">
                             <connections>
-                                <segue destination="eoU-xY-bnf" kind="showDetail" id="b5K-Il-YIJ"/>
+                                <segue destination="eoU-xY-bnf" kind="show" id="QcV-kD-VNA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -257,7 +257,7 @@
         <!--Register-->
         <scene sceneID="z5R-SW-3zY">
             <objects>
-                <tableViewController id="diG-lI-jy9" customClass="AddTableViewController" customModule="KARestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="diG-lI-jy9" customClass="AddRestaurantTableViewController" customModule="BSImagePicker" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="sHp-Be-lrH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -315,9 +315,6 @@
                                                     <state key="normal" title="Browse">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
-                                                    <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="xnn-nl-nSH" appends="YES" id="cSa-i6-JhQ"/>
-                                                    </connections>
                                                 </button>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Khn-UY-QEe">
                                                     <rect key="frame" x="8" y="8" width="284" height="128"/>
@@ -342,9 +339,6 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
-                                                            <connections>
-                                                                <outlet property="myImage" destination="b7X-Z1-zcr" id="8q5-zj-sB8"/>
-                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -360,35 +354,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Register" id="GI9-77-bzB">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="vxo-TV-fJH">
-                            <connections>
-                                <action selector="cancel:" destination="diG-lI-jy9" id="oaP-ui-lt6"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="RFg-C3-Ybz">
-                            <connections>
-                                <segue destination="BmM-S7-kex" kind="unwind" unwindAction="unwindToMealList:" id="q7E-6S-V9T"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="vxo-TV-fJH"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="RFg-C3-Ybz"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="browseButton" destination="jpx-qn-WwK" id="Unb-aA-IIB"/>
-                        <outlet property="collectionView" destination="Khn-UY-QEe" id="ILs-qO-a4F"/>
-                        <outlet property="nameTextField" destination="9kb-Li-v9N" id="yzb-jw-KFd"/>
-                        <outlet property="photoImageView" destination="klJ-mO-tj5" id="BJp-72-X58"/>
-                        <outlet property="saveButton" destination="RFg-C3-Ybz" id="mbF-Pw-10M"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Szg-gF-w8s" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="BmM-S7-kex" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="xnn-nl-nSH">
                     <connections>
-                        <action selector="showImagePicker:" destination="diG-lI-jy9" id="pTt-uO-IoK"/>
+                        <action selector="showImagePicker:" destination="diG-lI-jy9" id="qzQ-NI-vp2"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1812.5" y="433.5"/>
+            <point key="canvasLocation" x="1868.5" y="420.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="F27-jt-dmk">

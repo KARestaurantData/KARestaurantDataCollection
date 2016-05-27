@@ -12,12 +12,12 @@ import BSImagePicker
 import AssetsLibrary
 
 
-class AddTableViewController: UITableViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate,UICollectionViewDataSource {
+class AddRestaurantTableViewController: UITableViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate,UICollectionViewDataSource {
     
     // MARK: Properties
     
     @IBOutlet weak var menuSelectedLabel: UILabel!
-    @IBOutlet weak var browseButton:UIButton!
+
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     
@@ -116,7 +116,7 @@ class AddTableViewController: UITableViewController,UITextFieldDelegate, UIImage
             //            let rating = ratingControl.rating
             
             // Set the meal to be passed to MealListTableViewController after the unwind segue.
-            meal = Restaurant(name: name, photo: photo, rating: 0)
+           // meal = Restaurant(name: name, photo: photo, rating: 0)
             print("saved!")
         }
     }
