@@ -17,7 +17,6 @@
 		6F0754441CE0510300F7BB95 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F07543F1CE0510300F7BB95 /* AddViewController.swift */; };
 		6F0754461CE0510300F7BB95 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754411CE0510300F7BB95 /* RestaurantTableViewCell.swift */; };
 		6F0754481CE0510400F7BB95 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754431CE0510300F7BB95 /* Restaurant.swift */; };
-		6F21B8451CF7D79800CB69F2 /* AddRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F21B8441CF7D79800CB69F2 /* AddRestaurantTableViewController.swift */; };
 		6F4DE9B81CE4116400B68597 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4DE9B71CE4116400B68597 /* User.swift */; };
 		6F4DE9BB1CE4561800B68597 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4DE9BA1CE4561800B68597 /* ConnectionManager.swift */; };
 		6F4DE9BE1CE46CEE00B68597 /* readme-resource in Resources */ = {isa = PBXBuildFile; fileRef = 6F4DE9BD1CE46CEE00B68597 /* readme-resource */; };
@@ -29,6 +28,7 @@
 		6F4DE9CB1CE4834000B68597 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4DE9CA1CE4834000B68597 /* Constant.swift */; };
 		6F70EA361CF539A300A4E45A /* RestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70EA351CF539A300A4E45A /* RestaurantTableViewController.swift */; };
 		6F9C2B521CE16CFE0058A479 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9C2B511CE16CFE0058A479 /* User.storyboard */; };
+		6FBE93731CF7F0E500211447 /* AddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE93721CF7F0E500211447 /* AddTableViewController.swift */; };
 		6FE694861CEAB12A009A295D /* LoginAndSignUpTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE694851CEAB12A009A295D /* LoginAndSignUpTableVC.swift */; };
 		6FE8BD601CEDB03900C4CDDB /* ResponseRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE8BD5F1CEDB03900C4CDDB /* ResponseRestaurant.swift */; };
 		6FE8BD621CEDCCEE00C4CDDB /* ImageUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE8BD611CEDCCEE00C4CDDB /* ImageUpload.swift */; };
@@ -71,7 +71,6 @@
 		6F07543F1CE0510300F7BB95 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		6F0754411CE0510300F7BB95 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		6F0754431CE0510300F7BB95 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
-		6F21B8441CF7D79800CB69F2 /* AddRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		6F4DE9B71CE4116400B68597 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6F4DE9BA1CE4561800B68597 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		6F4DE9BD1CE46CEE00B68597 /* readme-resource */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-resource"; sourceTree = "<group>"; };
@@ -83,6 +82,7 @@
 		6F4DE9CA1CE4834000B68597 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		6F70EA351CF539A300A4E45A /* RestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewController.swift; sourceTree = "<group>"; };
 		6F9C2B511CE16CFE0058A479 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		6FBE93721CF7F0E500211447 /* AddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTableViewController.swift; sourceTree = "<group>"; };
 		6FE694851CEAB12A009A295D /* LoginAndSignUpTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAndSignUpTableVC.swift; sourceTree = "<group>"; };
 		6FE8BD5F1CEDB03900C4CDDB /* ResponseRestaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseRestaurant.swift; sourceTree = "<group>"; };
 		6FE8BD611CEDCCEE00C4CDDB /* ImageUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUpload.swift; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 		6F70EA371CF539AA00A4E45A /* Restaurant Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6F21B8441CF7D79800CB69F2 /* AddRestaurantTableViewController.swift */,
+				6FBE93721CF7F0E500211447 /* AddTableViewController.swift */,
 				6F70EA351CF539A300A4E45A /* RestaurantTableViewController.swift */,
 				6F07543F1CE0510300F7BB95 /* AddViewController.swift */,
 			);
@@ -492,7 +492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F0754141CE0506700F7BB95 /* ViewController.swift in Sources */,
-				6F21B8451CF7D79800CB69F2 /* AddRestaurantTableViewController.swift in Sources */,
+				6FBE93731CF7F0E500211447 /* AddTableViewController.swift in Sources */,
 				6F0754121CE0506700F7BB95 /* AppDelegate.swift in Sources */,
 				6F70EA361CF539A300A4E45A /* RestaurantTableViewController.swift in Sources */,
 				6F0754481CE0510400F7BB95 /* Restaurant.swift in Sources */,
