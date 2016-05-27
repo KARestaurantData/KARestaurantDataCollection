@@ -14,12 +14,18 @@ import ObjectMapper
 import AlamofireImage
 
 class RestaurantTableViewController: UITableViewController {
+    
     // MARK: Properties
+    
+    let restuarantRefreshControl: UIRefreshControl = UIRefreshControl() // Top RefreshControl
+    
     var responseRestaurant = [Restaurants]()
     let vc = BSImagePickerViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        restuarantRefreshControl.addTarget(self, action: #selector(RestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
+        self.tableView.addSubview(restuarantRefreshControl)
         
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
@@ -27,6 +33,9 @@ class RestaurantTableViewController: UITableViewController {
         
     }
     
+    func uiRefreshControlAction() {
+        getRestuarant()
+    }
     
     func getRestuarant(){
         // get restuarant
@@ -36,6 +45,7 @@ class RestaurantTableViewController: UITableViewController {
              let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
             
             self.responseRestaurant = responseData!.data!
+            self.restuarantRefreshControl.endRefreshing()
             self.tableView.reloadData()
         }
     }
