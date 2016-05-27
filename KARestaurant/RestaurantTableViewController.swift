@@ -16,10 +16,12 @@ import AlamofireImage
 class RestaurantTableViewController: UITableViewController {
     
     // MARK: Properties
+    var isNewRestaurantDataLoading: Bool = false
     
     let restuarantRefreshControl: UIRefreshControl = UIRefreshControl() // Top RefreshControl
     
     var responseRestaurant = [Restaurants]()
+    var responsePagination = Pagination()
     let vc = BSImagePickerViewController()
     
     override func viewDidLoad() {
@@ -29,22 +31,29 @@ class RestaurantTableViewController: UITableViewController {
         
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
-        getRestuarant()
+        
+        getRestuarant(1, limit: 100)
         
     }
     
     func uiRefreshControlAction() {
-        getRestuarant()
+        print((self.responsePagination?.limit)!)
+        self.responseRestaurant.removeAll()
+         getRestuarant(1, limit: (self.responsePagination?.limit)!)
     }
     
-    func getRestuarant(){
+    func getRestuarant(page: Int, limit: Int){
         // get restuarant
-        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=1&limit=100"
+        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=\(page)&limit=\(limit)"
        
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
              let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
+            self.responsePagination = responseData!.pagination!
+            self.responseRestaurant += responseData!.data!
             
-            self.responseRestaurant = responseData!.data!
+            print("limit: \(self.responsePagination!.limit!) item count:\(self.responseRestaurant.count)/\(self.responsePagination!.totalCount!) current page: \(self.responsePagination!.page!) page: \(self.responsePagination!.totalPages!)")
+            
+            self.isNewRestaurantDataLoading = false
             self.restuarantRefreshControl.endRefreshing()
             self.tableView.reloadData()
         }
@@ -88,6 +97,31 @@ class RestaurantTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+      
+        //Bottom Refresh
+        
+        if scrollView == self.tableView{
+            
+            if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
+            {
+                if !isNewRestaurantDataLoading{
+                    isNewRestaurantDataLoading = true
+                    if self.responsePagination?.page < self.responsePagination?.totalPages {
+                        getRestuarant((self.responsePagination?.page)! + 1, limit: (self.responsePagination?.limit)!)
+                    }
+                    
+//                    if helperInstance.isConnectedToNetwork(){
+//                        
+                    
+//                        isNewDataLoading = true
+//                        getNewData()
+//                    }
+                }
+            }
+        }
     }
     
     // Override to support conditional editing of the table view.
