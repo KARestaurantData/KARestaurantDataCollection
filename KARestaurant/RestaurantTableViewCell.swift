@@ -2,12 +2,13 @@
 
 import UIKit
 
-class MealTableViewCell: UITableViewCell {
+class RestaurantTableViewCell: UITableViewCell {
     // MARK: Properties
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
-  
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var deliveryLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

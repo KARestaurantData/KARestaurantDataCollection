@@ -1,15 +1,22 @@
-
+//
+//  EditRestaurantTableViewController.swift
+//  KARestaurant
+//
+//  Created by Kokpheng on 5/27/16.
+//  Copyright © 2016 KARestaurant. All rights reserved.
+//
 
 import UIKit
 import PhotosUI
 import BSImagePicker
 import AssetsLibrary
-import Alamofire
 
-class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate,UICollectionViewDataSource{
+class EditRestaurantTableViewController: UITableViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate,UICollectionViewDataSource {
+    
     // MARK: Properties
     
     @IBOutlet weak var menuSelectedLabel: UILabel!
+    @IBOutlet weak var browseButton:UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     
@@ -17,42 +24,28 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
     
     @IBOutlet weak var collectionView: UICollectionView!
     var imgarray = [UIImage]()
-    
     let rest  = ["KFC","KOI","KOI","KFC"]
     let images = [UIImage (named: "meal2.png"),UIImage (named: "meal3.png"),UIImage (named: "meal3.png"),UIImage (named: "meal3.png")]
     /*
-     This value is either passed by `MealTableViewController` in `prepareForSegue(_:sender:)`
+     This value is either passed by `RestaurantTableViewController` in `prepareForSegue(_:sender:)`
      or constructed as part of adding a new meal.
      */
-    var restaurant: Restaurants?
+    var meal: Restaurant?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.delegate=self
+        self.collectionView.dataSource=self
         
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
         
         // Set up views if editing an existing Meal.
-        if let restaurant = restaurant {
-            navigationItem.title = restaurant.name
-            nameTextField.text   = restaurant.name
-            // ratingControl.rating = restaurant.rating
-            
-            Alamofire.request(.GET, restaurant.images![0].url!)
-                .responseImage { response in
-                    debugPrint(response)
-                    
-                    print(response.request)
-                    print(response.response)
-                    debugPrint(response.result)
-                    
-                    if let image = response.result.value {
-                        self.photoImageView.image  = image
-                        // print("image downloaded: \(image)")
-                    }
-            }
-            
-            
+        if let meal = meal {
+            navigationItem.title = meal.name
+            nameTextField.text   = meal.name
+            photoImageView.image = meal.photo
+            //            ratingControl.rating = meal.rating
         }
         
         // Enable the Save button only if the text field has a valid Meal name.
@@ -122,7 +115,8 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
             //            let rating = ratingControl.rating
             
             // Set the meal to be passed to MealListTableViewController after the unwind segue.
-            //restaurant = Restaurant(name: name, photo: photo, rating: 0)
+            meal = Restaurant(name: name, photo: photo, rating: 0)
+            print("saved!")
         }
     }
     
@@ -187,6 +181,28 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         
     }
     
+    //MARK: UITableViewDelegate
+    //    override func tableView(tableView: UITableView,
+    //                            numberOfRowsInSection section: Int) -> Int {
+    //        return imgarray.count
+    //    }
+    //
+    //    override func tableView(tableView: UITableView,
+    //                            cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    //
+    //        let cell = tableView.dequeueReusableCellWithIdentifier("cell",
+    //                                                               forIndexPath: indexPath)
+    //
+    //        return cell
+    //    }
+    //    override func tableView(tableView: UITableView,
+    //                            willDisplayCell cell: UITableViewCell,
+    //                                            forRowAtIndexPath indexPath: NSIndexPath) {
+    //
+    //        guard let tableViewCell = cell as? CustomTableViewCell else { return }
+    //
+    //        tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+    //    }
     
     
     @IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
@@ -216,5 +232,6 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIImagePickerCon
         
         
     }
+    
 }
 
