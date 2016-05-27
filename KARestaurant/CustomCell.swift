@@ -9,10 +9,9 @@
 import UIKit
 
 class CustomCell: UICollectionViewCell {
-    @IBOutlet weak var myImage: UIImageView!
+
     
-    @IBOutlet weak var mylabel: UILabel!
-   
+    @IBOutlet weak var myImage: UIImageView!
     
     /*
     func configureCell() {

@@ -132,7 +132,7 @@ class LoginAndSignUpTableVC: UITableViewController, ValidationDelegate {
     
     // MARK: Action
     @IBAction func loginAction(sender: AnyObject) {
-        login()
+        uploadImage()
         // validator.validate(self)
     }
     
@@ -161,51 +161,82 @@ class LoginAndSignUpTableVC: UITableViewController, ValidationDelegate {
         let pic2 = UIImageJPEGRepresentation(UIImage.init(named: "pic2")!, 1.0)!
         let pic3 = UIImageJPEGRepresentation(UIImage.init(named: "pic3")!, 1.0)!
         
-        
-        let url = Constant.GlobalConstants.URL_BASE + "v1/api/admin/upload/multiple"
+        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/340"
        
         let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
+        
         
         Alamofire.upload(
             .POST,
             url,
             headers: Constant.GlobalConstants.headers,
             multipartFormData: { multipartFormData in
-                multipartFormData.appendBodyPart(data: "Kokpheng".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "name")
-                multipartFormData.appendBodyPart(data: pic1, name:"files", fileName: "unicorn", mimeType: "image/jpeg")
-                multipartFormData.appendBodyPart(data: pic2, name:"files", fileName: "sun", mimeType: "image/jpeg")
-                multipartFormData.appendBodyPart(data: pic3, name:"files", fileName: "rainbow", mimeType: "image/jpeg")
+                multipartFormData.appendBodyPart(data: "Kokpheng update".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "NAME")
+                multipartFormData.appendBodyPart(data: "Hello Dest update".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "DESCRIPTION")
+                multipartFormData.appendBodyPart(data: "Hello ADDD".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "ADDRESS")
+
+                multipartFormData.appendBodyPart(data: "0".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "IS_DELIVERY")
+
+                multipartFormData.appendBodyPart(data: "1".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "STATUS")
+                multipartFormData.appendBodyPart(data: "rest cat".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "RESTAURANT_CATEGORY")
+                multipartFormData.appendBodyPart(data: "111".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
+                multipartFormData.appendBodyPart(data: "111".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LONGITUDE")
+                multipartFormData.appendBodyPart(data: "016 600 701".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
+                
+//                
+//                for photo in self.photoArray {
+//                    var (imagePicked, imageExtension) = photo
+//                    var imagePickedData = NSData()
+//                    
+//                    switch imageExtension {
+//                    case "png": imagePickedData = UIImagePNGRepresentation(imagePicked)!
+//                    case "jpg": imagePickedData = UIImageJPEGRepresentation(imagePicked, 1)!
+//                    default: imagePickedData = UIImageJPEGRepresentation(imagePicked, 1)!
+//                    }
+//                    imagePickedData = UIImageJPEGRepresentation(imagePicked, 1)!
+//                    multipartFormData.appendBodyPart(data: "image_iOS_device".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "article[article_images_attributes[\(index)][title]]")
+//                    multipartFormData.appendBodyPart(data: imagePickedData, name: "article[article_images_attributes[\(index)][image]]", fileName: "image_\(index).\(imageExtension)", mimeType: "image/\(imageExtension)")
+//                    index++
+//                }
+                
+
+
+                multipartFormData.appendBodyPart(data: pic1, name:"MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
+                multipartFormData.appendBodyPart(data: pic2, name:"MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
+                multipartFormData.appendBodyPart(data: pic2, name:"RESTAURANT_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
+                multipartFormData.appendBodyPart(data: pic3, name:"RESTAURANT_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
                 multipartFormData.appendBodyPart(data: keyJSON, name: "format")
             },
             encodingCompletion: { encodingResult in
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
-                        let responeData = Mapper<ImageUploadResponse>().map(response.result.value)
+                        print(response.result.value)
+//                        let responeData = Mapper<ImageUploadResponse>().map(response.result.value)
+//                        
+//                        for image in (responeData?.image)!{
+//                            imageName.append(image.imageName!)
+//                        }
                         
-                        for image in (responeData?.image)!{
-                            imageName.append(image.imageName!)
-                        }
-                        
-                        let parameters = [
-                            "NAME": "kokpheng",
-                            "DESCRIPTION": "kokpheng",
-                            "ADDRESS": "kokpheng",
-                            "IS_DELIVERY": "1",
-                            "STATUS": "1",
-                            "MENU_IMAGES": imageName,
-                            "RESTAURANT_IMAGES": imageName,
-                            "RESTAURANT_CATEGORY": "hrd",
-                            "LATITUDE": "222",
-                            "LONGITUDE": "222",
-                            "TELEPHONE": "222"
-                        ]
-                        
-                        Alamofire.request(.POST, Constant.GlobalConstants.URL_BASE +  "/v1/api/admin/restaurants", parameters: parameters as? [String : AnyObject],  encoding: .JSON, headers: Constant.GlobalConstants.headers).responseJSON { response in
-                            
-                            print(response.result.value)
-                            
-                        }
+//                        let parameters = [
+//                            "NAME": "kokpheng",
+//                            "DESCRIPTION": "kokpheng",
+//                            "ADDRESS": "kokpheng",
+//                            "IS_DELIVERY": "1",
+//                            "STATUS": "1",
+//                            "MENU_IMAGES": imageName,
+//                            "RESTAURANT_IMAGES": imageName,
+//                            "RESTAURANT_CATEGORY": "hrd",
+//                            "LATITUDE": "222",
+//                            "LONGITUDE": "222",
+//                            "TELEPHONE": "222"
+//                        ]
+//
+//                        Alamofire.request(.POST, Constant.GlobalConstants.URL_BASE +  "/v1/api/admin/restaurants", parameters: parameters as? [String : AnyObject],  encoding: .JSON, headers: Constant.GlobalConstants.headers).responseJSON { response in
+//                            
+//                            print(response.result.value)
+//                            
+//                        }
                         
                     }
                 case .Failure(let encodingError):
