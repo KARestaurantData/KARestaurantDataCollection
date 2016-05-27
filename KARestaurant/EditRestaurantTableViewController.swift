@@ -1,5 +1,5 @@
 //
-//  AddRestaurantTableViewController.swift
+//  EditRestaurantTableViewController.swift
 //  KARestaurant
 //
 //  Created by Kokpheng on 5/27/16.
@@ -10,9 +10,8 @@ import UIKit
 import PhotosUI
 import BSImagePicker
 import AssetsLibrary
-import Alamofire
 
-class AddRestaurantTableViewController: UITableViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate,UICollectionViewDataSource {
+class EditRestaurantTableViewController: UITableViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UICollectionViewDelegate,UICollectionViewDataSource {
     
     // MARK: Properties
     
@@ -24,8 +23,14 @@ class AddRestaurantTableViewController: UITableViewController,UITextFieldDelegat
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    var imageArray = [UIImage]()
+    var imgarray = [UIImage]()
+    let rest  = ["KFC","KOI","KOI","KFC"]
+    let images = [UIImage (named: "meal2.png"),UIImage (named: "meal3.png"),UIImage (named: "meal3.png"),UIImage (named: "meal3.png")]
+    /*
+     This value is either passed by `RestaurantTableViewController` in `prepareForSegue(_:sender:)`
+     or constructed as part of adding a new meal.
+     */
+    var meal: Restaurant?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +40,20 @@ class AddRestaurantTableViewController: UITableViewController,UITextFieldDelegat
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
         
-        // Enable the Save button only if the text field has a valid Restaurant name.
-        checkValidRestuarantName()
+        // Set up views if editing an existing Meal.
+        if let meal = meal {
+            navigationItem.title = meal.name
+            nameTextField.text   = meal.name
+            photoImageView.image = meal.photo
+            //            ratingControl.rating = meal.rating
+        }
+        
+        // Enable the Save button only if the text field has a valid Meal name.
+        checkValidMealName()
     }
     
     // MARK: UITextFieldDelegate
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
@@ -47,7 +61,7 @@ class AddRestaurantTableViewController: UITableViewController,UITextFieldDelegat
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        checkValidRestuarantName()
+        checkValidMealName()
         navigationItem.title = textField.text
     }
     
@@ -56,13 +70,14 @@ class AddRestaurantTableViewController: UITableViewController,UITextFieldDelegat
         saveButton.enabled = false
     }
     
-    func checkValidRestuarantName() {
+    func checkValidMealName() {
         // Disable the Save button if the text field is empty.
         let text = nameTextField.text ?? ""
         saveButton.enabled = !text.isEmpty
     }
     
     // MARK: UIImagePickerControllerDelegate
+    
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
         dismissViewControllerAnimated(true, completion: nil)
@@ -92,7 +107,21 @@ class AddRestaurantTableViewController: UITableViewController,UITextFieldDelegat
         }
     }
     
+    // This method lets you configure a view controller before it's presented.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if saveButton === sender {
+            let name = nameTextField.text ?? ""
+            let photo = photoImageView.image
+            //            let rating = ratingControl.rating
+            
+            // Set the meal to be passed to MealListTableViewController after the unwind segue.
+            meal = Restaurant(name: name, photo: photo, rating: 0)
+            print("saved!")
+        }
+    }
+    
     //MARK: PHasset
+    
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.defaultManager()
         let option = PHImageRequestOptions()
@@ -114,8 +143,8 @@ class AddRestaurantTableViewController: UITableViewController,UITextFieldDelegat
                                         select: { (asset: PHAsset) -> Void in
                                             print("Selected image:\(asset)")
                                             self.photoImageView.image = self.getAssetThumbnail(asset)
-                                            self.imageArray.append(self.getAssetThumbnail(asset))
-                                            print(self.imageArray.count)
+                                            self.imgarray.append(self.getAssetThumbnail(asset))
+                                            print(self.imgarray.count)
                                             
                                             
                                             self.collectionView.reloadData()
@@ -125,24 +154,31 @@ class AddRestaurantTableViewController: UITableViewController,UITextFieldDelegat
             }, cancel: { (assets: [PHAsset]) -> Void in
                 print("Cancel: \(assets)")
             }, finish: { (assets: [PHAsset]) -> Void in
-                self.collectionView.reloadData()
                 print("Finish: \(assets)")
+                
+                
             }, completion:nil)
     }
     
+    
     func reloadTable(){
         self.collectionView.reloadData()
+        
+        
     }
     
     //MARK: collection view
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageArray.count
+        return imgarray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell =  collectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
-        cell.myImage.image = self.imageArray[indexPath.row]
+        cell.myImage.image=self.imgarray[indexPath.row]
         return cell
+        
+        
+        
     }
     
     //MARK: UITableViewDelegate
@@ -186,106 +222,16 @@ class AddRestaurantTableViewController: UITableViewController,UITextFieldDelegat
     }
     //MARK: delete action
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.imageArray.removeAtIndex(indexPath.row)
+        self.imgarray.removeAtIndex(indexPath.row)
         self.collectionView.deleteItemsAtIndexPaths([indexPath])
         self.collectionView.reloadData()
         
     }
     
-    @IBAction func saveAction(sender: AnyObject) {
-        print("save click")
-        uploadImage()
-       
-    }
-    
     @IBAction func deleteAction(sender: AnyObject) {
         
-    }
-    
-    func uploadImage(){
-        
-        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/multiple/register"
-        
-        let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
-        
-        
-        Alamofire.upload(
-            .POST,
-            url,
-            headers: Constant.GlobalConstants.headers,
-            multipartFormData: { multipartFormData in
-                multipartFormData.appendBodyPart(data: self.nameTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "NAME")
-                multipartFormData.appendBodyPart(data: "Hello Dest update".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "DESCRIPTION")
-                multipartFormData.appendBodyPart(data: "Hello ADDD".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "ADDRESS")
-                
-                multipartFormData.appendBodyPart(data: "0".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "IS_DELIVERY")
-                
-                multipartFormData.appendBodyPart(data: "1".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "STATUS")
-                multipartFormData.appendBodyPart(data: "rest cat".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "RESTAURANT_CATEGORY")
-                multipartFormData.appendBodyPart(data: "111".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
-                multipartFormData.appendBodyPart(data: "111".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LONGITUDE")
-                multipartFormData.appendBodyPart(data: "016 600 701".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
-                
-                print(self.imageArray.count)
-          
-                for i in 0 ..< self.imageArray.count{
-                    let imagePickedData = UIImageJPEGRepresentation(self.imageArray[i], 1.0)!
-                    print("add")
-                    
-                    multipartFormData.appendBodyPart(data: imagePickedData, name: "MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
-                    multipartFormData.appendBodyPart(data: imagePickedData, name:"RESTAURANT_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
-                    
-                }
-//                
-//                for photo in self.imageArray {
-//                    let imagePickedData = UIImageJPEGRepresentation(photo, 1.0)!
-//                    print("add")
-//                    
-//                    multipartFormData.appendBodyPart(data: imagePickedData, name: "MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
-//                    multipartFormData.appendBodyPart(data: imagePickedData, name:"RESTAURANT_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
-//                }
-                
-                multipartFormData.appendBodyPart(data: keyJSON, name: "format")
-            },
-            encodingCompletion: { encodingResult in
-                switch encodingResult {
-                case .Success(let upload, _, _):
-                    upload.responseJSON { response in
-                        print(response.result.value)
-                        //                        let responeData = Mapper<ImageUploadResponse>().map(response.result.value)
-                        //
-                        //                        for image in (responeData?.image)!{
-                        //                            imageName.append(image.imageName!)
-                        //                        }
-                        
-                        //                        let parameters = [
-                        //                            "NAME": "kokpheng",
-                        //                            "DESCRIPTION": "kokpheng",
-                        //                            "ADDRESS": "kokpheng",
-                        //                            "IS_DELIVERY": "1",
-                        //                            "STATUS": "1",
-                        //                            "MENU_IMAGES": imageName,
-                        //                            "RESTAURANT_IMAGES": imageName,
-                        //                            "RESTAURANT_CATEGORY": "hrd",
-                        //                            "LATITUDE": "222",
-                        //                            "LONGITUDE": "222",
-                        //                            "TELEPHONE": "222"
-                        //                        ]
-                        //
-                        //                        Alamofire.request(.POST, Constant.GlobalConstants.URL_BASE +  "/v1/api/admin/restaurants", parameters: parameters as? [String : AnyObject],  encoding: .JSON, headers: Constant.GlobalConstants.headers).responseJSON { response in
-                        //
-                        //                            print(response.result.value)
-                        //
-                        //                        }
-                        
-                    }
-                case .Failure(let encodingError):
-                    print(encodingError)
-                }
-            }
-        )
         
     }
-    
     
 }
+

@@ -30,7 +30,7 @@ class RestaurantTableViewController: UITableViewController {
     
     func getRestuarant(){
         // get restuarant
-        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=1&limit=10"
+        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=1&limit=100"
        
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
              let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
@@ -61,14 +61,15 @@ class RestaurantTableViewController: UITableViewController {
         cell.nameLabel.text = restuarant.name
         cell.descriptionLabel.text = restuarant.restDescription
          cell.deliveryLabel.text = restuarant.isDeliver == "1" ? "Delivery" : "No Delivery"
+
         
         Alamofire.request(.GET, (restuarant.thumbnail == nil ? "http://localhost:8080/RESTAURANT_API/resources/images/1444d819-cef0-4baf-a9e6-09109c08a2f7.jpg" : restuarant.thumbnail!))
             .responseImage { response in
-                debugPrint(response)
+                //debugPrint(response)
                 
-                print(response.request)
-                print(response.response)
-                debugPrint(response.result)
+               // print(response.request)
+               // print(response.response)
+               // debugPrint(response.result)
                 
                 if let image = response.result.value {
                     cell.photoImageView.image = image
