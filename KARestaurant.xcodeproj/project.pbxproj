@@ -30,6 +30,7 @@
 		6F9C2B521CE16CFE0058A479 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9C2B511CE16CFE0058A479 /* User.storyboard */; };
 		6FBE93751CF7F24600211447 /* AddRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE93741CF7F24600211447 /* AddRestaurantTableViewController.swift */; };
 		6FBE93771CF7F53800211447 /* EditRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE93761CF7F53800211447 /* EditRestaurantTableViewController.swift */; };
+		6FC92B241CFBDF3C004FEA6F /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC92B231CFBDF3C004FEA6F /* CustomCamera.swift */; };
 		6FE694861CEAB12A009A295D /* LoginAndSignUpTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE694851CEAB12A009A295D /* LoginAndSignUpTableVC.swift */; };
 		6FE8BD601CEDB03900C4CDDB /* ResponseRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE8BD5F1CEDB03900C4CDDB /* ResponseRestaurant.swift */; };
 		6FE8BD621CEDCCEE00C4CDDB /* ImageUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE8BD611CEDCCEE00C4CDDB /* ImageUpload.swift */; };
@@ -85,6 +86,7 @@
 		6F9C2B511CE16CFE0058A479 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		6FBE93741CF7F24600211447 /* AddRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		6FBE93761CF7F53800211447 /* EditRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantTableViewController.swift; sourceTree = "<group>"; };
+		6FC92B231CFBDF3C004FEA6F /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		6FE694851CEAB12A009A295D /* LoginAndSignUpTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAndSignUpTableVC.swift; sourceTree = "<group>"; };
 		6FE8BD5F1CEDB03900C4CDDB /* ResponseRestaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseRestaurant.swift; sourceTree = "<group>"; };
 		6FE8BD611CEDCCEE00C4CDDB /* ImageUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUpload.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				6F4DE9BF1CE46D6800B68597 /* readme-utility */,
+				6FC92B231CFBDF3C004FEA6F /* CustomCamera.swift */,
 				6F4DE9CA1CE4834000B68597 /* Constant.swift */,
 			);
 			name = Utility;
@@ -376,7 +379,6 @@
 				TargetAttributes = {
 					6F07540D1CE0506700F7BB95 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = ZU4ZU97GEC;
 					};
 					6F0754211CE0506700F7BB95 = {
 						CreatedOnToolsVersion = 7.3;
@@ -496,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F0754141CE0506700F7BB95 /* ViewController.swift in Sources */,
+				6FC92B241CFBDF3C004FEA6F /* CustomCamera.swift in Sources */,
 				6F0754121CE0506700F7BB95 /* AppDelegate.swift in Sources */,
 				6FBE93771CF7F53800211447 /* EditRestaurantTableViewController.swift in Sources */,
 				6F70EA361CF539A300A4E45A /* RestaurantTableViewController.swift in Sources */,
@@ -654,7 +657,6 @@
 			baseConfigurationReference = 829D481180FBB97F0A76979C /* Pods-KARestaurant.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = KARestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -668,7 +670,6 @@
 			baseConfigurationReference = BBF7508860EC2A71E4FEF057 /* Pods-KARestaurant.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = KARestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
