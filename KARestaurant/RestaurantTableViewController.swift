@@ -17,6 +17,7 @@ class RestaurantTableViewController: UITableViewController {
     
     // MARK: Properties
     var isNewRestaurantDataLoading: Bool = false
+    var isRefreshControlLoading: Bool = false
     
     let restuarantRefreshControl: UIRefreshControl = UIRefreshControl() // Top RefreshControl
     
@@ -32,14 +33,19 @@ class RestaurantTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
         
-        getRestuarant(1, limit: 100)
+        getRestuarant(1, limit: 20)
         
     }
     
     func uiRefreshControlAction() {
         print((self.responsePagination?.limit)!)
-        self.responseRestaurant.removeAll()
-         getRestuarant(1, limit: (self.responsePagination?.limit)!)
+        
+        if !isRefreshControlLoading {
+            self.isRefreshControlLoading =  true
+            getRestuarant(1, limit: (self.responsePagination?.limit)!)
+        }
+        
+        
     }
     
     func getRestuarant(page: Int, limit: Int){
@@ -49,11 +55,19 @@ class RestaurantTableViewController: UITableViewController {
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
              let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
             self.responsePagination = responseData!.pagination!
+            
+            
+            // remove data when pull to refresh
+            if self.isRefreshControlLoading {
+                self.responseRestaurant.removeAll()
+            }
+            
             self.responseRestaurant += responseData!.data!
             
             print("limit: \(self.responsePagination!.limit!) item count:\(self.responseRestaurant.count)/\(self.responsePagination!.totalCount!) current page: \(self.responsePagination!.page!) page: \(self.responsePagination!.totalPages!)")
             
             self.isNewRestaurantDataLoading = false
+            self.isRefreshControlLoading = false
             self.restuarantRefreshControl.endRefreshing()
             self.tableView.reloadData()
         }
