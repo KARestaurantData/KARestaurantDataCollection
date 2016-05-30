@@ -33,7 +33,7 @@ class RestaurantTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
         
-        getRestuarant(1, limit: 20)
+       getRestuarant(1, limit: 20)
         
     }
     
@@ -51,11 +51,10 @@ class RestaurantTableViewController: UITableViewController {
     func getRestuarant(page: Int, limit: Int){
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=\(page)&limit=\(limit)"
-       
+        
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
-             let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
+            let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
             self.responsePagination = responseData!.pagination!
-            
             
             // remove data when pull to refresh
             if self.isRefreshControlLoading {
@@ -70,6 +69,7 @@ class RestaurantTableViewController: UITableViewController {
             self.isRefreshControlLoading = false
             self.restuarantRefreshControl.endRefreshing()
             self.tableView.reloadData()
+            
         }
     }
     

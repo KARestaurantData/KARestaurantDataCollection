@@ -23,7 +23,7 @@ class ConnectionManager {
                     let json = try NSJSONSerialization.JSONObjectWithData(responeData, options: NSJSONReadingOptions.AllowFragments)
                     
                     if let dictionaryData = json as? Dictionary<String, AnyObject>{
-                        
+                        print(dictionaryData)
                         
                     }
                     
