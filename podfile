@@ -6,7 +6,6 @@ use_frameworks!
 target 'KARestaurant' do
 
 pod "Device", '~> 1.0.1'
-pod "BSImagePicker", '~> 2.3'
 pod 'Alamofire', '~> 3.4'
 pod 'AlamofireObjectMapper', '~> 3.0'
 pod 'AlamofireImage', '~> 2.0'
