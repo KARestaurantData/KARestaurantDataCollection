@@ -30,7 +30,7 @@ class ListRestaurantTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        restuarantRefreshControl.addTarget(self, action: #selector(RestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
+        restuarantRefreshControl.addTarget(self, action: #selector(ListRestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
         self.tableView.addSubview(restuarantRefreshControl)
         
         getRestuarant(1, limit: 20)
@@ -112,7 +112,7 @@ class ListRestaurantTableViewController: UITableViewController {
             let mealDetailViewController = segue.destinationViewController as! AddViewController
             
             // Get the cell that generated this segue.
-            if let selectedMealCell = sender as? RestaurantTableViewCell {
+            if let selectedMealCell = sender as? ListRestaurantTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedMealCell)!
                 let selectedMeal = self.responseRestaurant[indexPath.row]
                 mealDetailViewController.restaurant = selectedMeal
