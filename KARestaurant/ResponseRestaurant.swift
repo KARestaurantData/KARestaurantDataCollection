@@ -150,6 +150,10 @@ class Pagination: Mappable {
         
     }
     
+    required init?(){
+        
+    }
+    
     func mapping(map: Map) {
         page <- map["PAGE"]
         limit <- map["LIMIT"]
