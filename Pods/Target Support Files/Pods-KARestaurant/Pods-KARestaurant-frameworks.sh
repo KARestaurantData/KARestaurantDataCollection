@@ -89,6 +89,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-KARestaurant/AlamofireObjectMapper.framework"
   install_framework "Pods-KARestaurant/DKImagePickerController.framework"
   install_framework "Pods-KARestaurant/Device.framework"
+  install_framework "Pods-KARestaurant/Material.framework"
   install_framework "Pods-KARestaurant/ObjectMapper.framework"
   install_framework "Pods-KARestaurant/SwiftValidator.framework"
 fi
@@ -98,6 +99,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-KARestaurant/AlamofireObjectMapper.framework"
   install_framework "Pods-KARestaurant/DKImagePickerController.framework"
   install_framework "Pods-KARestaurant/Device.framework"
+  install_framework "Pods-KARestaurant/Material.framework"
   install_framework "Pods-KARestaurant/ObjectMapper.framework"
   install_framework "Pods-KARestaurant/SwiftValidator.framework"
 fi
