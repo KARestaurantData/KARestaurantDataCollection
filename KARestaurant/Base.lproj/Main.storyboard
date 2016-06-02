@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RestaurantTableViewCell" rowHeight="155" id="2BW-ma-WYU" customClass="ListRestaurantTableViewCell" customModule="KARestaurant" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RestaurantTableViewCell" rowHeight="155" id="2BW-ma-WYU" customClass="ListRestaurantTableViewCell" customModule="KARestaurant" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="155"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2BW-ma-WYU" id="CEo-Zm-Q1i">
@@ -24,6 +24,14 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsz-sD-sEH" customClass="ImageCardView" customModule="Material">
                                             <rect key="frame" x="8" y="8" width="584" height="138"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                    <color key="value" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
+                                                    <color key="value" red="0.70588235290000001" green="0.12941176469999999" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -34,7 +42,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="topCardView" destination="vsz-sD-sEH" id="iAO-Kd-XbY"/>
+                                    <outlet property="topCardView" destination="vsz-sD-sEH" id="uZQ-lD-LLo"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

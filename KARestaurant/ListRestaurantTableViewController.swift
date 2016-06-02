@@ -55,9 +55,12 @@ class ListRestaurantTableViewController: UITableViewController {
         
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
             let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
-            self.responsePagination = responseData!.pagination!
             
-            
+            if let responsePagination = responseData!.pagination {
+                self.responsePagination = responsePagination
+                
+             
+            }
             // remove data when pull to refresh
             if self.isRefreshControlLoading {
                 self.responseRestaurant.removeAll()

@@ -37,7 +37,9 @@ class ListRestaurantTableViewCell: UITableViewCell {
         topCardView.divider = false
         topCardView.maxImageHeight = 130
         
-        Alamofire.request(.GET, (self.restaurant.thumbnail == nil ? Constant.GlobalConstants.URL_BASE + "/resources/images/1444d819-cef0-4baf-a9e6-09109c08a2f7.jpg" : self.restaurant.thumbnail!))
+        topCardView.image = UIImage(named: "defaultPhoto")
+        let imageURL = self.restaurant.thumbnail!
+        Alamofire.request(.GET, imageURL)
             .responseImage { response in
                 //debugPrint(response)
                 
@@ -46,6 +48,7 @@ class ListRestaurantTableViewCell: UITableViewCell {
                 // debugPrint(response.result)
                 
                 if let image = response.result.value {
+                    
                     self.topCardView.image = image
                     // print("image downloaded: \(image)")
                 }
@@ -88,3 +91,6 @@ class ListRestaurantTableViewCell: UITableViewCell {
         
     }
 }
+
+
+
