@@ -9,8 +9,14 @@
 import UIKit
 import Alamofire
 import Material
+import AlamofireImage
 
 class ListRestaurantTableViewCell: UITableViewCell {
+    
+    let imageCache = AutoPurgingImageCache(
+        memoryCapacity: 100 * 1024 * 1024,
+        preferredMemoryUsageAfterPurge: 60 * 1024 * 1024
+    )
     
     @IBOutlet weak var topCardView: ImageCardView!
     
@@ -31,14 +37,19 @@ class ListRestaurantTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    //MARK: - Image Caching
+ 
     func  configureCell(restaurant: Restaurants) {
         self.restaurant = restaurant
-        
+
         topCardView.divider = false
         topCardView.maxImageHeight = 130
         
         topCardView.image = UIImage(named: "defaultPhoto")
         let imageURL = self.restaurant.thumbnail!
+        
+        
         Alamofire.request(.GET, imageURL)
             .responseImage { response in
                 //debugPrint(response)
@@ -46,12 +57,9 @@ class ListRestaurantTableViewCell: UITableViewCell {
                 // print(response.request)
                 // print(response.response)
                 // debugPrint(response.result)
-                
-                if let image = response.result.value {
-                    
+                guard let image = response.result.value else { return }
                     self.topCardView.image = image
-                    // print("image downloaded: \(image)")
-                }
+                 // print("image downloaded: \(image)")
         }
         
         // Title label.
