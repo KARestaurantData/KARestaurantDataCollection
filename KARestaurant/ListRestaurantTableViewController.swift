@@ -177,7 +177,10 @@ extension ListRestaurantTableViewController {
         // Table view cells are reused and should be dequeued using a cell identifier.
         if let cell =  tableView.dequeueReusableCellWithIdentifier("RestaurantTableViewCell", forIndexPath: indexPath) as? ListRestaurantTableViewCell {
             
+            
+            
             cell.configureCell(restaurant)
+            
             
             return cell
         }else{
@@ -211,8 +214,8 @@ extension ListRestaurantTableViewController {
 /// UITableViewDelegate methods.
 extension ListRestaurantTableViewController {
     /// Sets the tableView cell height.
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 250
-    }
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return 250
+//    }
 }
 

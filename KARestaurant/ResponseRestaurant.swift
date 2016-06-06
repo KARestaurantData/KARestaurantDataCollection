@@ -45,7 +45,7 @@ class Restaurants: Mappable{
     var isDeliver : String?
     var thumbnail : String?
     var menus : [Menu]?
-    var images : [Image]?
+    var images : [RestaurantImage]?
     var category : String?
     var location : Location?
     var telephone : Telephone?
@@ -111,7 +111,7 @@ class Menu: Mappable {
     }
 }
 
-class Image: Menu {
+class RestaurantImage: Menu {
 }
 
 class Location: Mappable {

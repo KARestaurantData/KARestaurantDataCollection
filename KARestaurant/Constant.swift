@@ -13,7 +13,7 @@ import UIKit
 class Constant{
     struct GlobalConstants {
         // Constant define here.
-        static let URL_BASE = "http://192.168.178.8:8080/RESTAURANT_API"
+        static let URL_BASE = "http://192.168.178.5:8080/RESTAURANT_API"
         static let URL_BASE_KA = "http://api2.khmeracademy.org"
         static let URL_USER_KA = "/api/authentication/mobilelogin"
         

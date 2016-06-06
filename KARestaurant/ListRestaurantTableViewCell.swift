@@ -11,14 +11,14 @@ import Alamofire
 import Material
 import AlamofireImage
 
-class ListRestaurantTableViewCell: UITableViewCell {
+class ListRestaurantTableViewCell: MaterialTableViewCell {
     
-    let imageCache = AutoPurgingImageCache(
-        memoryCapacity: 100 * 1024 * 1024,
-        preferredMemoryUsageAfterPurge: 60 * 1024 * 1024
-    )
+    @IBOutlet weak var userImageView: UIImageView!
     
-    @IBOutlet weak var topCardView: ImageCardView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var restaurantImageView: UIImageView!
+    
+    @IBOutlet weak var restaurantDetailLabel: UILabel!
     
     var restaurant: Restaurants!
     
@@ -36,18 +36,21 @@ class ListRestaurantTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
-    
-    
-    //MARK: - Image Caching
- 
     func  configureCell(restaurant: Restaurants) {
-        self.restaurant = restaurant
-
-        topCardView.divider = false
-        topCardView.maxImageHeight = 130
         
-        topCardView.image = UIImage(named: "defaultPhoto")
-        let imageURL = self.restaurant.thumbnail!
+        
+        
+        self.userImageView.layer.cornerRadius = 10.0
+        self.userImageView.clipsToBounds = true
+        self.userImageView.layer.borderWidth = 3.0
+        self.userImageView.layer.borderColor = UIColor.blackColor().CGColor
+        
+        
+        nameLabel.text = restaurant.name
+        restaurantDetailLabel.text = restaurant.restDescription
+        
+        
+        let imageURL = restaurant.thumbnail!
         
         
         Alamofire.request(.GET, imageURL)
@@ -58,44 +61,12 @@ class ListRestaurantTableViewCell: UITableViewCell {
                 // print(response.response)
                 // debugPrint(response.result)
                 guard let image = response.result.value else { return }
-                    self.topCardView.image = image
-                 // print("image downloaded: \(image)")
+                
+                self.userImageView.image = image
+                self.restaurantImageView.image = image
+               
+                // print("image downloaded: \(image)")
         }
-        
-        // Title label.
-        let titleLabel: UILabel = UILabel()
-        titleLabel.text = self.restaurant.name
-        titleLabel.textColor = MaterialColor.white
-        titleLabel.font = RobotoFont.regularWithSize(24)
-        topCardView.titleLabel = titleLabel
-        topCardView.titleLabelInset.top = 80
-        
-        // Star button.
-        let img1: UIImage? = MaterialIcon.cm.star
-        let btn1: IconButton = IconButton()
-        btn1.pulseColor = MaterialColor.blueGrey.lighten1
-        btn1.tintColor = MaterialColor.blueGrey.lighten1
-        btn1.setImage(img1, forState: .Normal)
-        btn1.setImage(img1, forState: .Highlighted)
-        
-        // Bell button.
-        let img2: UIImage? = MaterialIcon.cm.bell
-        let btn2: IconButton = IconButton()
-        btn2.pulseColor = MaterialColor.blueGrey.lighten1
-        btn2.tintColor = MaterialColor.blueGrey.lighten1
-        btn2.setImage(img2, forState: .Normal)
-        btn2.setImage(img2, forState: .Highlighted)
-        
-        // Share button.
-        let img3: UIImage? = MaterialIcon.cm.share
-        let btn3: IconButton = IconButton()
-        btn3.pulseColor = MaterialColor.blueGrey.lighten1
-        btn3.tintColor = MaterialColor.blueGrey.lighten1
-        btn3.setImage(img3, forState: .Normal)
-        btn3.setImage(img3, forState: .Highlighted)
-        
-        // Add buttons to right side.
-        topCardView.rightButtons = [btn1, btn2, btn3]
         
     }
 }
