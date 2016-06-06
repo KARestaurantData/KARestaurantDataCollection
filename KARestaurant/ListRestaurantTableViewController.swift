@@ -50,6 +50,7 @@ class ListRestaurantTableViewController: UITableViewController {
     }
     
     func getRestuarant(page: Int, limit: Int){
+        
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=\(page)&limit=\(limit)"
         
@@ -74,10 +75,12 @@ class ListRestaurantTableViewController: UITableViewController {
             self.isRefreshControlLoading = false
             self.restuarantRefreshControl.endRefreshing()
             self.tableView.reloadData()
+            
+            
         }
     }
     
-
+    //MARK: - Read Data
     override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         //Bottom Refresh
@@ -179,7 +182,7 @@ extension ListRestaurantTableViewController {
             
             
             
-            cell.configureCell(restaurant)
+            cell.configure(restaurant)
             
             
             return cell

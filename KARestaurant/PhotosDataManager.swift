@@ -49,7 +49,6 @@ class PhotosDataManager {
     }
     
     //MARK: = Image Caching
-    
     func cacheImage(image: Image, urlString: String) {
         photoCache.addImage(image, withIdentifier: urlString)
     }

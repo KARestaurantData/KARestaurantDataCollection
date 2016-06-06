@@ -21,24 +21,32 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     @IBOutlet weak var restaurantDetailLabel: UILabel!
     
     var restaurant: Restaurants!
+    var request: Request?
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    func configure(restaurant: Restaurants) {
+        self.restaurant = restaurant
+        reset()
+        loadImage()
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func reset() {
+        userImageView.image = nil
+        restaurantImageView.image = nil
+        request?.cancel()
+        nameLabel.hidden = true
+        restaurantDetailLabel.hidden = true
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+    func loadImage() {
+        //loadingIndicator.startAnimating()
+        let urlString = restaurant.thumbnail!
+        request = PhotosDataManager.sharedManager.getNetworkImage(urlString) { image in
+            self.populateCell(image)
+        }
     }
-    func  configureCell(restaurant: Restaurants) {
-        
-        
+    
+    func populateCell(image: UIImage) {
+        //loadingIndicator.stopAnimating()
         
         self.userImageView.layer.cornerRadius = 10.0
         self.userImageView.clipsToBounds = true
@@ -46,29 +54,29 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
         self.userImageView.layer.borderColor = UIColor.blackColor().CGColor
         
         
+        userImageView.image = image
+        restaurantImageView.image = image
         nameLabel.text = restaurant.name
         restaurantDetailLabel.text = restaurant.restDescription
-        
-        
-        let imageURL = restaurant.thumbnail!
-        
-        
-        Alamofire.request(.GET, imageURL)
-            .responseImage { response in
-                //debugPrint(response)
-                
-                // print(response.request)
-                // print(response.response)
-                // debugPrint(response.result)
-                guard let image = response.result.value else { return }
-                
-                self.userImageView.image = image
-                self.restaurantImageView.image = image
-               
-                // print("image downloaded: \(image)")
-        }
-        
+        nameLabel.hidden = false
+        restaurantDetailLabel.hidden = false
     }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//    }
+//    
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        // Initialization code
+//    }
+//    
+//    override func setSelected(selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//        
+//        // Configure the view for the selected state
+//    }
+    
 }
 
 
