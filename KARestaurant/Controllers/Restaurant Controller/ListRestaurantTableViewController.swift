@@ -17,44 +17,48 @@ import AlamofireImage
 class ListRestaurantTableViewController: UITableViewController {
 
     // MARK: Properties
+    // refresh control status
     var isNewRestaurantDataLoading: Bool = false
     var isRefreshControlLoading: Bool = false
     
     let restuarantRefreshControl: UIRefreshControl = UIRefreshControl() // Top RefreshControl
     
+    //  object
     var responseRestaurant = [Restaurants]()
     var responsePagination = Pagination()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // add refresh control to view
         restuarantRefreshControl.addTarget(self, action: #selector(ListRestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
         self.tableView.addSubview(restuarantRefreshControl)
         
+        // fetch data for first load
         getRestuarant(1, limit: 20)
-        
-        prepareView()
     }
     
+    
+    // refresh control action
     func uiRefreshControlAction() {
         print((self.responsePagination?.limit)!)
         
+        // reload data
         if !isRefreshControlLoading {
             self.isRefreshControlLoading =  true
             getRestuarant(1, limit: (self.responsePagination?.limit)!)
         }
-        
-        
     }
     
+    // fetch data
     func getRestuarant(page: Int, limit: Int){
         
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=\(page)&limit=\(limit)"
         
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
+          
+            
             let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
             
             if let responsePagination = responseData!.pagination {
@@ -74,16 +78,13 @@ class ListRestaurantTableViewController: UITableViewController {
             self.isRefreshControlLoading = false
             self.restuarantRefreshControl.endRefreshing()
             self.tableView.reloadData()
-            
-            
         }
     }
     
-    //MARK: - Read Data
+    //MARK: - Read More Data
     override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         //Bottom Refresh
-        
         if scrollView == self.tableView{
             
             if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
@@ -105,24 +106,30 @@ class ListRestaurantTableViewController: UITableViewController {
         }
     }
     
-    
-
-    
-    
+    // MARK: - UITableViewDelegate Methods
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        self.performSegueWithIdentifier("ShowRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
+    }
     
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowDetail" {
-            let mealDetailViewController = segue.destinationViewController as! AddViewController
-            
+        
+        if segue.identifier == "ShowRestuarantDetail" {
+            let restaurantDetailViewController = segue.destinationViewController as! RestaurantDetailTableViewController
+           
             // Get the cell that generated this segue.
-            if let selectedMealCell = sender as? ListRestaurantTableViewCell {
-                let indexPath = tableView.indexPathForCell(selectedMealCell)!
-                let selectedMeal = self.responseRestaurant[indexPath.row]
-                mealDetailViewController.restaurant = selectedMeal
+            if let selectedRestaurantCell = sender as? ListRestaurantTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedRestaurantCell)!
+                let selectedRestaurant = self.responseRestaurant[indexPath.row]
+               
+                restaurantDetailViewController.restaurant = selectedRestaurant
             }
         }
+            
+            
         else if segue.identifier == "AddItem" {
             print("Adding new meal.")
         }
@@ -145,13 +152,6 @@ class ListRestaurantTableViewController: UITableViewController {
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
             }
         }
-    }
-
-
-
-    /// Prepares the view.
-    private func prepareView() {
-        view.backgroundColor = MaterialColor.white
     }
 }
 
@@ -179,9 +179,7 @@ extension ListRestaurantTableViewController {
         // Table view cells are reused and should be dequeued using a cell identifier.
         if let cell =  tableView.dequeueReusableCellWithIdentifier("RestaurantTableViewCell", forIndexPath: indexPath) as? ListRestaurantTableViewCell {
             
-            
             cell.configure(restaurant)
-            
             
             return cell
         }else{

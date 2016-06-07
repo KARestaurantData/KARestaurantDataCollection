@@ -23,6 +23,10 @@ PODS:
     - DKImagePickerController/ImageManager (= 3.2.1)
   - DKImagePickerController/Camera (3.2.1)
   - DKImagePickerController/ImageManager (3.2.1)
+  - ImageSlideshow/Alamofire (0.4.0):
+    - AlamofireImage (~> 2.0)
+    - ImageSlideshow/Core
+  - ImageSlideshow/Core (0.4.0)
   - Material (1.41.6)
   - ObjectMapper (1.3.0)
   - PINCache (2.2.2)
@@ -41,6 +45,7 @@ DEPENDENCIES:
   - BSImagePicker (~> 2.3)
   - Device (~> 1.0.1)
   - DKImagePickerController
+  - ImageSlideshow/Alamofire
   - Material (~> 1.0)
   - SwiftValidator (from `https://github.com/jpotts18/SwiftValidator.git`, branch `master`)
 
@@ -63,6 +68,7 @@ SPEC CHECKSUMS:
   BSImagePicker: 591b28ce4994c44cbc4ac896717c1db9f9fadd18
   Device: 7ed5b87db148886e8c3cbcdde5dc997baddbe10b
   DKImagePickerController: 8fd00d31c1688dce35d5fce15d3231a79ac2d38c
+  ImageSlideshow: 0d3632bc0c2b4d3fff24a49ce4d3022af8238b03
   Material: fcbcee7543c79e9917a94b3510c0cc9eeefe156b
   ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
@@ -70,6 +76,6 @@ SPEC CHECKSUMS:
   SwiftValidator: 461a2c00173f001287a8fa1f12704b87ec8a6bc4
   UIImageViewModeScaleAspect: ec78901acfc20d3782154111a21d34390f8f71ad
 
-PODFILE CHECKSUM: 9dc2e0bee000f63e93b8daac22409a34d231a0b7
+PODFILE CHECKSUM: 121faf995210ba100b4fca4a586287234e8b2cb3
 
 COCOAPODS: 1.0.1

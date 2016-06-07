@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pSf-or-eIM">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Test View Controller-->
+        <scene sceneID="p38-o8-EZB">
+            <objects>
+                <viewController id="pSf-or-eIM" customClass="TestViewController" customModule="KARestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DDY-7k-XPz"/>
+                        <viewControllerLayoutGuide type="bottom" id="DCi-EH-opx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6hY-er-2rp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="792-So-yem" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DCi-EH-opx" firstAttribute="top" secondItem="792-So-yem" secondAttribute="bottom" id="A2m-pl-7rh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="792-So-yem" secondAttribute="trailing" id="BbO-7T-bib"/>
+                            <constraint firstItem="792-So-yem" firstAttribute="leading" secondItem="6hY-er-2rp" secondAttribute="leadingMargin" id="JSR-gk-iWc"/>
+                            <constraint firstItem="792-So-yem" firstAttribute="top" secondItem="DDY-7k-XPz" secondAttribute="bottom" id="Khi-fY-F14"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="slideshow" destination="792-So-yem" id="ISy-KL-KHe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jk2-h3-ul1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="549" y="179"/>
+        </scene>
+    </scenes>
+</document>

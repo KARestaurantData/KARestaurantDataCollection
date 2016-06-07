@@ -8,7 +8,6 @@
 
 import UIKit
 import PhotosUI
-import BSImagePicker
 import AssetsLibrary
 import Alamofire
 

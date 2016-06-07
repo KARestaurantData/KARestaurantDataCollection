@@ -107,7 +107,6 @@ class Menu: Mappable {
         id <- map["ID"]
         title <- map["TITLE"]
         url <- map["URL"]
-        isThumbmail <- map["IS_THUMBNAIL"]
     }
 }
 

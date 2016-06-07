@@ -13,15 +13,13 @@ import AlamofireImage
 
 class ListRestaurantTableViewCell: MaterialTableViewCell {
     
-    @IBOutlet weak var userImageView: UIImageView!
-    
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var restaurantImageView: UIImageView!
-    
+    @IBOutlet weak var deliveryLabel: UILabel!
     @IBOutlet weak var restaurantDetailLabel: UILabel!
     
     var restaurant: Restaurants!
-   var request: ImageRequest?
+    var request: ImageRequest?
     
     
     func configure(restaurant: Restaurants) {
@@ -31,10 +29,10 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     }
     
     func reset() {
-        userImageView.image = nil
         restaurantImageView.image = nil
         request?.cancel()
-        nameLabel.hidden = true
+        titleLabel.hidden = true
+        deliveryLabel.hidden = true
         restaurantDetailLabel.hidden = true
     }
     
@@ -48,7 +46,8 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     }
     
     func downloadImage() {
-      //  loadingIndicator.startAnimating()
+        //  loadingIndicator.startAnimating()
+        restaurantImageView.image = UIImage(named: "defaultPhoto")
         let urlString = restaurant.thumbnail!
         request = PhotosDataManager.sharedManager.getNetworkImage(urlString) { image in
             self.populateCell(image)
@@ -57,35 +56,36 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     
     func populateCell(image: UIImage) {
         //loadingIndicator.stopAnimating()
+        //
+        //        self.userImageView.layer.cornerRadius = 10.0
+        //        self.userImageView.clipsToBounds = true
+        //        self.userImageView.layer.borderWidth = 3.0
+        //        self.userImageView.layer.borderColor = UIColor.blackColor().CGColor
+        //
         
-        self.userImageView.layer.cornerRadius = 10.0
-        self.userImageView.clipsToBounds = true
-        self.userImageView.layer.borderWidth = 3.0
-        self.userImageView.layer.borderColor = UIColor.blackColor().CGColor
-        
-        
-        userImageView.image = image
         restaurantImageView.image = image
-        nameLabel.text = restaurant.name
+        titleLabel.text = restaurant.name
         restaurantDetailLabel.text = restaurant.restDescription
-        nameLabel.hidden = false
+        deliveryLabel.text = NSString.init(string: restaurant.isDeliver!).boolValue ? "Delivery" : "No Delivery"
+        titleLabel.hidden = false
+        deliveryLabel.hidden = false
         restaurantDetailLabel.hidden = false
     }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//    }
-//    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//    
-//    override func setSelected(selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        
-//        // Configure the view for the selected state
-//    }
+    //
+    //    required init?(coder aDecoder: NSCoder) {
+    //        super.init(coder: aDecoder)
+    //    }
+    //
+    //    override func awakeFromNib() {
+    //        super.awakeFromNib()
+    //        // Initialization code
+    //    }
+    //
+    //    override func setSelected(selected: Bool, animated: Bool) {
+    //        super.setSelected(selected, animated: animated)
+    //        
+    //        // Configure the view for the selected state
+    //    }
     
 }
 

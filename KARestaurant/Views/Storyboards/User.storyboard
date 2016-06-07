@@ -71,8 +71,7 @@
                                                                     <variation key="heightClass=regular" misplaced="YES">
                                                                         <rect key="frame" x="0.0" y="0.0" width="56" height="30"/>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                                                    <variation key="heightClass=regular-widthClass=compact">
                                                                         <mask key="constraints">
                                                                             <include reference="vTw-mA-IzQ"/>
                                                                         </mask>
@@ -88,9 +87,6 @@
                                                             </subviews>
                                                             <variation key="heightClass=regular" misplaced="YES">
                                                                 <rect key="frame" x="264" y="0.0" width="56" height="30"/>
-                                                            </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="42" y="0.0" width="300" height="30"/>
                                                             </variation>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gS8-wd-k0G">
@@ -115,8 +111,7 @@
                                                                     <variation key="heightClass=regular" misplaced="YES">
                                                                         <rect key="frame" x="0.0" y="0.0" width="84" height="30"/>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                                                    <variation key="heightClass=regular-widthClass=compact">
                                                                         <mask key="constraints">
                                                                             <include reference="z3W-Fa-R3p"/>
                                                                         </mask>
@@ -133,9 +128,6 @@
                                                             <variation key="heightClass=regular" misplaced="YES">
                                                                 <rect key="frame" x="250" y="45" width="84" height="30"/>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="42" y="45" width="300" height="30"/>
-                                                            </variation>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="p3g-tf-92F">
                                                             <rect key="frame" x="227" y="90" width="130" height="30"/>
@@ -148,9 +140,6 @@
                                                                     </state>
                                                                     <variation key="heightClass=regular" misplaced="YES">
                                                                         <rect key="frame" x="0.0" y="0.0" width="38" height="30"/>
-                                                                    </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
                                                                     </variation>
                                                                     <variation key="heightClass=regular-widthClass=regular">
                                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -167,9 +156,6 @@
                                                                     </state>
                                                                     <variation key="heightClass=regular" misplaced="YES">
                                                                         <rect key="frame" x="38" y="0.0" width="55" height="30"/>
-                                                                    </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                        <rect key="frame" x="160" y="0.0" width="140" height="30"/>
                                                                     </variation>
                                                                     <variation key="heightClass=regular-widthClass=regular">
                                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -194,8 +180,7 @@
                                                             <variation key="heightClass=regular" misplaced="YES">
                                                                 <rect key="frame" x="246" y="90" width="93" height="30"/>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="42" y="90" width="300" height="30"/>
+                                                            <variation key="heightClass=regular-widthClass=compact">
                                                                 <mask key="constraints">
                                                                     <include reference="w2g-5Q-5gI"/>
                                                                 </mask>
@@ -231,8 +216,7 @@
                                                                     <variation key="heightClass=regular" misplaced="YES">
                                                                         <rect key="frame" x="0.0" y="0.0" width="108" height="30"/>
                                                                     </variation>
-                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                                                    <variation key="heightClass=regular-widthClass=compact">
                                                                         <mask key="constraints">
                                                                             <include reference="Eaz-sl-rLS"/>
                                                                         </mask>
@@ -248,9 +232,6 @@
                                                             </subviews>
                                                             <variation key="heightClass=regular" misplaced="YES">
                                                                 <rect key="frame" x="238" y="135" width="108" height="30"/>
-                                                            </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="42" y="135" width="300" height="30"/>
                                                             </variation>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AWC-UL-iqa">
@@ -284,16 +265,10 @@
                                                             <variation key="heightClass=regular" misplaced="YES">
                                                                 <rect key="frame" x="238" y="180" width="109" height="30"/>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="138" y="180" width="109" height="30"/>
-                                                            </variation>
                                                         </stackView>
                                                     </subviews>
                                                     <variation key="heightClass=regular" misplaced="YES">
                                                         <rect key="frame" x="8" y="8" width="584" height="210"/>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="8" width="384" height="210"/>
                                                     </variation>
                                                 </stackView>
                                             </subviews>

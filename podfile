@@ -13,6 +13,9 @@ pod 'DKImagePickerController'
 pod 'Material', '~> 1.0'
 pod 'AsyncDisplayKit'
 pod "BSImagePicker", "~> 2.3"
+pod 'ImageSlideshow/Alamofire'
+
+
 # Recommended: For the most recent version of SwiftValidator (master branch)
 pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :branch => 'master'
 
