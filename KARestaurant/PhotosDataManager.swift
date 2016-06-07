@@ -22,7 +22,6 @@ class PhotosDataManager {
     )
     
     //MARK: - Image Downloading
-    
     func getNetworkImage(urlString: String, completion: (UIImage -> Void)) -> (ImageRequest) {
         let queue = decoder.queue.underlyingQueue
         let request = Alamofire.request(.GET, urlString)
