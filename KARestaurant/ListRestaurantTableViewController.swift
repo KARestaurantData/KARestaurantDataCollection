@@ -30,7 +30,7 @@ class ListRestaurantTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        restuarantRefreshControl.addTarget(self, action: #selector(RestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
+        restuarantRefreshControl.addTarget(self, action: #selector(ListRestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
         self.tableView.addSubview(restuarantRefreshControl)
         
         getRestuarant(1, limit: 20)
@@ -50,14 +50,17 @@ class ListRestaurantTableViewController: UITableViewController {
     }
     
     func getRestuarant(page: Int, limit: Int){
+        
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=\(page)&limit=\(limit)"
         
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
             let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
-            self.responsePagination = responseData!.pagination!
             
-            
+            if let responsePagination = responseData!.pagination {
+                self.responsePagination = responsePagination
+                
+            }
             // remove data when pull to refresh
             if self.isRefreshControlLoading {
                 self.responseRestaurant.removeAll()
@@ -71,10 +74,12 @@ class ListRestaurantTableViewController: UITableViewController {
             self.isRefreshControlLoading = false
             self.restuarantRefreshControl.endRefreshing()
             self.tableView.reloadData()
+            
+            
         }
     }
     
-
+    //MARK: - Read Data
     override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         //Bottom Refresh
@@ -112,7 +117,7 @@ class ListRestaurantTableViewController: UITableViewController {
             let mealDetailViewController = segue.destinationViewController as! AddViewController
             
             // Get the cell that generated this segue.
-            if let selectedMealCell = sender as? RestaurantTableViewCell {
+            if let selectedMealCell = sender as? ListRestaurantTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedMealCell)!
                 let selectedMeal = self.responseRestaurant[indexPath.row]
                 mealDetailViewController.restaurant = selectedMeal
@@ -148,50 +153,6 @@ class ListRestaurantTableViewController: UITableViewController {
     private func prepareView() {
         view.backgroundColor = MaterialColor.white
     }
-    
-    /// Prepares the topCardView.
-    func prepareTopCardView(topCardView: ImageCardView, title: String, image : UIImage) {
-        topCardView.divider = false
-        topCardView.maxImageHeight = 200
-        topCardView.image = image
-        
-        // Title label.
-        let titleLabel: UILabel = UILabel()
-        titleLabel.text = title
-        titleLabel.textColor = MaterialColor.white
-        titleLabel.font = RobotoFont.regularWithSize(24)
-        topCardView.titleLabel = titleLabel
-        topCardView.titleLabelInset.top = 140
-        
-        // Star button.
-        let img1: UIImage? = MaterialIcon.cm.star
-        let btn1: IconButton = IconButton()
-        btn1.pulseColor = MaterialColor.blueGrey.lighten1
-        btn1.tintColor = MaterialColor.blueGrey.lighten1
-        btn1.setImage(img1, forState: .Normal)
-        btn1.setImage(img1, forState: .Highlighted)
-        
-        // Bell button.
-        let img2: UIImage? = MaterialIcon.cm.bell
-        let btn2: IconButton = IconButton()
-        btn2.pulseColor = MaterialColor.blueGrey.lighten1
-        btn2.tintColor = MaterialColor.blueGrey.lighten1
-        btn2.setImage(img2, forState: .Normal)
-        btn2.setImage(img2, forState: .Highlighted)
-        
-        // Share button.
-        let img3: UIImage? = MaterialIcon.cm.share
-        let btn3: IconButton = IconButton()
-        btn3.pulseColor = MaterialColor.blueGrey.lighten1
-        btn3.tintColor = MaterialColor.blueGrey.lighten1
-        btn3.setImage(img3, forState: .Normal)
-        btn3.setImage(img3, forState: .Highlighted)
-        
-        // Add buttons to right side.
-        topCardView.rightButtons = [btn1, btn2, btn3]
-    }
-
-    
 }
 
 /// TableViewDataSource methods.
@@ -210,50 +171,25 @@ extension ListRestaurantTableViewController {
     
     /// Prepares the cells within the tableView.
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        
-//        let cell: MaterialTableViewCell = MaterialTableViewCell(style: .Subtitle, reuseIdentifier: "Cell")
-//        
-//        let item: Item = items[indexPath.row]
-//        cell.selectionStyle = .None
-//        cell.textLabel!.text = item.text
-//        cell.textLabel!.font = RobotoFont.regular
-//        cell.detailTextLabel!.text = item.detail
-//        cell.detailTextLabel!.font = RobotoFont.regular
-//        cell.detailTextLabel!.textColor = MaterialColor.grey.darken1
-//        cell.imageView!.image = item.image?.resize(toWidth: 40)
-//        cell.imageView!.layer.cornerRadius = 20
-        
-        
-        // Table view cells are reused and should be dequeued using a cell identifier.
-        let cellIdentifier = "RestaurantTableViewCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ListRestaurantTableViewCell
-        
-        let restuarant = self.responseRestaurant[indexPath.row] as Restaurants
-        
+        let restaurant = self.responseRestaurant[indexPath.row] as Restaurants
+        print(restaurant.name)
+        print(restaurant.thumbnail)
         // Fetches the appropriate restuarant for the data source layout.
-        
-        //        cell.nameLabel.text = restuarant.name
-        //        cell.descriptionLabel.text = restuarant.restDescription
-        //        cell.deliveryLabel.text = restuarant.isDeliver == "1" ? "Delivery" : "No Delivery"
-        
-        
-        
-        Alamofire.request(.GET, (restuarant.thumbnail == nil ? "http://localhost:8080/RESTAURANT_API/resources/images/1444d819-cef0-4baf-a9e6-09109c08a2f7.jpg" : restuarant.thumbnail!))
-            .responseImage { response in
-                //debugPrint(response)
-                
-                // print(response.request)
-                // print(response.response)
-                // debugPrint(response.result)
-                
-                if let image = response.result.value {
-                    self.prepareTopCardView(cell.topCardView, title: restuarant.name! ,image: image)
-                    // print("image downloaded: \(image)")
-                }
+       
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        if let cell =  tableView.dequeueReusableCellWithIdentifier("RestaurantTableViewCell", forIndexPath: indexPath) as? ListRestaurantTableViewCell {
+            
+            
+            cell.configure(restaurant)
+            
+            
+            return cell
+        }else{
+            return UITableViewCell()
         }
-        
-        return cell
     }
+    
+
     
     /* Delete */
     // Override to support conditional editing of the table view.
@@ -279,8 +215,8 @@ extension ListRestaurantTableViewController {
 /// UITableViewDelegate methods.
 extension ListRestaurantTableViewController {
     /// Sets the tableView cell height.
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 250
-    }
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return 250
+//    }
 }
 
