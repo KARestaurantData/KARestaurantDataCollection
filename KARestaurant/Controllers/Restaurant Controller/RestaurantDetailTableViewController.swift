@@ -44,7 +44,7 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         
         restaurantSlideshow.setImageInputs(restuarantImageArray)
         
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(TestViewController.click))
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.click))
         restaurantSlideshow.addGestureRecognizer(recognizer)
         
         

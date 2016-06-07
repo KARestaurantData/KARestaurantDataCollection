@@ -45,6 +45,7 @@
 		6FF7DEF61D0680F100D1EB77 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FF7DEF51D0680F100D1EB77 /* Test.storyboard */; };
 		6FF7DEF81D0684FE00D1EB77 /* RestaurantDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEF71D0684FE00D1EB77 /* RestaurantDetailTableViewController.swift */; };
 		6FF7DF021D06B5B200D1EB77 /* RestaurantDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DF011D06B5B200D1EB77 /* RestaurantDetailCollectionViewCell.swift */; };
+		6FF7DF041D06D04200D1EB77 /* AddRestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DF031D06D04200D1EB77 /* AddRestaurantCollectionViewCell.swift */; };
 		8934449A80493C8701BBB9F2 /* Pods_KARestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D58C7CD2F0C147B27380C140 /* Pods_KARestaurant.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		998C226BBB3DD390385300DD /* Pods_KARestaurantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0820F28684A6C45040BCCF5C /* Pods_KARestaurantUITests.framework */; };
 		ADDF2EAAF2757B09D4DEBFF2 /* Pods_KARestaurantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433F2B08DD5C637B07D76F70 /* Pods_KARestaurantTests.framework */; };
@@ -132,6 +133,7 @@
 		6FF7DEF51D0680F100D1EB77 /* Test.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		6FF7DEF71D0684FE00D1EB77 /* RestaurantDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewController.swift; sourceTree = "<group>"; };
 		6FF7DF011D06B5B200D1EB77 /* RestaurantDetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		6FF7DF031D06D04200D1EB77 /* AddRestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		93AFC81CD929103B230C5878 /* Pods-KARestaurantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurantTests/Pods-KARestaurantTests.release.xcconfig"; sourceTree = "<group>"; };
 		B46069A0A9C16F3B5938576D /* Pods-KARestaurantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurantUITests/Pods-KARestaurantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D58C7CD2F0C147B27380C140 /* Pods_KARestaurant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KARestaurant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +292,7 @@
 				6FF7DEC91D066EB700D1EB77 /* CustomCell.swift */,
 				6FF7DECA1D066EB700D1EB77 /* ListRestaurantTableViewCell.swift */,
 				6FF7DF011D06B5B200D1EB77 /* RestaurantDetailCollectionViewCell.swift */,
+				6FF7DF031D06D04200D1EB77 /* AddRestaurantCollectionViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				6FF7DEE71D06704300D1EB77 /* ConnectionManager.swift in Sources */,
 				6F0754121CE0506700F7BB95 /* AppDelegate.swift in Sources */,
 				6FF7DEF41D0680E600D1EB77 /* TestViewController.swift in Sources */,
+				6FF7DF041D06D04200D1EB77 /* AddRestaurantCollectionViewCell.swift in Sources */,
 				6F0890281D065F2200DC95EA /* ImageDecoder.swift in Sources */,
 				6FF7DEDF1D066F7100D1EB77 /* AddViewController.swift in Sources */,
 				6FF7DEF11D0670D500D1EB77 /* Constant.swift in Sources */,

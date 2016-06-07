@@ -149,6 +149,10 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             navigationController!.popViewControllerAnimated(true)
         }
     }
+    @IBAction func kkk(sender: AnyObject) {
+        
+        showImagePickerWithAssetType(Demo.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
+    }
     
     // MARK: Actions
     @IBAction func showImagePicker(sender: UITapGestureRecognizer) {
@@ -188,7 +192,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 print( self.assets![indexPath.row].originalAsset?.location?.coordinate)
                 
                 if tag == 1{
-                     self.photoImageView.image = image
+                    self.photoImageView.image = image
                 }
             }
         }
@@ -236,7 +240,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                     
             })
             
-         
+            
         }
     }
     
@@ -303,14 +307,14 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 print(self.imageArray.count)
                 
                 for i in 0 ..< self.imageArray.count{
-                    let imagePickedData = UIImageJPEGRepresentation(self.imageArray[i], 0.2)!
+                    let imagePickedData = UIImageJPEGRepresentation(self.imageArray[i], 1.0)!
                     print("add")
                     
                     multipartFormData.appendBodyPart(data: imagePickedData, name: "MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
                     multipartFormData.appendBodyPart(data: imagePickedData, name:"RESTAURANT_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
                     
                 }
-
+                
                 
                 multipartFormData.appendBodyPart(data: keyJSON, name: "format")
             },
