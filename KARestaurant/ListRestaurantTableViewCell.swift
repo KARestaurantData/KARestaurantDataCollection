@@ -21,7 +21,8 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     @IBOutlet weak var restaurantDetailLabel: UILabel!
     
     var restaurant: Restaurants!
-    var request: Request?
+   var request: ImageRequest?
+    
     
     func configure(restaurant: Restaurants) {
         self.restaurant = restaurant
@@ -38,7 +39,16 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     }
     
     func loadImage() {
-        //loadingIndicator.startAnimating()
+        let urlString = restaurant.thumbnail!
+        if let image = PhotosDataManager.sharedManager.cachedImage(urlString) {
+            populateCell(image)
+            return
+        }
+        downloadImage()
+    }
+    
+    func downloadImage() {
+      //  loadingIndicator.startAnimating()
         let urlString = restaurant.thumbnail!
         request = PhotosDataManager.sharedManager.getNetworkImage(urlString) { image in
             self.populateCell(image)

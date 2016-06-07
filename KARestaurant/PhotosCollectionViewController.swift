@@ -32,7 +32,8 @@ class PhotosCollectionViewController: UICollectionViewController {
     
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PhotosDataManager.sharedManager.allPhotos().count
+        //return PhotosDataManager.sharedManager.allPhotos().count
+        return 0
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -42,8 +43,9 @@ class PhotosCollectionViewController: UICollectionViewController {
     }
     
     func glacierScenicAtIndex(indexPath: NSIndexPath) -> GlacierScenic {
-        let photos = PhotosDataManager.sharedManager.allPhotos()
-        return photos[indexPath.row]
+        //let photos = PhotosDataManager.sharedManager.allPhotos()
+        //return photos[indexPath.row]
+        return GlacierScenic(name: "", photoURLString: "")
     }
     
 }

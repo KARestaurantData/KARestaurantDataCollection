@@ -60,7 +60,6 @@ class ListRestaurantTableViewController: UITableViewController {
             if let responsePagination = responseData!.pagination {
                 self.responsePagination = responsePagination
                 
-             
             }
             // remove data when pull to refresh
             if self.isRefreshControlLoading {
@@ -179,7 +178,6 @@ extension ListRestaurantTableViewController {
        
         // Table view cells are reused and should be dequeued using a cell identifier.
         if let cell =  tableView.dequeueReusableCellWithIdentifier("RestaurantTableViewCell", forIndexPath: indexPath) as? ListRestaurantTableViewCell {
-            
             
             
             cell.configure(restaurant)
