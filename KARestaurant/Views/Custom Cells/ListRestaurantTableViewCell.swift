@@ -37,21 +37,29 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     }
     
     func loadImage() {
-        let urlString = restaurant.thumbnail!
-        if let image = PhotosDataManager.sharedManager.cachedImage(urlString) {
-            populateCell(image)
-            return
+        if let  urlString = restaurant.thumbnail {
+            if let image = PhotosDataManager.sharedManager.cachedImage(urlString) {
+                populateCell(image)
+                return
+            }
+        }else{
+            populateCell(UIImage(named: "null")!)
         }
+        
         downloadImage()
     }
     
     func downloadImage() {
         //  loadingIndicator.startAnimating()
         restaurantImageView.image = UIImage(named: "defaultPhoto")
-        let urlString = restaurant.thumbnail!
-        request = PhotosDataManager.sharedManager.getNetworkImage(urlString) { image in
-            self.populateCell(image)
+        if let urlString = restaurant.thumbnail{
+            request = PhotosDataManager.sharedManager.getNetworkImage(urlString) { image in
+                self.populateCell(image)
+            }
+        }else{
+            populateCell(UIImage(named: "null")!)
         }
+        
     }
     
     func populateCell(image: UIImage) {

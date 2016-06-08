@@ -19,6 +19,7 @@ PODS:
     - AlamofireImage (~> 2.0)
     - ImageSlideshow/Core
   - ImageSlideshow/Core (0.4.0)
+  - M13Checkbox (2.1.2)
   - Material (1.41.6)
   - ObjectMapper (1.3.0)
   - SwiftValidator (3.0.1)
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - Device (~> 1.0.1)
   - DKImagePickerController
   - ImageSlideshow/Alamofire
+  - M13Checkbox
   - Material (~> 1.0)
   - SwiftValidator (from `https://github.com/jpotts18/SwiftValidator.git`, branch `master`)
 
@@ -54,11 +56,12 @@ SPEC CHECKSUMS:
   Device: 7ed5b87db148886e8c3cbcdde5dc997baddbe10b
   DKImagePickerController: 8fd00d31c1688dce35d5fce15d3231a79ac2d38c
   ImageSlideshow: 0d3632bc0c2b4d3fff24a49ce4d3022af8238b03
+  M13Checkbox: fbc53145e3ca8ecd1c444a76439bdc0ddb17b008
   Material: fcbcee7543c79e9917a94b3510c0cc9eeefe156b
   ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   SwiftValidator: 461a2c00173f001287a8fa1f12704b87ec8a6bc4
   UIImageViewModeScaleAspect: ec78901acfc20d3782154111a21d34390f8f71ad
 
-PODFILE CHECKSUM: b99162f8c03b0a3cd9c1ad76ff798af9c41f4640
+PODFILE CHECKSUM: 306860579b9f140c0e524b214b8cd9f1d2dab522
 
 COCOAPODS: 1.0.1

@@ -17,15 +17,19 @@ import AVKit
 import CoreLocation
 
 import Material
+import M13Checkbox
 
 class AddRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
     
     // MARK: Properties
     @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var restaurantDescriptionTextField: UITextField!
+    @IBOutlet weak var nameTextField: TextField!
+    @IBOutlet weak var restaurantDescriptionTextField: TextField!
+    @IBOutlet weak var deliveryLabel: MaterialLabel!
+    @IBOutlet weak var homeTextField: TextField!
+    @IBOutlet weak var streetTextField: TextField!
     
-    
+    @IBOutlet weak var deliveryCheckBox: M13Checkbox!
     @IBOutlet weak var browseButton:UIButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -61,12 +65,13 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
+        restaurantDescriptionTextField.delegate = self
         
         // Enable the Save button only if the text field has a valid Restaurant name.
         checkValidRestuarantName()
         
         prepareView()
-        prepareNameField()
+        prepareTextField()
         prepareEmailField()
     }
     
@@ -104,11 +109,12 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     /// General preparation statements.
     private func prepareView() {
         view.backgroundColor = MaterialColor.white
+        deliveryCheckBox.stateChangeAnimation = M13Checkbox.Animation.Fill
     }
     
-    /// Prepares the name TextField.
-    private func prepareNameField() {
-        nameTextField.placeholder = "Name:"
+    /// Prepares the TextField.
+    private func prepareTextField() {
+        deliveryLabel.font = deliveryLabel.font.fontWithSize(16)
     }
     
     /// Prepares the email TextField.
@@ -132,7 +138,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     func textFieldDidEndEditing(textField: UITextField) {
         checkValidRestuarantName()
-        navigationItem.title = textField.text
+        navigationItem.title = nameTextField.text
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -141,12 +147,26 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     func checkValidRestuarantName() {
+        
         // Disable the Save button if the text field is empty.
-        let text = nameTextField.text ?? ""
-        saveButton.enabled = !text.isEmpty
+        if !(nameTextField.text?.isEmpty)! && !(restaurantDescriptionTextField.text?.isEmpty)! {
+            saveButton.enabled = true
+        }else{
+            saveButton.enabled = false
+        }
+        
     }
     
 
+    @IBAction func deliveryCheckBoxClick(checkbox: M13Checkbox) {
+        print(checkbox.checkState)
+        
+        if checkbox.checkState == M13Checkbox.CheckState.Checked {
+            deliveryLabel.textColor = MaterialColor.blue.base
+        }else{
+            deliveryLabel.textColor = MaterialColor.grey.base
+        }
+    }
     
     
     
