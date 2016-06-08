@@ -16,15 +16,17 @@ import AVKit
 
 import CoreLocation
 
+import Material
+
 class AddRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
     
     // MARK: Properties
-    
-    @IBOutlet weak var menuSelectedLabel: UILabel!
-    @IBOutlet weak var browseButton:UIButton!
-    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var restaurantDescriptionTextField: UITextField!
     
+    
+    @IBOutlet weak var browseButton:UIButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -62,6 +64,10 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         
         // Enable the Save button only if the text field has a valid Restaurant name.
         checkValidRestuarantName()
+        
+        prepareView()
+        prepareNameField()
+        prepareEmailField()
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -95,7 +101,29 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     
-    // MARK: UITextFieldDelegate
+    /// General preparation statements.
+    private func prepareView() {
+        view.backgroundColor = MaterialColor.white
+    }
+    
+    /// Prepares the name TextField.
+    private func prepareNameField() {
+        nameTextField.placeholder = "Name:"
+    }
+    
+    /// Prepares the email TextField.
+    private func prepareEmailField() {
+//        emailField.placeholder = "Email"
+//        emailField.delegate = self
+//        
+//        /*
+//         Used to display the error message, which is displayed when
+//         the user presses the 'return' key.
+//         */
+//        emailField.detail = "Email is incorrect."
+    }
+    
+    /// Executed when the 'return' key is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
@@ -117,6 +145,8 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         let text = nameTextField.text ?? ""
         saveButton.enabled = !text.isEmpty
     }
+    
+
     
     
     
