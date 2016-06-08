@@ -149,10 +149,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             navigationController!.popViewControllerAnimated(true)
         }
     }
-    @IBAction func kkk(sender: AnyObject) {
-        
-        showImagePickerWithAssetType(Demo.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
-    }
     
     // MARK: Actions
     @IBAction func showImagePicker(sender: UITapGestureRecognizer) {

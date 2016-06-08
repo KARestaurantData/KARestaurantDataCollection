@@ -10,10 +10,14 @@ import UIKit
 import ImageSlideshow
 
 class RestaurantDetailTableViewController: UITableViewController, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource {
-    
+    // MARK: Property
+    // ImageSlideShow Property
     @IBOutlet var restaurantSlideshow: ImageSlideshow!
     var transitionDelegate: ZoomAnimatedTransitioningDelegate?
+    var restuarantImageArray = [AlamofireSource]();
     
+    
+    // RestaurantDetail outlet
     @IBOutlet weak var menuCollectionview: UICollectionView!
     @IBOutlet weak var restaurantDetailLabel: UILabel!
     /*
@@ -22,41 +26,40 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
      */
     var restaurant: Restaurants?
     
-    var restuarantImageArray = [AlamofireSource]();
-     
+     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        // CollectionView Delegate
         self.menuCollectionview.delegate=self
         self.menuCollectionview.dataSource=self
         
+        
+        // Config ImageSlideShow and PageControl
         restaurantSlideshow.backgroundColor = UIColor.whiteColor()
         restaurantSlideshow.slideshowInterval = 5.0
-        restaurantSlideshow.pageControlPosition = PageControlPosition.UnderScrollView
+        restaurantSlideshow.pageControlPosition = PageControlPosition.InsideScrollView
         restaurantSlideshow.pageControl.currentPageIndicatorTintColor = UIColor.lightGrayColor();
         restaurantSlideshow.pageControl.pageIndicatorTintColor = UIColor.blackColor();
         
+        
+        // Set data to Control
+        navigationItem.title = restaurant?.name
         self.restaurantDetailLabel.text = restaurant?.restDescription
+        
+        // Set image to array of slide show
         for restImage in (restaurant?.images)! {
             restuarantImageArray.append(AlamofireSource(urlString: restImage.url!)!)
         }
         
+        // Set image to slide show
         restaurantSlideshow.setImageInputs(restuarantImageArray)
         
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.click))
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
         restaurantSlideshow.addGestureRecognizer(recognizer)
-        
-        
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    func click() {
+    func restaurantSlideshowClick() {
         let ctr = FullScreenSlideshowViewController()
         // called when full-screen VC dismissed and used to set the page to our original slideshow
         ctr.pageSelected = {(page: Int) in
@@ -70,12 +73,6 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         self.transitionDelegate = ZoomAnimatedTransitioningDelegate(slideshowView: restaurantSlideshow)
         ctr.transitioningDelegate = self.transitionDelegate
         self.presentViewController(ctr, animated: true, completion: nil)
-    }
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
