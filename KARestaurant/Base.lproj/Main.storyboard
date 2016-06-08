@@ -520,7 +520,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="4ng-GR-ZhK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Telephone"/>
                                                     </userDefinedRuntimeAttributes>
