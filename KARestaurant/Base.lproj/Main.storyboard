@@ -231,7 +231,7 @@
             <objects>
                 <tableViewController id="Gpn-RF-UgH" userLabel="Register Restaurant" customClass="AddRestaurantTableViewController" customModule="KARestaurant" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gh4-Sm-6xq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="JwO-Kl-4AG">
@@ -517,7 +517,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ifB-ai-ety" customClass="TextField" customModule="Material">
                                                     <rect key="frame" x="8" y="32" width="584" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="tNs-oJ-fhI"/>
+                                                        <constraint firstAttribute="height" constant="30" id="4ng-GR-ZhK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -527,57 +527,82 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ifB-ai-ety" secondAttribute="trailing" id="4gG-cS-9o7"/>
-                                                <constraint firstItem="ifB-ai-ety" firstAttribute="bottom" secondItem="DAy-oT-q7o" secondAttribute="bottomMargin" id="BKD-xa-0tW"/>
-                                                <constraint firstItem="ifB-ai-ety" firstAttribute="leading" secondItem="DAy-oT-q7o" secondAttribute="leadingMargin" id="TIr-hR-9Q2"/>
+                                                <constraint firstItem="ifB-ai-ety" firstAttribute="leading" secondItem="DAy-oT-q7o" secondAttribute="leadingMargin" id="WSF-J2-Qq7"/>
+                                                <constraint firstItem="ifB-ai-ety" firstAttribute="trailing" secondItem="DAy-oT-q7o" secondAttribute="trailingMargin" id="faz-Uk-JjR"/>
+                                                <constraint firstItem="ifB-ai-ety" firstAttribute="bottom" secondItem="DAy-oT-q7o" secondAttribute="bottomMargin" id="itL-g1-HtK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Restaurant Images:" id="kvk-hu-xOf">
+                            <tableViewSection id="kvk-hu-xOf">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="148" id="S7L-my-jC3">
-                                        <rect key="frame" x="0.0" y="868" width="600" height="148"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="146" id="S7L-my-jC3">
+                                        <rect key="frame" x="0.0" y="840" width="600" height="146"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S7L-my-jC3" id="YIl-AH-tPO">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="148"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="146"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLu-LQ-rB6">
-                                                    <rect key="frame" x="294" y="50" width="73" height="43"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLu-LQ-rB6" customClass="RaisedButton" customModule="Material">
+                                                    <rect key="frame" x="502" y="25" width="90" height="25"/>
                                                     <gestureRecognizers/>
-                                                    <state key="normal" title="Browse">
-                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="koG-Lk-kiw"/>
+                                                        <constraint firstAttribute="height" constant="25" id="kvh-cc-Xnj"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Browse"/>
                                                     <connections>
-                                                        <action selector="showImagePicker:" destination="Gpn-RF-UgH" eventType="touchUpInside" id="JSY-GB-t4Q"/>
+                                                        <action selector="showImagePicker:" destination="Gpn-RF-UgH" eventType="touchUpInside" id="gv6-ss-4ak"/>
                                                     </connections>
                                                 </button>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kQe-pT-3Ay">
-                                                    <rect key="frame" x="8" y="8" width="284" height="128"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Image: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7v-JQ-703" customClass="MaterialLabel" customModule="Material">
+                                                    <rect key="frame" x="8" y="25" width="144" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="oOQ-fU-RN7"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Restaurant Image: "/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kQe-pT-3Ay">
+                                                    <rect key="frame" x="8" y="58" width="584" height="80"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="5RD-RO-T80"/>
+                                                    </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hmd-jk-iXC">
-                                                        <size key="itemSize" width="50" height="57"/>
+                                                        <size key="itemSize" width="80" height="80"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imgcell" id="FTX-LD-B0K" customClass="CustomCell" customModule="KARestaurant" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="57"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="57"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Is-FO-Gix">
-                                                                        <rect key="frame" x="0.0" y="7" width="44" height="47"/>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Is-FO-Gix">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="2Is-FO-Gix" secondAttribute="bottom" id="AnH-EB-xH1"/>
+                                                                <constraint firstItem="2Is-FO-Gix" firstAttribute="top" secondItem="FTX-LD-B0K" secondAttribute="top" id="Mxw-VG-Esn"/>
+                                                                <constraint firstItem="2Is-FO-Gix" firstAttribute="leading" secondItem="FTX-LD-B0K" secondAttribute="leading" id="R0d-gA-u7u"/>
+                                                                <constraint firstAttribute="trailing" secondItem="2Is-FO-Gix" secondAttribute="trailing" id="voi-Y7-xHf"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="myImage" destination="2Is-FO-Gix" id="FZN-cy-6iR"/>
                                                             </connections>
@@ -585,6 +610,103 @@
                                                     </cells>
                                                 </collectionView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="X7v-JQ-703" firstAttribute="leading" secondItem="YIl-AH-tPO" secondAttribute="leadingMargin" id="0Yl-kX-oB8"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="kQe-pT-3Ay" secondAttribute="bottom" id="17e-bd-67z"/>
+                                                <constraint firstItem="kQe-pT-3Ay" firstAttribute="top" secondItem="X7v-JQ-703" secondAttribute="bottom" constant="8" id="3P7-Ga-Pbh"/>
+                                                <constraint firstItem="kQe-pT-3Ay" firstAttribute="top" secondItem="lLu-LQ-rB6" secondAttribute="bottom" constant="8" id="AEX-2e-krb"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="kQe-pT-3Ay" secondAttribute="trailing" id="XfA-0W-4qe"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="kQe-pT-3Ay" secondAttribute="leading" id="ihG-en-uv4"/>
+                                                <constraint firstItem="lLu-LQ-rB6" firstAttribute="trailing" secondItem="YIl-AH-tPO" secondAttribute="trailingMargin" id="vE6-3Y-ubR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="3pq-1F-hwR">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="146" id="TVC-8I-q6u">
+                                        <rect key="frame" x="0.0" y="986" width="600" height="146"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TVC-8I-q6u" id="eFJ-hW-8Oh">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="146"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQG-0d-rfH" customClass="RaisedButton" customModule="Material">
+                                                    <rect key="frame" x="502" y="25" width="90" height="25"/>
+                                                    <gestureRecognizers/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="EMg-fx-oEv"/>
+                                                        <constraint firstAttribute="height" constant="25" id="YHx-PA-2gi"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Browse"/>
+                                                    <connections>
+                                                        <action selector="showImagePicker:" destination="Gpn-RF-UgH" eventType="touchUpInside" id="9Qe-82-VNZ"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Menu Image:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8J-hN-ayn" customClass="MaterialLabel" customModule="Material">
+                                                    <rect key="frame" x="8" y="25" width="187" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="EpP-ux-BeC"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Restaurant Menu Image:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZsE-ao-Jox">
+                                                    <rect key="frame" x="8" y="58" width="584" height="80"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="cn4-g6-FdX"/>
+                                                    </constraints>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MGx-3e-lrB">
+                                                        <size key="itemSize" width="80" height="80"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imgcell" id="pcE-i1-t67" customClass="CustomCell" customModule="KARestaurant" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lxz-Gw-F2x">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            </view>
+                                                            <constraints>
+                                                                <constraint firstItem="Lxz-Gw-F2x" firstAttribute="top" secondItem="pcE-i1-t67" secondAttribute="top" id="4wo-bt-Sni"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Lxz-Gw-F2x" secondAttribute="trailing" id="BW1-FL-8xs"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Lxz-Gw-F2x" secondAttribute="bottom" id="Knd-yO-Yw4"/>
+                                                                <constraint firstItem="Lxz-Gw-F2x" firstAttribute="leading" secondItem="pcE-i1-t67" secondAttribute="leading" id="b1y-Gf-xES"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="myImage" destination="Lxz-Gw-F2x" id="MRk-Yz-iUM"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OQG-0d-rfH" firstAttribute="trailing" secondItem="eFJ-hW-8Oh" secondAttribute="trailingMargin" id="3un-E9-O7X"/>
+                                                <constraint firstItem="ZsE-ao-Jox" firstAttribute="top" secondItem="OQG-0d-rfH" secondAttribute="bottom" constant="8" id="8FH-YK-zlq"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ZsE-ao-Jox" secondAttribute="trailing" id="M7c-xX-eeM"/>
+                                                <constraint firstItem="ZsE-ao-Jox" firstAttribute="top" secondItem="u8J-hN-ayn" secondAttribute="bottom" constant="8" id="QJo-gY-CvB"/>
+                                                <constraint firstItem="u8J-hN-ayn" firstAttribute="leading" secondItem="eFJ-hW-8Oh" secondAttribute="leadingMargin" id="cgL-Mf-yLl"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="ZsE-ao-Jox" secondAttribute="leading" id="gUq-c1-igM"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ZsE-ao-Jox" secondAttribute="bottom" id="tW1-NW-a4t"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -607,8 +729,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="1500"/>
                     <connections>
-                        <outlet property="browseButton" destination="lLu-LQ-rB6" id="XGp-q7-0yv"/>
+                        <outlet property="browseRestaurantImageButton" destination="lLu-LQ-rB6" id="ygR-lo-a22"/>
+                        <outlet property="browseRestaurantMenuImageButton" destination="OQG-0d-rfH" id="UnN-GV-Vo2"/>
                         <outlet property="collectionView" destination="kQe-pT-3Ay" id="KYe-c3-uh8"/>
                         <outlet property="communeTextField" destination="b0e-qF-frj" id="ogr-1f-CHs"/>
                         <outlet property="deliveryCheckBox" destination="iKK-yW-8bD" id="UDA-LB-CCd"/>
@@ -618,6 +743,8 @@
                         <outlet property="nameTextField" destination="Sgb-sK-owm" id="bBi-hU-Ie7"/>
                         <outlet property="photoImageView" destination="YIx-a1-Wtu" id="Vku-j7-Qza"/>
                         <outlet property="restaurantDescriptionTextField" destination="W6R-yQ-I4P" id="oeP-y0-JLj"/>
+                        <outlet property="restaurantImageLabel" destination="X7v-JQ-703" id="OIc-2F-5HO"/>
+                        <outlet property="restaurantMenuImageLabel" destination="u8J-hN-ayn" id="on8-pZ-jZO"/>
                         <outlet property="restaurantTypeTextField" destination="CMP-R4-iw6" id="9dI-Sz-M65"/>
                         <outlet property="saveButton" destination="fUa-ne-KkE" id="fIc-K4-S3R"/>
                         <outlet property="streetTextField" destination="qYa-zW-gVk" id="GCw-6s-ncH"/>

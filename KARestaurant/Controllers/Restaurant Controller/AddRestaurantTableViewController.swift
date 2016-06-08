@@ -27,14 +27,16 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var nameTextField: TextField!
     @IBOutlet weak var restaurantDescriptionTextField: TextField!
     @IBOutlet weak var deliveryLabel: MaterialLabel!
+    @IBOutlet weak var deliveryCheckBox: M13Checkbox!
     @IBOutlet weak var homeTextField: TextField!
     @IBOutlet weak var streetTextField: TextField!
     @IBOutlet weak var restaurantTypeTextField: TextField!
     @IBOutlet weak var districtTextField: TextField!
     @IBOutlet weak var communeTextField: TextField!
-    
-    @IBOutlet weak var deliveryCheckBox: M13Checkbox!
-    @IBOutlet weak var browseButton:UIButton!
+    @IBOutlet weak var restaurantImageLabel: MaterialLabel!
+    @IBOutlet weak var browseRestaurantImageButton: RaisedButton!
+    @IBOutlet weak var restaurantMenuImageLabel: MaterialLabel!
+    @IBOutlet weak var browseRestaurantMenuImageButton: RaisedButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -79,6 +81,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         checkValidRestuarantName()
         
         prepareView()
+        prepareLabel()
         prepareTextField()
         prepareDownPicker()
         prepareEmailField()
@@ -123,7 +126,12 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     /// Prepares the TextField.
     private func prepareTextField() {
+    }
+    
+    private func prepareLabel() {
         deliveryLabel.font = deliveryLabel.font.fontWithSize(16)
+        restaurantImageLabel.font = restaurantImageLabel.font.fontWithSize(16)
+        restaurantMenuImageLabel.font = restaurantMenuImageLabel.font.fontWithSize(16)
     }
     
     private func prepareDownPicker(){
@@ -234,7 +242,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     // MARK: Actions
-    @IBAction func showImagePicker(sender: UITapGestureRecognizer) {
+    @IBAction func showImagePicker(sender: RaisedButton) {
         
         
         showImagePickerWithAssetType(Demo.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
