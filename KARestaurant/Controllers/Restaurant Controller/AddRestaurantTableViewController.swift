@@ -20,7 +20,7 @@ import Material
 import M13Checkbox
 import DownPicker
 
-class AddRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
+class AddRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
     
     // MARK: Properties
     @IBOutlet weak var photoImageView: UIImageView!
@@ -39,19 +39,16 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var browseRestaurantMenuImageButton: RaisedButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var restaurantImageCollectionView: UICollectionView!
     
-    var assets: [DKAsset]?
-    var imageArray = [UIImage]()
     
-    struct Demo {
-        static let titles = [
-            ["Pick All", "Pick photos only", "Pick videos only", "Pick All (only photos or videos)"],
-            ["Take a picture"],
-            ["Hides camera"],
-            ["Allows landscape"],
-            ["Single select"]
-        ]
+     @IBOutlet weak var restaurantMenuImageCollectionView: UICollectionView!
+    var restaurantImageAssets: [DKAsset]?
+    var restaurantMenuImageAssets: [DKAsset]?
+    var restaurantImageArray = [UIImage]()
+    var restaurantMenuImageArray = [UIImage]()
+    
+    struct DKImagePickerType {
         static let types: [DKImagePickerControllerAssetType] = [.AllAssets, .AllPhotos, .AllVideos, .AllAssets]
     }
     
@@ -64,8 +61,11 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.delegate=self
-        self.collectionView.dataSource=self
+        self.restaurantImageCollectionView.delegate=self
+        self.restaurantImageCollectionView.dataSource=self
+        
+        self.restaurantMenuImageCollectionView.delegate=self
+        self.restaurantMenuImageCollectionView.dataSource=self
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
@@ -90,17 +90,17 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let latestLocation: AnyObject = locations[locations.count - 1]
         
-        print(String(format: "latitude %.4f",
-            latestLocation.coordinate.latitude))
-        print(String(format: "longitude %.4f",
-            latestLocation.coordinate.longitude))
-        print( String(format: "horizontalAccuracy %.4f",
-            latestLocation.horizontalAccuracy))
-        print(String(format: "altitude %.4f",
-            latestLocation.altitude))
-        print( String(format: "verticalAccuracy %.4f",
-            latestLocation.verticalAccuracy))
-        
+//        print(String(format: "latitude %.4f",
+//            latestLocation.coordinate.latitude))
+//        print(String(format: "longitude %.4f",
+//            latestLocation.coordinate.longitude))
+//        print( String(format: "horizontalAccuracy %.4f",
+//            latestLocation.horizontalAccuracy))
+//        print(String(format: "altitude %.4f",
+//            latestLocation.altitude))
+//        print( String(format: "verticalAccuracy %.4f",
+//            latestLocation.verticalAccuracy))
+//        
         
         if startLocation == nil {
             startLocation = latestLocation as! CLLocation
@@ -109,7 +109,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         let distanceBetween: CLLocationDistance =
             latestLocation.distanceFromLocation(startLocation)
         
-        print(String(format: "distanceBetween %.2f", distanceBetween))
+        //print(String(format: "distanceBetween %.2f", distanceBetween))
     }
     
     func locationManager(manager: CLLocationManager,
@@ -209,25 +209,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    
-    
-    // MARK: UIImagePickerControllerDelegate
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        // Dismiss the picker if the user canceled.
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        // The info dictionary contains multiple representations of the image, and this uses the original.
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        // Set photoImageView to display the selected image.
-        photoImageView.image = selectedImage
-        
-        // Dismiss the picker.
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     // MARK: Navigation
     
     @IBAction func cancel(sender: UIBarButtonItem) {
@@ -243,47 +224,81 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     // MARK: Actions
     @IBAction func showImagePicker(sender: RaisedButton) {
+        if sender == self.browseRestaurantImageButton{
+            
+             showRestaurantImagePickerWithAssetType(DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
+        }else{
+            
+            showRestaurantMenuImagePickerWithAssetType(DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
+        }
         
-        
-        showImagePickerWithAssetType(Demo.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
+       
         
     }
     
-    func reloadTable(){
-        self.collectionView.reloadData()
-        if self.assets?.count == 0 {
+    func reloadRestaurantImageCollectionView(){
+        self.restaurantImageCollectionView.reloadData()
+        if self.restaurantImageAssets?.count == 0 {
             self.photoImageView.image = UIImage.init(named: "defaultPhoto")
         }else{
-            self.photoImageView.image = self.imageArray.first
+            self.photoImageView.image = self.restaurantImageArray.first
         }
+    }
+    
+    func reloadRestaurantMenuImageCollectionView(){
+        self.restaurantMenuImageCollectionView.reloadData()
     }
     
     //MARK: collection view
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.assets?.count ?? 0
+        if collectionView.isEqual(self.restaurantImageCollectionView){
+            return self.restaurantImageAssets?.count ?? 0
+        }else{
+            return self.restaurantMenuImageAssets?.count ?? 0
+        }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let asset = self.assets![indexPath.row]
-        
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
-        
-        let tag = indexPath.row + 1
-        
-        cell.tag = tag
-        
-        asset.fetchOriginalImageWithCompleteBlock { (image, info) in
-            if cell.tag == tag {
-                cell.myImage.image = image
-                self.imageArray.append(image!)
-                print( self.assets![indexPath.row].originalAsset?.location?.coordinate)
-                
-                if tag == 1{
-                    self.photoImageView.image = image
+        if collectionView.isEqual(self.restaurantImageCollectionView){
+            let asset = self.restaurantImageAssets![indexPath.row]
+            
+            let cell = self.restaurantImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
+            
+            let tag = indexPath.row + 1
+            
+            cell.tag = tag
+            
+            asset.fetchOriginalImageWithCompleteBlock { (image, info) in
+                if cell.tag == tag {
+                    cell.myImage.image = image
+                    self.restaurantImageArray.append(image!)
+                    print( self.restaurantImageAssets![indexPath.row].originalAsset?.location?.coordinate)
+                    
+                    if tag == 1{
+                        self.photoImageView.image = image
+                    }
                 }
             }
+            return cell
+        }else{
+            let asset = self.restaurantMenuImageAssets![indexPath.row]
+            
+            let cell = self.restaurantMenuImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
+            
+            let tag = indexPath.row + 1
+            
+            cell.tag = tag
+            
+            asset.fetchOriginalImageWithCompleteBlock { (image, info) in
+                if cell.tag == tag {
+                    cell.myImage.image = image
+                    self.restaurantMenuImageArray.append(image!)
+                    print( self.restaurantMenuImageAssets![indexPath.row].originalAsset?.location?.coordinate)
+                }
+            }
+            return cell
         }
-        return cell
+       
     }
     
     func image(image: UIImage, didFinishSavingWithError: NSErrorPointer, contextInfo:UnsafePointer<Void>)       {
@@ -331,27 +346,13 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    @IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
-        // Hide the keyboard.
-        nameTextField.resignFirstResponder()
-        
-        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
-        let imagePickerController = UIImagePickerController()
-        
-        // Only allow photos to be picked, not taken.
-        imagePickerController.sourceType = .PhotoLibrary
-        
-        // Make sure ViewController is notified when the user picks an image.
-        imagePickerController.delegate = self
-        
-        presentViewController(imagePickerController, animated: true, completion: nil)
-    }
+  
     //MARK: delete action
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.imageArray.removeAtIndex(indexPath.row)
-        self.assets?.removeAtIndex(indexPath.row)
-        self.collectionView.deleteItemsAtIndexPaths([indexPath])
-        reloadTable()
+        self.restaurantImageArray.removeAtIndex(indexPath.row)
+        self.restaurantImageAssets?.removeAtIndex(indexPath.row)
+        self.restaurantImageCollectionView.deleteItemsAtIndexPaths([indexPath])
+        reloadRestaurantImageCollectionView()
     }
     
     @IBAction func saveAction(sender: AnyObject) {
@@ -391,10 +392,10 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 multipartFormData.appendBodyPart(data: "111".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LONGITUDE")
                 multipartFormData.appendBodyPart(data: "016 600 701".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
                 
-                print(self.imageArray.count)
+                print(self.restaurantImageArray.count)
                 
-                for i in 0 ..< self.imageArray.count{
-                    let imagePickedData = UIImageJPEGRepresentation(self.imageArray[i], 0.3)!
+                for i in 0 ..< self.restaurantImageArray.count{
+                    let imagePickedData = UIImageJPEGRepresentation(self.restaurantImageArray[i], 0.3)!
                     print("add")
                     
                     multipartFormData.appendBodyPart(data: imagePickedData, name: "MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
@@ -421,7 +422,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     
-    func showImagePickerWithAssetType(assetType: DKImagePickerControllerAssetType,
+    func showRestaurantImagePickerWithAssetType(assetType: DKImagePickerControllerAssetType,
                                       allowMultipleType: Bool,
                                       sourceType: DKImagePickerControllerSourceType = .Both,
                                       allowsLandscape: Bool,
@@ -446,13 +447,13 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         // Clear all the selected assets if you used the picker controller as a single instance.
         //		pickerController.defaultSelectedAssets = nil
         
-        pickerController.defaultSelectedAssets = self.assets
+        pickerController.defaultSelectedAssets = self.restaurantImageAssets
         
         pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
             print("didSelectAssets")
-            self.imageArray.removeAll()
-            self.assets = assets
-            self.reloadTable()
+            self.restaurantImageArray.removeAll()
+            self.restaurantImageAssets = assets
+            self.reloadRestaurantImageCollectionView()
         }
         
         if UI_USER_INTERFACE_IDIOM() == .Pad {
@@ -462,4 +463,45 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         self.presentViewController(pickerController, animated: true) {}
     }
     
+    func showRestaurantMenuImagePickerWithAssetType(assetType: DKImagePickerControllerAssetType,
+                                                allowMultipleType: Bool,
+                                                sourceType: DKImagePickerControllerSourceType = .Both,
+                                                allowsLandscape: Bool,
+                                                singleSelect: Bool) {
+        
+        let pickerController = DKImagePickerController()
+        
+        // Custom camera
+        //		pickerController.UIDelegate = CustomUIDelegate()
+        //		pickerController.modalPresentationStyle = .OverCurrentContext
+        
+        pickerController.assetType = assetType
+        pickerController.allowsLandscape = allowsLandscape
+        pickerController.allowMultipleTypes = allowMultipleType
+        pickerController.sourceType = sourceType
+        pickerController.singleSelect = singleSelect
+        
+        //		pickerController.showsCancelButton = true
+        //		pickerController.showsEmptyAlbums = false
+        //		pickerController.defaultAssetGroup = PHAssetCollectionSubtype.SmartAlbumFavorites
+        
+        // Clear all the selected assets if you used the picker controller as a single instance.
+        //		pickerController.defaultSelectedAssets = nil
+        
+        pickerController.defaultSelectedAssets = self.restaurantMenuImageAssets
+        
+        pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
+            print("didSelectAssets")
+            self.restaurantMenuImageArray.removeAll()
+            self.restaurantMenuImageAssets = assets
+            self.reloadRestaurantMenuImageCollectionView()
+        }
+        
+        if UI_USER_INTERFACE_IDIOM() == .Pad {
+            pickerController.modalPresentationStyle = .FormSheet;
+        }
+        
+        self.presentViewController(pickerController, animated: true) {}
+    }
+
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SUG-bm-tHI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gpn-RF-UgH">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -734,7 +734,6 @@
                     <connections>
                         <outlet property="browseRestaurantImageButton" destination="lLu-LQ-rB6" id="ygR-lo-a22"/>
                         <outlet property="browseRestaurantMenuImageButton" destination="OQG-0d-rfH" id="UnN-GV-Vo2"/>
-                        <outlet property="collectionView" destination="kQe-pT-3Ay" id="KYe-c3-uh8"/>
                         <outlet property="communeTextField" destination="b0e-qF-frj" id="ogr-1f-CHs"/>
                         <outlet property="deliveryCheckBox" destination="iKK-yW-8bD" id="UDA-LB-CCd"/>
                         <outlet property="deliveryLabel" destination="d3D-wf-FPu" id="KHd-hY-77G"/>
@@ -743,7 +742,9 @@
                         <outlet property="nameTextField" destination="Sgb-sK-owm" id="bBi-hU-Ie7"/>
                         <outlet property="photoImageView" destination="YIx-a1-Wtu" id="Vku-j7-Qza"/>
                         <outlet property="restaurantDescriptionTextField" destination="W6R-yQ-I4P" id="oeP-y0-JLj"/>
+                        <outlet property="restaurantImageCollectionView" destination="kQe-pT-3Ay" id="DOD-eg-FQd"/>
                         <outlet property="restaurantImageLabel" destination="X7v-JQ-703" id="OIc-2F-5HO"/>
+                        <outlet property="restaurantMenuImageCollectionView" destination="ZsE-ao-Jox" id="ej9-iX-KW5"/>
                         <outlet property="restaurantMenuImageLabel" destination="u8J-hN-ayn" id="on8-pZ-jZO"/>
                         <outlet property="restaurantTypeTextField" destination="CMP-R4-iw6" id="9dI-Sz-M65"/>
                         <outlet property="saveButton" destination="fUa-ne-KkE" id="fIc-K4-S3R"/>
