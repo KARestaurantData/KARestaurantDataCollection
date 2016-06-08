@@ -20,13 +20,13 @@ class ListRestaurantTableViewController: UITableViewController {
     // refresh control status
     var isNewRestaurantDataLoading: Bool = false
     var isRefreshControlLoading: Bool = false
-    
     let restuarantRefreshControl: UIRefreshControl = UIRefreshControl() // Top RefreshControl
     
     //  object
     var responseRestaurant = [Restaurants]()
     var responsePagination = Pagination()
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,8 +38,7 @@ class ListRestaurantTableViewController: UITableViewController {
         getRestuarant(1, limit: 20)
     }
     
-    
-    // refresh control action
+    // MARK: Refresh Control Action
     func uiRefreshControlAction() {
         print((self.responsePagination?.limit)!)
         
@@ -50,7 +49,7 @@ class ListRestaurantTableViewController: UITableViewController {
         }
     }
     
-    // fetch data
+    // MARK: Fetch Data
     func getRestuarant(page: Int, limit: Int){
         
         // get restuarant
@@ -106,12 +105,7 @@ class ListRestaurantTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - UITableViewDelegate Methods
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        self.performSegueWithIdentifier("ShowRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
-    }
+
     
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -155,15 +149,13 @@ class ListRestaurantTableViewController: UITableViewController {
 //    }
 }
 
-/// TableViewDataSource methods.
+// MARK: - Table view data source
 extension ListRestaurantTableViewController {
     /// Determines the number of rows in the tableView.
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.responseRestaurant.count)
     }
-    
-    
-    // MARK: - Table view data source
+
     /// Returns the number of sections.
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -210,11 +202,13 @@ extension ListRestaurantTableViewController {
 
 }
 
-/// UITableViewDelegate methods.
+// MARK: - UITableViewDelegate Methods
 extension ListRestaurantTableViewController {
-    /// Sets the tableView cell height.
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return 250
-//    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        self.performSegueWithIdentifier("ShowRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
+    }
 }
 
