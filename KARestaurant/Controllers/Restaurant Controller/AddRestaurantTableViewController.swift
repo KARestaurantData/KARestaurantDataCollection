@@ -18,6 +18,7 @@ import CoreLocation
 
 import Material
 import M13Checkbox
+import DownPicker
 
 class AddRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
     
@@ -28,6 +29,9 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var deliveryLabel: MaterialLabel!
     @IBOutlet weak var homeTextField: TextField!
     @IBOutlet weak var streetTextField: TextField!
+    @IBOutlet weak var restaurantTypeTextField: TextField!
+    @IBOutlet weak var districtTextField: TextField!
+    @IBOutlet weak var communeTextField: TextField!
     
     @IBOutlet weak var deliveryCheckBox: M13Checkbox!
     @IBOutlet weak var browseButton:UIButton!
@@ -52,6 +56,10 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     var locationManager: CLLocationManager = CLLocationManager()
     var startLocation: CLLocation!
     
+    var restaurantTypeDownPicker, districtDownPicker, communeDownPicker: DownPicker!
+    // create the array of data
+    var bandArray = [String]()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate=self
@@ -72,6 +80,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         
         prepareView()
         prepareTextField()
+        prepareDownPicker()
         prepareEmailField()
     }
     
@@ -115,6 +124,30 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     /// Prepares the TextField.
     private func prepareTextField() {
         deliveryLabel.font = deliveryLabel.font.fontWithSize(16)
+    }
+    
+    private func prepareDownPicker(){
+        // add some sample data
+        bandArray.append("Offsprings")
+        bandArray.append("Radiohead")
+        bandArray.append("Muse")
+        bandArray.append("R.E.M")
+        bandArray.append("The Killers")
+        
+        
+        restaurantTypeDownPicker = DownPicker(textField: restaurantTypeTextField, withData: bandArray)
+        restaurantTypeDownPicker.setPlaceholder("Please select restaurant type")
+        restaurantTypeDownPicker.setPlaceholderWhileSelecting("Restaurant Type")
+        
+        
+        districtDownPicker =  DownPicker(textField: districtTextField, withData: bandArray)
+        districtDownPicker.setPlaceholder("Please select district")
+        districtDownPicker.setPlaceholderWhileSelecting("District")
+        
+        communeDownPicker =  DownPicker(textField: communeTextField, withData: bandArray)
+        communeDownPicker.setPlaceholder("Please select commune")
+        communeDownPicker.setPlaceholderWhileSelecting("Commune")
+        
     }
     
     /// Prepares the email TextField.

@@ -424,38 +424,83 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Restaurant Type:" id="BAV-ry-zAB">
+                            <tableViewSection id="BAV-ry-zAB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="jUv-Bg-7d7">
-                                        <rect key="frame" x="0.0" y="588" width="600" height="70"/>
+                                        <rect key="frame" x="0.0" y="560" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jUv-Bg-7d7" id="guG-aD-OQs">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CMP-R4-iw6" customClass="TextField" customModule="Material">
+                                                    <rect key="frame" x="8" y="32" width="584" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="dYK-gd-qoq"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CMP-R4-iw6" secondAttribute="trailing" id="DYU-aT-8Em"/>
+                                                <constraint firstItem="CMP-R4-iw6" firstAttribute="bottom" secondItem="guG-aD-OQs" secondAttribute="bottomMargin" id="NKH-8a-keF"/>
+                                                <constraint firstItem="CMP-R4-iw6" firstAttribute="leading" secondItem="guG-aD-OQs" secondAttribute="leadingMargin" id="Ygb-te-bRl"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="District:" id="fBK-Jk-h2w">
+                            <tableViewSection id="fBK-Jk-h2w">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="BgO-hd-DQt">
-                                        <rect key="frame" x="0.0" y="686" width="600" height="70"/>
+                                        <rect key="frame" x="0.0" y="630" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BgO-hd-DQt" id="RFX-R1-x6B">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s1g-3H-DTf" customClass="TextField" customModule="Material">
+                                                    <rect key="frame" x="8" y="32" width="584" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="1Bb-BT-Hf8"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="s1g-3H-DTf" firstAttribute="leading" secondItem="RFX-R1-x6B" secondAttribute="leadingMargin" id="ho7-9z-JlL"/>
+                                                <constraint firstItem="s1g-3H-DTf" firstAttribute="bottom" secondItem="RFX-R1-x6B" secondAttribute="bottomMargin" id="v0f-Wh-16C"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="s1g-3H-DTf" secondAttribute="trailing" id="ygt-Ho-erI"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Commune:" id="eOm-Xx-lqZ">
+                            <tableViewSection id="eOm-Xx-lqZ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="NQZ-wN-cEq">
-                                        <rect key="frame" x="0.0" y="784" width="600" height="70"/>
+                                        <rect key="frame" x="0.0" y="700" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NQZ-wN-cEq" id="dbB-HW-TYN">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b0e-qF-frj" customClass="TextField" customModule="Material">
+                                                    <rect key="frame" x="8" y="32" width="584" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="IIb-ZD-q70"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="b0e-qF-frj" firstAttribute="leading" secondItem="dbB-HW-TYN" secondAttribute="leadingMargin" id="BRB-fp-8Oz"/>
+                                                <constraint firstItem="b0e-qF-frj" firstAttribute="bottom" secondItem="dbB-HW-TYN" secondAttribute="bottomMargin" id="DCR-cF-w4W"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="b0e-qF-frj" secondAttribute="trailing" id="aIZ-R2-Qk3"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -463,7 +508,7 @@
                             <tableViewSection id="WwR-Xw-Y9i">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="O4W-1d-vSs">
-                                        <rect key="frame" x="0.0" y="854" width="600" height="70"/>
+                                        <rect key="frame" x="0.0" y="770" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O4W-1d-vSs" id="DAy-oT-q7o">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
@@ -493,7 +538,7 @@
                             <tableViewSection headerTitle="Restaurant Images:" id="kvk-hu-xOf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="148" id="S7L-my-jC3">
-                                        <rect key="frame" x="0.0" y="952" width="600" height="148"/>
+                                        <rect key="frame" x="0.0" y="868" width="600" height="148"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S7L-my-jC3" id="YIl-AH-tPO">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="148"/>
@@ -565,12 +610,15 @@
                     <connections>
                         <outlet property="browseButton" destination="lLu-LQ-rB6" id="XGp-q7-0yv"/>
                         <outlet property="collectionView" destination="kQe-pT-3Ay" id="KYe-c3-uh8"/>
+                        <outlet property="communeTextField" destination="b0e-qF-frj" id="ogr-1f-CHs"/>
                         <outlet property="deliveryCheckBox" destination="iKK-yW-8bD" id="UDA-LB-CCd"/>
                         <outlet property="deliveryLabel" destination="d3D-wf-FPu" id="KHd-hY-77G"/>
+                        <outlet property="districtTextField" destination="s1g-3H-DTf" id="1zO-WV-ePC"/>
                         <outlet property="homeTextField" destination="LSb-Df-dox" id="mUS-Eb-6an"/>
                         <outlet property="nameTextField" destination="Sgb-sK-owm" id="bBi-hU-Ie7"/>
                         <outlet property="photoImageView" destination="YIx-a1-Wtu" id="Vku-j7-Qza"/>
                         <outlet property="restaurantDescriptionTextField" destination="W6R-yQ-I4P" id="oeP-y0-JLj"/>
+                        <outlet property="restaurantTypeTextField" destination="CMP-R4-iw6" id="9dI-Sz-M65"/>
                         <outlet property="saveButton" destination="fUa-ne-KkE" id="fIc-K4-S3R"/>
                         <outlet property="streetTextField" destination="qYa-zW-gVk" id="GCw-6s-ncH"/>
                     </connections>

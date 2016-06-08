@@ -15,6 +15,7 @@ PODS:
     - DKImagePickerController/ImageManager (= 3.2.1)
   - DKImagePickerController/Camera (3.2.1)
   - DKImagePickerController/ImageManager (3.2.1)
+  - DownPicker (0.1.34)
   - ImageSlideshow/Alamofire (0.4.0):
     - AlamofireImage (~> 2.0)
     - ImageSlideshow/Core
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - BSImagePicker (~> 2.3)
   - Device (~> 1.0.1)
   - DKImagePickerController
+  - DownPicker
   - ImageSlideshow/Alamofire
   - M13Checkbox
   - Material (~> 1.0)
@@ -55,6 +57,7 @@ SPEC CHECKSUMS:
   BSImagePicker: 591b28ce4994c44cbc4ac896717c1db9f9fadd18
   Device: 7ed5b87db148886e8c3cbcdde5dc997baddbe10b
   DKImagePickerController: 8fd00d31c1688dce35d5fce15d3231a79ac2d38c
+  DownPicker: c00ea63f08ae82116cc93d0eba74e86bf3d4c68e
   ImageSlideshow: 0d3632bc0c2b4d3fff24a49ce4d3022af8238b03
   M13Checkbox: fbc53145e3ca8ecd1c444a76439bdc0ddb17b008
   Material: fcbcee7543c79e9917a94b3510c0cc9eeefe156b
@@ -62,6 +65,6 @@ SPEC CHECKSUMS:
   SwiftValidator: 461a2c00173f001287a8fa1f12704b87ec8a6bc4
   UIImageViewModeScaleAspect: ec78901acfc20d3782154111a21d34390f8f71ad
 
-PODFILE CHECKSUM: 306860579b9f140c0e524b214b8cd9f1d2dab522
+PODFILE CHECKSUM: 549e820c88d534b733cf5f491f4ee64511b8cbb9
 
 COCOAPODS: 1.0.1
