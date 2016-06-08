@@ -75,19 +75,7 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         self.presentViewController(ctr, animated: true, completion: nil)
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
-    }
-    
-    //MARK: collection view
+    //MARK: Collection View
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return restaurant?.menus?.count ?? 0
     }
@@ -100,3 +88,24 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         return cell
     }
 }
+
+// MARK: - Table view data source
+extension RestaurantDetailTableViewController {
+    /// Determines the number of rows in the tableView.
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 2
+    }
+    /// Returns the number of sections.
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 1
+    }
+}
+
+// MARK: - UITableViewDelegate Methods
+extension RestaurantDetailTableViewController {
+
+}
+
+
