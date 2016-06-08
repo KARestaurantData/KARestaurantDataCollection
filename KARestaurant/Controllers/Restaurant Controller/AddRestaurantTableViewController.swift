@@ -307,7 +307,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 print(self.imageArray.count)
                 
                 for i in 0 ..< self.imageArray.count{
-                    let imagePickedData = UIImageJPEGRepresentation(self.imageArray[i], 1.0)!
+                    let imagePickedData = UIImageJPEGRepresentation(self.imageArray[i], 0.3)!
                     print("add")
                     
                     multipartFormData.appendBodyPart(data: imagePickedData, name: "MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
