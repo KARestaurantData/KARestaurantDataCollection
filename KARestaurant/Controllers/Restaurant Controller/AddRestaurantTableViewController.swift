@@ -165,7 +165,24 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         getCommune(12570)
     }
     
+    /// Prepares the email TextField.
+    private func prepareEmailField() {
+        //        emailField.placeholder = "Email"
+        //        emailField.delegate = self
+        //
+        //        /*
+        //         Used to display the error message, which is displayed when
+        //         the user presses the 'return' key.
+        //         */
+        //        emailField.detail = "Email is incorrect."
+    }
     
+    @IBAction func downPickerEditingDidEnd(sender: TextField) {
+        if sender.isEqual(self.districtTextField){
+            getCommune(self.responseDistrict[self.districtDownPicker.selectedIndex].id!)
+        }
+        checkValidRestuarantField()
+    }
     
     // MARK: Fetch Data
     func getRestaurantType(){
@@ -185,16 +202,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             self.restaurantTypeDownPicker.setPlaceholder("Please select restaurant type")
             self.restaurantTypeDownPicker.setPlaceholderWhileSelecting("Restaurant Type")
             self.restaurantTypeDownPicker.shouldDisplayCancelButton = false
-            
         }
-    }
-    
-    
-    @IBAction func downPickerEditingDidEnd(sender: TextField) {
-        if sender.isEqual(self.districtTextField){
-            getCommune(self.responseDistrict[self.districtDownPicker.selectedIndex].id!)
-        }
-        checkValidRestuarantField()
     }
     
     func getDistrict(cityId: Int){
@@ -212,7 +220,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             self.districtDownPicker =  DownPicker(textField: self.districtTextField, withData: self.districtArray)
             self.districtDownPicker.setPlaceholder("Please select district")
             self.districtDownPicker.setPlaceholderWhileSelecting("District")
-             self.districtDownPicker.shouldDisplayCancelButton = false
+            self.districtDownPicker.shouldDisplayCancelButton = false
         }
     }
     
@@ -240,17 +248,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    /// Prepares the email TextField.
-    private func prepareEmailField() {
-        //        emailField.placeholder = "Email"
-        //        emailField.delegate = self
-        //
-        //        /*
-        //         Used to display the error message, which is displayed when
-        //         the user presses the 'return' key.
-        //         */
-        //        emailField.detail = "Email is incorrect."
-    }
+
     
     /// Executed when the 'return' key is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -287,7 +285,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         }else{
             saveButton.enabled = false
         }
-        
     }
     
     
@@ -302,7 +299,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     // MARK: Navigation
-    
     @IBAction func cancel(sender: UIBarButtonItem) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         let isPresentingInAddMealMode = presentingViewController is UINavigationController
@@ -316,13 +312,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     // MARK: Actions
     @IBAction func showImagePicker(sender: RaisedButton) {
-        if sender == self.browseRestaurantImageButton{
-            
-            showRestaurantImagePickerWithAssetType(DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
-        }else{
-            
-            showRestaurantMenuImagePickerWithAssetType(DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
-        }
+        showImagePickerWithAssetType(sender, assetType: DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
     }
     
     func reloadRestaurantImageCollectionView(){
@@ -338,8 +328,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                     restaurantLocation = location
                     return
                 }
-                
-                print(restaurantLocation.coordinate)
             }
         }
         
@@ -471,9 +459,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         
     }
     
-    @IBAction func deleteAction(sender: AnyObject) {
-        
-    }
     
     func uploadImage(){
         
@@ -498,7 +483,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 
                 multipartFormData.appendBodyPart(data: "1".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "STATUS")
                 
-                
                 multipartFormData.appendBodyPart(data: "\(self.responseCategory[self.restaurantTypeDownPicker.selectedIndex].id!)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "RESTAURANT_CATEGORY")
                 
                 multipartFormData.appendBodyPart(data: "\(self.restaurantLocation.coordinate.latitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
@@ -518,7 +502,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                     multipartFormData.appendBodyPart(data: imagePickedData, name:"MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
                 }
                 
-                
                 multipartFormData.appendBodyPart(data: keyJSON, name: "format")
             },
             encodingCompletion: { encodingResult in
@@ -533,16 +516,15 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 }
             }
         )
-        
     }
     
+    func showImagePickerWithAssetType(sender: RaisedButton,
+                                      assetType: DKImagePickerControllerAssetType,
+                                      allowMultipleType: Bool,
+                                      sourceType: DKImagePickerControllerSourceType = .Both,
+                                      allowsLandscape: Bool,
+                                      singleSelect: Bool) {
     
-    func showRestaurantImagePickerWithAssetType(assetType: DKImagePickerControllerAssetType,
-                                                allowMultipleType: Bool,
-                                                sourceType: DKImagePickerControllerSourceType = .Both,
-                                                allowsLandscape: Bool,
-                                                singleSelect: Bool) {
-        
         let pickerController = DKImagePickerController()
         
         // Custom camera
@@ -562,55 +544,28 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         // Clear all the selected assets if you used the picker controller as a single instance.
         //		pickerController.defaultSelectedAssets = nil
         
-        pickerController.defaultSelectedAssets = self.restaurantImageAssets
         
-        pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
-            print("didSelectAssets")
-            self.restaurantImageArray.removeAll()
-            self.restaurantImageAssets = assets
-            self.reloadRestaurantImageCollectionView()
-        }
-        
-        if UI_USER_INTERFACE_IDIOM() == .Pad {
-            pickerController.modalPresentationStyle = .FormSheet;
-        }
-        
-        self.presentViewController(pickerController, animated: true) {}
-    }
-    
-    func showRestaurantMenuImagePickerWithAssetType(assetType: DKImagePickerControllerAssetType,
-                                                    allowMultipleType: Bool,
-                                                    sourceType: DKImagePickerControllerSourceType = .Both,
-                                                    allowsLandscape: Bool,
-                                                    singleSelect: Bool) {
-        
-        let pickerController = DKImagePickerController()
-        
-        // Custom camera
-        //		pickerController.UIDelegate = CustomUIDelegate()
-        //		pickerController.modalPresentationStyle = .OverCurrentContext
-        
-        pickerController.assetType = assetType
-        pickerController.allowsLandscape = allowsLandscape
-        pickerController.allowMultipleTypes = allowMultipleType
-        pickerController.sourceType = sourceType
-        pickerController.singleSelect = singleSelect
-        
-        //		pickerController.showsCancelButton = true
-        //		pickerController.showsEmptyAlbums = false
-        //		pickerController.defaultAssetGroup = PHAssetCollectionSubtype.SmartAlbumFavorites
-        
-        // Clear all the selected assets if you used the picker controller as a single instance.
-        //		pickerController.defaultSelectedAssets = nil
-        
-        pickerController.defaultSelectedAssets = self.restaurantMenuImageAssets
-        
-        pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
-            print("didSelectAssets")
-            self.restaurantMenuImageArray.removeAll()
-            self.restaurantMenuImageAssets = assets
-            self.reloadRestaurantMenuImageCollectionView()
+        if sender.isEqual(self.browseRestaurantImageButton){
+            pickerController.defaultSelectedAssets = self.restaurantImageAssets
             
+            pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
+                print("didSelectAssets")
+                self.restaurantImageArray.removeAll()
+                self.restaurantImageAssets = assets
+                self.reloadRestaurantImageCollectionView()
+            }
+        }else if sender.isEqual(self.browseRestaurantMenuImageButton){
+            
+            pickerController.defaultSelectedAssets = self.restaurantMenuImageAssets
+            
+            pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
+                print("didSelectAssets")
+                
+                self.restaurantMenuImageArray.removeAll()
+                self.restaurantMenuImageAssets = assets
+                self.reloadRestaurantMenuImageCollectionView()
+                
+            }
         }
         
         if UI_USER_INTERFACE_IDIOM() == .Pad {
