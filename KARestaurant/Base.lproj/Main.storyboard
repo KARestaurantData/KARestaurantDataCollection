@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gpn-RF-UgH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SUG-bm-tHI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -467,6 +467,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="districtDownPickerEditingDidEnd:" destination="Gpn-RF-UgH" eventType="editingDidEnd" id="spZ-78-jaW"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -494,6 +497,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="communeDownPickerEditingDidEnd:" destination="Gpn-RF-UgH" eventType="editingDidEnd" id="5lg-It-K4W"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -740,6 +746,7 @@
                         <outlet property="districtTextField" destination="s1g-3H-DTf" id="1zO-WV-ePC"/>
                         <outlet property="homeTextField" destination="LSb-Df-dox" id="mUS-Eb-6an"/>
                         <outlet property="nameTextField" destination="Sgb-sK-owm" id="bBi-hU-Ie7"/>
+                        <outlet property="phoneTextField" destination="ifB-ai-ety" id="rfm-su-7yY"/>
                         <outlet property="photoImageView" destination="YIx-a1-Wtu" id="Vku-j7-Qza"/>
                         <outlet property="restaurantDescriptionTextField" destination="W6R-yQ-I4P" id="oeP-y0-JLj"/>
                         <outlet property="restaurantImageCollectionView" destination="kQe-pT-3Ay" id="DOD-eg-FQd"/>

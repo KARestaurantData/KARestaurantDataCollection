@@ -19,6 +19,7 @@ import CoreLocation
 import Material
 import M13Checkbox
 import DownPicker
+import ObjectMapper
 
 class AddRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
     
@@ -33,6 +34,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var restaurantTypeTextField: TextField!
     @IBOutlet weak var districtTextField: TextField!
     @IBOutlet weak var communeTextField: TextField!
+    @IBOutlet weak var phoneTextField: TextField!
     @IBOutlet weak var restaurantImageLabel: MaterialLabel!
     @IBOutlet weak var browseRestaurantImageButton: RaisedButton!
     @IBOutlet weak var restaurantMenuImageLabel: MaterialLabel!
@@ -40,13 +42,14 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var restaurantImageCollectionView: UICollectionView!
+    @IBOutlet weak var restaurantMenuImageCollectionView: UICollectionView!
     
-    
-     @IBOutlet weak var restaurantMenuImageCollectionView: UICollectionView!
     var restaurantImageAssets: [DKAsset]?
     var restaurantMenuImageAssets: [DKAsset]?
     var restaurantImageArray = [UIImage]()
     var restaurantMenuImageArray = [UIImage]()
+    
+    var isDelivery: Bool!
     
     struct DKImagePickerType {
         static let types: [DKImagePickerControllerAssetType] = [.AllAssets, .AllPhotos, .AllVideos, .AllAssets]
@@ -58,7 +61,13 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     var restaurantTypeDownPicker, districtDownPicker, communeDownPicker: DownPicker!
     // create the array of data
     var bandArray = [String]()
-   
+    var responseCommune = [Commune]()
+    var responseDistrict = [District]()
+    var responseCategory = [Category]()
+    var communeArray = [String]()
+    var districtArray = [String]()
+    var categoryArray = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.restaurantImageCollectionView.delegate=self
@@ -87,20 +96,22 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         prepareEmailField()
     }
     
+    
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let latestLocation: AnyObject = locations[locations.count - 1]
         
-//        print(String(format: "latitude %.4f",
-//            latestLocation.coordinate.latitude))
-//        print(String(format: "longitude %.4f",
-//            latestLocation.coordinate.longitude))
-//        print( String(format: "horizontalAccuracy %.4f",
-//            latestLocation.horizontalAccuracy))
-//        print(String(format: "altitude %.4f",
-//            latestLocation.altitude))
-//        print( String(format: "verticalAccuracy %.4f",
-//            latestLocation.verticalAccuracy))
-//        
+        //        print(String(format: "latitude %.4f",
+        //            latestLocation.coordinate.latitude))
+        //        print(String(format: "longitude %.4f",
+        //            latestLocation.coordinate.longitude))
+        //        print( String(format: "horizontalAccuracy %.4f",
+        //            latestLocation.horizontalAccuracy))
+        //        print(String(format: "altitude %.4f",
+        //            latestLocation.altitude))
+        //        print( String(format: "verticalAccuracy %.4f",
+        //            latestLocation.verticalAccuracy))
+        //
         
         if startLocation == nil {
             startLocation = latestLocation as! CLLocation
@@ -135,39 +146,99 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func prepareDownPicker(){
-        // add some sample data
-        bandArray.append("Offsprings")
-        bandArray.append("Radiohead")
-        bandArray.append("Muse")
-        bandArray.append("R.E.M")
-        bandArray.append("The Killers")
-        
-        
-        restaurantTypeDownPicker = DownPicker(textField: restaurantTypeTextField, withData: bandArray)
-        restaurantTypeDownPicker.setPlaceholder("Please select restaurant type")
-        restaurantTypeDownPicker.setPlaceholderWhileSelecting("Restaurant Type")
-        
-        
-        districtDownPicker =  DownPicker(textField: districtTextField, withData: bandArray)
-        districtDownPicker.setPlaceholder("Please select district")
-        districtDownPicker.setPlaceholderWhileSelecting("District")
-        
-        communeDownPicker =  DownPicker(textField: communeTextField, withData: bandArray)
-        communeDownPicker.setPlaceholder("Please select commune")
-        communeDownPicker.setPlaceholderWhileSelecting("Commune")
-        
+        getRestaurantType()
+        getDistrict(12315)
+        getCommune(12570)
     }
+    
+    
+    
+    // MARK: Fetch Data
+    
+    func getRestaurantType(){
+        // get restuarant
+        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/categories"
+        
+        Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
+            
+            let responseData = Mapper<CategoryResponse>().map(response.result.value)
+            self.responseCategory = (responseData?.data)!
+            
+            for restaurantType in (responseData?.data)! {
+                self.categoryArray.append(restaurantType.name!)
+            }
+            
+            self.restaurantTypeDownPicker = DownPicker(textField: self.restaurantTypeTextField, withData: self.categoryArray)
+            self.restaurantTypeDownPicker.setPlaceholder("Please select restaurant type")
+            self.restaurantTypeDownPicker.setPlaceholderWhileSelecting("Restaurant Type")
+            self.restaurantTypeDownPicker.shouldDisplayCancelButton = false
+            
+        }
+    }
+
+    
+    func getDistrict(cityId: Int){
+        // get restuarant
+        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/cities/\(cityId)/districts"
+        
+        Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
+            
+            let responseData = Mapper<DistrictResponse>().map(response.result.value)
+            self.responseDistrict = (responseData?.data)!
+            for district in (responseData?.data)! {
+                self.districtArray.append(district.name!)
+            }
+           
+            self.districtDownPicker =  DownPicker(textField: self.districtTextField, withData: self.districtArray)
+            self.districtDownPicker.setPlaceholder("Please select district")
+            self.districtDownPicker.setPlaceholderWhileSelecting("District")
+             self.districtDownPicker.shouldDisplayCancelButton = false
+        }
+    }
+    
+    @IBAction func districtDownPickerEditingDidEnd(sender: DownPicker) {
+       
+            print(self.responseDistrict[self.districtDownPicker.selectedIndex].id)
+        getCommune(self.responseDistrict[self.districtDownPicker.selectedIndex].id!)
+    }
+    
+    
+    func getCommune(districtId: Int){
+        // get restuarant
+        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/districts/\(districtId)/commnunes"
+        
+        Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
+            
+            let responseData = Mapper<CommuneResponse>().map(response.result.value)
+            self.responseCommune = (responseData?.data)!
+            self.communeArray.removeAll()
+            for commune in (responseData?.data)! {
+                self.communeArray.append(commune.name!)
+                
+            }
+            self.communeTextField.text = nil
+            
+            self.communeDownPicker =  DownPicker(textField: self.communeTextField, withData: self.communeArray)
+            self.communeDownPicker.setPlaceholder("Please select commune")
+            self.communeDownPicker.setPlaceholderWhileSelecting("Commune")
+           self.communeDownPicker.shouldDisplayCancelButton = false
+            
+        }
+    }
+    @IBAction func communeDownPickerEditingDidEnd(sender: DownPicker) {
+    }
+
     
     /// Prepares the email TextField.
     private func prepareEmailField() {
-//        emailField.placeholder = "Email"
-//        emailField.delegate = self
-//        
-//        /*
-//         Used to display the error message, which is displayed when
-//         the user presses the 'return' key.
-//         */
-//        emailField.detail = "Email is incorrect."
+        //        emailField.placeholder = "Email"
+        //        emailField.delegate = self
+        //
+        //        /*
+        //         Used to display the error message, which is displayed when
+        //         the user presses the 'return' key.
+        //         */
+        //        emailField.detail = "Email is incorrect."
     }
     
     /// Executed when the 'return' key is pressed.
@@ -198,13 +269,15 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         
     }
     
-
+    
     @IBAction func deliveryCheckBoxClick(checkbox: M13Checkbox) {
         print(checkbox.checkState)
         
         if checkbox.checkState == M13Checkbox.CheckState.Checked {
+            isDelivery = true
             deliveryLabel.textColor = MaterialColor.blue.base
         }else{
+            isDelivery = false
             deliveryLabel.textColor = MaterialColor.grey.base
         }
     }
@@ -226,13 +299,13 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     @IBAction func showImagePicker(sender: RaisedButton) {
         if sender == self.browseRestaurantImageButton{
             
-             showRestaurantImagePickerWithAssetType(DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
+            showRestaurantImagePickerWithAssetType(DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
         }else{
             
             showRestaurantMenuImagePickerWithAssetType(DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
         }
         
-       
+        
         
     }
     
@@ -298,7 +371,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             }
             return cell
         }
-       
+        
     }
     
     func image(image: UIImage, didFinishSavingWithError: NSErrorPointer, contextInfo:UnsafePointer<Void>)       {
@@ -346,7 +419,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-  
+    
     //MARK: delete action
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.restaurantImageArray.removeAtIndex(indexPath.row)
@@ -371,6 +444,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         
         let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
         
+        let address = "12315|\(self.responseDistrict[self.districtDownPicker.selectedIndex].id!)|\(self.responseCommune[self.communeDownPicker.selectedIndex].id!)|\(self.homeTextField.text!)|\(self.streetTextField.text!)"
         
         Alamofire.upload(
             .POST,
@@ -379,28 +453,31 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: self.nameTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "NAME")
                 
-                multipartFormData.appendBodyPart(data: "Hello Dest update".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "DESCRIPTION")
+                multipartFormData.appendBodyPart(data: self.restaurantDescriptionTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "DESCRIPTION")
                 
-                multipartFormData.appendBodyPart(data: "Hello ADDD".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "ADDRESS")
+                multipartFormData.appendBodyPart(data: address.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "ADDRESS")
                 
-                multipartFormData.appendBodyPart(data: "0".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "IS_DELIVERY")
+                multipartFormData.appendBodyPart(data: "\(Int(self.isDelivery))".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "IS_DELIVERY")
                 
                 multipartFormData.appendBodyPart(data: "1".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "STATUS")
                 
-                multipartFormData.appendBodyPart(data: "rest cat".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "RESTAURANT_CATEGORY")
+                
+                multipartFormData.appendBodyPart(data: "\(self.responseCategory[self.restaurantTypeDownPicker.selectedIndex].id!)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "RESTAURANT_CATEGORY")
                 multipartFormData.appendBodyPart(data: "111".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
                 multipartFormData.appendBodyPart(data: "111".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LONGITUDE")
-                multipartFormData.appendBodyPart(data: "016 600 701".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
+                multipartFormData.appendBodyPart(data: self.phoneTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
                 
                 print(self.restaurantImageArray.count)
                 
                 for i in 0 ..< self.restaurantImageArray.count{
                     let imagePickedData = UIImageJPEGRepresentation(self.restaurantImageArray[i], 0.3)!
-                    print("add")
+                    multipartFormData.appendBodyPart(data: imagePickedData, name: "RESTAURANT_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
                     
-                    multipartFormData.appendBodyPart(data: imagePickedData, name: "MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
-                    multipartFormData.appendBodyPart(data: imagePickedData, name:"RESTAURANT_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
-                    
+                }
+                
+                for i in 0 ..< self.restaurantMenuImageArray.count {
+                    let imagePickedData = UIImageJPEGRepresentation(self.restaurantMenuImageArray[i], 0.3)!
+                    multipartFormData.appendBodyPart(data: imagePickedData, name:"MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
                 }
                 
                 
@@ -423,10 +500,10 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     
     func showRestaurantImagePickerWithAssetType(assetType: DKImagePickerControllerAssetType,
-                                      allowMultipleType: Bool,
-                                      sourceType: DKImagePickerControllerSourceType = .Both,
-                                      allowsLandscape: Bool,
-                                      singleSelect: Bool) {
+                                                allowMultipleType: Bool,
+                                                sourceType: DKImagePickerControllerSourceType = .Both,
+                                                allowsLandscape: Bool,
+                                                singleSelect: Bool) {
         
         let pickerController = DKImagePickerController()
         
@@ -464,10 +541,10 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     func showRestaurantMenuImagePickerWithAssetType(assetType: DKImagePickerControllerAssetType,
-                                                allowMultipleType: Bool,
-                                                sourceType: DKImagePickerControllerSourceType = .Both,
-                                                allowsLandscape: Bool,
-                                                singleSelect: Bool) {
+                                                    allowMultipleType: Bool,
+                                                    sourceType: DKImagePickerControllerSourceType = .Both,
+                                                    allowsLandscape: Bool,
+                                                    singleSelect: Bool) {
         
         let pickerController = DKImagePickerController()
         
@@ -503,5 +580,5 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         
         self.presentViewController(pickerController, animated: true) {}
     }
-
+    
 }
