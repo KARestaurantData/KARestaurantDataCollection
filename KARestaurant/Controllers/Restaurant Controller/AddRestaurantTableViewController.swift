@@ -168,7 +168,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     
     // MARK: Fetch Data
-    
     func getRestaurantType(){
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/categories"
@@ -189,11 +188,13 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             
         }
     }
-
-    @IBAction func restaurantTypeDownPickerEditingDidEnd(sender: DownPicker) {
-        print("change")
+    
+    
+    @IBAction func downPickerEditingDidEnd(sender: TextField) {
+        if sender.isEqual(self.districtTextField){
+            getCommune(self.responseDistrict[self.districtDownPicker.selectedIndex].id!)
+        }
         checkValidRestuarantField()
-
     }
     
     func getDistrict(cityId: Int){
@@ -213,12 +214,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             self.districtDownPicker.setPlaceholderWhileSelecting("District")
              self.districtDownPicker.shouldDisplayCancelButton = false
         }
-    }
-    
-    @IBAction func districtDownPickerEditingDidEnd(sender: DownPicker) {
-          print("change")
-        checkValidRestuarantField()
-        getCommune(self.responseDistrict[self.districtDownPicker.selectedIndex].id!)
     }
     
     
@@ -244,11 +239,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             
         }
     }
-    @IBAction func communeDownPickerEditingDidEnd(sender: DownPicker) {
-          print("change")
-        checkValidRestuarantField()
-    }
-
     
     /// Prepares the email TextField.
     private func prepareEmailField() {

@@ -441,7 +441,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="restaurantTypeDownPickerEditingDidEnd:" destination="Gpn-RF-UgH" eventType="editingDidEnd" id="Si0-75-wri"/>
+                                                        <action selector="downPickerEditingDidEnd:" destination="Gpn-RF-UgH" eventType="editingDidEnd" id="Cv1-aU-RNs"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -471,7 +471,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="districtDownPickerEditingDidEnd:" destination="Gpn-RF-UgH" eventType="editingDidEnd" id="spZ-78-jaW"/>
+                                                        <action selector="downPickerEditingDidEnd:" destination="Gpn-RF-UgH" eventType="editingDidEnd" id="swa-5s-J1t"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -501,7 +501,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="communeDownPickerEditingDidEnd:" destination="Gpn-RF-UgH" eventType="editingDidEnd" id="5lg-It-K4W"/>
+                                                        <action selector="downPickerEditingDidEnd:" destination="Gpn-RF-UgH" eventType="editingDidEnd" id="4uu-HB-lgq"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
