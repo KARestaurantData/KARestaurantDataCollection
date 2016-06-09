@@ -44,23 +44,23 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var restaurantImageCollectionView: UICollectionView!
     @IBOutlet weak var restaurantMenuImageCollectionView: UICollectionView!
     
-    var restaurantImageAssets: [DKAsset]?
-    var restaurantMenuImageAssets: [DKAsset]?
+    var isDelivery: Bool!
+    
+    // DKImagePicker Property
+    var restaurantImageAssets = [DKAsset]()
+    var restaurantMenuImageAssets = [DKAsset]()
     var restaurantImageArray = [UIImage]()
     var restaurantMenuImageArray = [UIImage]()
-    
-    var isDelivery: Bool!
     
     struct DKImagePickerType {
         static let types: [DKImagePickerControllerAssetType] = [.AllAssets, .AllPhotos, .AllVideos, .AllAssets]
     }
     
-    var locationManager: CLLocationManager = CLLocationManager()
-    var startLocation: CLLocation!
-    
+
+    // DownPicker Property
     var restaurantTypeDownPicker, districtDownPicker, communeDownPicker: DownPicker!
+    
     // create the array of data
-    var bandArray = [String]()
     var responseCommune = [Commune]()
     var responseDistrict = [District]()
     var responseCategory = [Category]()
@@ -68,13 +68,18 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     var districtArray = [String]()
     var categoryArray = [String]()
     
+    
+    // Location Property
+    var locationManager: CLLocationManager = CLLocationManager()
+    var startLocation: CLLocation!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.restaurantImageCollectionView.delegate=self
-        self.restaurantImageCollectionView.dataSource=self
+        self.restaurantImageCollectionView.delegate = self
+        self.restaurantImageCollectionView.dataSource = self
         
-        self.restaurantMenuImageCollectionView.delegate=self
-        self.restaurantMenuImageCollectionView.dataSource=self
+        self.restaurantMenuImageCollectionView.delegate = self
+        self.restaurantMenuImageCollectionView.dataSource = self
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
@@ -85,9 +90,15 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
         restaurantDescriptionTextField.delegate = self
+        homeTextField.delegate = self
+        streetTextField.delegate = self
+        phoneTextField.delegate = self
+        restaurantTypeTextField.delegate = self
+        districtTextField.delegate = self
+        communeTextField.delegate = self
         
         // Enable the Save button only if the text field has a valid Restaurant name.
-        checkValidRestuarantName()
+        checkValidRestuarantField()
         
         prepareView()
         prepareLabel()
@@ -176,6 +187,10 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         }
     }
 
+    @IBAction func restaurantTypeDownPickerEditingDidEnd(sender: DownPicker) {
+        checkValidRestuarantField()
+
+    }
     
     func getDistrict(cityId: Int){
         // get restuarant
@@ -197,8 +212,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     @IBAction func districtDownPickerEditingDidEnd(sender: DownPicker) {
-       
-            print(self.responseDistrict[self.districtDownPicker.selectedIndex].id)
+        checkValidRestuarantField()
         getCommune(self.responseDistrict[self.districtDownPicker.selectedIndex].id!)
     }
     
@@ -226,6 +240,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     @IBAction func communeDownPickerEditingDidEnd(sender: DownPicker) {
+        checkValidRestuarantField()
     }
 
     
@@ -249,7 +264,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        checkValidRestuarantName()
+        checkValidRestuarantField()
         navigationItem.title = nameTextField.text
     }
     
@@ -258,10 +273,17 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         saveButton.enabled = false
     }
     
-    func checkValidRestuarantName() {
-        
+    func checkValidRestuarantField() {
+
         // Disable the Save button if the text field is empty.
-        if !(nameTextField.text?.isEmpty)! && !(restaurantDescriptionTextField.text?.isEmpty)! {
+        if !(nameTextField.text?.isEmpty)!
+            && !(restaurantDescriptionTextField.text?.isEmpty)!
+            && !(homeTextField.text?.isEmpty)!
+            && !(streetTextField.text?.isEmpty)!
+            && !(phoneTextField.text?.isEmpty)!
+            && restaurantImageAssets.count != 0
+            && restaurantMenuImageAssets.count != 0
+        {
             saveButton.enabled = true
         }else{
             saveButton.enabled = false
@@ -271,8 +293,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     
     @IBAction func deliveryCheckBoxClick(checkbox: M13Checkbox) {
-        print(checkbox.checkState)
-        
         if checkbox.checkState == M13Checkbox.CheckState.Checked {
             isDelivery = true
             deliveryLabel.textColor = MaterialColor.blue.base
@@ -311,29 +331,32 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     func reloadRestaurantImageCollectionView(){
         self.restaurantImageCollectionView.reloadData()
-        if self.restaurantImageAssets?.count == 0 {
+        if self.restaurantImageAssets.count == 0 {
             self.photoImageView.image = UIImage.init(named: "defaultPhoto")
         }else{
             self.photoImageView.image = self.restaurantImageArray.first
         }
+        checkValidRestuarantField()
     }
     
     func reloadRestaurantMenuImageCollectionView(){
+        
         self.restaurantMenuImageCollectionView.reloadData()
+        checkValidRestuarantField()
     }
     
     //MARK: collection view
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.isEqual(self.restaurantImageCollectionView){
-            return self.restaurantImageAssets?.count ?? 0
+            return self.restaurantImageAssets.count ?? 0
         }else{
-            return self.restaurantMenuImageAssets?.count ?? 0
+            return self.restaurantMenuImageAssets.count ?? 0
         }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if collectionView.isEqual(self.restaurantImageCollectionView){
-            let asset = self.restaurantImageAssets![indexPath.row]
+            let asset = self.restaurantImageAssets[indexPath.row]
             
             let cell = self.restaurantImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
             
@@ -345,7 +368,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 if cell.tag == tag {
                     cell.myImage.image = image
                     self.restaurantImageArray.append(image!)
-                    print( self.restaurantImageAssets![indexPath.row].originalAsset?.location?.coordinate)
+                    print(self.restaurantImageAssets[indexPath.row].originalAsset?.location?.coordinate)
                     
                     if tag == 1{
                         self.photoImageView.image = image
@@ -354,7 +377,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             }
             return cell
         }else{
-            let asset = self.restaurantMenuImageAssets![indexPath.row]
+            let asset = self.restaurantMenuImageAssets[indexPath.row]
             
             let cell = self.restaurantMenuImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
             
@@ -366,7 +389,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 if cell.tag == tag {
                     cell.myImage.image = image
                     self.restaurantMenuImageArray.append(image!)
-                    print( self.restaurantMenuImageAssets![indexPath.row].originalAsset?.location?.coordinate)
+                    print(self.restaurantMenuImageAssets[indexPath.row].originalAsset?.location?.coordinate)
                 }
             }
             return cell
@@ -422,10 +445,19 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     //MARK: delete action
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.restaurantImageArray.removeAtIndex(indexPath.row)
-        self.restaurantImageAssets?.removeAtIndex(indexPath.row)
-        self.restaurantImageCollectionView.deleteItemsAtIndexPaths([indexPath])
-        reloadRestaurantImageCollectionView()
+        if collectionView.isEqual(self.restaurantImageCollectionView){
+            
+            self.restaurantImageArray.removeAtIndex(indexPath.row)
+            self.restaurantImageAssets.removeAtIndex(indexPath.row)
+            self.restaurantImageCollectionView.deleteItemsAtIndexPaths([indexPath])
+            reloadRestaurantImageCollectionView()
+        }else{
+            self.restaurantMenuImageArray.removeAtIndex(indexPath.row)
+            self.restaurantMenuImageAssets.removeAtIndex(indexPath.row)
+            self.restaurantMenuImageCollectionView.deleteItemsAtIndexPaths([indexPath])
+            reloadRestaurantMenuImageCollectionView()
+        }
+      
     }
     
     @IBAction func saveAction(sender: AnyObject) {
@@ -466,8 +498,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 multipartFormData.appendBodyPart(data: "111".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
                 multipartFormData.appendBodyPart(data: "111".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LONGITUDE")
                 multipartFormData.appendBodyPart(data: self.phoneTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
-                
-                print(self.restaurantImageArray.count)
                 
                 for i in 0 ..< self.restaurantImageArray.count{
                     let imagePickedData = UIImageJPEGRepresentation(self.restaurantImageArray[i], 0.3)!
@@ -572,6 +602,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             self.restaurantMenuImageArray.removeAll()
             self.restaurantMenuImageAssets = assets
             self.reloadRestaurantMenuImageCollectionView()
+            
         }
         
         if UI_USER_INTERFACE_IDIOM() == .Pad {

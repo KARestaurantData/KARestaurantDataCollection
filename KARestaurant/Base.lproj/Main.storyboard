@@ -440,6 +440,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="restaurantTypeDownPickerEditingDidEnd:" destination="Gpn-RF-UgH" eventType="editingDidEnd" id="Si0-75-wri"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
