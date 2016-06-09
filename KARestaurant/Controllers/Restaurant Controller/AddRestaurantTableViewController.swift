@@ -44,7 +44,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var restaurantImageCollectionView: UICollectionView!
     @IBOutlet weak var restaurantMenuImageCollectionView: UICollectionView!
     
-    var isDelivery: Bool!
+    var isDelivery: Bool = false
     
     // DKImagePicker Property
     var restaurantImageAssets = [DKAsset]()
@@ -74,7 +74,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     var startLocation: CLLocation!
     
     // Restaurant Location
-    var restaurantLocation: CLLocation?
+    var restaurantLocation: CLLocation = CLLocation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -191,6 +191,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
 
     @IBAction func restaurantTypeDownPickerEditingDidEnd(sender: DownPicker) {
+        print("change")
         checkValidRestuarantField()
 
     }
@@ -215,6 +216,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     @IBAction func districtDownPickerEditingDidEnd(sender: DownPicker) {
+          print("change")
         checkValidRestuarantField()
         getCommune(self.responseDistrict[self.districtDownPicker.selectedIndex].id!)
     }
@@ -243,6 +245,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     @IBAction func communeDownPickerEditingDidEnd(sender: DownPicker) {
+          print("change")
         checkValidRestuarantField()
     }
 
@@ -284,9 +287,11 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             && !(homeTextField.text?.isEmpty)!
             && !(streetTextField.text?.isEmpty)!
             && !(phoneTextField.text?.isEmpty)!
+            && restaurantTypeDownPicker.selectedIndex != -1
+            && communeDownPicker.selectedIndex != -1
+            && districtDownPicker.selectedIndex != -1
             && restaurantImageAssets.count != 0
             && restaurantMenuImageAssets.count != 0
-            && restaurantLocation != nil
         {
             saveButton.enabled = true
         }else{
@@ -328,20 +333,26 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             
             showRestaurantMenuImagePickerWithAssetType(DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
         }
-        
-        
-        
     }
     
     func reloadRestaurantImageCollectionView(){
         self.restaurantImageCollectionView.reloadData()
+        
         if self.restaurantImageAssets.count == 0 {
             self.photoImageView.image = UIImage.init(named: "defaultPhoto")
         }else{
             self.photoImageView.image = self.restaurantImageArray.first
-            restaurantLocation = self.restaurantImageAssets.first?.originalAsset?.location
-            print("kp location: \(restaurantLocation)")
+            restaurantLocation = CLLocation()
+            for image in self.restaurantImageAssets {
+                if let location = image.originalAsset?.location {
+                    restaurantLocation = location
+                    return
+                }
+                
+                print(restaurantLocation.coordinate)
+            }
         }
+        
         checkValidRestuarantField()
     }
     
@@ -479,7 +490,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/multiple/register"
         
         let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
-        
+
         let address = "12315|\(self.responseDistrict[self.districtDownPicker.selectedIndex].id!)|\(self.responseCommune[self.communeDownPicker.selectedIndex].id!)|\(self.homeTextField.text!)|\(self.streetTextField.text!)"
         
         Alamofire.upload(
@@ -500,9 +511,9 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 
                 multipartFormData.appendBodyPart(data: "\(self.responseCategory[self.restaurantTypeDownPicker.selectedIndex].id!)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "RESTAURANT_CATEGORY")
                 
-                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation!.coordinate.latitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
+                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation.coordinate.latitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
                 
-                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation!.coordinate.longitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LONGITUDE")
+                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation.coordinate.longitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LONGITUDE")
                 
                 multipartFormData.appendBodyPart(data: self.phoneTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
                 
