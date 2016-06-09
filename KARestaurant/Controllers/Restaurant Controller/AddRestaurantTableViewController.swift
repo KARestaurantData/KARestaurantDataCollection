@@ -73,6 +73,9 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     var locationManager: CLLocationManager = CLLocationManager()
     var startLocation: CLLocation!
     
+    // Restaurant Location
+    var restaurantLocation: CLLocation?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.restaurantImageCollectionView.delegate = self
@@ -283,6 +286,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             && !(phoneTextField.text?.isEmpty)!
             && restaurantImageAssets.count != 0
             && restaurantMenuImageAssets.count != 0
+            && restaurantLocation != nil
         {
             saveButton.enabled = true
         }else{
@@ -335,6 +339,8 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             self.photoImageView.image = UIImage.init(named: "defaultPhoto")
         }else{
             self.photoImageView.image = self.restaurantImageArray.first
+            restaurantLocation = self.restaurantImageAssets.first?.originalAsset?.location
+            print("kp location: \(restaurantLocation)")
         }
         checkValidRestuarantField()
     }
@@ -368,7 +374,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 if cell.tag == tag {
                     cell.myImage.image = image
                     self.restaurantImageArray.append(image!)
-                    print(self.restaurantImageAssets[indexPath.row].originalAsset?.location?.coordinate)
                     
                     if tag == 1{
                         self.photoImageView.image = image
@@ -389,7 +394,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 if cell.tag == tag {
                     cell.myImage.image = image
                     self.restaurantMenuImageArray.append(image!)
-                    print(self.restaurantMenuImageAssets[indexPath.row].originalAsset?.location?.coordinate)
                 }
             }
             return cell
@@ -495,8 +499,11 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 
                 
                 multipartFormData.appendBodyPart(data: "\(self.responseCategory[self.restaurantTypeDownPicker.selectedIndex].id!)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "RESTAURANT_CATEGORY")
-                multipartFormData.appendBodyPart(data: "111".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
-                multipartFormData.appendBodyPart(data: "111".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LONGITUDE")
+                
+                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation!.coordinate.latitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
+                
+                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation!.coordinate.longitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LONGITUDE")
+                
                 multipartFormData.appendBodyPart(data: self.phoneTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
                 
                 for i in 0 ..< self.restaurantImageArray.count{
