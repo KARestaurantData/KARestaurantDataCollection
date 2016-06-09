@@ -121,11 +121,18 @@ class ListRestaurantTableViewController: UITableViewController {
                
                 restaurantDetailViewController.restaurant = selectedRestaurant
             }
-        }
+        }else if segue.identifier == "EditRestuarantDetail" {
             
+            let editRestaurantViewController = segue.destinationViewController as! EditRestaurantTableViewController
             
-        else if segue.identifier == "AddItem" {
-            print("Adding new meal.")
+            // Get the cell that generated this segue.
+            if let selectedRestaurantCell = sender as? ListRestaurantTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedRestaurantCell)!
+                let selectedRestaurant = self.responseRestaurant[indexPath.row]
+                
+                editRestaurantViewController.restaurant = selectedRestaurant
+            }
+            
         }
     }
     
@@ -207,8 +214,8 @@ extension ListRestaurantTableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        self.performSegueWithIdentifier("ShowRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
+         self.performSegueWithIdentifier("EditRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
+        //self.performSegueWithIdentifier("ShowRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
 }
 

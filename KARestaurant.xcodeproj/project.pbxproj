@@ -10,6 +10,7 @@
 		192244711D07B30400D37208 /* AddRestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192244701D07B30400D37208 /* AddRestaurantCollectionViewCell.swift */; };
 		19C636B01D08FF2900A18B06 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C636AF1D08FF2900A18B06 /* City.swift */; };
 		19C636B21D0919C700A18B06 /* RestaurantCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C636B11D0919C700A18B06 /* RestaurantCategory.swift */; };
+		19C636B41D096D9C00A18B06 /* EditRestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C636B31D096D9C00A18B06 /* EditRestaurantCollectionViewCell.swift */; };
 		6F0754121CE0506700F7BB95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754111CE0506700F7BB95 /* AppDelegate.swift */; };
 		6F0754171CE0506700F7BB95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F0754151CE0506700F7BB95 /* Main.storyboard */; };
 		6F0754191CE0506700F7BB95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F0754181CE0506700F7BB95 /* Images.xcassets */; };
@@ -69,6 +70,7 @@
 		192244701D07B30400D37208 /* AddRestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		19C636AF1D08FF2900A18B06 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		19C636B11D0919C700A18B06 /* RestaurantCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCategory.swift; sourceTree = "<group>"; };
+		19C636B31D096D9C00A18B06 /* EditRestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		36BC6F31553C0DEF057E7961 /* Pods-KARestaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.release.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.release.xcconfig"; sourceTree = "<group>"; };
 		433F2B08DD5C637B07D76F70 /* Pods_KARestaurantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KARestaurantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5433B4DEB14D0E48CD3776F9 /* Pods-KARestaurant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KARestaurant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant.debug.xcconfig"; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				6FF7DECA1D066EB700D1EB77 /* ListRestaurantTableViewCell.swift */,
 				6FF7DF011D06B5B200D1EB77 /* RestaurantDetailCollectionViewCell.swift */,
 				192244701D07B30400D37208 /* AddRestaurantCollectionViewCell.swift */,
+				19C636B31D096D9C00A18B06 /* EditRestaurantCollectionViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 				6FF7DECE1D066EB700D1EB77 /* CustomCell.swift in Sources */,
 				6FF7DEC61D066DF800D1EB77 /* User.swift in Sources */,
 				6FF7DEDE1D066F7100D1EB77 /* AddRestaurantTableViewController.swift in Sources */,
+				19C636B41D096D9C00A18B06 /* EditRestaurantCollectionViewCell.swift in Sources */,
 				6FF7DEC41D066DF800D1EB77 /* ResponseRestaurant.swift in Sources */,
 				6FF7DEC51D066DF800D1EB77 /* Restaurant.swift in Sources */,
 				192244711D07B30400D37208 /* AddRestaurantCollectionViewCell.swift in Sources */,

@@ -97,7 +97,6 @@ class Menu: Mappable {
     var id : Int?
     var title : String?
     var url : String?
-    var isThumbmail : String?
     
     required init?(_ map: Map){
         
@@ -116,6 +115,15 @@ class RestaurantImage: Menu {
 class Location: Mappable {
     var longtitude : String?
     var latitude : String?
+    var country : Int?
+    var province : Int?
+    var district : Int?
+    var commune : Int?
+    var village : Int?
+    var street : String?
+    var homeNumber : String?
+    var branch : String?
+    
     
     required init?(_ map: Map){
         
@@ -124,6 +132,14 @@ class Location: Mappable {
     func mapping(map: Map) {
         longtitude <- map["LONGITUDE"]
         latitude <- map["LATITUDE"]
+        country <- map["COUNTRY"]
+        province <- map["PROVINCE"]
+        district <- map["DISTRCIT"]
+        commune <- map["COMMUNE"]
+        village <- map["VILLAGE"]
+        street <- map["STREET"]
+        homeNumber <- map["NO"]
+        branch <- map["BRANCH"]
     }
 }
 
