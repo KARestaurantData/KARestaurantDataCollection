@@ -20,12 +20,11 @@ class EditRestaurantCollectionViewCell: UICollectionViewCell {
     
     func configureMenu(menu: Menu) {
         self.restaurantMenu = menu
-        //reset()
+        reset()
         loadImage()
     }
     
     func reset() {
-        restaurantImageView.image = nil
         restaurantMenuImageView.image = nil
         request?.cancel()
     }
@@ -41,7 +40,6 @@ class EditRestaurantCollectionViewCell: UICollectionViewCell {
     
     func downloadImage() {
         //  loadingIndicator.startAnimating()
-        restaurantImageView.image = UIImage(named: "defaultPhoto")
         restaurantMenuImageView.image = UIImage(named: "defaultPhoto")
         let urlString = restaurantMenu.url!
         request = PhotosDataManager.sharedManager.getNetworkImage(urlString) { image in
@@ -50,7 +48,7 @@ class EditRestaurantCollectionViewCell: UICollectionViewCell {
     }
     
     func populateCell(image: UIImage) {
-        restaurantImageView.image = image
+        
         restaurantMenuImageView.image = image
     }
 }
