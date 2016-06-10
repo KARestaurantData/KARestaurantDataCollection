@@ -29,12 +29,15 @@ class EditRestaurantCollectionViewCell: UICollectionViewCell {
         self.restaurantImageView.kf_setImageWithURL(NSURL(string: image.url!)!, placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
     }
     
-    func setImageWithUrl(url: String) -> UIImage{
-        UIImageView().kf_setImageWithURL(NSURL(string: url)!, placeholderImage: nil, optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
-            return image
-        }
+    func setImageWithUrl(url: AnyObject){
         
-        return UIImage()
+        if url is String{
+            self.restaurantImageView.kf_setImageWithURL(NSURL(string: "\(url)")!, placeholderImage: nil, optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
+               // print(imageURL?.absoluteString)
+            }
+        }else if url is UIImage {
+            self.restaurantImageView.image = url as? UIImage
+        }
     }
     
     func setMenuImageWithUrl(url: String){
