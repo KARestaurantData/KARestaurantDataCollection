@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import Material
 import AlamofireImage
+import SCLAlertView
 
 class ListRestaurantTableViewCell: MaterialTableViewCell {
     
@@ -17,6 +18,8 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     @IBOutlet weak var restaurantImageView: UIImageView!
     @IBOutlet weak var deliveryLabel: UILabel!
     @IBOutlet weak var restaurantDetailLabel: UILabel!
+    
+    @IBOutlet weak var editButton: MaterialPulseView!
     
     var restaurant: Restaurants!
     var request: ImageRequest?
@@ -29,11 +32,12 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     }
     
     func reset() {
-        restaurantImageView.image = nil
         request?.cancel()
+        restaurantImageView.image = nil
         titleLabel.hidden = true
         deliveryLabel.hidden = true
         restaurantDetailLabel.hidden = true
+        editButton.hidden = true
     }
     
     func loadImage() {
@@ -50,7 +54,6 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     }
     
     func downloadImage() {
-        //  loadingIndicator.startAnimating()
         restaurantImageView.image = UIImage(named: "defaultPhoto")
         if let urlString = restaurant.thumbnail{
             request = PhotosDataManager.sharedManager.getNetworkImage(urlString) { image in
@@ -63,37 +66,41 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     }
     
     func populateCell(image: UIImage) {
-        //loadingIndicator.stopAnimating()
-        //
-        //        self.userImageView.layer.cornerRadius = 10.0
-        //        self.userImageView.clipsToBounds = true
-        //        self.userImageView.layer.borderWidth = 3.0
-        //        self.userImageView.layer.borderColor = UIColor.blackColor().CGColor
-        //
         
         restaurantImageView.image = image
         titleLabel.text = restaurant.name
         restaurantDetailLabel.text = restaurant.restDescription
         deliveryLabel.text = NSString.init(string: restaurant.isDeliver!).boolValue ? "Delivery" : "No Delivery"
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(ListRestaurantTableViewCell.handleTap(_:)))
+        
+        self.editButton.addGestureRecognizer(gesture)
+        
+        editButton.image = UIImage(named: "defaultPhoto")
+        
+        
+        editButton.depth = .Depth2
+        
         titleLabel.hidden = false
         deliveryLabel.hidden = false
         restaurantDetailLabel.hidden = false
+        editButton.hidden = false
     }
-    //
-    //    required init?(coder aDecoder: NSCoder) {
-    //        super.init(coder: aDecoder)
-    //    }
-    //
-    //    override func awakeFromNib() {
-    //        super.awakeFromNib()
-    //        // Initialization code
-    //    }
-    //
-    //    override func setSelected(selected: Bool, animated: Bool) {
-    //        super.setSelected(selected, animated: animated)
-    //        
-    //        // Configure the view for the selected state
-    //    }
+
+    func handleTap(sender: UITapGestureRecognizer) {
+        let alert = SCLAlertView()
+        alert.addButton("Edit", target:self, selector:#selector(self.firstButton))
+        alert.addButton("Second Button") {
+            print("Second button tapped")
+        }
+        alert.showSuccess("", subTitle: "kp")
+        
+    }
+    
+    func firstButton(){
+        print(restaurant.name)
+        
+
+    }
     
 }
 

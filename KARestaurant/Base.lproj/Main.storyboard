@@ -5,11 +5,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Restaurant-->
+        <!--KA Restaurant-->
         <scene sceneID="xb1-xg-BmZ">
             <objects>
                 <tableViewController id="1MP-C5-P5k" customClass="ListRestaurantTableViewController" customModule="KARestaurant" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="326" sectionHeaderHeight="28" sectionFooterHeight="28" id="jPr-8G-qe0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="326" sectionHeaderHeight="28" sectionFooterHeight="28" id="jPr-8G-qe0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,18 +49,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NvU-rN-uFr">
-                                            <rect key="frame" x="0.0" y="5" width="600" height="330"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="340"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MNu-fY-nPu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="230"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Q66-r1-TL7">
-                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="230"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
                                                         </imageView>
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UTk-ES-Iw3">
-                                                    <rect key="frame" x="0.0" y="230" width="600" height="100"/>
+                                                    <rect key="frame" x="0.0" y="240" width="600" height="100"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsS-7n-H5N">
                                                             <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
@@ -83,12 +83,24 @@
                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4F-7N-dvl" customClass="MaterialPulseView" customModule="Material">
+                                                                    <rect key="frame" x="552" y="8" width="40" height="20"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <gestureRecognizers/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="20" id="iuQ-sR-ahb"/>
+                                                                        <constraint firstAttribute="width" constant="40" id="oHM-g9-ve8"/>
+                                                                    </constraints>
+                                                                </view>
                                                             </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="U4F-7N-dvl" secondAttribute="trailing" constant="8" id="2Ep-PL-mtQ"/>
                                                                 <constraint firstItem="apf-Qk-Bji" firstAttribute="leading" secondItem="zsS-7n-H5N" secondAttribute="leadingMargin" id="AdW-OP-w6m"/>
                                                                 <constraint firstItem="FMJ-eD-gy4" firstAttribute="leading" secondItem="zsS-7n-H5N" secondAttribute="leadingMargin" id="HfJ-XC-rkz"/>
                                                                 <constraint firstItem="FMJ-eD-gy4" firstAttribute="top" secondItem="zsS-7n-H5N" secondAttribute="topMargin" id="J28-Yw-rnb"/>
                                                                 <constraint firstAttribute="bottom" secondItem="x9L-PN-ZuQ" secondAttribute="bottom" constant="21" id="Xab-FZ-yp5"/>
+                                                                <constraint firstItem="U4F-7N-dvl" firstAttribute="top" secondItem="zsS-7n-H5N" secondAttribute="top" constant="8" id="bHC-HS-AbV"/>
                                                                 <constraint firstItem="x9L-PN-ZuQ" firstAttribute="top" secondItem="apf-Qk-Bji" secondAttribute="bottom" constant="5" id="fDN-0D-1rt"/>
                                                                 <constraint firstItem="apf-Qk-Bji" firstAttribute="top" secondItem="FMJ-eD-gy4" secondAttribute="bottom" constant="5" id="fNI-ll-pfh"/>
                                                                 <constraint firstItem="x9L-PN-ZuQ" firstAttribute="trailing" secondItem="zsS-7n-H5N" secondAttribute="trailingMargin" id="fiR-PD-eeo"/>
@@ -103,13 +115,13 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="NvU-rN-uFr" firstAttribute="top" secondItem="CEo-Zm-Q1i" secondAttribute="top" constant="5" id="8uN-5X-2h4"/>
+                                        <constraint firstItem="NvU-rN-uFr" firstAttribute="top" secondItem="CEo-Zm-Q1i" secondAttribute="top" id="8uN-5X-2h4"/>
                                         <constraint firstItem="NvU-rN-uFr" firstAttribute="leading" secondItem="CEo-Zm-Q1i" secondAttribute="leading" id="Dap-zf-Al2"/>
                                         <constraint firstItem="NvU-rN-uFr" firstAttribute="centerY" secondItem="CEo-Zm-Q1i" secondAttribute="centerY" id="GAe-hr-kdi"/>
                                         <constraint firstAttribute="trailing" secondItem="NvU-rN-uFr" secondAttribute="trailing" id="huQ-lP-g9y"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="NvU-rN-uFr" secondAttribute="bottom" constant="-16" id="pYt-DL-nDc"/>
                                         <constraint firstAttribute="topMargin" secondItem="NvU-rN-uFr" secondAttribute="top" id="qbV-kN-H9t"/>
-                                        <constraint firstAttribute="bottom" secondItem="NvU-rN-uFr" secondAttribute="bottom" constant="5" id="t09-PJ-IVk"/>
+                                        <constraint firstAttribute="bottom" secondItem="NvU-rN-uFr" secondAttribute="bottom" id="t09-PJ-IVk"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -119,8 +131,14 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
+                                        <color key="value" red="1" green="0.50196078430000002" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="deliveryLabel" destination="apf-Qk-Bji" id="T38-oJ-Uop"/>
+                                    <outlet property="editButton" destination="U4F-7N-dvl" id="dSx-sX-NwU"/>
                                     <outlet property="restaurantDetailLabel" destination="x9L-PN-ZuQ" id="fyu-0P-pU1"/>
                                     <outlet property="restaurantImageView" destination="Q66-r1-TL7" id="iau-GQ-dCU"/>
                                     <outlet property="titleLabel" destination="FMJ-eD-gy4" id="Xv1-Ky-z5E"/>
@@ -132,7 +150,7 @@
                             <outlet property="delegate" destination="1MP-C5-P5k" id="9de-xd-Rrh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Restaurant" id="dQ6-72-flY">
+                    <navigationItem key="navigationItem" title="KA Restaurant" id="dQ6-72-flY">
                         <barButtonItem key="backBarButtonItem" title=" " id="3NK-Vg-cYD"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="y6H-Pf-Unn">
                             <connections>

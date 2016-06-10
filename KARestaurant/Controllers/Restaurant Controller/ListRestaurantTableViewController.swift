@@ -48,6 +48,10 @@ class ListRestaurantTableViewController: UITableViewController {
     
     
     private func prepareRefreshControl(){
+        navigationController!.navigationBar.barTintColor = MaterialColor.pink.accent1
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: MaterialColor.white]
+        navigationController!.navigationBar.tintColor = MaterialColor.white
+       
         self.centerSpinner.center = self.view.center
         self.footerSpinner.center.x = self.footerView.center.x
         
@@ -68,6 +72,7 @@ class ListRestaurantTableViewController: UITableViewController {
         
         
         // add refresh control to view
+        restuarantRefreshControl.tintColor = MaterialColor.pink.accent1
         restuarantRefreshControl.addTarget(self, action: #selector(ListRestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
         self.tableView.addSubview(restuarantRefreshControl)
         
@@ -216,6 +221,7 @@ extension ListRestaurantTableViewController {
         if let cell =  tableView.dequeueReusableCellWithIdentifier("RestaurantTableViewCell", forIndexPath: indexPath) as? ListRestaurantTableViewCell {
             
             cell.configure(restaurant)
+            
             
             return cell
         }else{
