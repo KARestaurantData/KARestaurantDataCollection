@@ -122,7 +122,6 @@ class ListRestaurantTableViewController: UITableViewController {
                 restaurantDetailViewController.restaurant = selectedRestaurant
             }
         }else if segue.identifier == "EditRestuarantDetail" {
-            
             let editRestaurantViewController = segue.destinationViewController as! EditRestaurantTableViewController
             
             // Get the cell that generated this segue.

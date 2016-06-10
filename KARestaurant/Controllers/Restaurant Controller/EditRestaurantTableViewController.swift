@@ -50,8 +50,8 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     // DKImagePicker Property
     var restaurantImageAssets = [DKAsset]()
     var restaurantMenuImageAssets = [DKAsset]()
-    var restaurantImageArray = [UIImage]()
-    var restaurantMenuImageArray = [UIImage]()
+    var restaurantUIImageArray = [UIImage]()
+    var restaurantMenuUIImageArray = [UIImage]()
     
     struct DKImagePickerType {
         static let types: [DKImagePickerControllerAssetType] = [.AllAssets, .AllPhotos, .AllVideos, .AllAssets]
@@ -74,23 +74,18 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     var restaurant: Restaurants?
     
-    var arrayOfDicImageWithUrl = [Int : String]()
+    var rootRestaurantImageArray = [AnyObject]()
+    var restaurantImageFromServerDictionary = [Int : String]()
+    var deleteRestaurantImageArray = [Int]()
     
-    var urlArray = [String]()
     
-    var rootImageArray = [AnyObject]()
+    var rootRestaurantMenuImageArray = [AnyObject]()
+    var restaurantMenuImageFromServerDictionary = [Int : String]()
+    var deleteRestaurantMenuImageArray = [Int]()
     
-    var deleteImageArray = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        arrayOfDicImageWithUrl[1] = "http://cdn.dota2.com/apps/dota2/images/heroes/abaddon_full.png"
-        arrayOfDicImageWithUrl[2] = "http://cdn.dota2.com/apps/dota2/images/heroes/alchemist_full.png"
-        arrayOfDicImageWithUrl[3] = "http://cdn.dota2.com/apps/dota2/images/heroes/ancient_apparition_full.png"
-        
-        
-        reloadRootImageArray()
-        
         
         self.restaurantImageCollectionView.delegate = self
         self.restaurantImageCollectionView.dataSource = self
@@ -119,21 +114,27 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
         prepareTextField()
         prepareDownPicker()
         prepareEmailField()
+        reloadImageToRestaurantImageCollectionView()
+        reloadImageToRestaurantMenuImageCollectionView()
     }
     
-    func reloadRootImageArray() {
-        rootImageArray.removeAll()
+    func reloadImageToRestaurantImageCollectionView(){
+        self.rootRestaurantImageArray.removeAll()
         
-        let unSortedCodeKeys = Array(arrayOfDicImageWithUrl.keys)
+        for image in (restaurant?.images)!{
+            restaurantImageFromServerDictionary[image.id!] = image.url
+        }
+        
+        let unSortedCodeKeys = Array(restaurantImageFromServerDictionary.keys)
         let sortedCodeKeys = unSortedCodeKeys.sort(<)
         
         for key in sortedCodeKeys {
-            rootImageArray.append(arrayOfDicImageWithUrl[key]!)
+            rootRestaurantImageArray.append(restaurantImageFromServerDictionary[key]!)
         }
         
-        for index in 0...self.restaurantImageArray.count {
+        for index in 0...self.restaurantUIImageArray.count {
             if self.restaurantImageAssets.count !=  0 && index < self.restaurantImageAssets.count {
-                rootImageArray.append(restaurantImageArray[index])
+                rootRestaurantImageArray.append(restaurantUIImageArray[index])
                 
                 if index == self.restaurantImageAssets.count - 1 {
                     self.reloadRestaurantImageCollectionView()
@@ -143,6 +144,31 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
         }
     }
     
+    func reloadImageToRestaurantMenuImageCollectionView(){
+        self.rootRestaurantMenuImageArray.removeAll()
+        
+        for image in (restaurant?.menus)!{
+            restaurantMenuImageFromServerDictionary[image.id!] = image.url
+        }
+        
+        let unSortedCodeKeys = Array(restaurantMenuImageFromServerDictionary.keys)
+        let sortedCodeKeys = unSortedCodeKeys.sort(<)
+        
+        for key in sortedCodeKeys {
+            rootRestaurantMenuImageArray.append(restaurantMenuImageFromServerDictionary[key]!)
+        }
+        
+        for index in 0...self.restaurantMenuUIImageArray.count {
+            if self.restaurantMenuImageAssets.count !=  0 && index < self.restaurantMenuImageAssets.count {
+                rootRestaurantMenuImageArray.append(restaurantMenuUIImageArray[index])
+                
+                if index == self.restaurantMenuImageAssets.count - 1 {
+                    self.reloadRestaurantMenuImageCollectionView()
+                    
+                }
+            }
+        }
+    }
     
     /// General preparation statements.
     private func prepareView() {
@@ -312,8 +338,8 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             && restaurantTypeDownPicker.selectedIndex != -1
             && communeDownPicker.selectedIndex != -1
             && districtDownPicker.selectedIndex != -1
-            && restaurantImageArray.count != 0
-            && restaurantMenuImageArray.count != 0
+            && restaurantUIImageArray.count != 0
+            && restaurantMenuUIImageArray.count != 0
         {
             saveButton.enabled = true
         }else{
@@ -355,7 +381,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
         if self.restaurantImageAssets.count == 0 {
             self.photoImageView.image = UIImage.init(named: "defaultPhoto")
         }else{
-            self.photoImageView.image = self.restaurantImageArray.first
+            self.photoImageView.image = self.restaurantUIImageArray.first
             restaurantLocation = CLLocation()
             for image in self.restaurantImageAssets {
                 if let location = image.originalAsset?.location {
@@ -369,7 +395,6 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     func reloadRestaurantMenuImageCollectionView(){
-        print(self.restaurantImageArray.count)
         self.restaurantMenuImageCollectionView.reloadData()
         checkValidRestuarantField()
     }
@@ -377,9 +402,9 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     //MARK: collection view
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.isEqual(self.restaurantImageCollectionView){
-            return self.rootImageArray.count ?? 0
+            return self.rootRestaurantImageArray.count ?? 0
         }else{
-            return self.rootImageArray.count ?? 0
+            return self.rootRestaurantMenuImageArray.count ?? 0
         }
     }
     
@@ -388,121 +413,51 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! EditRestaurantCollectionViewCell
             
-            
-            
-            cell.setImageWithUrl(rootImageArray[indexPath.row])
+            cell.setRestaurantImage(rootRestaurantImageArray[indexPath.row])
             return cell
-            //            let asset = self.restaurantImageAssets[indexPath.row]
-            //
-            //            let cell = self.restaurantImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! EditRestaurantCollectionViewCell
-            //
-            //            let tag = indexPath.row + 1
-            //
-            //            cell.tag = tag
-            //
-            //            asset.fetchOriginalImageWithCompleteBlock { (image, info) in
-            //                if cell.tag == tag {
-            //                    cell.restaurantImageView.image = image
-            //                    self.restauranturlArray(image!)
-            //
-            //                    if tag == 1{
-            //                        self.photoImageView.image = image
-            //                    }
-            //                }
-            //            }
-            //            return cell
         }else{
             
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! EditRestaurantCollectionViewCell
             
-            //             cell.setMenuImageWithUrl(imageArray[indexPath.row])
+            cell.setRestaurantMenuImage(rootRestaurantMenuImageArray[indexPath.row])
             return cell
-            //            let asset = self.restaurantMenuImageAssets[indexPath.row]
-            //
-            //            let cell = self.restaurantMenuImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! EditRestaurantCollectionViewCell
-            //
-            //            let tag = indexPath.row + 1
-            //
-            //            cell.tag = tag
-            //
-            //            asset.fetchOriginalImageWithCompleteBlock { (image, info) in
-            //                if cell.tag == tag {
-            //                    cell.restaurantMenuImageView.image = image
-            //                    self.restaurantMenuurlArray(image!)
-            //                }
-            //            }
-            //            return cell
         }
         
     }
-    
-    func image(image: UIImage, didFinishSavingWithError: NSErrorPointer, contextInfo:UnsafePointer<Void>)       {
-        
-        if (didFinishSavingWithError != nil) {
-            print("Error saving photo: \(didFinishSavingWithError)")
-        } else {
-            print("Successfully saved photo, will make request to update asset metadata")
-            
-            // fetch the most recent image asset:
-            let fetchOptions = PHFetchOptions()
-            fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
-            let fetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
-            
-            // get the asset we want to modify from results:
-            let lastImageAsset = fetchResult.lastObject as! PHAsset
-            
-            // create CLLocation from lat/long coords:
-            // (could fetch from LocationManager if needed)
-            let coordinate = CLLocationCoordinate2DMake(150.5, 23.5)
-            let nowDate = NSDate()
-            // I add some defaults for time/altitude/accuracies:
-            let myLocation = CLLocation(coordinate: coordinate, altitude: 0.0, horizontalAccuracy: 1.0, verticalAccuracy: 1.0, timestamp: nowDate)
-            
-            // make change request:
-            PHPhotoLibrary.sharedPhotoLibrary().performChanges({
-                
-                // modify existing asset:
-                let assetChangeRequest = PHAssetChangeRequest(forAsset: lastImageAsset)
-                assetChangeRequest.location = myLocation
-                
-                }, completionHandler: {
-                    (success:Bool, error:NSError?) -> Void in
-                    
-                    if (success) {
-                        print("Succesfully saved metadata to asset")
-                        print("location metadata = \(myLocation)")
-                    } else {
-                        print("Failed to save metadata to asset with error: \(error!)")
-                    }
-                    
-            })
-            
-            
-        }
-    }
-    
+  
     
     //MARK: delete action
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if collectionView.isEqual(self.restaurantImageCollectionView){
-            let k = self.rootImageArray.removeAtIndex(indexPath.row)
+            let image = self.rootRestaurantImageArray.removeAtIndex(indexPath.row)
             
-            if k is String{
-                let keys = (arrayOfDicImageWithUrl as NSDictionary).allKeysForObject(k) as! [Int]
-                arrayOfDicImageWithUrl.removeValueForKey(keys[0])
-                deleteImageArray.append(keys[0])
+            if image is String{
+                let keys = (restaurantImageFromServerDictionary as NSDictionary).allKeysForObject(image) as! [Int]
+                restaurantImageFromServerDictionary.removeValueForKey(keys[0])
+                deleteRestaurantImageArray.append(keys[0])
                 
-            }else if k is UIImage {
-                let continueIndex = indexPath.row - (arrayOfDicImageWithUrl.count)
-                self.restaurantImageArray.removeAtIndex(continueIndex)
+            }else if image is UIImage {
+                let continueIndex = indexPath.row - (restaurantImageFromServerDictionary.count)
+                self.restaurantUIImageArray.removeAtIndex(continueIndex)
                 self.restaurantImageAssets.removeAtIndex(continueIndex)
             }
             
             self.restaurantImageCollectionView.deleteItemsAtIndexPaths([indexPath])
             reloadRestaurantImageCollectionView()
         }else{
-            self.restaurantMenuImageArray.removeAtIndex(indexPath.row)
-            self.restaurantMenuImageAssets.removeAtIndex(indexPath.row)
+            let image = self.rootRestaurantMenuImageArray.removeAtIndex(indexPath.row)
+            
+            if image is String{
+                let keys = (restaurantMenuImageFromServerDictionary as NSDictionary).allKeysForObject(image) as! [Int]
+                restaurantMenuImageFromServerDictionary.removeValueForKey(keys[0])
+                deleteRestaurantMenuImageArray.append(keys[0])
+                
+            }else if image is UIImage {
+                let continueIndex = indexPath.row - (restaurantMenuImageFromServerDictionary.count)
+                self.restaurantMenuUIImageArray.removeAtIndex(continueIndex)
+                self.restaurantMenuImageAssets.removeAtIndex(continueIndex)
+            }
+            
             self.restaurantMenuImageCollectionView.deleteItemsAtIndexPaths([indexPath])
             reloadRestaurantMenuImageCollectionView()
         }
@@ -547,14 +502,14 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 
                 multipartFormData.appendBodyPart(data: self.phoneTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
                 
-                for i in 0 ..< self.restaurantImageArray.count{
-                    let imagePickedData = UIImageJPEGRepresentation(self.restaurantImageArray[i], 0.3)!
+                for i in 0 ..< self.restaurantUIImageArray.count{
+                    let imagePickedData = UIImageJPEGRepresentation(self.restaurantUIImageArray[i], 0.3)!
                     multipartFormData.appendBodyPart(data: imagePickedData, name: "RESTAURANT_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
                     
                 }
                 
-                for i in 0 ..< self.restaurantMenuImageArray.count {
-                    let imagePickedData = UIImageJPEGRepresentation(self.restaurantMenuImageArray[i], 0.3)!
+                for i in 0 ..< self.restaurantMenuUIImageArray.count {
+                    let imagePickedData = UIImageJPEGRepresentation(self.restaurantMenuUIImageArray[i], 0.3)!
                     multipartFormData.appendBodyPart(data: imagePickedData, name:"MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
                 }
                 
@@ -606,7 +561,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             
             pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
                 self.restaurantImageAssets.removeAll()
-                self.restaurantImageArray.removeAll()
+                self.restaurantUIImageArray.removeAll()
                 self.restaurantImageAssets = assets
                 
                 for index in 0...self.restaurantImageAssets.count {
@@ -616,26 +571,38 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                         let asset = self.restaurantImageAssets[index]
                         
                         asset.fetchOriginalImageWithCompleteBlock { (image, info) in
-                            self.restaurantImageArray.append(image!)
+                            self.restaurantUIImageArray.append(image!)
                             
                             if index == self.restaurantImageAssets.count - 1 {
-                                self.reloadRootImageArray()
+                                self.reloadImageToRestaurantImageCollectionView()
                             }
                         }
                     }
                 }
             }
         }else if sender.isEqual(self.browseRestaurantMenuImageButton){
-            
-            pickerController.defaultSelectedAssets = self.restaurantMenuImageAssets
+           pickerController.defaultSelectedAssets = self.restaurantMenuImageAssets
             
             pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
-                print("didSelectAssets")
-                
-                self.restaurantMenuImageArray.removeAll()
+                self.restaurantMenuImageAssets.removeAll()
+                self.restaurantMenuUIImageArray.removeAll()
                 self.restaurantMenuImageAssets = assets
-                self.reloadRestaurantMenuImageCollectionView()
                 
+                for index in 0...self.restaurantMenuImageAssets.count {
+                    
+                    if self.restaurantMenuImageAssets.count !=  0 && index < self.restaurantMenuImageAssets.count {
+                        
+                        let asset = self.restaurantMenuImageAssets[index]
+                        
+                        asset.fetchOriginalImageWithCompleteBlock { (image, info) in
+                            self.restaurantMenuUIImageArray.append(image!)
+                            
+                            if index == self.restaurantMenuImageAssets.count - 1 {
+                                self.reloadImageToRestaurantMenuImageCollectionView()
+                            }
+                        }
+                    }
+                }
             }
         }
         
