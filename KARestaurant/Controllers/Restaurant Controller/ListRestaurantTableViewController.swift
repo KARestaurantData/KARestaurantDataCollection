@@ -70,6 +70,8 @@ class ListRestaurantTableViewController: UITableViewController {
         // add refresh control to view
         restuarantRefreshControl.addTarget(self, action: #selector(ListRestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
         self.tableView.addSubview(restuarantRefreshControl)
+        
+        self.view.userInteractionEnabled = false
     }
     
     // MARK: Refresh Control Action
@@ -110,6 +112,7 @@ class ListRestaurantTableViewController: UITableViewController {
             
             self.isNewRestaurantDataLoading = false
             self.isRefreshControlLoading = false
+            self.view.userInteractionEnabled = true
             self.centerSpinner.stopAnimating()
             self.footerSpinner.stopAnimating()
             self.restuarantRefreshControl.endRefreshing()

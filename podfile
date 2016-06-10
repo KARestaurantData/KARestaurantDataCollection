@@ -17,6 +17,8 @@ pod 'M13Checkbox'
 pod 'DownPicker'
 pod 'Kingfisher', '~> 2.4'
 pod "MMMaterialDesignSpinner"
+pod 'SCLAlertView'
+pod "SwiftSpinner"
 
 # Recommended: For the most recent version of SwiftValidator (master branch)
 pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :branch => 'master'
