@@ -13,6 +13,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="ufj-ds-S1w">
+                            <rect key="frame" x="0.0" y="432" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GT-Fz-yB3" customClass="MMMaterialDesignSpinner">
+                                    <rect key="frame" x="285" y="7" width="30" height="30"/>
+                                    <subviews>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stop" translatesAutoresizingMaskIntoConstraints="NO" id="blZ-hD-B5d">
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="2rM-Q3-Z22"/>
+                                        <constraint firstAttribute="bottom" secondItem="blZ-hD-B5d" secondAttribute="bottom" id="B7j-Et-3gm"/>
+                                        <constraint firstItem="blZ-hD-B5d" firstAttribute="top" secondItem="1GT-Fz-yB3" secondAttribute="top" id="Ubp-ry-wm8"/>
+                                        <constraint firstAttribute="trailing" secondItem="blZ-hD-B5d" secondAttribute="trailing" id="faa-PG-ddW"/>
+                                        <constraint firstAttribute="height" constant="30" id="tCM-M3-JCp"/>
+                                        <constraint firstItem="blZ-hD-B5d" firstAttribute="leading" secondItem="1GT-Fz-yB3" secondAttribute="leading" id="wnI-jn-29i"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="1GT-Fz-yB3" firstAttribute="centerY" secondItem="ufj-ds-S1w" secondAttribute="centerY" id="CT4-kJ-P0r"/>
+                                <constraint firstItem="1GT-Fz-yB3" firstAttribute="centerX" secondItem="ufj-ds-S1w" secondAttribute="centerX" id="t4v-vI-PWc"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RestaurantTableViewCell" rowHeight="340" id="2BW-ma-WYU" customClass="ListRestaurantTableViewCell" customModule="KARestaurant" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="340"/>
@@ -114,6 +141,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="footerImageView" destination="blZ-hD-B5d" id="gI3-TF-IPt"/>
+                        <outlet property="footerSpinner" destination="1GT-Fz-yB3" id="M1q-Qg-HAZ"/>
+                        <outlet property="footerView" destination="ufj-ds-S1w" id="wIw-mC-rok"/>
                         <segue destination="XUc-at-SpM" kind="show" identifier="ShowRestuarantDetail" id="UI7-28-48b"/>
                         <segue destination="dUL-Zh-jTI" kind="show" identifier="EditRestuarantDetail" id="1Vp-ue-cIo"/>
                     </connections>
@@ -1326,5 +1356,6 @@
     </scenes>
     <resources>
         <image name="defaultPhoto" width="540" height="540"/>
+        <image name="stop" width="626" height="626"/>
     </resources>
 </document>

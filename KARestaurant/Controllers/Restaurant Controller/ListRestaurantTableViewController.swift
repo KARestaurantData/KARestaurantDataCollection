@@ -12,10 +12,11 @@ import Material
 import Alamofire
 import ObjectMapper
 import AlamofireImage
+import MMMaterialDesignSpinner
 
 
 class ListRestaurantTableViewController: UITableViewController {
-
+    
     // MARK: Properties
     // refresh control status
     var isNewRestaurantDataLoading: Bool = false
@@ -26,16 +27,49 @@ class ListRestaurantTableViewController: UITableViewController {
     var responseRestaurant = [Restaurants]()
     var responsePagination = Pagination()
     
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var footerSpinner: MMMaterialDesignSpinner!
+    @IBOutlet weak var footerImageView: UIImageView!
+    
+    // Initialize the progress view
+    var centerSpinner : MMMaterialDesignSpinner = MMMaterialDesignSpinner(frame: CGRectMake(0, 0, 75,75))
+    
+    
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // add refresh control to view
-        restuarantRefreshControl.addTarget(self, action: #selector(ListRestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
-        self.tableView.addSubview(restuarantRefreshControl)
+        self.prepareRefreshControl()
         
         // fetch data for first load
         getRestuarant(1, limit: 20)
+    }
+    
+    
+    
+    private func prepareRefreshControl(){
+        self.centerSpinner.center = self.view.center
+        self.footerSpinner.center.x = self.footerView.center.x
+        
+        // Set the line width of the spinner
+        self.centerSpinner.lineWidth = 5
+        self.footerSpinner.lineWidth = 3
+        
+        // Set the tint color of the spinner
+        self.centerSpinner.tintColor = MaterialColor.pink.accent1
+        self.footerSpinner.tintColor = MaterialColor.pink.accent1
+        
+        // Add it as a subview
+        self.view.addSubview(centerSpinner)
+        self.footerView.addSubview(footerSpinner)
+        
+        // Start & stop animations
+        self.centerSpinner.startAnimating()
+        
+        
+        // add refresh control to view
+        restuarantRefreshControl.addTarget(self, action: #selector(ListRestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
+        self.tableView.addSubview(restuarantRefreshControl)
     }
     
     // MARK: Refresh Control Action
@@ -45,6 +79,7 @@ class ListRestaurantTableViewController: UITableViewController {
         // reload data
         if !isRefreshControlLoading {
             self.isRefreshControlLoading =  true
+            self.footerImageView.hidden = true
             getRestuarant(1, limit: (self.responsePagination?.limit)!)
         }
     }
@@ -56,7 +91,7 @@ class ListRestaurantTableViewController: UITableViewController {
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=\(page)&limit=\(limit)"
         
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
-          
+            
             
             let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
             
@@ -75,6 +110,8 @@ class ListRestaurantTableViewController: UITableViewController {
             
             self.isNewRestaurantDataLoading = false
             self.isRefreshControlLoading = false
+            self.centerSpinner.stopAnimating()
+            self.footerSpinner.stopAnimating()
             self.restuarantRefreshControl.endRefreshing()
             self.tableView.reloadData()
         }
@@ -91,21 +128,21 @@ class ListRestaurantTableViewController: UITableViewController {
                 if !isNewRestaurantDataLoading{
                     isNewRestaurantDataLoading = true
                     if self.responsePagination?.page < self.responsePagination?.totalPages {
+                        
+                        if !footerSpinner.isAnimating{
+                            self.footerSpinner.startAnimating()
+                        }
+                        
                         getRestuarant((self.responsePagination?.page)! + 1, limit: (self.responsePagination?.limit)!)
+                    }else{
+                       self.footerImageView.hidden = false
                     }
-                    
-                    //                    if helperInstance.isConnectedToNetwork(){
-                    //
-                    
-                    //                        isNewDataLoading = true
-                    //                        getNewData()
-                    //                    }
                 }
             }
         }
     }
     
-
+    
     
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -113,12 +150,12 @@ class ListRestaurantTableViewController: UITableViewController {
         
         if segue.identifier == "ShowRestuarantDetail" {
             let restaurantDetailViewController = segue.destinationViewController as! RestaurantDetailTableViewController
-           
+            
             // Get the cell that generated this segue.
             if let selectedRestaurantCell = sender as? ListRestaurantTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedRestaurantCell)!
                 let selectedRestaurant = self.responseRestaurant[indexPath.row]
-               
+                
                 restaurantDetailViewController.restaurant = selectedRestaurant
             }
         }else if segue.identifier == "EditRestuarantDetail" {
@@ -139,20 +176,20 @@ class ListRestaurantTableViewController: UITableViewController {
     
     
     
-//    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-//        if let sourceViewController = sender.sourceViewController as? AddViewController, meal = sourceViewController.restaurant {
-//            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-//                // Update an existing meal.
-//                self.responseRestaurant[selectedIndexPath.row] = meal
-//                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
-//            } else {
-//                // Add a new meal.
-//                let newIndexPath = NSIndexPath(forRow: self.responseRestaurant.count, inSection: 0)
-//                self.responseRestaurant.append(meal)
-//                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
-//            }
-//        }
-//    }
+    //    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+    //        if let sourceViewController = sender.sourceViewController as? AddViewController, meal = sourceViewController.restaurant {
+    //            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+    //                // Update an existing meal.
+    //                self.responseRestaurant[selectedIndexPath.row] = meal
+    //                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+    //            } else {
+    //                // Add a new meal.
+    //                let newIndexPath = NSIndexPath(forRow: self.responseRestaurant.count, inSection: 0)
+    //                self.responseRestaurant.append(meal)
+    //                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+    //            }
+    //        }
+    //    }
 }
 
 // MARK: - Table view data source
@@ -161,7 +198,7 @@ extension ListRestaurantTableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.responseRestaurant.count)
     }
-
+    
     /// Returns the number of sections.
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -170,10 +207,8 @@ extension ListRestaurantTableViewController {
     /// Prepares the cells within the tableView.
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let restaurant = self.responseRestaurant[indexPath.row] as Restaurants
-        print(restaurant.name)
-        print(restaurant.thumbnail)
         // Fetches the appropriate restuarant for the data source layout.
-       
+        
         // Table view cells are reused and should be dequeued using a cell identifier.
         if let cell =  tableView.dequeueReusableCellWithIdentifier("RestaurantTableViewCell", forIndexPath: indexPath) as? ListRestaurantTableViewCell {
             
@@ -185,14 +220,14 @@ extension ListRestaurantTableViewController {
         }
     }
     
-
+    
     
     /* Delete */
     // Override to support conditional editing of the table view.
-//    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        // Return false if you do not want the specified item to be editable.
-//        return false
-//    }
+    //    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    //        // Return false if you do not want the specified item to be editable.
+    //        return false
+    //    }
     //
     //
     //    // Override to support editing the table view.
@@ -205,15 +240,15 @@ extension ListRestaurantTableViewController {
     //            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     //        }
     //    }
-
+    
 }
 
 // MARK: - UITableViewDelegate Methods
 extension ListRestaurantTableViewController {
-
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-         self.performSegueWithIdentifier("EditRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
+        self.performSegueWithIdentifier("EditRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
         //self.performSegueWithIdentifier("ShowRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
 }
