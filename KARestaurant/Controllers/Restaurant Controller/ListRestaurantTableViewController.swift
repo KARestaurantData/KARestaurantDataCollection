@@ -13,6 +13,7 @@ import Alamofire
 import ObjectMapper
 import AlamofireImage
 import MMMaterialDesignSpinner
+import SCLAlertView
 
 
 class ListRestaurantTableViewController: UITableViewController {
@@ -177,6 +178,10 @@ class ListRestaurantTableViewController: UITableViewController {
                 editRestaurantViewController.restaurant = selectedRestaurant
             }
             
+            
+            
+            // editRestaurantViewController.restaurant = sender as? Restaurants
+            
         }
     }
     
@@ -221,14 +226,44 @@ extension ListRestaurantTableViewController {
         if let cell =  tableView.dequeueReusableCellWithIdentifier("RestaurantTableViewCell", forIndexPath: indexPath) as? ListRestaurantTableViewCell {
             
             cell.configure(restaurant)
+            let gesture = CustomeTapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+            gesture.indexPath = indexPath
+            cell.editButton.addGestureRecognizer(gesture)
             
-            
+
             return cell
         }else{
             return UITableViewCell()
         }
     }
     
+    func handleTap(sender: CustomeTapGestureRecognizer) {
+       
+        let appearance = SCLAlertView.SCLAppearance(
+            //showCloseButton: false
+            
+            //showCircularIcon: false
+        
+        )
+        let alert = SCLAlertView(appearance: appearance)
+        alert.addButton("Edit") {
+            self.performSegueWithIdentifier("EditRestuarantDetail", sender: self.tableView.cellForRowAtIndexPath(sender.indexPath!))
+           // self.performSegueWithIdentifier("EditRestuarantDetail", sender: sender.restaurant)
+        }
+        
+        
+        alert.showTitle(
+            "KA Restaurant", // Title of view
+            subTitle: "Update or Delete", // String of view
+            duration: 0.0, // Duration to show before closing automatically, default: 0.0
+            completeText: "Close", // Optional button value, default: ""
+            style: .Success, // Styles - see below.
+            colorStyle: 0xFF80AB,
+            colorTextButton: 0xFFFFFF,
+            circleIconImage: UIImage(named: "meal1")
+        )
+        
+    }
     
     
     /* Delete */
@@ -257,8 +292,12 @@ extension ListRestaurantTableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        self.performSegueWithIdentifier("EditRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
-        //self.performSegueWithIdentifier("ShowRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
+        self.performSegueWithIdentifier("ShowRestuarantDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
 }
+
+class CustomeTapGestureRecognizer: UITapGestureRecognizer {
+    var indexPath: NSIndexPath?
+}
+
 
