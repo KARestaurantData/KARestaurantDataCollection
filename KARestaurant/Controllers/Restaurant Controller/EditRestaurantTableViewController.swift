@@ -70,7 +70,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     var categoryArray = [String]()
     
     // Restaurant Location
-    var restaurantLocation: CLLocation = CLLocation()
+   // var restaurantLocation: CLLocation = CLLocation()
     
     var restaurant: Restaurants?
     
@@ -86,13 +86,11 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.restaurantImageCollectionView.delegate = self
         self.restaurantImageCollectionView.dataSource = self
         
         self.restaurantMenuImageCollectionView.delegate = self
         self.restaurantMenuImageCollectionView.dataSource = self
-        
         
         navigationItem.title = restaurant?.name
         
@@ -114,16 +112,23 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
         prepareTextField()
         prepareDownPicker()
         prepareEmailField()
-        reloadImageToRestaurantImageCollectionView()
-        reloadImageToRestaurantMenuImageCollectionView()
-    }
-    
-    func reloadImageToRestaurantImageCollectionView(){
-        self.rootRestaurantImageArray.removeAll()
         
         for image in (restaurant?.images)!{
             restaurantImageFromServerDictionary[image.id!] = image.url
         }
+        for image in (restaurant?.menus)!{
+            restaurantMenuImageFromServerDictionary[image.id!] = image.url
+        }
+        
+        reloadImageToRestaurantImageCollectionView()
+        reloadImageToRestaurantMenuImageCollectionView()
+        
+
+        
+    }
+    
+    func reloadImageToRestaurantImageCollectionView(){
+        self.rootRestaurantImageArray.removeAll()
         
         let unSortedCodeKeys = Array(restaurantImageFromServerDictionary.keys)
         let sortedCodeKeys = unSortedCodeKeys.sort(<)
@@ -146,11 +151,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     func reloadImageToRestaurantMenuImageCollectionView(){
         self.rootRestaurantMenuImageArray.removeAll()
-        
-        for image in (restaurant?.menus)!{
-            restaurantMenuImageFromServerDictionary[image.id!] = image.url
-        }
-        
+
         let unSortedCodeKeys = Array(restaurantMenuImageFromServerDictionary.keys)
         let sortedCodeKeys = unSortedCodeKeys.sort(<)
         
@@ -196,8 +197,8 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     private func prepareDownPicker(){
-        // getRestaurantType()
-        // getDistrict(12315)
+         getRestaurantType()
+         getDistrict(12315)
     }
     
     /// Prepares the email TextField.
@@ -338,12 +339,14 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             && restaurantTypeDownPicker.selectedIndex != -1
             && communeDownPicker.selectedIndex != -1
             && districtDownPicker.selectedIndex != -1
-            && restaurantUIImageArray.count != 0
-            && restaurantMenuUIImageArray.count != 0
+            && rootRestaurantImageArray.count != 0
+            && rootRestaurantMenuImageArray.count != 0
         {
             saveButton.enabled = true
+            print("true")
         }else{
             saveButton.enabled = false
+            print("false")
         }
     }
     
@@ -377,20 +380,6 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     func reloadRestaurantImageCollectionView(){
         self.restaurantImageCollectionView.reloadData()
-        
-        if self.restaurantImageAssets.count == 0 {
-            self.photoImageView.image = UIImage.init(named: "defaultPhoto")
-        }else{
-            self.photoImageView.image = self.restaurantUIImageArray.first
-            restaurantLocation = CLLocation()
-            for image in self.restaurantImageAssets {
-                if let location = image.originalAsset?.location {
-                    restaurantLocation = location
-                    return
-                }
-            }
-        }
-        
         checkValidRestuarantField()
     }
     
@@ -435,6 +424,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 let keys = (restaurantImageFromServerDictionary as NSDictionary).allKeysForObject(image) as! [Int]
                 restaurantImageFromServerDictionary.removeValueForKey(keys[0])
                 deleteRestaurantImageArray.append(keys[0])
+                print("delete ImageArray: \(deleteRestaurantImageArray)")
                 
             }else if image is UIImage {
                 let continueIndex = indexPath.row - (restaurantImageFromServerDictionary.count)
@@ -451,6 +441,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 let keys = (restaurantMenuImageFromServerDictionary as NSDictionary).allKeysForObject(image) as! [Int]
                 restaurantMenuImageFromServerDictionary.removeValueForKey(keys[0])
                 deleteRestaurantMenuImageArray.append(keys[0])
+                print("delete MenuImageArray: \(deleteRestaurantMenuImageArray)")
                 
             }else if image is UIImage {
                 let continueIndex = indexPath.row - (restaurantMenuImageFromServerDictionary.count)
@@ -473,7 +464,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     func uploadImage(){
         
-        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/multiple/register"
+        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/\(restaurant!.id!)"
         
         let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
         
@@ -495,10 +486,10 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 multipartFormData.appendBodyPart(data: "1".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "STATUS")
                 
                 multipartFormData.appendBodyPart(data: "\(self.responseCategory[self.restaurantTypeDownPicker.selectedIndex].id!)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "RESTAURANT_CATEGORY")
-                
-                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation.coordinate.latitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
-                
-                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation.coordinate.longitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LONGITUDE")
+//                
+//                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation.coordinate.latitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
+//                
+//                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation.coordinate.longitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LONGITUDE")
                 
                 multipartFormData.appendBodyPart(data: self.phoneTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
                 
@@ -508,9 +499,24 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                     
                 }
                 
+                
+                for i in 0 ..< self.deleteRestaurantImageArray.count{
+                    let id = self.deleteRestaurantImageArray[i]
+                    
+                    multipartFormData.appendBodyPart(data: "\(id)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "RESTAURANT_IMAGES_DELETED")
+                }
+                
+                
                 for i in 0 ..< self.restaurantMenuUIImageArray.count {
                     let imagePickedData = UIImageJPEGRepresentation(self.restaurantMenuUIImageArray[i], 0.3)!
                     multipartFormData.appendBodyPart(data: imagePickedData, name:"MENU_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
+                }
+                
+                
+                for i in 0 ..< self.deleteRestaurantMenuImageArray.count{
+                    let id = self.deleteRestaurantMenuImageArray[i]
+                    
+                    multipartFormData.appendBodyPart(data: "\(id)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "MENU_IMAGES_DELETED")
                 }
                 
                 multipartFormData.appendBodyPart(data: keyJSON, name: "format")
