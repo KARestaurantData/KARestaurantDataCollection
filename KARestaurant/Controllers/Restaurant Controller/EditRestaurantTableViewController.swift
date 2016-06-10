@@ -79,9 +79,124 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     var restaurant: Restaurants?
     
-    
+    var imageArray = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/abaddon_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/alchemist_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/ancient_apparition_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/antimage_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/arc_warden_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/axe_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/bane_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/batrider_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/beastmaster_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/bloodseeker_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/bounty_hunter_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/brewmaster_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/bristleback_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/broodmother_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/centaur_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/chaos_knight_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/chen_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/clinkz_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/crystal_maiden_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/dark_seer_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/dazzle_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/death_prophet_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/disruptor_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/doom_bringer_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/dragon_knight_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/drow_ranger_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/earth_spirit_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/elder_titan_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/ember_spirit_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/enchantress_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/enigma_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/faceless_void_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/furion_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/gyrocopter_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/huskar_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/invoker_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/jakiro_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/juggernaut_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/keeper_of_the_light_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/kunkka_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/legion_commander_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/leshrac_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/lich_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/life_stealer_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/lina_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/lion_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/lone_druid_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/luna_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/lycan_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/magnataur_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/medusa_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/meepo_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/mirana_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/morphling_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/naga_siren_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/necrolyte_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/nevermore_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/night_stalker_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/nyx_assassin_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/obsidian_destroyer_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/ogre_magi_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/omniknight_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/oracle_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/phantom_assassin_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/phantom_lancer_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/phoenix_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/puck_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/pudge_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/pugna_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/queenofpain_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/rattletrap_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/razor_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/riki_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/rubick_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/sand_king_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/shadow_demon_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/shadow_shaman_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/shredder_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/silencer_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/skeleton_king_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/skywrath_mage_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/slardar_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/slark_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/sniper_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/spectre_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/spirit_breaker_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/storm_spirit_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/sven_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/techies_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/templar_assassin_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/terrorblade_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/tidehunter_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/tinker_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/tiny_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/treant_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/troll_warlord_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/tusk_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/undying_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/ursa_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/vengefulspirit_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/venomancer_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/viper_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/visage_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/warlock_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/weaver_full.png")
+        
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/windrunner_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/winter_wyvern_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/wisp_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/witch_doctor_full.png")
+        imageArray.append("http://cdn.dota2.com/apps/dota2/images/heroes/zuus_full.png")
+        
+        
         self.restaurantImageCollectionView.delegate = self
         self.restaurantImageCollectionView.dataSource = self
         
@@ -175,8 +290,8 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     private func prepareDownPicker(){
-        getRestaurantType()
-        getDistrict(12315)
+       // getRestaurantType()
+       // getDistrict(12315)
     }
     
     /// Prepares the email TextField.
@@ -382,49 +497,61 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     //MARK: collection view
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.isEqual(self.restaurantImageCollectionView){
-            return self.restaurantImageAssets.count ?? 0
+            return self.imageArray.count ?? 0
         }else{
-            return self.restaurantMenuImageAssets.count ?? 0
+            return self.imageArray.count ?? 0
         }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if collectionView.isEqual(self.restaurantImageCollectionView){
-            let asset = self.restaurantImageAssets[indexPath.row]
             
-            let cell = self.restaurantImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! EditRestaurantCollectionViewCell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! EditRestaurantCollectionViewCell
+          
             
-            let tag = indexPath.row + 1
             
-            cell.tag = tag
-            
-            asset.fetchOriginalImageWithCompleteBlock { (image, info) in
-                if cell.tag == tag {
-                    cell.restaurantImageView.image = image
-                    self.restaurantImageArray.append(image!)
-                    
-                    if tag == 1{
-                        self.photoImageView.image = image
-                    }
-                }
-            }
+            cell.restaurantImageView.image = cell.setImageWithUrl(imageArray[indexPath.row])
             return cell
+//            let asset = self.restaurantImageAssets[indexPath.row]
+//
+//            let cell = self.restaurantImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! EditRestaurantCollectionViewCell
+//            
+//            let tag = indexPath.row + 1
+//            
+//            cell.tag = tag
+//            
+//            asset.fetchOriginalImageWithCompleteBlock { (image, info) in
+//                if cell.tag == tag {
+//                    cell.restaurantImageView.image = image
+//                    self.restaurantImageArray.append(image!)
+//                    
+//                    if tag == 1{
+//                        self.photoImageView.image = image
+//                    }
+//                }
+//            }
+//            return cell
         }else{
-            let asset = self.restaurantMenuImageAssets[indexPath.row]
             
-            let cell = self.restaurantMenuImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! EditRestaurantCollectionViewCell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! EditRestaurantCollectionViewCell
             
-            let tag = indexPath.row + 1
-            
-            cell.tag = tag
-            
-            asset.fetchOriginalImageWithCompleteBlock { (image, info) in
-                if cell.tag == tag {
-                    cell.restaurantMenuImageView.image = image
-                    self.restaurantMenuImageArray.append(image!)
-                }
-            }
+             cell.setMenuImageWithUrl(imageArray[indexPath.row])
             return cell
+//            let asset = self.restaurantMenuImageAssets[indexPath.row]
+//            
+//            let cell = self.restaurantMenuImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! EditRestaurantCollectionViewCell
+//            
+//            let tag = indexPath.row + 1
+//            
+//            cell.tag = tag
+//            
+//            asset.fetchOriginalImageWithCompleteBlock { (image, info) in
+//                if cell.tag == tag {
+//                    cell.restaurantMenuImageView.image = image
+//                    self.restaurantMenuImageArray.append(image!)
+//                }
+//            }
+//            return cell
         }
         
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class EditRestaurantCollectionViewCell: UICollectionViewCell {
     
@@ -14,41 +15,33 @@ class EditRestaurantCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var restaurantImageView: UIImageView!
     @IBOutlet weak var restaurantMenuImageView: UIImageView!
     
-    var restaurantMenu: Menu!
-    var request: ImageRequest?
+    var myImage: UIImage!
     
+    var restaurantMenuImage: Menu!
+    var restaurantImage: RestaurantImage!
     
-    func configureMenu(menu: Menu) {
-        self.restaurantMenu = menu
-        reset()
-        loadImage()
+    func setRestaurantMenuImage(menu: Menu) {
+        self.restaurantMenuImageView.kf_setImageWithURL(NSURL(string: menu.url!)!, placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+
     }
     
-    func reset() {
-        restaurantMenuImageView.image = nil
-        request?.cancel()
+    func setRestaurantImage(image: RestaurantImage) {
+        self.restaurantImageView.kf_setImageWithURL(NSURL(string: image.url!)!, placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
     }
     
-    func loadImage() {
-        let urlString = restaurantMenu.url!
-        if let image = PhotosDataManager.sharedManager.cachedImage(urlString) {
-            populateCell(image)
-            return
+    func setImageWithUrl(url: String) -> UIImage{
+        UIImageView().kf_setImageWithURL(NSURL(string: url)!, placeholderImage: nil, optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
+            return image
         }
-        downloadImage()
-    }
-    
-    func downloadImage() {
-        //  loadingIndicator.startAnimating()
-        restaurantMenuImageView.image = UIImage(named: "defaultPhoto")
-        let urlString = restaurantMenu.url!
-        request = PhotosDataManager.sharedManager.getNetworkImage(urlString) { image in
-            self.populateCell(image)
-        }
-    }
-    
-    func populateCell(image: UIImage) {
         
-        restaurantMenuImageView.image = image
+        return UIImage()
+    }
+    
+    func setMenuImageWithUrl(url: String){
+        self.restaurantMenuImageView.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+    }
+    
+    func setImage(image: UIImage) {
+        self.restaurantImageView.image = UIImage(named: "Honeycrisp-Apple")
     }
 }
