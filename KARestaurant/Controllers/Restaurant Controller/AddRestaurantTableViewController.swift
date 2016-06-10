@@ -20,6 +20,7 @@ import Material
 import M13Checkbox
 import DownPicker
 import ObjectMapper
+import MMMaterialDesignSpinner
 
 class AddRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
     
@@ -76,6 +77,9 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     // Restaurant Location
     var restaurantLocation: CLLocation = CLLocation()
     
+    // Initialize the progress view
+    var centerSpinner : MMMaterialDesignSpinner = MMMaterialDesignSpinner(frame: CGRectMake(0, 0, 75,75))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.restaurantImageCollectionView.delegate = self
@@ -108,7 +112,42 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         prepareTextField()
         prepareDownPicker()
         prepareEmailField()
+        prepareRefreshControl()
     }
+    
+    private func prepareRefreshControl(){
+        
+        self.centerSpinner.center = self.view.center
+        
+        // Set the line width of the spinner
+        self.centerSpinner.lineWidth = 5
+        
+        // Set the tint color of the spinner
+        self.centerSpinner.tintColor = MaterialColor.pink.accent1
+        
+        // Add it as a subview
+        self.view.addSubview(centerSpinner)
+        
+        
+    }
+    
+    private func centerSpinnerStartLoading(){
+        print("Start")
+        // Start & stop animations
+        self.centerSpinner.startAnimating()
+        // add refresh control to view
+        self.view.userInteractionEnabled = false
+    }
+    
+    private func centerSpinnerStopLoading(){
+         print("Stop")
+        // Start & stop animations
+        self.centerSpinner.stopAnimating()
+        // add refresh control to view
+        self.view.userInteractionEnabled = true
+    }
+    
+
     
     
     
@@ -318,7 +357,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     func reloadRestaurantImageCollectionView(){
         self.restaurantImageCollectionView.reloadData()
         
-        if self.restaurantImageAssets.count == 0 {
+        if self.restaurantMenuImageArray.count == 0 {
             self.photoImageView.image = UIImage.init(named: "defaultPhoto")
         }else{
             self.photoImageView.image = self.restaurantImageArray.first
@@ -330,12 +369,11 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 }
             }
         }
-        
+
         checkValidRestuarantField()
     }
     
     func reloadRestaurantMenuImageCollectionView(){
-        
         self.restaurantMenuImageCollectionView.reloadData()
         checkValidRestuarantField()
     }
@@ -343,48 +381,26 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     //MARK: collection view
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.isEqual(self.restaurantImageCollectionView){
-            return self.restaurantImageAssets.count ?? 0
+            return self.restaurantImageArray.count ?? 0
         }else{
-            return self.restaurantMenuImageAssets.count ?? 0
+            return self.restaurantMenuImageArray.count ?? 0
         }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if collectionView.isEqual(self.restaurantImageCollectionView){
-            let asset = self.restaurantImageAssets[indexPath.row]
+            
             
             let cell = self.restaurantImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
             
-            let tag = indexPath.row + 1
+            cell.myImage.image = self.restaurantImageArray[indexPath.row]
             
-            cell.tag = tag
-            
-            asset.fetchOriginalImageWithCompleteBlock { (image, info) in
-                if cell.tag == tag {
-                    cell.myImage.image = image
-                    self.restaurantImageArray.append(image!)
-                    
-                    if tag == 1{
-                        self.photoImageView.image = image
-                    }
-                }
-            }
             return cell
         }else{
-            let asset = self.restaurantMenuImageAssets[indexPath.row]
-            
             let cell = self.restaurantMenuImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
             
-            let tag = indexPath.row + 1
+            cell.myImage.image = self.restaurantMenuImageArray[indexPath.row]
             
-            cell.tag = tag
-            
-            asset.fetchOriginalImageWithCompleteBlock { (image, info) in
-                if cell.tag == tag {
-                    cell.myImage.image = image
-                    self.restaurantMenuImageArray.append(image!)
-                }
-            }
             return cell
         }
         
@@ -550,21 +566,56 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             
             pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
                 print("didSelectAssets")
+                self.centerSpinnerStartLoading()
+                
                 self.restaurantImageArray.removeAll()
+                self.restaurantImageAssets.removeAll()
                 self.restaurantImageAssets = assets
-                self.reloadRestaurantImageCollectionView()
+                
+                for index in 0...self.restaurantImageAssets.count {
+                    
+                    if self.restaurantImageAssets.count !=  0 && index < self.restaurantImageAssets.count {
+                        
+                        let asset = self.restaurantImageAssets[index]
+                        
+                        asset.fetchOriginalImageWithCompleteBlock { (image, info) in
+                            self.restaurantImageArray.append(image!)
+                       
+                            if index == self.restaurantImageAssets.count - 1 {
+                                self.centerSpinnerStopLoading()
+                               self.reloadRestaurantImageCollectionView()
+                            }
+                        }
+                    }
+                }
             }
         }else if sender.isEqual(self.browseRestaurantMenuImageButton){
             
             pickerController.defaultSelectedAssets = self.restaurantMenuImageAssets
             
             pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
-                print("didSelectAssets")
-                
+               print("didSelectAssets")
+                self.centerSpinnerStartLoading()
                 self.restaurantMenuImageArray.removeAll()
+                self.restaurantMenuImageAssets.removeAll()
                 self.restaurantMenuImageAssets = assets
-                self.reloadRestaurantMenuImageCollectionView()
                 
+                for index in 0...self.restaurantMenuImageAssets.count {
+                    
+                    if self.restaurantMenuImageAssets.count !=  0 && index < self.restaurantMenuImageAssets.count {
+                        
+                        let asset = self.restaurantMenuImageAssets[index]
+                        
+                        asset.fetchOriginalImageWithCompleteBlock { (image, info) in
+                            self.restaurantMenuImageArray.append(image!)
+                            
+                            if index == self.restaurantMenuImageAssets.count - 1 {
+                                self.centerSpinnerStopLoading()
+                                self.reloadRestaurantMenuImageCollectionView()
+                            }
+                        }
+                    }
+                }
             }
         }
         

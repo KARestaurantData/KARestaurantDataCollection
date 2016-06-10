@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import Alamofire
 import Material
-import AlamofireImage
+import Kingfisher
+
 
 
 class ListRestaurantTableViewCell: MaterialTableViewCell {
@@ -22,17 +22,14 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     @IBOutlet weak var editButton: MaterialPulseView!
     
     var restaurant: Restaurants!
-    var request: ImageRequest?
-    
-    
+ 
     func configure(restaurant: Restaurants) {
         self.restaurant = restaurant
         reset()
-        loadImage()
+        downloadImage()
     }
     
     func reset() {
-        request?.cancel()
         restaurantImageView.image = nil
         titleLabel.hidden = true
         deliveryLabel.hidden = true
@@ -40,40 +37,23 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
         editButton.hidden = true
     }
     
-    func loadImage() {
+    func downloadImage(){
+        
         if let  urlString = restaurant.thumbnail {
-            if let image = PhotosDataManager.sharedManager.cachedImage(urlString) {
-                populateCell(image)
-                return
+            self.restaurantImageView.kf_setImageWithURL(NSURL(string: urlString)!, placeholderImage: UIImage(named: "defaultPhoto"), optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
+                self.populateCell()
             }
         }else{
-            populateCell(UIImage(named: "null")!)
+            self.restaurantImageView.image = UIImage(named: "null")
         }
-        
-        downloadImage()
     }
     
-    func downloadImage() {
-        restaurantImageView.image = UIImage(named: "defaultPhoto")
-        if let urlString = restaurant.thumbnail{
-            request = PhotosDataManager.sharedManager.getNetworkImage(urlString) { image in
-                self.populateCell(image)
-            }
-        }else{
-            populateCell(UIImage(named: "null")!)
-        }
-        
-    }
-    
-    func populateCell(image: UIImage) {
-        
-        restaurantImageView.image = image
+ 
+    func populateCell() {
         titleLabel.text = restaurant.name
         restaurantDetailLabel.text = restaurant.restDescription
         deliveryLabel.text = NSString.init(string: restaurant.isDeliver!).boolValue ? "Delivery" : "No Delivery"
-                editButton.image = UIImage(named: "defaultPhoto")
-        
-        
+        editButton.image = UIImage(named: "more")
         editButton.depth = .Depth2
         
         titleLabel.hidden = false

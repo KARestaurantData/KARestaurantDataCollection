@@ -16,7 +16,6 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
     var transitionDelegate: ZoomAnimatedTransitioningDelegate?
     var restuarantImageArray = [AlamofireSource]();
     
-    
     // RestaurantDetail outlet
     @IBOutlet weak var menuCollectionview: UICollectionView!
     @IBOutlet weak var restaurantDetailLabel: UILabel!
@@ -58,6 +57,9 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
         restaurantSlideshow.addGestureRecognizer(recognizer)
     }
+    
+    
+    
 
     func restaurantSlideshowClick() {
         let ctr = FullScreenSlideshowViewController()
