@@ -132,7 +132,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func centerSpinnerStartLoading(){
-        print("Start")
         // Start & stop animations
         self.centerSpinner.startAnimating()
         // add refresh control to view
@@ -140,7 +139,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func centerSpinnerStopLoading(){
-         print("Stop")
         // Start & stop animations
         self.centerSpinner.stopAnimating()
         // add refresh control to view
@@ -358,20 +356,24 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     func reloadRestaurantImageCollectionView(){
         self.restaurantImageCollectionView.reloadData()
         
-        if self.restaurantMenuImageArray.count == 0 {
+        if self.restaurantImageArray.count == 0 {
+            print("0")
             self.photoImageView.image = UIImage.init(named: "defaultPhoto")
         }else{
+            print("1")
             self.photoImageView.image = self.restaurantImageArray.first
             restaurantLocation = CLLocation()
             for image in self.restaurantImageAssets {
                 if let location = image.originalAsset?.location {
                     restaurantLocation = location
+                    print("\(restaurantLocation)")
                     return
                 }
             }
         }
 
         checkValidRestuarantField()
+        
     }
     
     func reloadRestaurantMenuImageCollectionView(){

@@ -14,9 +14,9 @@ import ObjectMapper
 import AlamofireImage
 import MMMaterialDesignSpinner
 import SCLAlertView
+import CoreLocation
 
-
-class ListRestaurantTableViewController: UITableViewController {
+class ListRestaurantTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     // MARK: Properties
     // refresh control status
@@ -24,6 +24,7 @@ class ListRestaurantTableViewController: UITableViewController {
     var isRefreshControlLoading: Bool = false
     let restuarantRefreshControl: UIRefreshControl = UIRefreshControl() // Top RefreshControl
     
+    @IBOutlet weak var takePhotoButton: UIButton!
     //  object
     var responseRestaurant = [Restaurants]()
     var responsePagination = Pagination()
@@ -34,6 +35,10 @@ class ListRestaurantTableViewController: UITableViewController {
     
     // Initialize the progress view
     var centerSpinner : MMMaterialDesignSpinner = MMMaterialDesignSpinner(frame: CGRectMake(0, 0, 75,75))
+    
+    var locManager = CLLocationManager()
+    
+    var imagePicker = UIImagePickerController()
     
     
     // MARK: viewDidLoad
@@ -285,6 +290,73 @@ extension ListRestaurantTableViewController {
     //        }
     //    }
     
+    @IBAction func takePhotoAction(sender: UIButton) {
+        locManager.requestWhenInUseAuthorization();
+        locManager.startUpdatingLocation();
+        
+        
+        if !CLLocationManager.locationServicesEnabled() {
+            print("LOCATION SERVICES DISABLED");
+            return;
+        }
+        
+        imagePicker.delegate = self;
+        imagePicker.sourceType = .Camera;
+        presentViewController(imagePicker, animated: true, completion: nil);
+
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        imagePicker.dismissViewControllerAnimated(true, completion: { () in
+            if picker.sourceType == .Camera {
+                let image = info[UIImagePickerControllerOriginalImage] as! UIImage;
+                UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil);
+            }
+        });
+    }
+    
+    func image(image: UIImage, didFinishSavingWithError: NSErrorPointer, contextInfo: UnsafePointer<Void>) {
+        if didFinishSavingWithError != nil {
+            print("Error saving photo: \(didFinishSavingWithError)");
+        }
+        else {
+            print("Successfully saved photo, will make request to update asset metadata");
+            // fetch the most recent image asset
+            let fetchOptions = PHFetchOptions();
+            fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)];
+            let fetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions);
+            
+            // get the asset we want to modify from results
+            let lastImageAsset = fetchResult.lastObject as! PHAsset;
+            //self.photoImageView.image = getAssetThumbnail(lastImageAsset);
+            
+            // get location
+            var myLocation = CLLocation();
+            if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
+                CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways) {
+                myLocation = locManager.location!;
+            }
+            
+            // make change request
+            PHPhotoLibrary.sharedPhotoLibrary().performChanges({
+                // modify existing asset
+                let assetChangeRequest = PHAssetChangeRequest(forAsset: lastImageAsset);
+                assetChangeRequest.location = CLLocation.init(latitude: myLocation.coordinate.latitude, longitude:  myLocation.coordinate.longitude);
+                },
+                                                               completionHandler: {
+                                                                (success:Bool, error:NSError?) -> Void in
+                                                                if success {
+                                                                    print("Successfully saved metadata to asset");
+                                                                    print("Location metadata = \(myLocation)");
+                                                                    return;
+                                                                }
+                                                                else {
+                                                                    print("Failed to save metadata to asset with error: \(error!)");
+                                                                    return;
+                                                                }
+            });
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate Methods
