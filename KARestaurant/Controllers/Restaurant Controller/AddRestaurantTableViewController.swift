@@ -328,6 +328,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     
     @IBAction func deliveryCheckBoxClick(checkbox: M13Checkbox) {
+          checkValidRestuarantField()
         if checkbox.checkState == M13Checkbox.CheckState.Checked {
             isDelivery = true
             deliveryLabel.textColor = MaterialColor.blue.base
@@ -524,6 +525,8 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
+                        
+                        self.saveButton.enabled = false
                         print(response)
                         
                     }

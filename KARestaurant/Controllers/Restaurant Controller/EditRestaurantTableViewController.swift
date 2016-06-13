@@ -21,6 +21,7 @@ import M13Checkbox
 import DownPicker
 import ObjectMapper
 import ImageSlideshow
+import Kingfisher
 
 class EditRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
     
@@ -112,6 +113,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
         prepareTextField()
         prepareDownPicker()
         prepareEmailField()
+        prepareRestaurantThumnail()
         
         for image in (restaurant?.images)!{
             restaurantImageFromServerDictionary[image.id!] = image.url
@@ -175,6 +177,11 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     private func prepareView() {
         view.backgroundColor = MaterialColor.white
         deliveryCheckBox.stateChangeAnimation = M13Checkbox.Animation.Fill
+    }
+    
+    /// General preparation statements.
+    private func prepareRestaurantThumnail() {
+          self.photoImageView.kf_setImageWithURL(NSURL(string: (self.restaurant?.thumbnail)!)!, placeholderImage: UIImage(named: "defaultPhoto"), optionsInfo: nil, progressBlock: nil , completionHandler: nil)
     }
     
     /// Prepares the TextField.
@@ -352,6 +359,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     
     @IBAction func deliveryCheckBoxClick(checkbox: M13Checkbox) {
+          checkValidRestuarantField()
         if checkbox.checkState == M13Checkbox.CheckState.Checked {
             isDelivery = true
             deliveryLabel.textColor = MaterialColor.blue.base
@@ -525,6 +533,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
+                        self.saveButton.enabled = false
                         print(response)
                         
                     }
