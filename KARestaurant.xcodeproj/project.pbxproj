@@ -17,9 +17,6 @@
 		6F07541C1CE0506700F7BB95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F07541A1CE0506700F7BB95 /* LaunchScreen.storyboard */; };
 		6F0754271CE0506700F7BB95 /* KARestaurantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754261CE0506700F7BB95 /* KARestaurantTests.swift */; };
 		6F0754321CE0506700F7BB95 /* KARestaurantUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754311CE0506700F7BB95 /* KARestaurantUITests.swift */; };
-		6F0890271D065F2200DC95EA /* DecodeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0890241D065F2200DC95EA /* DecodeOperation.swift */; };
-		6F0890281D065F2200DC95EA /* ImageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0890251D065F2200DC95EA /* ImageDecoder.swift */; };
-		6F0890291D065F2200DC95EA /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0890261D065F2200DC95EA /* ImageRequest.swift */; };
 		6FF7DEC21D066DF800D1EB77 /* ImageUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEBD1D066DF800D1EB77 /* ImageUpload.swift */; };
 		6FF7DEC31D066DF800D1EB77 /* readme-model in Resources */ = {isa = PBXBuildFile; fileRef = 6FF7DEBE1D066DF800D1EB77 /* readme-model */; };
 		6FF7DEC41D066DF800D1EB77 /* ResponseRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEBF1D066DF800D1EB77 /* ResponseRestaurant.swift */; };
@@ -35,7 +32,6 @@
 		6FF7DEE01D066F7100D1EB77 /* EditRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DED91D066F7100D1EB77 /* EditRestaurantTableViewController.swift */; };
 		6FF7DEE11D066F7100D1EB77 /* ListRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEDA1D066F7100D1EB77 /* ListRestaurantTableViewController.swift */; };
 		6FF7DEE71D06704300D1EB77 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEE41D06704300D1EB77 /* ConnectionManager.swift */; };
-		6FF7DEE81D06704300D1EB77 /* PhotosDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEE51D06704300D1EB77 /* PhotosDataManager.swift */; };
 		6FF7DEE91D06704300D1EB77 /* readme-services in Resources */ = {isa = PBXBuildFile; fileRef = 6FF7DEE61D06704300D1EB77 /* readme-services */; };
 		6FF7DEEC1D06707900D1EB77 /* readme-resource in Resources */ = {isa = PBXBuildFile; fileRef = 6FF7DEEB1D06707900D1EB77 /* readme-resource */; };
 		6FF7DEEE1D0670A100D1EB77 /* readme-utility in Resources */ = {isa = PBXBuildFile; fileRef = 6FF7DEED1D0670A100D1EB77 /* readme-utility */; };
@@ -88,9 +84,6 @@
 		6F07542D1CE0506700F7BB95 /* KARestaurantUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KARestaurantUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F0754311CE0506700F7BB95 /* KARestaurantUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KARestaurantUITests.swift; sourceTree = "<group>"; };
 		6F0754331CE0506700F7BB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6F0890241D065F2200DC95EA /* DecodeOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodeOperation.swift; sourceTree = "<group>"; };
-		6F0890251D065F2200DC95EA /* ImageDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDecoder.swift; sourceTree = "<group>"; };
-		6F0890261D065F2200DC95EA /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		6FB5B7661D050F4200A3B709 /* Material.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Material.framework; path = "../../../Library/Developer/Xcode/DerivedData/KARestaurant-azyzutuqezlpewagbdarlsxcbkdr/Build/Products/Debug-iphoneos/Material.framework"; sourceTree = "<group>"; };
 		6FF7DEBD1D066DF800D1EB77 /* ImageUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUpload.swift; sourceTree = "<group>"; };
 		6FF7DEBE1D066DF800D1EB77 /* readme-model */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-model"; sourceTree = "<group>"; };
@@ -107,7 +100,6 @@
 		6FF7DED91D066F7100D1EB77 /* EditRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		6FF7DEDA1D066F7100D1EB77 /* ListRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRestaurantTableViewController.swift; sourceTree = "<group>"; };
 		6FF7DEE41D06704300D1EB77 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
-		6FF7DEE51D06704300D1EB77 /* PhotosDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosDataManager.swift; sourceTree = "<group>"; };
 		6FF7DEE61D06704300D1EB77 /* readme-services */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-services"; sourceTree = "<group>"; };
 		6FF7DEEB1D06707900D1EB77 /* readme-resource */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-resource"; sourceTree = "<group>"; };
 		6FF7DEED1D0670A100D1EB77 /* readme-utility */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-utility"; sourceTree = "<group>"; };
@@ -220,9 +212,6 @@
 				6FF7DEED1D0670A100D1EB77 /* readme-utility */,
 				6FF7DEEF1D0670D500D1EB77 /* Constant.swift */,
 				6FF7DEF01D0670D500D1EB77 /* CustomCamera.swift */,
-				6F0890241D065F2200DC95EA /* DecodeOperation.swift */,
-				6F0890251D065F2200DC95EA /* ImageDecoder.swift */,
-				6F0890261D065F2200DC95EA /* ImageRequest.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -322,7 +311,6 @@
 			isa = PBXGroup;
 			children = (
 				6FF7DEE41D06704300D1EB77 /* ConnectionManager.swift */,
-				6FF7DEE51D06704300D1EB77 /* PhotosDataManager.swift */,
 				6FF7DEE61D06704300D1EB77 /* readme-services */,
 			);
 			path = Services;
@@ -758,11 +746,9 @@
 				6FF7DEDC1D066F7100D1EB77 /* LoginAndSignUpTableVC.swift in Sources */,
 				6FF7DEF21D0670D500D1EB77 /* CustomCamera.swift in Sources */,
 				6FF7DEE01D066F7100D1EB77 /* EditRestaurantTableViewController.swift in Sources */,
-				6F0890291D065F2200DC95EA /* ImageRequest.swift in Sources */,
 				6FF7DECF1D066EB700D1EB77 /* ListRestaurantTableViewCell.swift in Sources */,
 				6FF7DEE71D06704300D1EB77 /* ConnectionManager.swift in Sources */,
 				6F0754121CE0506700F7BB95 /* AppDelegate.swift in Sources */,
-				6F0890281D065F2200DC95EA /* ImageDecoder.swift in Sources */,
 				6FF7DEF11D0670D500D1EB77 /* Constant.swift in Sources */,
 				6FF7DEF81D0684FE00D1EB77 /* RestaurantDetailTableViewController.swift in Sources */,
 				6FF7DECE1D066EB700D1EB77 /* CustomCell.swift in Sources */,
@@ -773,9 +759,7 @@
 				6FF7DEC51D066DF800D1EB77 /* Restaurant.swift in Sources */,
 				192244711D07B30400D37208 /* AddRestaurantCollectionViewCell.swift in Sources */,
 				6FF7DEC21D066DF800D1EB77 /* ImageUpload.swift in Sources */,
-				6FF7DEE81D06704300D1EB77 /* PhotosDataManager.swift in Sources */,
 				19C636B01D08FF2900A18B06 /* City.swift in Sources */,
-				6F0890271D065F2200DC95EA /* DecodeOperation.swift in Sources */,
 				6FF7DEE11D066F7100D1EB77 /* ListRestaurantTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

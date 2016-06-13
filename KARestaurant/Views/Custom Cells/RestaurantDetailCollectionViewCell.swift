@@ -13,41 +13,29 @@ class RestaurantDetailCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var menuImageView: UIImageView!
     
     var restaurantMenu: Menu!
-    var request: ImageRequest?
     
     
     func configureMenu(menu: Menu) {
         self.restaurantMenu = menu
         reset()
-        loadImage()
+        downloadImage()
     }
     
     func reset() {
         menuImageView.image = nil
-        request?.cancel()
     }
     
-    func loadImage() {
-        let urlString = restaurantMenu.url!
-        if let image = PhotosDataManager.sharedManager.cachedImage(urlString) {
-            populateCell(image)
-            return
-        }
-        downloadImage()
-    }
+   
     
     func downloadImage() {
         //  loadingIndicator.startAnimating()
-        menuImageView.image = UIImage(named: "defaultPhoto")
-        let urlString = restaurantMenu.url!
-        request = PhotosDataManager.sharedManager.getNetworkImage(urlString) { image in
-            self.populateCell(image)
+        
+        if let  urlString = restaurantMenu.url {
+            self.menuImageView.kf_setImageWithURL(NSURL(string: urlString)!, placeholderImage: UIImage(named: "defaultPhoto"), optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
+            }
+        }else{
+            self.menuImageView.image = UIImage(named: "null")
         }
-    }
-    
-    func populateCell(image: UIImage) {
-     
-        menuImageView.image = image
     }
 }
 
