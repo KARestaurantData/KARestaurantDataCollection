@@ -297,7 +297,28 @@ extension ListRestaurantTableViewController {
         
         if !CLLocationManager.locationServicesEnabled() {
             print("LOCATION SERVICES DISABLED");
-            return;
+            let appearance = SCLAlertView.SCLAppearance(
+                showCloseButton: false
+                
+                //showCircularIcon: false
+                
+            )
+            let alert = SCLAlertView(appearance: appearance)
+            alert.addButton("Close") {
+            }
+            
+            
+            alert.showTitle(
+                "KA Restaurant", // Title of view
+                subTitle: "Please enable your location service before you can take the photo!", // String of view
+                duration: 0.0, // Duration to show before closing automatically, default: 0.0
+                completeText: "", // Optional button value, default: ""
+                style: .Success, // Styles - see below.
+                colorStyle: 0xFF80AB,
+                colorTextButton: 0xFFFFFF,
+                circleIconImage: UIImage(named: "meal1")
+            )
+            return
         }
         
         imagePicker.delegate = self;
