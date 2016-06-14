@@ -22,6 +22,8 @@ import DownPicker
 import ObjectMapper
 import ImageSlideshow
 import Kingfisher
+import SCLAlertView
+import MMMaterialDesignSpinner
 
 class EditRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
     
@@ -84,6 +86,8 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     var restaurantMenuImageFromServerDictionary = [Int : String]()
     var deleteRestaurantMenuImageArray = [Int]()
     
+    // Initialize the progress view
+    var centerSpinner : MMMaterialDesignSpinner = MMMaterialDesignSpinner(frame: CGRectMake(0, 0, 75,75))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,6 +118,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
         prepareDownPicker()
         prepareEmailField()
         prepareRestaurantThumnail()
+         prepareRefreshControl()
         
         for image in (restaurant?.images)!{
             restaurantImageFromServerDictionary[image.id!] = image.url
@@ -172,6 +177,37 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             }
         }
     }
+    
+    private func prepareRefreshControl(){
+        
+        self.centerSpinner.center = self.view.center
+        
+        // Set the line width of the spinner
+        self.centerSpinner.lineWidth = 5
+        
+        // Set the tint color of the spinner
+        self.centerSpinner.tintColor = MaterialColor.cyan.darken1
+        
+        // Add it as a subview
+        self.view.addSubview(centerSpinner)
+        
+        
+    }
+    
+    private func centerSpinnerStartLoading(){
+        // Start & stop animations
+        self.centerSpinner.startAnimating()
+        // add refresh control to view
+        self.view.userInteractionEnabled = false
+    }
+    
+    private func centerSpinnerStopLoading(){
+        // Start & stop animations
+        self.centerSpinner.stopAnimating()
+        // add refresh control to view
+        self.view.userInteractionEnabled = true
+    }
+    
     
     /// General preparation statements.
     private func prepareView() {
@@ -475,6 +511,8 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     @IBAction func saveAction(sender: AnyObject) {
         print("save click")
+        self.tableView.setContentOffset(CGPointZero, animated:true)
+        centerSpinnerStartLoading()
         uploadImage()
         
     }
@@ -543,8 +581,38 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
-                        self.saveButton.enabled = false
-                        print(response)
+                        switch response.result {
+                        case .Success:
+                            print(response)
+                            self.centerSpinnerStopLoading()
+                            self.cancel(UIBarButtonItem())
+                        case .Failure(let error):
+                            let appearance = SCLAlertView.SCLAppearance(
+                                showCloseButton: false
+                                
+                                //showCircularIcon: false
+                                
+                            )
+                            
+                            let alert = SCLAlertView(appearance: appearance)
+                            alert.addButton("Close") {
+                                // fetch data for first load
+                                self.centerSpinnerStopLoading()
+                                self.saveButton.enabled = true
+                            }
+                            
+                            alert.showTitle(
+                                "Connection Error", // Title of view
+                                subTitle: error.localizedDescription, // String of view
+                                duration: 0.0, // Duration to show before closing automatically, default: 0.0
+                                completeText: "", // Optional button value, default: ""
+                                style: .Success, // Styles - see below.
+                                colorStyle: 0x00ACC1,
+                                colorTextButton: 0xFFFFFF,
+                                circleIconImage: UIImage(named: "meme")
+                            )
+                        }
+
                         
                     }
                 case .Failure(let encodingError):

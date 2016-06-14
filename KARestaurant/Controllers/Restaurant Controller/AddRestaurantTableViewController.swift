@@ -20,6 +20,7 @@ import Material
 import M13Checkbox
 import DownPicker
 import ObjectMapper
+import SCLAlertView
 import MMMaterialDesignSpinner
 
 class AddRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
@@ -113,6 +114,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         prepareDownPicker()
         prepareEmailField()
         prepareRefreshControl()
+       
     }
     
     private func prepareRefreshControl(){
@@ -123,7 +125,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         self.centerSpinner.lineWidth = 5
         
         // Set the tint color of the spinner
-        self.centerSpinner.tintColor = MaterialColor.pink.accent1
+        self.centerSpinner.tintColor = MaterialColor.cyan.darken1
         
         // Add it as a subview
         self.view.addSubview(centerSpinner)
@@ -357,16 +359,13 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         self.restaurantImageCollectionView.reloadData()
         
         if self.restaurantImageArray.count == 0 {
-            print("0")
             self.photoImageView.image = UIImage.init(named: "defaultPhoto")
         }else{
-            print("1")
             self.photoImageView.image = self.restaurantImageArray.first
             restaurantLocation = CLLocation()
             for image in self.restaurantImageAssets {
                 if let location = image.originalAsset?.location {
                     restaurantLocation = location
-                    print("\(restaurantLocation)")
                     return
                 }
             }
@@ -474,12 +473,14 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     @IBAction func saveAction(sender: AnyObject) {
         print("save click")
-        uploadImage()
+        self.tableView.setContentOffset(CGPointZero, animated:true)
+        centerSpinnerStartLoading()
+        uploadRestaurantToServer()
         
     }
     
     
-    func uploadImage(){
+    func uploadRestaurantToServer(){
         
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/multiple/register"
         
@@ -527,17 +528,46 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
-                        
-                        self.saveButton.enabled = false
-                        print(response)
-                        
+                        switch response.result {
+                        case .Success:
+                             print(response)
+                            self.centerSpinnerStopLoading()
+                            self.cancel(UIBarButtonItem())
+                        case .Failure(let error):
+                            let appearance = SCLAlertView.SCLAppearance(
+                                showCloseButton: false
+                                
+                                //showCircularIcon: false
+                                
+                            )
+                            
+                            let alert = SCLAlertView(appearance: appearance)
+                            alert.addButton("Close") {
+                                // fetch data for first load
+                                self.centerSpinnerStopLoading()
+                                self.saveButton.enabled = true
+                            }
+                            
+                            alert.showTitle(
+                                "Connection Error", // Title of view
+                                subTitle: error.localizedDescription, // String of view
+                                duration: 0.0, // Duration to show before closing automatically, default: 0.0
+                                completeText: "", // Optional button value, default: ""
+                                style: .Success, // Styles - see below.
+                                colorStyle: 0x00ACC1,
+                                colorTextButton: 0xFFFFFF,
+                                circleIconImage: UIImage(named: "meme")
+                            )
+                        }
                     }
                 case .Failure(let encodingError):
                     print(encodingError)
+                    
                 }
             }
         )
     }
+    
     
     func showImagePickerWithAssetType(sender: RaisedButton,
                                       assetType: DKImagePickerControllerAssetType,
@@ -571,14 +601,16 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             
             pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
                 print("didSelectAssets")
-                self.centerSpinnerStartLoading()
+                
+                self.view.userInteractionEnabled = false
                 
                 self.restaurantImageArray.removeAll()
                 self.restaurantImageAssets.removeAll()
                 self.restaurantImageAssets = assets
                 
                 if self.restaurantImageAssets.count == 0 {
-                    self.centerSpinnerStopLoading()
+                    
+                    self.view.userInteractionEnabled = true
                     return
                 }
                 
@@ -605,14 +637,16 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             
             pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
                print("didSelectAssets")
-                self.centerSpinnerStartLoading()
+                
+                self.view.userInteractionEnabled = false
                 self.restaurantMenuImageArray.removeAll()
                 self.restaurantMenuImageAssets.removeAll()
                 self.restaurantMenuImageAssets = assets
                 
                 
                 if self.restaurantMenuImageAssets.count == 0 {
-                     self.centerSpinnerStopLoading()
+                    
+                    self.view.userInteractionEnabled = true
                     return
                 }
                 
