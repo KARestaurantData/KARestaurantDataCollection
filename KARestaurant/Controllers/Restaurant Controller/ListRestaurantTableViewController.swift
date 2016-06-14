@@ -105,29 +105,57 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
             
-            
-            let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
-            
-            if let responsePagination = responseData!.pagination {
-                self.responsePagination = responsePagination
+            switch response.result {
+            case .Success:
+                let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
                 
+                if let responsePagination = responseData!.pagination {
+                    self.responsePagination = responsePagination
+                    
+                }
+                // remove data when pull to refresh
+                if self.isRefreshControlLoading {
+                    self.responseRestaurant.removeAll()
+                }
+                
+                self.responseRestaurant += responseData!.data!
+                
+                print("limit: \(self.responsePagination!.limit!) item count:\(self.responseRestaurant.count)/\(self.responsePagination!.totalCount!) current page: \(self.responsePagination!.page!) page: \(self.responsePagination!.totalPages!)")
+                
+                self.isNewRestaurantDataLoading = false
+                self.isRefreshControlLoading = false
+                self.view.userInteractionEnabled = true
+                self.centerSpinner.stopAnimating()
+                self.footerSpinner.stopAnimating()
+                self.restuarantRefreshControl.endRefreshing()
+                self.tableView.reloadData()
+            case .Failure(let error):
+                let appearance = SCLAlertView.SCLAppearance(
+                    showCloseButton: false
+                    
+                    //showCircularIcon: false
+                    
+                )
+                let alert = SCLAlertView(appearance: appearance)
+                alert.addButton("Close") {
+                    // fetch data for first load
+                    self.getRestuarant(1, limit: 20)
+                }
+                
+                
+                alert.showTitle(
+                    "Connection Error", // Title of view
+                    subTitle: error.localizedDescription, // String of view
+                    duration: 0.0, // Duration to show before closing automatically, default: 0.0
+                    completeText: "", // Optional button value, default: ""
+                    style: .Success, // Styles - see below.
+                    colorStyle: 0x00ACC1,
+                    colorTextButton: 0xFFFFFF,
+                    circleIconImage: UIImage(named: "meme")
+                )
             }
-            // remove data when pull to refresh
-            if self.isRefreshControlLoading {
-                self.responseRestaurant.removeAll()
-            }
             
-            self.responseRestaurant += responseData!.data!
-            
-            print("limit: \(self.responsePagination!.limit!) item count:\(self.responseRestaurant.count)/\(self.responsePagination!.totalCount!) current page: \(self.responsePagination!.page!) page: \(self.responsePagination!.totalPages!)")
-            
-            self.isNewRestaurantDataLoading = false
-            self.isRefreshControlLoading = false
-            self.view.userInteractionEnabled = true
-            self.centerSpinner.stopAnimating()
-            self.footerSpinner.stopAnimating()
-            self.restuarantRefreshControl.endRefreshing()
-            self.tableView.reloadData()
+           
         }
     }
     

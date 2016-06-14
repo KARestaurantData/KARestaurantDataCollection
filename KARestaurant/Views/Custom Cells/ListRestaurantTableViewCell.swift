@@ -13,23 +13,21 @@ import Kingfisher
 
 
 class ListRestaurantTableViewCell: MaterialTableViewCell {
-    
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var restaurantImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var deliveryLabel: UILabel!
     @IBOutlet weak var restaurantDetailLabel: UILabel!
-    
     @IBOutlet weak var editButton: MaterialPulseView!
     
     var restaurant: Restaurant!
  
     func configure(restaurant: Restaurant) {
         self.restaurant = restaurant
-        reset()
+        //reset()
         downloadImage()
     }
     
-    func reset() {
+    private func reset() {
         restaurantImageView.image = nil
         titleLabel.hidden = true
         deliveryLabel.hidden = true
@@ -37,8 +35,7 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
         editButton.hidden = true
     }
     
-    func downloadImage(){
-        
+    private func downloadImage(){
         if let  urlString = restaurant.thumbnail {
             self.restaurantImageView.kf_setImageWithURL(NSURL(string: urlString)!, placeholderImage: UIImage(named: "defaultPhoto"), optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
                 self.populateCell()
@@ -49,7 +46,7 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     }
     
  
-    func populateCell() {
+    private func populateCell() {
         titleLabel.text = restaurant.name
         restaurantDetailLabel.text = restaurant.restDescription
         deliveryLabel.text = NSString.init(string: restaurant.isDeliver!).boolValue ? "Delivery" : "No Delivery"
@@ -57,6 +54,10 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
         editButton.contentMode = UIViewContentMode.ScaleToFill
         editButton.depth = .Depth2
         
+        //showField()
+    }
+    
+    private func showField() {
         titleLabel.hidden = false
         deliveryLabel.hidden = false
         restaurantDetailLabel.hidden = false

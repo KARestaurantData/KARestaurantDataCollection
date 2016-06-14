@@ -228,8 +228,8 @@
 		6FF7DEBC1D066DF800D1EB77 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6FF7DEBD1D066DF800D1EB77 /* ImageUpload.swift */,
 				6FF7DEBE1D066DF800D1EB77 /* readme-model */,
+				6FF7DEBD1D066DF800D1EB77 /* ImageUpload.swift */,
 				6FF7DEBF1D066DF800D1EB77 /* ResponseRestaurant.swift */,
 				6FF7DEC11D066DF800D1EB77 /* User.swift */,
 				19C636AF1D08FF2900A18B06 /* City.swift */,

@@ -29,5 +29,3 @@ class Constant{
         ]
     }
 }
-
-typealias DownloadComplete = () -> ()
