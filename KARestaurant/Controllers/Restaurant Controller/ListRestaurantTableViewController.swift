@@ -54,7 +54,7 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     
     
     private func prepareRefreshControl(){
-        navigationController!.navigationBar.barTintColor = MaterialColor.pink.accent1
+        navigationController!.navigationBar.barTintColor = MaterialColor.cyan.darken1
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: MaterialColor.white]
         navigationController!.navigationBar.tintColor = MaterialColor.white
        
@@ -66,8 +66,8 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         self.footerSpinner.lineWidth = 3
         
         // Set the tint color of the spinner
-        self.centerSpinner.tintColor = MaterialColor.pink.accent1
-        self.footerSpinner.tintColor = MaterialColor.pink.accent1
+        self.centerSpinner.tintColor = MaterialColor.cyan.darken1
+        self.footerSpinner.tintColor = MaterialColor.cyan.darken1
         
         // Add it as a subview
         self.view.addSubview(centerSpinner)
@@ -78,7 +78,7 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         
         
         // add refresh control to view
-        restuarantRefreshControl.tintColor = MaterialColor.pink.accent1
+        restuarantRefreshControl.tintColor = MaterialColor.cyan.darken1
         restuarantRefreshControl.addTarget(self, action: #selector(ListRestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
         self.tableView.addSubview(restuarantRefreshControl)
         
