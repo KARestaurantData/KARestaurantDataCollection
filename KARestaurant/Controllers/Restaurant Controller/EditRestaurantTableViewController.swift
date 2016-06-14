@@ -191,6 +191,16 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
         self.homeTextField.text = restaurant?.location?.homeNumber
         self.streetTextField.text = restaurant?.location?.street
         self.phoneTextField.text = restaurant?.telephone?.number
+        
+        if restaurant?.isDeliver == "1" {
+            isDelivery = true
+            deliveryCheckBox.setCheckState(M13Checkbox.CheckState.Checked, animated: true)
+            deliveryLabel.textColor = MaterialColor.blue.base
+        }else{
+            isDelivery = false
+            deliveryCheckBox.setCheckState(M13Checkbox.CheckState.Unchecked, animated: true)
+            deliveryLabel.textColor = MaterialColor.grey.base
+        }
     }
     
     private func prepareCheckBox() {
