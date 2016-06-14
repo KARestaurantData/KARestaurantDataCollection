@@ -579,6 +579,11 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 self.restaurantUIImageArray.removeAll()
                 self.restaurantImageAssets = assets
                 
+                if self.restaurantImageAssets.count == 0 {
+                    return
+                }
+                
+                
                 for index in 0...self.restaurantImageAssets.count {
                     
                     if self.restaurantImageAssets.count !=  0 && index < self.restaurantImageAssets.count {
@@ -602,6 +607,11 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 self.restaurantMenuImageAssets.removeAll()
                 self.restaurantMenuUIImageArray.removeAll()
                 self.restaurantMenuImageAssets = assets
+                
+                if self.restaurantMenuImageAssets.count == 0 {
+                    return
+                }
+                
                 
                 for index in 0...self.restaurantMenuImageAssets.count {
                     

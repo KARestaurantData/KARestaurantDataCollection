@@ -350,7 +350,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     // MARK: Actions
     @IBAction func showImagePicker(sender: RaisedButton) {
-        showImagePickerWithAssetType(sender, assetType: DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
+        showImagePickerWithAssetType(sender, assetType: DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Photo, allowsLandscape: true, singleSelect: false);
     }
     
     func reloadRestaurantImageCollectionView(){
@@ -577,6 +577,11 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 self.restaurantImageAssets.removeAll()
                 self.restaurantImageAssets = assets
                 
+                if self.restaurantImageAssets.count == 0 {
+                    self.centerSpinnerStopLoading()
+                    return
+                }
+                
                 for index in 0...self.restaurantImageAssets.count {
                     
                     if self.restaurantImageAssets.count !=  0 && index < self.restaurantImageAssets.count {
@@ -604,6 +609,12 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 self.restaurantMenuImageArray.removeAll()
                 self.restaurantMenuImageAssets.removeAll()
                 self.restaurantMenuImageAssets = assets
+                
+                
+                if self.restaurantMenuImageAssets.count == 0 {
+                     self.centerSpinnerStopLoading()
+                    return
+                }
                 
                 for index in 0...self.restaurantMenuImageAssets.count {
                     
