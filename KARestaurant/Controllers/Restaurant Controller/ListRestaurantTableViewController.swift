@@ -263,9 +263,9 @@ extension ListRestaurantTableViewController {
             duration: 0.0, // Duration to show before closing automatically, default: 0.0
             completeText: "Close", // Optional button value, default: ""
             style: .Success, // Styles - see below.
-            colorStyle: 0xFF80AB,
+            colorStyle: 0x00ACC1,
             colorTextButton: 0xFFFFFF,
-            circleIconImage: UIImage(named: "meal1")
+            circleIconImage: UIImage(named: "shop")
         )
         
     }
@@ -314,9 +314,9 @@ extension ListRestaurantTableViewController {
                 duration: 0.0, // Duration to show before closing automatically, default: 0.0
                 completeText: "", // Optional button value, default: ""
                 style: .Success, // Styles - see below.
-                colorStyle: 0xFF80AB,
+                colorStyle: 0x00ACC1,
                 colorTextButton: 0xFFFFFF,
-                circleIconImage: UIImage(named: "meal1")
+                circleIconImage: UIImage(named: "meme")
             )
             return
         }
