@@ -20,9 +20,7 @@
 		6FF7DEC21D066DF800D1EB77 /* ImageUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEBD1D066DF800D1EB77 /* ImageUpload.swift */; };
 		6FF7DEC31D066DF800D1EB77 /* readme-model in Resources */ = {isa = PBXBuildFile; fileRef = 6FF7DEBE1D066DF800D1EB77 /* readme-model */; };
 		6FF7DEC41D066DF800D1EB77 /* ResponseRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEBF1D066DF800D1EB77 /* ResponseRestaurant.swift */; };
-		6FF7DEC51D066DF800D1EB77 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEC01D066DF800D1EB77 /* Restaurant.swift */; };
 		6FF7DEC61D066DF800D1EB77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEC11D066DF800D1EB77 /* User.swift */; };
-		6FF7DECE1D066EB700D1EB77 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEC91D066EB700D1EB77 /* CustomCell.swift */; };
 		6FF7DECF1D066EB700D1EB77 /* ListRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DECA1D066EB700D1EB77 /* ListRestaurantTableViewCell.swift */; };
 		6FF7DED01D066EB700D1EB77 /* readme-view in Resources */ = {isa = PBXBuildFile; fileRef = 6FF7DECB1D066EB700D1EB77 /* readme-view */; };
 		6FF7DED11D066EB700D1EB77 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FF7DECD1D066EB700D1EB77 /* User.storyboard */; };
@@ -87,9 +85,7 @@
 		6FF7DEBD1D066DF800D1EB77 /* ImageUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUpload.swift; sourceTree = "<group>"; };
 		6FF7DEBE1D066DF800D1EB77 /* readme-model */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-model"; sourceTree = "<group>"; };
 		6FF7DEBF1D066DF800D1EB77 /* ResponseRestaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseRestaurant.swift; sourceTree = "<group>"; };
-		6FF7DEC01D066DF800D1EB77 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		6FF7DEC11D066DF800D1EB77 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		6FF7DEC91D066EB700D1EB77 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		6FF7DECA1D066EB700D1EB77 /* ListRestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		6FF7DECB1D066EB700D1EB77 /* readme-view */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-view"; sourceTree = "<group>"; };
 		6FF7DECD1D066EB700D1EB77 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
@@ -235,7 +231,6 @@
 				6FF7DEBD1D066DF800D1EB77 /* ImageUpload.swift */,
 				6FF7DEBE1D066DF800D1EB77 /* readme-model */,
 				6FF7DEBF1D066DF800D1EB77 /* ResponseRestaurant.swift */,
-				6FF7DEC01D066DF800D1EB77 /* Restaurant.swift */,
 				6FF7DEC11D066DF800D1EB77 /* User.swift */,
 				19C636AF1D08FF2900A18B06 /* City.swift */,
 				19C636B11D0919C700A18B06 /* RestaurantCategory.swift */,
@@ -256,7 +251,6 @@
 		6FF7DEC81D066EB700D1EB77 /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
-				6FF7DEC91D066EB700D1EB77 /* CustomCell.swift */,
 				6FF7DECA1D066EB700D1EB77 /* ListRestaurantTableViewCell.swift */,
 				6FF7DF011D06B5B200D1EB77 /* RestaurantDetailCollectionViewCell.swift */,
 				192244701D07B30400D37208 /* AddRestaurantCollectionViewCell.swift */,
@@ -747,12 +741,10 @@
 				6F0754121CE0506700F7BB95 /* AppDelegate.swift in Sources */,
 				6FF7DEF11D0670D500D1EB77 /* Constant.swift in Sources */,
 				6FF7DEF81D0684FE00D1EB77 /* RestaurantDetailTableViewController.swift in Sources */,
-				6FF7DECE1D066EB700D1EB77 /* CustomCell.swift in Sources */,
 				6FF7DEC61D066DF800D1EB77 /* User.swift in Sources */,
 				6FF7DEDE1D066F7100D1EB77 /* AddRestaurantTableViewController.swift in Sources */,
 				19C636B41D096D9C00A18B06 /* EditRestaurantCollectionViewCell.swift in Sources */,
 				6FF7DEC41D066DF800D1EB77 /* ResponseRestaurant.swift in Sources */,
-				6FF7DEC51D066DF800D1EB77 /* Restaurant.swift in Sources */,
 				192244711D07B30400D37208 /* AddRestaurantCollectionViewCell.swift in Sources */,
 				6FF7DEC21D066DF800D1EB77 /* ImageUpload.swift in Sources */,
 				19C636B01D08FF2900A18B06 /* City.swift in Sources */,

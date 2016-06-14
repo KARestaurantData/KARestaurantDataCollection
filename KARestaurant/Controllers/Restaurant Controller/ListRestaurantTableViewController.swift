@@ -26,7 +26,7 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     
     @IBOutlet weak var takePhotoButton: UIButton!
     //  object
-    var responseRestaurant = [Restaurants]()
+    var responseRestaurant = [Restaurant]()
     var responsePagination = Pagination()
     
     @IBOutlet weak var footerView: UIView!
@@ -224,7 +224,7 @@ extension ListRestaurantTableViewController {
     
     /// Prepares the cells within the tableView.
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let restaurant = self.responseRestaurant[indexPath.row] as Restaurants
+        let restaurant = self.responseRestaurant[indexPath.row] as Restaurant
         // Fetches the appropriate restuarant for the data source layout.
         
         // Table view cells are reused and should be dequeued using a cell identifier.

@@ -770,7 +770,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imgcell" id="FTX-LD-B0K" customClass="CustomCell" customModule="KARestaurant" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imgcell" id="FTX-LD-B0K" customClass="AddRestaurantCollectionViewCell" customModule="KARestaurant" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -790,7 +790,7 @@
                                                                 <constraint firstAttribute="trailing" secondItem="2Is-FO-Gix" secondAttribute="trailing" id="voi-Y7-xHf"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="myImage" destination="2Is-FO-Gix" id="FZN-cy-6iR"/>
+                                                                <outlet property="collectionViewImage" destination="2Is-FO-Gix" id="ofU-9V-Q8l"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -858,7 +858,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imgcell" id="pcE-i1-t67" customClass="CustomCell" customModule="KARestaurant" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imgcell" id="pcE-i1-t67" customClass="AddRestaurantCollectionViewCell" customModule="KARestaurant" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -878,7 +878,7 @@
                                                                 <constraint firstItem="Lxz-Gw-F2x" firstAttribute="leading" secondItem="pcE-i1-t67" secondAttribute="leading" id="b1y-Gf-xES"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="myImage" destination="Lxz-Gw-F2x" id="MRk-Yz-iUM"/>
+                                                                <outlet property="collectionViewImage" destination="Lxz-Gw-F2x" id="ZxF-47-kJu"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>

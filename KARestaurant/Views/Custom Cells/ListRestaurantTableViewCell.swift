@@ -21,9 +21,9 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     
     @IBOutlet weak var editButton: MaterialPulseView!
     
-    var restaurant: Restaurants!
+    var restaurant: Restaurant!
  
-    func configure(restaurant: Restaurants) {
+    func configure(restaurant: Restaurant) {
         self.restaurant = restaurant
         reset()
         downloadImage()

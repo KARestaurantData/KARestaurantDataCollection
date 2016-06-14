@@ -9,5 +9,5 @@
 import UIKit
 
 class AddRestaurantCollectionViewCell: UICollectionViewCell {
-    
+     @IBOutlet weak var collectionViewImage: UIImageView!
 }

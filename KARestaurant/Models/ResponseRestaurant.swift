@@ -12,7 +12,7 @@ import ObjectMapper
 class  ResponseRestaurant: Mappable {
     var message : String?
     var code : String?
-    var data : [Restaurants]?
+    var data : [Restaurant]?
     var pagination : Pagination?
     
     required init?(_ map: Map){
@@ -32,7 +32,7 @@ class  ResponseRestaurant: Mappable {
 }
 
 
-class Restaurants: Mappable{
+class Restaurant: Mappable{
     var id : Int?
     var name : String?
     var restDescription : String?

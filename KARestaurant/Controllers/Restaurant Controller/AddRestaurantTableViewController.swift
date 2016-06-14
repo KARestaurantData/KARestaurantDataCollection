@@ -394,15 +394,15 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         if collectionView.isEqual(self.restaurantImageCollectionView){
             
             
-            let cell = self.restaurantImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
+            let cell = self.restaurantImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! AddRestaurantCollectionViewCell
             
-            cell.myImage.image = self.restaurantImageArray[indexPath.row]
+            cell.collectionViewImage.image = self.restaurantImageArray[indexPath.row]
             
             return cell
         }else{
-            let cell = self.restaurantMenuImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! CustomCell
+            let cell = self.restaurantMenuImageCollectionView.dequeueReusableCellWithReuseIdentifier("imgcell", forIndexPath: indexPath) as! AddRestaurantCollectionViewCell
             
-            cell.myImage.image = self.restaurantMenuImageArray[indexPath.row]
+            cell.collectionViewImage.image = self.restaurantMenuImageArray[indexPath.row]
             
             return cell
         }

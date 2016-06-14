@@ -29,7 +29,7 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
      This value is either passed by `RestaurantTableViewController` in `prepareForSegue(_:sender:)`
      or constructed as part of adding a new meal.
      */
-    var restaurant: Restaurants?
+    var restaurant: Restaurant?
     
      // MARK: viewDidLoad
     override func viewDidLoad() {

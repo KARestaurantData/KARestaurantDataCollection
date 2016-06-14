@@ -73,7 +73,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     // Restaurant Location
    // var restaurantLocation: CLLocation = CLLocation()
     
-    var restaurant: Restaurants?
+    var restaurant: Restaurant?
     
     var rootRestaurantImageArray = [AnyObject]()
     var restaurantImageFromServerDictionary = [Int : String]()
@@ -383,7 +383,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     // MARK: Actions
     @IBAction func showImagePicker(sender: RaisedButton) {
-        showImagePickerWithAssetType(sender, assetType: DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Both, allowsLandscape: true, singleSelect: false);
+        showImagePickerWithAssetType(sender, assetType: DKImagePickerType.types[0], allowMultipleType: true, sourceType: DKImagePickerControllerSourceType.Photo, allowsLandscape: true, singleSelect: false);
     }
     
     func reloadRestaurantImageCollectionView(){
