@@ -22,7 +22,7 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     // refresh control status
     var isNewRestaurantDataLoading: Bool = false
     var isRefreshControlLoading: Bool = false
-    let restuarantRefreshControl: UIRefreshControl = UIRefreshControl() // Top RefreshControl
+    let restuarantRefreshControl = UIRefreshControl() // Top RefreshControl
     
     @IBOutlet weak var takePhotoButton: UIButton!
     //  object
@@ -46,18 +46,19 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         super.viewDidLoad()
         
         self.prepareRefreshControl()
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         // fetch data for first load
         getRestuarant(1, limit: 20)
     }
-    
     
     
     private func prepareRefreshControl(){
         navigationController!.navigationBar.barTintColor = MaterialColor.cyan.darken1
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: MaterialColor.white]
         navigationController!.navigationBar.tintColor = MaterialColor.white
-       
+        
         self.centerSpinner.center = self.view.center
         self.footerSpinner.center.x = self.footerView.center.x
         
@@ -78,7 +79,9 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         
         
         // add refresh control to view
-        restuarantRefreshControl.tintColor = MaterialColor.cyan.darken1
+        
+        restuarantRefreshControl.tintColor = MaterialColor.white
+        restuarantRefreshControl.backgroundColor = MaterialColor.cyan.darken1
         restuarantRefreshControl.addTarget(self, action: #selector(ListRestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
         self.tableView.addSubview(restuarantRefreshControl)
         
@@ -87,14 +90,39 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     
     // MARK: Refresh Control Action
     func uiRefreshControlAction() {
-        print((self.responsePagination?.limit)!)
-        
-        // reload data
-        if !isRefreshControlLoading {
-            self.isRefreshControlLoading =  true
-            self.footerImageView.hidden = true
-            getRestuarant(1, limit: (self.responsePagination?.limit)!)
+        if let limit =  self.responsePagination?.limit {
+            print(limit)
+            
+            // reload data
+            if !isRefreshControlLoading {
+                self.isRefreshControlLoading =  true
+                self.footerImageView.hidden = true
+                getRestuarant(1, limit: limit)
+            }
+        }else{
+            // No data
+            getRestuarant(1, limit: 20)
         }
+        
+    }
+    
+    func reloadData() {
+        // Reload table data
+        self.tableView.reloadData()
+        
+        // End the refreshing
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MMM d, h:mm a"
+        let title = "Last update: \(formatter.stringFromDate(NSDate()))"
+        let attrsDictionary = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName)
+        let attributedTitle = NSAttributedString(string: title, attributes: attrsDictionary as? [String : AnyObject])
+        self.restuarantRefreshControl.attributedTitle = attributedTitle;
+        
+        // stop animations
+        self.view.userInteractionEnabled = true
+        self.restuarantRefreshControl.endRefreshing()
+        self.centerSpinner.stopAnimating()
+        
     }
     
     // MARK: Fetch Data
@@ -102,33 +130,65 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=\(page)&limit=\(limit)"
-        
+
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
-            
             switch response.result {
             case .Success:
+                
                 let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
                 
-                if let responsePagination = responseData!.pagination {
-                    self.responsePagination = responsePagination
+                if (responseData?.code)! == "7777"{
+                    print("\(responseData?.code)")
+                    let appearance = SCLAlertView.SCLAppearance(
+                        showCloseButton: false
+                        
+                        //showCircularIcon: false
+                        
+                    )
+                    let alert = SCLAlertView(appearance: appearance)
+                    alert.addButton("Close") {
+                        //  object
+                        self.responseRestaurant.removeAll()
+                        self.responsePagination = nil
+                        self.reloadData()
+                        return
+                    }
+                    
+                    
+                    alert.showTitle(
+                        "KA Restaurant", // Title of view
+                        subTitle: "No Data", // String of view
+                        duration: 0.0, // Duration to show before closing automatically, default: 0.0
+                        completeText: "", // Optional button value, default: ""
+                        style: .Success, // Styles - see below.
+                        colorStyle: 0x00ACC1,
+                        colorTextButton: 0xFFFFFF,
+                        circleIconImage: UIImage(named: "meme")
+                    )
+                }else{
+                    if let responsePagination = responseData!.pagination {
+                        self.responsePagination = responsePagination
+                        
+                    }
+                    // remove data when pull to refresh
+                    if self.isRefreshControlLoading {
+                        self.responseRestaurant.removeAll()
+                    }
+                    
+                    self.responseRestaurant += responseData!.data!
+                    
+                    print("limit: \(self.responsePagination!.limit!) item count:\(self.responseRestaurant.count)/\(self.responsePagination!.totalCount!) current page: \(self.responsePagination!.page!) page: \(self.responsePagination!.totalPages!)")
+                    
+                    self.isNewRestaurantDataLoading = false
+                    self.isRefreshControlLoading = false
+                    self.view.userInteractionEnabled = true
+                    self.centerSpinner.stopAnimating()
+                    self.footerSpinner.stopAnimating()
+                    self.restuarantRefreshControl.endRefreshing()
+                    self.performSelectorOnMainThread(#selector(ListRestaurantTableViewController.reloadData), withObject: nil, waitUntilDone: false)
                     
                 }
-                // remove data when pull to refresh
-                if self.isRefreshControlLoading {
-                    self.responseRestaurant.removeAll()
-                }
                 
-                self.responseRestaurant += responseData!.data!
-                
-                print("limit: \(self.responsePagination!.limit!) item count:\(self.responseRestaurant.count)/\(self.responsePagination!.totalCount!) current page: \(self.responsePagination!.page!) page: \(self.responsePagination!.totalPages!)")
-                
-                self.isNewRestaurantDataLoading = false
-                self.isRefreshControlLoading = false
-                self.view.userInteractionEnabled = true
-                self.centerSpinner.stopAnimating()
-                self.footerSpinner.stopAnimating()
-                self.restuarantRefreshControl.endRefreshing()
-                self.tableView.reloadData()
             case .Failure(let error):
                 let appearance = SCLAlertView.SCLAppearance(
                     showCloseButton: false
@@ -155,7 +215,7 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
                 )
             }
             
-           
+            
         }
     }
     
@@ -177,7 +237,9 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
                         
                         getRestuarant((self.responsePagination?.page)! + 1, limit: (self.responsePagination?.limit)!)
                     }else{
-                       self.footerImageView.hidden = false
+                        if self.responsePagination?.totalCount > 2 {
+                            self.footerImageView.hidden = false
+                        }
                     }
                 }
             }
@@ -247,7 +309,30 @@ extension ListRestaurantTableViewController {
     
     /// Returns the number of sections.
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        // Return the number of sections.
+        if self.responseRestaurant.count > 0 {
+            
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            return 1
+            
+        } else {
+            
+            // Display a message when the table is empty
+            let messageLabel = UILabel.init(frame: CGRectMake(0, 0, self.view.bounds.size.width - 20, self.view.bounds.size.height))
+            
+            messageLabel.text = "No data is currently available. Please pull down to refresh."
+            messageLabel.textColor = UIColor.blackColor()
+            messageLabel.numberOfLines = 0;
+            messageLabel.textAlignment = NSTextAlignment.Center
+            messageLabel.font = UIFont(name: "Palatino-Italic", size:20)
+            messageLabel.sizeToFit();
+            
+            self.tableView.backgroundView = messageLabel;
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None;
+            
+        }
+        
+        return 0;
     }
     
     /// Prepares the cells within the tableView.
@@ -263,7 +348,7 @@ extension ListRestaurantTableViewController {
             gesture.indexPath = indexPath
             cell.editButton.addGestureRecognizer(gesture)
             
-
+            
             return cell
         }else{
             return UITableViewCell()
@@ -271,17 +356,17 @@ extension ListRestaurantTableViewController {
     }
     
     func handleTap(sender: CustomeTapGestureRecognizer) {
-       
+        
         let appearance = SCLAlertView.SCLAppearance(
             //showCloseButton: false
             
             //showCircularIcon: false
-        
+            
         )
         let alert = SCLAlertView(appearance: appearance)
         alert.addButton("Edit") {
             self.performSegueWithIdentifier("EditRestuarantDetail", sender: self.tableView.cellForRowAtIndexPath(sender.indexPath!))
-           // self.performSegueWithIdentifier("EditRestuarantDetail", sender: sender.restaurant)
+            // self.performSegueWithIdentifier("EditRestuarantDetail", sender: sender.restaurant)
         }
         
         
@@ -352,7 +437,7 @@ extension ListRestaurantTableViewController {
         imagePicker.delegate = self;
         imagePicker.sourceType = .Camera;
         presentViewController(imagePicker, animated: true, completion: nil);
-
+        
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {

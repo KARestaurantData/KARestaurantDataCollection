@@ -581,6 +581,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
+                        print(response.debugDescription)
                         switch response.result {
                         case .Success:
                             print(response)
