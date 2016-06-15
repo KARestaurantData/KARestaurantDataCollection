@@ -23,6 +23,8 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
     @IBOutlet weak var restaurantDeliveryLabel: UILabel!
     @IBOutlet weak var restaurantDetailLabel: UILabel!
     @IBOutlet weak var restaurantAddressLabel: UILabel!
+    @IBOutlet weak var restaurantLatitudeLabel: UILabel!
+    @IBOutlet weak var restaurantLongtitudeLabel: UILabel!
     
     var myheigh : CGFloat = 0
     /*
@@ -54,6 +56,18 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         self.restaurantNameLabel.text = restaurant?.name
         self.restaurantPhoneNumberLabel.text = restaurant?.telephone?.number
         self.restaurantDeliveryLabel.text = restaurant?.isDeliver == "0" ? "No Delivery" : "Delivery"
+        if let latitude = restaurant?.location?.latitude{
+            self.restaurantLatitudeLabel.text = "Latitude:\t" + latitude
+        }else{
+            self.restaurantLatitudeLabel.text = "Latitude:\tN/A"
+        }
+        
+        if let longtitude = restaurant?.location?.longtitude{
+            self.restaurantLongtitudeLabel.text = "Longtitude:\t" + longtitude
+        }else{
+            self.restaurantLongtitudeLabel.text = "Longtitude:\t N/A"
+        }
+        
         self.restaurantAddressLabel.text = (restaurant?.address)! + "កញ្ញា មាស សុខសោភា បាន​លើក​ឡើង​ថា៖ “រយៈពេល​ប្រមាណ​ជា​៥ឆ្នាំ​​​ហើយ​ដែល​ខ្ញុំ​បាន​ចូល​ Town ហើយ​ជាង​១០​ឆ្នាំ​ហើយ​ដែរ ដែល​ខ្ញុំ​បាន​ចូល​សិល្បៈ​ បទ​ទី​១​នៅ​ Town ​ដែល​ធ្វើ​ឲ្យ​ខ្ញុំ​ផ្ទុះ​ខ្លាំង​នោះ​គឺ​បទ “I am Sorry” គឺ​ផ្ទុះ​ខ្លាំង​ទាំង​​ចម្រៀង​ និង MV”។ កញ្ញា បន្ត​ថា​បន្ទាប់​ពី​បទ​”I am Sorry” ហើយ​គឺ​បទ “លើ​លោក​នេះ​ខ្ញុំ​ស្រលាញ់​ម៉ាក់​ខ្ញុំ​ជាង​គេ” ក៏​ផ្ទុះ​ដែរ។ បទ “I am Sorry” បាន​ចេញ​​លក់​លើ​ទី​ផ្សារ​កំឡុង​ឆ្នាំ "
         self.restaurantDetailLabel.text = (restaurant?.restDescription)! + "កញ្ញា មាស សុខសោភា បាន​លើក​ឡើង​ថា៖ “រយៈពេល​ប្រមាណ​ជា​៥ឆ្នាំ​​​ហើយ​ដែល​ខ្ញុំ​បាន​ចូល​ Town ហើយ​ជាង​១០​ឆ្នាំ​ហើយ​ដែរ ដែល​ខ្ញុំ​បាន​ចូល​សិល្បៈ​ បទ​ទី​១​នៅ​ Town ​ដែល​ធ្វើ​ឲ្យ​ខ្ញុំ​ផ្ទុះ​ខ្លាំង​នោះ​គឺ​បទ “I am Sorry” គឺ​ផ្ទុះ​ខ្លាំង​ទាំង​​ចម្រៀង​ និង MV”។ កញ្ញា បន្ត​ថា​បន្ទាប់​ពី​បទ​”I am Sorry” ហើយ​គឺ​បទ “លើ​លោក​នេះ​ខ្ញុំ​ស្រលាញ់​ម៉ាក់​ខ្ញុំ​ជាង​គេ” ក៏​ផ្ទុះ​ដែរ។ បទ “I am Sorry” បាន​ចេញ​​លក់​លើ​ទី​ផ្សារ​កំឡុង​ឆ្នាំ ២០១០ ចំណែក​ឯ​បទ “លើ​លោក​នេះ​ខ្ញុំ​ស្រលាញ់​ម៉ាក់​ខ្ញុំ​ជាង​គេ” ចេញ​​លក់​លើ​ទី​ផ្សារ​កំឡុង​ឆ្នាំ ២០១៤។ \n សម្រាប់​អាល់ប៊ុម ដែល​នឹង​ចេញ​លក់​នៅ​ថ្ងៃ​នេះ​ជា Original Soloអាល់ប៊ុម​ ឬ អាល់ប៊ុម​ទោល​ទី១ ស្នា​ដៃ​បទ​ភ្លេង​ថ្មី​សុទ្ធ​មិន​ចម្លង ហើយ​ក៏​ជា​អាល់ប៊ុម​ទោល​​លើក​ដំបូង​របស់​​​កញ្ញា​ផង​ដែរ៕កញ្ញា មាស សុខសោភា បាន​លើក​ឡើង​ថា៖ “រយៈពេល​ប្រមាណ​ជា​៥ឆ្នាំ​​​ហើយ​ដែល​ខ្ញុំ​បាន​ចូល​ Town ហើយ​ជាង​១០​ឆ្នាំ​ហើយ​ដែរ ដែល​ខ្ញុំ​បាន​ចូល​សិល្បៈ​ បទ​ទី​១​នៅ​ Town ​ដែល​ធ្វើ​ឲ្យ​ខ្ញុំ​ផ្ទុះ​ខ្លាំង​នោះ​គឺ​បទ “I am Sorry” គឺ​ផ្ទុះ​ខ្លាំង​ទាំង​​ចម្រៀង​ និង MV”។ កញ្ញា បន្ត​ថា​បន្ទាប់​ពី​បទ​”I am Sorry” ហើយ​គឺ​បទ “លើ​លោក​នេះ​ខ្ញុំ​ស្រលាញ់​ម៉ាក់​ខ្ញុំ​ជាង​គេ” ក៏​ផ្ទុះ​ដែរ។ បទ “I am Sorry” បាន​ចេញ​​លក់​លើ​ទី​ផ្សារ​កំឡុង​ឆ្នាំ ២០១០ ចំណែក​ឯ​បទ “លើ​លោក​នេះ​ខ្ញុំ​ស្រលាញ់​ម៉ាក់​ខ្ញុំ​ជាង​គេ” ចេញ​​លក់​លើ​ទី​ផ្សារ​កំឡុង​ឆ្នាំ ២០១៤។ \n សម្រាប់​អាល់ប៊ុម ដែល​នឹង​ចេញ​លក់​នៅ​ថ្ងៃ​នេះ​ជា Original Soloអាល់ប៊ុម​ ឬ អាល់ប៊ុម​ទោល​ទី១ ស្នា​ដៃ​បទ​ភ្លេង​ថ្មី​សុទ្ធ​មិន​ចម្លង ហើយ​ក៏​ជា​អាល់ប៊ុម​ទោល​​លើក​ដំបូង​របស់​​​កញ្ញា​ផង​ដែរ៕ \n\n"
         
@@ -74,10 +88,10 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         
         if indexPath.section == 0 {
             return 100
-        }else if indexPath.section == 4 {
+        }else if indexPath.section == 5 {
             return self.heightForText(self.restaurantAddressLabel.text!, font: self.restaurantAddressLabel.font, witdth: self.view.frame.size.width - 40)
             
-        }else if indexPath.section == 5 {
+        }else if indexPath.section == 6 {
             return self.heightForText(self.restaurantDetailLabel.text!, font: self.restaurantDetailLabel.font, witdth: self.view.frame.size.width - 40)
         }else{
             return 55
@@ -145,7 +159,7 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
 extension RestaurantDetailTableViewController {
     /// Determines the number of rows in the tableView.
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     /// Returns the number of sections.
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
