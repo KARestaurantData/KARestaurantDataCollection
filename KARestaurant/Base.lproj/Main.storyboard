@@ -328,10 +328,48 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Location" id="uZd-x3-pKN">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="3EF-P8-aoY">
+                                        <rect key="frame" x="0.0" y="718" width="600" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3EF-P8-aoY" id="4U8-73-f5b">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADO-3B-Pp5" userLabel="Latitude">
+                                                    <rect key="frame" x="18" y="8" width="564" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="h6G-Eb-HJJ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.67450980390000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OO-Fo-mYM" userLabel="Longitude">
+                                                    <rect key="frame" x="18" y="28" width="564" height="18"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.67450980390000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ADO-3B-Pp5" firstAttribute="top" secondItem="4U8-73-f5b" secondAttribute="topMargin" id="0Lg-n3-Rxj"/>
+                                                <constraint firstItem="1OO-Fo-mYM" firstAttribute="top" secondItem="ADO-3B-Pp5" secondAttribute="bottom" constant="2" id="8HU-e6-Rkh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="1OO-Fo-mYM" secondAttribute="trailing" constant="10" id="DGq-X2-9dX"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ADO-3B-Pp5" secondAttribute="trailing" constant="10" id="IDb-11-DGy"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="1OO-Fo-mYM" secondAttribute="bottom" id="Zxr-dC-5Vq"/>
+                                                <constraint firstItem="1OO-Fo-mYM" firstAttribute="leading" secondItem="4U8-73-f5b" secondAttribute="leadingMargin" constant="10" id="akg-BM-vuT"/>
+                                                <constraint firstItem="ADO-3B-Pp5" firstAttribute="leading" secondItem="4U8-73-f5b" secondAttribute="leadingMargin" constant="10" id="wpU-Sz-QuA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Address" id="jLY-cc-6Lf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="Ruj-aU-aF9">
-                                        <rect key="frame" x="0.0" y="718" width="600" height="55"/>
+                                        <rect key="frame" x="0.0" y="801" width="600" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ruj-aU-aF9" id="EoM-t4-5gX">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
@@ -357,7 +395,7 @@
                             <tableViewSection headerTitle="Restaurant Details" id="HvO-bm-0Du">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="j8s-Ph-keX">
-                                        <rect key="frame" x="0.0" y="801" width="600" height="55"/>
+                                        <rect key="frame" x="0.0" y="884" width="600" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j8s-Ph-keX" id="AfL-iH-wZu">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
@@ -394,6 +432,8 @@
                         <outlet property="restaurantAddressLabel" destination="R0f-5l-RNT" id="fXz-8Y-nHy"/>
                         <outlet property="restaurantDeliveryLabel" destination="jGm-Ke-D9n" id="tEl-9j-QWF"/>
                         <outlet property="restaurantDetailLabel" destination="kcs-cn-sFl" id="eKp-bp-bS3"/>
+                        <outlet property="restaurantLatitudeLabel" destination="ADO-3B-Pp5" id="UcQ-nL-vS4"/>
+                        <outlet property="restaurantLongtitudeLabel" destination="1OO-Fo-mYM" id="xf3-sa-Zdd"/>
                         <outlet property="restaurantNameLabel" destination="SKB-fu-YYn" id="Jhb-gm-VJP"/>
                         <outlet property="restaurantPhoneNumberLabel" destination="T4b-d6-YCh" id="EQI-NL-LzX"/>
                         <outlet property="restaurantSlideshow" destination="783-xu-U89" id="ASu-rm-iGm"/>

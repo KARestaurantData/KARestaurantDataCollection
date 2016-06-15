@@ -17,6 +17,8 @@
 		6F07541C1CE0506700F7BB95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F07541A1CE0506700F7BB95 /* LaunchScreen.storyboard */; };
 		6F0754271CE0506700F7BB95 /* KARestaurantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754261CE0506700F7BB95 /* KARestaurantTests.swift */; };
 		6F0754321CE0506700F7BB95 /* KARestaurantUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0754311CE0506700F7BB95 /* KARestaurantUITests.swift */; };
+		6F438EE91D1146A10089D17C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F438EE81D1146A10089D17C /* Login.storyboard */; };
+		6F438EEB1D1146D10089D17C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F438EEA1D1146D10089D17C /* LoginViewController.swift */; };
 		6FF7DEC21D066DF800D1EB77 /* ImageUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEBD1D066DF800D1EB77 /* ImageUpload.swift */; };
 		6FF7DEC31D066DF800D1EB77 /* readme-model in Resources */ = {isa = PBXBuildFile; fileRef = 6FF7DEBE1D066DF800D1EB77 /* readme-model */; };
 		6FF7DEC41D066DF800D1EB77 /* ResponseRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7DEBF1D066DF800D1EB77 /* ResponseRestaurant.swift */; };
@@ -81,6 +83,8 @@
 		6F07542D1CE0506700F7BB95 /* KARestaurantUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KARestaurantUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F0754311CE0506700F7BB95 /* KARestaurantUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KARestaurantUITests.swift; sourceTree = "<group>"; };
 		6F0754331CE0506700F7BB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F438EE81D1146A10089D17C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		6F438EEA1D1146D10089D17C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6FB5B7661D050F4200A3B709 /* Material.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Material.framework; path = "../../../Library/Developer/Xcode/DerivedData/KARestaurant-azyzutuqezlpewagbdarlsxcbkdr/Build/Products/Debug-iphoneos/Material.framework"; sourceTree = "<group>"; };
 		6FF7DEBD1D066DF800D1EB77 /* ImageUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUpload.swift; sourceTree = "<group>"; };
 		6FF7DEBE1D066DF800D1EB77 /* readme-model */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "readme-model"; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				6F07541A1CE0506700F7BB95 /* LaunchScreen.storyboard */,
 				6F0754151CE0506700F7BB95 /* Main.storyboard */,
 				6FF7DECD1D066EB700D1EB77 /* User.storyboard */,
+				6F438EE81D1146A10089D17C /* Login.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				6FF7DED41D066F7100D1EB77 /* LoginAndSignUpTableVC.swift */,
+				6F438EEA1D1146D10089D17C /* LoginViewController.swift */,
 			);
 			path = "Login and Signup Controller";
 			sourceTree = "<group>";
@@ -465,6 +471,7 @@
 				6FF7DEE91D06704300D1EB77 /* readme-services in Resources */,
 				6F0754191CE0506700F7BB95 /* Images.xcassets in Resources */,
 				6F0754171CE0506700F7BB95 /* Main.storyboard in Resources */,
+				6F438EE91D1146A10089D17C /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +739,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F438EEB1D1146D10089D17C /* LoginViewController.swift in Sources */,
 				6FF7DF021D06B5B200D1EB77 /* RestaurantDetailCollectionViewCell.swift in Sources */,
 				19C636B21D0919C700A18B06 /* RestaurantCategory.swift in Sources */,
 				6FF7DEDC1D066F7100D1EB77 /* LoginAndSignUpTableVC.swift in Sources */,
