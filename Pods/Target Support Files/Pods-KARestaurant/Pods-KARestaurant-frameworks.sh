@@ -16,7 +16,7 @@ install_framework()
     local source="$1"
   fi
 
-  local destination="${CONFIGURATION_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
+  local destination="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
 
   if [ -L "${source}" ]; then
       echo "Symlinked..."
@@ -59,8 +59,8 @@ code_sign_if_enabled() {
   if [ -n "${EXPANDED_CODE_SIGN_IDENTITY}" -a "${CODE_SIGNING_REQUIRED}" != "NO" -a "${CODE_SIGNING_ALLOWED}" != "NO" ]; then
     # Use the current code_sign_identitiy
     echo "Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}"
-    echo "/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} --preserve-metadata=identifier,entitlements \"$1\""
-    /usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} --preserve-metadata=identifier,entitlements "$1"
+    echo "/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS} --preserve-metadata=identifier,entitlements \"$1\""
+    /usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS} --preserve-metadata=identifier,entitlements "$1"
   fi
 }
 
@@ -84,22 +84,42 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-KARestaurant/Alamofire.framework"
-  install_framework "Pods-KARestaurant/AlamofireImage.framework"
-  install_framework "Pods-KARestaurant/AlamofireObjectMapper.framework"
-  install_framework "Pods-KARestaurant/DKImagePickerController.framework"
-  install_framework "Pods-KARestaurant/Device.framework"
-  install_framework "Pods-KARestaurant/Material.framework"
-  install_framework "Pods-KARestaurant/ObjectMapper.framework"
-  install_framework "Pods-KARestaurant/SwiftValidator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireImage/AlamofireImage.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireObjectMapper/AlamofireObjectMapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/BSImagePicker/BSImagePicker.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DKImagePickerController/DKImagePickerController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Device/Device.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DownPicker/DownPicker.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ImageSlideshow/ImageSlideshow.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Kingfisher/Kingfisher.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/M13Checkbox/M13Checkbox.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MMMaterialDesignSpinner/MMMaterialDesignSpinner.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Material/Material.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ObjectMapper/ObjectMapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView/SCLAlertView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftSpinner/SwiftSpinner.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftValidator/SwiftValidator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-KARestaurant/Alamofire.framework"
-  install_framework "Pods-KARestaurant/AlamofireImage.framework"
-  install_framework "Pods-KARestaurant/AlamofireObjectMapper.framework"
-  install_framework "Pods-KARestaurant/DKImagePickerController.framework"
-  install_framework "Pods-KARestaurant/Device.framework"
-  install_framework "Pods-KARestaurant/Material.framework"
-  install_framework "Pods-KARestaurant/ObjectMapper.framework"
-  install_framework "Pods-KARestaurant/SwiftValidator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireImage/AlamofireImage.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireObjectMapper/AlamofireObjectMapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/BSImagePicker/BSImagePicker.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DKImagePickerController/DKImagePickerController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Device/Device.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DownPicker/DownPicker.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ImageSlideshow/ImageSlideshow.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Kingfisher/Kingfisher.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/M13Checkbox/M13Checkbox.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MMMaterialDesignSpinner/MMMaterialDesignSpinner.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Material/Material.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ObjectMapper/ObjectMapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView/SCLAlertView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftSpinner/SwiftSpinner.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftValidator/SwiftValidator.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework"
 fi
