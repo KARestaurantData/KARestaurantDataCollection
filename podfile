@@ -19,6 +19,9 @@ pod 'Kingfisher', '~> 2.4'
 pod "MMMaterialDesignSpinner"
 pod 'SCLAlertView'
 pod "SwiftSpinner"
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKShareKit'
 
 # Recommended: For the most recent version of SwiftValidator (master branch)
 pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :branch => 'master'
