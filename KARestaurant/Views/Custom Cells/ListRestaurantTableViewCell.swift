@@ -7,87 +7,65 @@
 //
 
 import UIKit
-import Alamofire
 import Material
-import AlamofireImage
+import Kingfisher
+
+
 
 class ListRestaurantTableViewCell: MaterialTableViewCell {
-    
-    @IBOutlet weak var userImageView: UIImageView!
-    
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var restaurantImageView: UIImageView!
-    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var deliveryLabel: UILabel!
     @IBOutlet weak var restaurantDetailLabel: UILabel!
+    @IBOutlet weak var editButton: MaterialPulseView!
     
-    var restaurant: Restaurants!
-   var request: ImageRequest?
-    
-    
-    func configure(restaurant: Restaurants) {
+    var restaurant: Restaurant!
+ 
+    func configure(restaurant: Restaurant) {
         self.restaurant = restaurant
-        reset()
-        loadImage()
-    }
-    
-    func reset() {
-        userImageView.image = nil
-        restaurantImageView.image = nil
-        request?.cancel()
-        nameLabel.hidden = true
-        restaurantDetailLabel.hidden = true
-    }
-    
-    func loadImage() {
-        let urlString = restaurant.thumbnail!
-        if let image = PhotosDataManager.sharedManager.cachedImage(urlString) {
-            populateCell(image)
-            return
-        }
+        //reset()
         downloadImage()
     }
     
-    func downloadImage() {
-      //  loadingIndicator.startAnimating()
-        let urlString = restaurant.thumbnail!
-        request = PhotosDataManager.sharedManager.getNetworkImage(urlString) { image in
-            self.populateCell(image)
+    private func reset() {
+        restaurantImageView.image = nil
+        titleLabel.hidden = true
+        deliveryLabel.hidden = true
+        restaurantDetailLabel.hidden = true
+        editButton.hidden = true
+    }
+    
+    private func downloadImage(){
+        if let  urlString = restaurant.thumbnail {
+            self.restaurantImageView.kf_setImageWithURL(NSURL(string: urlString)!, placeholderImage: UIImage(named: "defaultPhoto"), optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
+                self.populateCell()
+            }
+        }else{
+            self.restaurantImageView.image = UIImage(named: "null")
         }
     }
     
-    func populateCell(image: UIImage) {
-        //loadingIndicator.stopAnimating()
-        
-        self.userImageView.layer.cornerRadius = 10.0
-        self.userImageView.clipsToBounds = true
-        self.userImageView.layer.borderWidth = 3.0
-        self.userImageView.layer.borderColor = UIColor.blackColor().CGColor
-        
-        
-        userImageView.image = image
-        restaurantImageView.image = image
-        nameLabel.text = restaurant.name
+ 
+    private func populateCell() {
+        titleLabel.text = restaurant.name
         restaurantDetailLabel.text = restaurant.restDescription
-        nameLabel.hidden = false
-        restaurantDetailLabel.hidden = false
+        deliveryLabel.text = NSString.init(string: restaurant.isDeliver!).boolValue ? "Delivery" : "No Delivery"
+        editButton.image = UIImage(named: "more")
+        editButton.contentMode = UIViewContentMode.ScaleToFill
+        editButton.depth = .Depth2
+        
+        //showField()
     }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//    }
-//    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//    
-//    override func setSelected(selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        
-//        // Configure the view for the selected state
-//    }
+    
+    private func showField() {
+        titleLabel.hidden = false
+        deliveryLabel.hidden = false
+        restaurantDetailLabel.hidden = false
+        editButton.hidden = false
+    }
+    
+
     
 }
-
 
 

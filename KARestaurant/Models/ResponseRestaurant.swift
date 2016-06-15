@@ -12,7 +12,7 @@ import ObjectMapper
 class  ResponseRestaurant: Mappable {
     var message : String?
     var code : String?
-    var data : [Restaurants]?
+    var data : [Restaurant]?
     var pagination : Pagination?
     
     required init?(_ map: Map){
@@ -32,7 +32,7 @@ class  ResponseRestaurant: Mappable {
 }
 
 
-class Restaurants: Mappable{
+class Restaurant: Mappable{
     var id : Int?
     var name : String?
     var restDescription : String?
@@ -97,7 +97,6 @@ class Menu: Mappable {
     var id : Int?
     var title : String?
     var url : String?
-    var isThumbmail : String?
     
     required init?(_ map: Map){
         
@@ -107,7 +106,6 @@ class Menu: Mappable {
         id <- map["ID"]
         title <- map["TITLE"]
         url <- map["URL"]
-        isThumbmail <- map["IS_THUMBNAIL"]
     }
 }
 
@@ -117,6 +115,15 @@ class RestaurantImage: Menu {
 class Location: Mappable {
     var longtitude : String?
     var latitude : String?
+    var country : Int?
+    var province : Int?
+    var district : Int?
+    var commune : Int?
+    var village : Int?
+    var street : String?
+    var homeNumber : String?
+    var branch : String?
+    
     
     required init?(_ map: Map){
         
@@ -125,6 +132,14 @@ class Location: Mappable {
     func mapping(map: Map) {
         longtitude <- map["LONGITUDE"]
         latitude <- map["LATITUDE"]
+        country <- map["COUNTRY"]
+        province <- map["PROVINCE"]
+        district <- map["DISTRCIT"]
+        commune <- map["COMMUNE"]
+        village <- map["VILLAGE"]
+        street <- map["STREET"]
+        homeNumber <- map["NO"]
+        branch <- map["BRANCH"]
     }
 }
 
