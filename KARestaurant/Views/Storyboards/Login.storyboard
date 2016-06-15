@@ -7,7 +7,7 @@
         <!--Login View Controller-->
         <scene sceneID="MuN-de-AXh">
             <objects>
-                <viewController id="0pF-pr-dBs" customClass="LoginViewController" customModule="KARestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="0pF-pr-dBs" customClass="LoginViewController" customModule="KARestaurant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7XZ-cW-N0Q"/>
                         <viewControllerLayoutGuide type="bottom" id="Stf-we-KOv"/>

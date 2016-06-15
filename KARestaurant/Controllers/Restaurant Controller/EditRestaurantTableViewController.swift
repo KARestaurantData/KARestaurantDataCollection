@@ -279,6 +279,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     // MARK: Fetch Data
     func getRestaurantType(){
+        self.restaurantTypeTextField.enabled = false
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/categories"
         
@@ -301,10 +302,12 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             self.restaurantTypeDownPicker.setPlaceholderWhileSelecting("Restaurant Type")
             self.restaurantTypeDownPicker.shouldDisplayCancelButton = false
             self.restaurantTypeDownPicker.getTextField().text = categoryName
+            self.restaurantTypeTextField.enabled = true
         }
     }
     
     func getDistrict(cityId: Int){
+        self.districtTextField.enabled = false
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/cities/\(cityId)/districts"
         
@@ -329,11 +332,13 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             self.districtDownPicker.setPlaceholderWhileSelecting("District")
             self.districtDownPicker.shouldDisplayCancelButton = false
             self.districtDownPicker.getTextField().text = districtName
+            self.districtTextField.enabled = true
         }
     }
     
     
     func getCommune(districtId: Int){
+        self.communeTextField.enabled = false
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/districts/\(districtId)/commnunes"
         
@@ -357,8 +362,8 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             self.communeDownPicker.setPlaceholder("Please select commune")
             self.communeDownPicker.setPlaceholderWhileSelecting("Commune")
             self.communeDownPicker.shouldDisplayCancelButton = false
-            
             self.communeDownPicker.getTextField().text = communeName
+            self.communeTextField.enabled = true
         }
     }
     
@@ -511,6 +516,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     @IBAction func saveAction(sender: AnyObject) {
         print("save click")
+        self.saveButton.enabled = false
         self.tableView.setContentOffset(CGPointZero, animated:true)
         centerSpinnerStartLoading()
         uploadImage()
@@ -584,6 +590,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
                         print(response.debugDescription)
+                        self.saveButton.enabled = true
                         switch response.result {
                         case .Success:
                             print(response)

@@ -15,6 +15,8 @@ import AlamofireImage
 import MMMaterialDesignSpinner
 import SCLAlertView
 import CoreLocation
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class ListRestaurantTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
@@ -80,8 +82,7 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         
         // add refresh control to view
         
-        restuarantRefreshControl.tintColor = MaterialColor.white
-        restuarantRefreshControl.backgroundColor = MaterialColor.cyan.darken1
+        restuarantRefreshControl.tintColor = MaterialColor.cyan.darken1
         restuarantRefreshControl.addTarget(self, action: #selector(ListRestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
         self.tableView.addSubview(restuarantRefreshControl)
         
@@ -91,8 +92,6 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     // MARK: Refresh Control Action
     func uiRefreshControlAction() {
         if let limit =  self.responsePagination?.limit {
-            print(limit)
-            
             // reload data
             if !isRefreshControlLoading {
                 self.isRefreshControlLoading =  true
@@ -107,21 +106,57 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     }
     
     func reloadData() {
-        // Reload table data
-        self.tableView.reloadData()
-        
-        // End the refreshing
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MMM d, h:mm a"
         let title = "Last update: \(formatter.stringFromDate(NSDate()))"
-        let attrsDictionary = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName)
-        let attributedTitle = NSAttributedString(string: title, attributes: attrsDictionary as? [String : AnyObject])
-        self.restuarantRefreshControl.attributedTitle = attributedTitle;
+        let attrsDictionary = NSDictionary(object: MaterialColor.cyan.darken1, forKey: NSForegroundColorAttributeName)
+        self.restuarantRefreshControl.attributedTitle = NSAttributedString(string: title, attributes: attrsDictionary as? [String : AnyObject])
+        
+        // Reload table data
+        self.tableView.reloadData()
         
         // stop animations
         self.view.userInteractionEnabled = true
+         // End the refreshing
         self.restuarantRefreshControl.endRefreshing()
         self.centerSpinner.stopAnimating()
+        
+    }
+    @IBAction func moreAction(sender: AnyObject) {
+        let appearance = SCLAlertView.SCLAppearance(
+            //showCloseButton: false
+            
+            //showCircularIcon: false
+            
+        )
+        let alert = SCLAlertView(appearance: appearance)
+        alert.addButton("Add") {
+            //  object
+            self.performSegueWithIdentifier("RegisterRestuarant", sender: nil)
+            return
+        }
+        
+        alert.addButton("Logout") {
+            //  object
+            FBSDKLoginManager.init().logOut()
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("FACEBOOK_ID")
+            let storyboard = UIStoryboard(name: "Login", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController")
+            self.presentViewController(vc, animated: true, completion: nil)
+            return
+        }
+        
+        
+        alert.showTitle(
+            "KA Restaurant", // Title of view
+            subTitle: "Options", // String of view
+            duration: 0.0, // Duration to show before closing automatically, default: 0.0
+            completeText: "Cancel", // Optional button value, default: ""
+            style: .Success, // Styles - see below.
+            colorStyle: 0x00ACC1,
+            colorTextButton: 0xFFFFFF,
+            circleIconImage: UIImage(named: "shop")
+        )
         
     }
     
@@ -364,6 +399,95 @@ extension ListRestaurantTableViewController {
         alert.addButton("Edit") {
             self.performSegueWithIdentifier("EditRestuarantDetail", sender: self.tableView.cellForRowAtIndexPath(sender.indexPath!))
             // self.performSegueWithIdentifier("EditRestuarantDetail", sender: sender.restaurant)
+        }
+        
+        alert.addButton("Delete") {
+             let restaurant = self.responseRestaurant[sender.indexPath!.row] as Restaurant
+            // get restuarant
+            let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/\(restaurant.id!)"
+            Alamofire.request(.DELETE, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
+                switch response.result {
+                case .Success:
+                    let responseData = response.result.value as! NSDictionary
+                    if responseData["CODE"] as! String == "1001" {
+                        let appearance = SCLAlertView.SCLAppearance(
+                            showCloseButton: false
+                            
+                            //showCircularIcon: false
+                            
+                        )
+                        let alert = SCLAlertView(appearance: appearance)
+                        alert.addButton("Close") {
+                            return
+                        }
+                        
+                        
+                        alert.showTitle(
+                            "KA Restaurant", // Title of view
+                            subTitle: "Restaurant is not exist.", // String of view
+                            duration: 0.0, // Duration to show before closing automatically, default: 0.0
+                            completeText: "", // Optional button value, default: ""
+                            style: .Success, // Styles - see below.
+                            colorStyle: 0x00ACC1,
+                            colorTextButton: 0xFFFFFF,
+                            circleIconImage: UIImage(named: "meme")
+                        )
+                    }else{
+                        let appearance = SCLAlertView.SCLAppearance(
+                            showCloseButton: false
+                            
+                            //showCircularIcon: false
+                            
+                        )
+                        let alert = SCLAlertView(appearance: appearance)
+                        alert.addButton("Close") {
+                            // No data
+                            self.getRestuarant(1, limit: 20)
+                            return
+                        }
+                        
+                        
+                        alert.showTitle(
+                            "KA Restaurant", // Title of view
+                            subTitle: "Restaurant has been deleted successfully.", // String of view
+                            duration: 0.0, // Duration to show before closing automatically, default: 0.0
+                            completeText: "", // Optional button value, default: ""
+                            style: .Success, // Styles - see below.
+                            colorStyle: 0x00ACC1,
+                            colorTextButton: 0xFFFFFF,
+                            circleIconImage: UIImage(named: "meme")
+                        )
+                    }
+                    
+                        
+                    
+
+                case .Failure(let error):
+                    let appearance = SCLAlertView.SCLAppearance(
+                        showCloseButton: false
+                        
+                        //showCircularIcon: false
+                        
+                    )
+                    let alert = SCLAlertView(appearance: appearance)
+                    alert.addButton("Close") {
+                        // fetch data for first load
+                        self.getRestuarant(1, limit: 20)
+                    }
+                    
+                    
+                    alert.showTitle(
+                        "Connection Error", // Title of view
+                        subTitle: error.localizedDescription, // String of view
+                        duration: 0.0, // Duration to show before closing automatically, default: 0.0
+                        completeText: "", // Optional button value, default: ""
+                        style: .Success, // Styles - see below.
+                        colorStyle: 0x00ACC1,
+                        colorTextButton: 0xFFFFFF,
+                        circleIconImage: UIImage(named: "meme")
+                    )
+                }
+            }
         }
         
         
