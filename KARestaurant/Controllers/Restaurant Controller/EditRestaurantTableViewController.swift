@@ -542,6 +542,8 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 multipartFormData.appendBodyPart(data: "1".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "STATUS")
                 
                 multipartFormData.appendBodyPart(data: "\(self.responseCategory[self.restaurantTypeDownPicker.selectedIndex].id!)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "RESTAURANT_CATEGORY")
+                
+                multipartFormData.appendBodyPart(data: "\(NSUserDefaults.standardUserDefaults().objectForKey("FACEBOOK_ID")!)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "USER_ID")
 //                
 //                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation.coordinate.latitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
 //                

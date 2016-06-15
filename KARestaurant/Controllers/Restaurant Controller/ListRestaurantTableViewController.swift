@@ -127,10 +127,8 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     
     // MARK: Fetch Data
     func getRestuarant(page: Int, limit: Int){
-        
         // get restuarant
-        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=\(page)&limit=\(limit)"
-
+        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?user=\(NSUserDefaults.standardUserDefaults().objectForKey("FACEBOOK_ID")!)&page=\(page)&limit=\(limit)"
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
             switch response.result {
             case .Success:
@@ -138,7 +136,6 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
                 let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
                 
                 if (responseData?.code)! == "7777"{
-                    print("\(responseData?.code)")
                     let appearance = SCLAlertView.SCLAppearance(
                         showCloseButton: false
                         

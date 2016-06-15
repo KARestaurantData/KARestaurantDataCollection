@@ -511,6 +511,8 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 
                 multipartFormData.appendBodyPart(data: self.phoneTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
                 
+                multipartFormData.appendBodyPart(data: "\(NSUserDefaults.standardUserDefaults().objectForKey("FACEBOOK_ID")!)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "USER_ID")
+                
                 for i in 0 ..< self.restaurantImageArray.count{
                     let imagePickedData = UIImageJPEGRepresentation(self.restaurantImageArray[i], 0.3)!
                     multipartFormData.appendBodyPart(data: imagePickedData, name: "RESTAURANT_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")

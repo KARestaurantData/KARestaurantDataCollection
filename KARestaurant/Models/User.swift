@@ -12,29 +12,23 @@ import ObjectMapper
 
 class User: Mappable
 {
-    var email : String?
-    var originalID : String?
-    var userId : String?
-    var userImageUrl : String?
-    var username : String?
+    var id : Int?
+    var ssid : String?
     
     required init?(_ map: Map){
 
     }
     
     func mapping(map: Map) {
-        email <- map["email"]
-        originalID <- map["originalID"]
-        userId <- map["userId"]
-        userImageUrl <- map["userImageUrl"]
-        username <- map["username"]
+        id <- map["ID"]
+        ssid <- map["SSID"]
     }
 }
 
 class UserResponse: Mappable {
     var message: String?
-    var status: String?
-    var user: User?
+    var code: String?
+    var data: User?
     
     required init?(_ map: Map){
         
@@ -42,8 +36,8 @@ class UserResponse: Mappable {
     
     func mapping(map: Map) {
         message <- map["MESSAGE"]
-        status <- map["STATUS"]
-        user <- map["USER"]
+        code <- map["CODE"]
+        data <- map["DATA"]
     }
 }
 
