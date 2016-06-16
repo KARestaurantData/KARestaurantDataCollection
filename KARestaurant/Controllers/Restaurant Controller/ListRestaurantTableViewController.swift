@@ -13,8 +13,9 @@ import Alamofire
 import ObjectMapper
 import AlamofireImage
 import MMMaterialDesignSpinner
-import SCLAlertView
 import CoreLocation
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class ListRestaurantTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
@@ -49,6 +50,14 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     }
     
     override func viewWillAppear(animated: Bool) {
+        print("viewWillAppear")
+        prepareDataForFirstStartup()
+    }
+    
+    private func prepareDataForFirstStartup(){
+        centerSpinnerStartLoading()
+        self.responseRestaurant.removeAll()
+        self.responsePagination = nil
         // fetch data for first load
         getRestuarant(1, limit: 20)
     }
@@ -80,8 +89,7 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         
         // add refresh control to view
         
-        restuarantRefreshControl.tintColor = MaterialColor.white
-        restuarantRefreshControl.backgroundColor = MaterialColor.cyan.darken1
+        restuarantRefreshControl.tintColor = MaterialColor.cyan.darken1
         restuarantRefreshControl.addTarget(self, action: #selector(ListRestaurantTableViewController.uiRefreshControlAction), forControlEvents: .ValueChanged)
         self.tableView.addSubview(restuarantRefreshControl)
         
@@ -91,8 +99,6 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     // MARK: Refresh Control Action
     func uiRefreshControlAction() {
         if let limit =  self.responsePagination?.limit {
-            print(limit)
-            
             // reload data
             if !isRefreshControlLoading {
                 self.isRefreshControlLoading =  true
@@ -106,69 +112,80 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         
     }
     
+    private func centerSpinnerStartLoading(){
+        // Start & stop animations
+        self.centerSpinner.startAnimating()
+        // add refresh control to view
+        self.view.userInteractionEnabled = false
+    }
+    
+    private func centerSpinnerStopLoading(){
+        // Start & stop animations
+        self.centerSpinner.stopAnimating()
+        // add refresh control to view
+        self.view.userInteractionEnabled = true
+    }
+    
     func reloadData() {
         // Reload table data
         self.tableView.reloadData()
         
-        // End the refreshing
+        // stop animations
+        self.view.userInteractionEnabled = true
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MMM d, h:mm a"
         let title = "Last update: \(formatter.stringFromDate(NSDate()))"
-        let attrsDictionary = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName)
-        let attributedTitle = NSAttributedString(string: title, attributes: attrsDictionary as? [String : AnyObject])
-        self.restuarantRefreshControl.attributedTitle = attributedTitle;
-        
-        // stop animations
-        self.view.userInteractionEnabled = true
+        let attrsDictionary = NSDictionary(object: MaterialColor.cyan.darken1, forKey: NSForegroundColorAttributeName)
+        self.restuarantRefreshControl.attributedTitle = NSAttributedString(string: title, attributes: attrsDictionary as? [String : AnyObject])
+        // End the refreshing
         self.restuarantRefreshControl.endRefreshing()
         self.centerSpinner.stopAnimating()
         
+        
+        
+    }
+    @IBAction func moreAction(sender: AnyObject) {
+        KaAlert.show("KA Restaurant", subTitle: "Options", completeText: "Cancel", showCloseButton: true, firstButton: "Add", secondButton: "Logout") { (buttonName) in
+            if buttonName == "Add" {
+                //  object
+                self.performSegueWithIdentifier("RegisterRestuarant", sender: nil)
+                return
+            }else{
+                //  object
+                FBSDKLoginManager.init().logOut()
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("FACEBOOK_ID")
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController")
+                self.presentViewController(vc, animated: true, completion: nil)
+                return
+            }
+        }
     }
     
     // MARK: Fetch Data
     func getRestuarant(page: Int, limit: Int){
-        
         // get restuarant
-        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?page=\(page)&limit=\(limit)"
-
+        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/?user=\(NSUserDefaults.standardUserDefaults().objectForKey("FACEBOOK_ID")!)&page=\(page)&limit=\(limit)"
         Alamofire.request(.GET, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
             switch response.result {
             case .Success:
-                
+                self.centerSpinnerStopLoading()
                 let responseData = Mapper<ResponseRestaurant>().map(response.result.value)
                 
                 if (responseData?.code)! == "7777"{
-                    print("\(responseData?.code)")
-                    let appearance = SCLAlertView.SCLAppearance(
-                        showCloseButton: false
-                        
-                        //showCircularIcon: false
-                        
-                    )
-                    let alert = SCLAlertView(appearance: appearance)
-                    alert.addButton("Close") {
-                        //  object
-                        self.responseRestaurant.removeAll()
-                        self.responsePagination = nil
-                        self.reloadData()
-                        return
-                    }
                     
-                    
-                    alert.showTitle(
-                        "KA Restaurant", // Title of view
-                        subTitle: "No Data", // String of view
-                        duration: 0.0, // Duration to show before closing automatically, default: 0.0
-                        completeText: "", // Optional button value, default: ""
-                        style: .Success, // Styles - see below.
-                        colorStyle: 0x00ACC1,
-                        colorTextButton: 0xFFFFFF,
-                        circleIconImage: UIImage(named: "meme")
-                    )
+                    KaAlert.show("KA Restaurant", subTitle: "No Data", circleIconImage: UIImage(named: "meme"), firstButton: "Close", completeion: { (buttonName) in
+                        if buttonName == "Close" {
+                            //  object
+                            self.responseRestaurant.removeAll()
+                            self.responsePagination = nil
+                            self.reloadData()
+                            return
+                        }
+                    })
                 }else{
                     if let responsePagination = responseData!.pagination {
                         self.responsePagination = responsePagination
-                        
                     }
                     // remove data when pull to refresh
                     if self.isRefreshControlLoading {
@@ -190,32 +207,13 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
                 }
                 
             case .Failure(let error):
-                let appearance = SCLAlertView.SCLAppearance(
-                    showCloseButton: false
-                    
-                    //showCircularIcon: false
-                    
-                )
-                let alert = SCLAlertView(appearance: appearance)
-                alert.addButton("Close") {
-                    // fetch data for first load
-                    self.getRestuarant(1, limit: 20)
-                }
-                
-                
-                alert.showTitle(
-                    "Connection Error", // Title of view
-                    subTitle: error.localizedDescription, // String of view
-                    duration: 0.0, // Duration to show before closing automatically, default: 0.0
-                    completeText: "", // Optional button value, default: ""
-                    style: .Success, // Styles - see below.
-                    colorStyle: 0x00ACC1,
-                    colorTextButton: 0xFFFFFF,
-                    circleIconImage: UIImage(named: "meme")
-                )
+                KaAlert.show("Connection Error", subTitle: error.localizedDescription, circleIconImage: UIImage(named: "meme"), firstButton: "Close", completeion: { (buttonName) in
+                    if buttonName == "Close" {
+                        // fetch data for first load
+                        self.getRestuarant(1, limit: 20)
+                    }
+                })
             }
-            
-            
         }
     }
     
@@ -357,30 +355,51 @@ extension ListRestaurantTableViewController {
     
     func handleTap(sender: CustomeTapGestureRecognizer) {
         
-        let appearance = SCLAlertView.SCLAppearance(
-            //showCloseButton: false
-            
-            //showCircularIcon: false
-            
-        )
-        let alert = SCLAlertView(appearance: appearance)
-        alert.addButton("Edit") {
-            self.performSegueWithIdentifier("EditRestuarantDetail", sender: self.tableView.cellForRowAtIndexPath(sender.indexPath!))
-            // self.performSegueWithIdentifier("EditRestuarantDetail", sender: sender.restaurant)
-        }
-        
-        
-        alert.showTitle(
-            "KA Restaurant", // Title of view
-            subTitle: "Update or Delete", // String of view
-            duration: 0.0, // Duration to show before closing automatically, default: 0.0
-            completeText: "Close", // Optional button value, default: ""
-            style: .Success, // Styles - see below.
-            colorStyle: 0x00ACC1,
-            colorTextButton: 0xFFFFFF,
-            circleIconImage: UIImage(named: "shop")
-        )
-        
+        KaAlert.show("KA Restaurant", subTitle: "Update or Delete", showCloseButton: true, firstButton: "Edit", secondButton: "Delete", completeion: { (buttonName) in
+            if buttonName == "Edit" {
+                // Open edit screen
+                self.performSegueWithIdentifier("EditRestuarantDetail", sender: self.tableView.cellForRowAtIndexPath(sender.indexPath!))
+                
+                
+            }else{
+                
+                let restaurant = self.responseRestaurant[sender.indexPath!.row] as Restaurant
+                // get restuarant
+                let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/\(restaurant.id!)"
+                
+                Alamofire.request(.DELETE, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
+                    switch response.result {
+                    case .Success:
+                        let responseData = response.result.value as! NSDictionary
+                        if responseData["CODE"] as! String == "1001" {
+                            
+                            KaAlert.show("KA Restaurant", subTitle: "Restaurant is not exist.", circleIconImage: UIImage(named: "meme"), completeion: { _ in })
+                            
+                            
+                        }else{
+                            
+                            KaAlert.show("KA Restaurant", subTitle: "Restaurant has been deleted successfully.", circleIconImage: UIImage(named: "meme"), firstButton: "Close", completeion: { (buttonName) in
+                                if buttonName == "Close" {
+                                    // No data
+                                    self.prepareDataForFirstStartup()
+                                    return
+                                }
+                            })
+                        }
+                        
+                        
+                    case .Failure(let error):
+                        KaAlert.show("Connection Error", subTitle: error.localizedDescription, circleIconImage: UIImage(named: "meme"), firstButton: "Close", completeion: { (buttonName) in
+                            if buttonName == "Close" {
+                                // fetch data for first load
+                                self.getRestuarant(1, limit: 20)
+                            }
+                        })
+                        
+                    }
+                }
+            }
+        })
     }
     
     
@@ -410,27 +429,8 @@ extension ListRestaurantTableViewController {
         
         if !CLLocationManager.locationServicesEnabled() {
             print("LOCATION SERVICES DISABLED");
-            let appearance = SCLAlertView.SCLAppearance(
-                showCloseButton: false
-                
-                //showCircularIcon: false
-                
-            )
-            let alert = SCLAlertView(appearance: appearance)
-            alert.addButton("Close") {
-            }
             
-            
-            alert.showTitle(
-                "KA Restaurant", // Title of view
-                subTitle: "Please enable your location service before you can take the photo!", // String of view
-                duration: 0.0, // Duration to show before closing automatically, default: 0.0
-                completeText: "", // Optional button value, default: ""
-                style: .Success, // Styles - see below.
-                colorStyle: 0x00ACC1,
-                colorTextButton: 0xFFFFFF,
-                circleIconImage: UIImage(named: "meme")
-            )
+            KaAlert.show("KA Restaurant", subTitle: "Please enable your location service before you can take the photo!", showCloseButton: true, circleIconImage: UIImage(named: "meme"), completeion: { _ in })
             return
         }
         

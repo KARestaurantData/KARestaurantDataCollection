@@ -22,7 +22,6 @@ import DownPicker
 import ObjectMapper
 import ImageSlideshow
 import Kingfisher
-import SCLAlertView
 import MMMaterialDesignSpinner
 
 class EditRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
@@ -279,6 +278,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     // MARK: Fetch Data
     func getRestaurantType(){
+        self.restaurantTypeTextField.enabled = false
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/categories"
         
@@ -301,10 +301,12 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             self.restaurantTypeDownPicker.setPlaceholderWhileSelecting("Restaurant Type")
             self.restaurantTypeDownPicker.shouldDisplayCancelButton = false
             self.restaurantTypeDownPicker.getTextField().text = categoryName
+            self.restaurantTypeTextField.enabled = true
         }
     }
     
     func getDistrict(cityId: Int){
+        self.districtTextField.enabled = false
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/cities/\(cityId)/districts"
         
@@ -329,11 +331,13 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             self.districtDownPicker.setPlaceholderWhileSelecting("District")
             self.districtDownPicker.shouldDisplayCancelButton = false
             self.districtDownPicker.getTextField().text = districtName
+            self.districtTextField.enabled = true
         }
     }
     
     
     func getCommune(districtId: Int){
+        self.communeTextField.enabled = false
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/districts/\(districtId)/commnunes"
         
@@ -357,8 +361,8 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             self.communeDownPicker.setPlaceholder("Please select commune")
             self.communeDownPicker.setPlaceholderWhileSelecting("Commune")
             self.communeDownPicker.shouldDisplayCancelButton = false
-            
             self.communeDownPicker.getTextField().text = communeName
+            self.communeTextField.enabled = true
         }
     }
     
@@ -511,6 +515,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     @IBAction func saveAction(sender: AnyObject) {
         print("save click")
+        self.saveButton.enabled = false
         self.tableView.setContentOffset(CGPointZero, animated:true)
         centerSpinnerStartLoading()
         uploadImage()
@@ -542,6 +547,8 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 multipartFormData.appendBodyPart(data: "1".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "STATUS")
                 
                 multipartFormData.appendBodyPart(data: "\(self.responseCategory[self.restaurantTypeDownPicker.selectedIndex].id!)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "RESTAURANT_CATEGORY")
+                
+                multipartFormData.appendBodyPart(data: "\(NSUserDefaults.standardUserDefaults().objectForKey("FACEBOOK_ID")!)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "USER_ID")
 //                
 //                multipartFormData.appendBodyPart(data: "\(self.restaurantLocation.coordinate.latitude)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "LATITUDE")
 //                
@@ -582,36 +589,24 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
                         print(response.debugDescription)
+                        self.saveButton.enabled = true
                         switch response.result {
                         case .Success:
                             print(response)
                             self.centerSpinnerStopLoading()
-                            self.cancel(UIBarButtonItem())
+            
+                            let vc = self.storyboard!.instantiateViewControllerWithIdentifier("RootNavigationViewController")
+                            self.presentViewController(vc, animated: true, completion: nil)
+
                         case .Failure(let error):
-                            let appearance = SCLAlertView.SCLAppearance(
-                                showCloseButton: false
-                                
-                                //showCircularIcon: false
-                                
-                            )
                             
-                            let alert = SCLAlertView(appearance: appearance)
-                            alert.addButton("Close") {
-                                // fetch data for first load
-                                self.centerSpinnerStopLoading()
-                                self.saveButton.enabled = true
-                            }
-                            
-                            alert.showTitle(
-                                "Connection Error", // Title of view
-                                subTitle: error.localizedDescription, // String of view
-                                duration: 0.0, // Duration to show before closing automatically, default: 0.0
-                                completeText: "", // Optional button value, default: ""
-                                style: .Success, // Styles - see below.
-                                colorStyle: 0x00ACC1,
-                                colorTextButton: 0xFFFFFF,
-                                circleIconImage: UIImage(named: "meme")
-                            )
+                            KaAlert.show("Connection Error", subTitle: error.localizedDescription, circleIconImage: UIImage(named: "meme"),firstButton: "Close", completeion: { (buttonName) in
+                                if buttonName == "Close" {
+                                    // fetch data for first load
+                                    self.centerSpinnerStopLoading()
+                                    self.saveButton.enabled = true
+                                }
+                            })
                         }
 
                         

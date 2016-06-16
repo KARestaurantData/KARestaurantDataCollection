@@ -133,7 +133,7 @@
                                 </tableViewCellContentView>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
-                                        <color key="value" red="1" green="0.50196078430000002" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.0" green="0.67450980392156867" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -162,9 +162,9 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="y6H-Pf-Unn">
+                        <barButtonItem key="rightBarButtonItem" title="More" id="y6H-Pf-Unn">
                             <connections>
-                                <segue destination="Gpn-RF-UgH" kind="show" id="8U7-66-5dp"/>
+                                <action selector="moreAction:" destination="1MP-C5-P5k" id="vTu-HP-Uih"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -175,6 +175,7 @@
                         <outlet property="takePhotoButton" destination="b2N-Eg-Txz" id="32o-yD-uQA"/>
                         <segue destination="XUc-at-SpM" kind="show" identifier="ShowRestuarantDetail" id="UI7-28-48b"/>
                         <segue destination="dUL-Zh-jTI" kind="show" identifier="EditRestuarantDetail" id="1Vp-ue-cIo"/>
+                        <segue destination="Gpn-RF-UgH" kind="show" identifier="RegisterRestuarant" id="hCW-9G-v16"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ml2-KM-nHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -985,7 +986,7 @@
         <!--Navigation Controller-->
         <scene sceneID="3kU-vY-nUk">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SUG-bm-tHI" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RootNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="SUG-bm-tHI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9do-dU-aZl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
