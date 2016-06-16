@@ -20,7 +20,6 @@ import Material
 import M13Checkbox
 import DownPicker
 import ObjectMapper
-import SCLAlertView
 import MMMaterialDesignSpinner
 
 class AddRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
@@ -58,7 +57,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         static let types: [DKImagePickerControllerAssetType] = [.AllAssets, .AllPhotos, .AllVideos, .AllAssets]
     }
     
-
+    
     // DownPicker Property
     var restaurantTypeDownPicker, districtDownPicker, communeDownPicker: DownPicker!
     
@@ -114,7 +113,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         prepareDownPicker()
         prepareEmailField()
         prepareRefreshControl()
-       
+        
     }
     
     private func prepareRefreshControl(){
@@ -147,7 +146,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         self.view.userInteractionEnabled = true
     }
     
-
+    
     
     
     
@@ -225,6 +224,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     // MARK: Fetch Data
     func getRestaurantType(){
+        self.restaurantTypeTextField.enabled = false
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/categories"
         
@@ -241,10 +241,12 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             self.restaurantTypeDownPicker.setPlaceholder("Please select restaurant type")
             self.restaurantTypeDownPicker.setPlaceholderWhileSelecting("Restaurant Type")
             self.restaurantTypeDownPicker.shouldDisplayCancelButton = false
+            self.restaurantTypeTextField.enabled = true
         }
     }
     
     func getDistrict(cityId: Int){
+        self.districtTextField.enabled = false
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/cities/\(cityId)/districts"
         
@@ -255,16 +257,18 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             for district in (responseData?.data)! {
                 self.districtArray.append(district.name!)
             }
-           
+            
             self.districtDownPicker =  DownPicker(textField: self.districtTextField, withData: self.districtArray)
             self.districtDownPicker.setPlaceholder("Please select district")
             self.districtDownPicker.setPlaceholderWhileSelecting("District")
             self.districtDownPicker.shouldDisplayCancelButton = false
+            self.districtTextField.enabled = true
         }
     }
     
     
     func getCommune(districtId: Int){
+        self.communeTextField.enabled = false
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/districts/\(districtId)/commnunes"
         
@@ -282,12 +286,13 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             self.communeDownPicker =  DownPicker(textField: self.communeTextField, withData: self.communeArray)
             self.communeDownPicker.setPlaceholder("Please select commune")
             self.communeDownPicker.setPlaceholderWhileSelecting("Commune")
-           self.communeDownPicker.shouldDisplayCancelButton = false
+            self.communeDownPicker.shouldDisplayCancelButton = false
+            self.communeTextField.enabled = true
             
         }
     }
     
-
+    
     
     /// Executed when the 'return' key is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -307,7 +312,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     func checkValidRestuarantField() {
-
+        
         // Disable the Save button if the text field is empty.
         if !(nameTextField.text?.isEmpty)!
             && !(restaurantDescriptionTextField.text?.isEmpty)!
@@ -328,7 +333,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     
     @IBAction func deliveryCheckBoxClick(checkbox: M13Checkbox) {
-          checkValidRestuarantField()
+        checkValidRestuarantField()
         if checkbox.checkState == M13Checkbox.CheckState.Checked {
             isDelivery = true
             deliveryLabel.textColor = MaterialColor.blue.base
@@ -370,7 +375,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 }
             }
         }
-
+        
         checkValidRestuarantField()
         
     }
@@ -468,11 +473,12 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             self.restaurantMenuImageCollectionView.deleteItemsAtIndexPaths([indexPath])
             reloadRestaurantMenuImageCollectionView()
         }
-      
+        
     }
     
     @IBAction func saveAction(sender: AnyObject) {
         print("save click")
+        self.saveButton.enabled = false
         self.tableView.setContentOffset(CGPointZero, animated:true)
         centerSpinnerStartLoading()
         uploadRestaurantToServer()
@@ -485,7 +491,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/multiple/register"
         
         let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
-
+        
         let address = "12315|\(self.responseDistrict[self.districtDownPicker.selectedIndex].id!)|\(self.responseCommune[self.communeDownPicker.selectedIndex].id!)|\(self.homeTextField.text!)|\(self.streetTextField.text!)"
         
         Alamofire.upload(
@@ -511,6 +517,8 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 
                 multipartFormData.appendBodyPart(data: self.phoneTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "TELEPHONE")
                 
+                multipartFormData.appendBodyPart(data: "\(NSUserDefaults.standardUserDefaults().objectForKey("FACEBOOK_ID")!)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "USER_ID")
+                
                 for i in 0 ..< self.restaurantImageArray.count{
                     let imagePickedData = UIImageJPEGRepresentation(self.restaurantImageArray[i], 0.3)!
                     multipartFormData.appendBodyPart(data: imagePickedData, name: "RESTAURANT_IMAGES", fileName: ".jpg", mimeType: "image/jpeg")
@@ -528,36 +536,22 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
+                        self.saveButton.enabled = true
                         switch response.result {
                         case .Success:
-                             print(response)
+                            print(response)
                             self.centerSpinnerStopLoading()
-                            self.cancel(UIBarButtonItem())
+                            let vc = self.storyboard!.instantiateViewControllerWithIdentifier("RootNavigationViewController")
+                            self.presentViewController(vc, animated: true, completion: nil)
                         case .Failure(let error):
-                            let appearance = SCLAlertView.SCLAppearance(
-                                showCloseButton: false
-                                
-                                //showCircularIcon: false
-                                
-                            )
                             
-                            let alert = SCLAlertView(appearance: appearance)
-                            alert.addButton("Close") {
-                                // fetch data for first load
-                                self.centerSpinnerStopLoading()
-                                self.saveButton.enabled = true
-                            }
-                            
-                            alert.showTitle(
-                                "Connection Error", // Title of view
-                                subTitle: error.localizedDescription, // String of view
-                                duration: 0.0, // Duration to show before closing automatically, default: 0.0
-                                completeText: "", // Optional button value, default: ""
-                                style: .Success, // Styles - see below.
-                                colorStyle: 0x00ACC1,
-                                colorTextButton: 0xFFFFFF,
-                                circleIconImage: UIImage(named: "meme")
-                            )
+                            KaAlert.show("Connection Error", subTitle: error.localizedDescription, circleIconImage: UIImage(named: "meme"),firstButton: "Close", completeion: { (buttonName) in
+                                if buttonName == "Close" {
+                                    // fetch data for first load
+                                    self.centerSpinnerStopLoading()
+                                    self.saveButton.enabled = true
+                                }
+                            })
                         }
                     }
                 case .Failure(let encodingError):
@@ -575,7 +569,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                                       sourceType: DKImagePickerControllerSourceType = .Both,
                                       allowsLandscape: Bool,
                                       singleSelect: Bool) {
-    
+        
         let pickerController = DKImagePickerController()
         
         // Custom camera
@@ -622,10 +616,10 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
                         
                         asset.fetchOriginalImageWithCompleteBlock { (image, info) in
                             self.restaurantImageArray.append(image!)
-                       
+                            
                             if index == self.restaurantImageAssets.count - 1 {
                                 self.centerSpinnerStopLoading()
-                               self.reloadRestaurantImageCollectionView()
+                                self.reloadRestaurantImageCollectionView()
                             }
                         }
                     }
@@ -636,7 +630,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             pickerController.defaultSelectedAssets = self.restaurantMenuImageAssets
             
             pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
-               print("didSelectAssets")
+                print("didSelectAssets")
                 
                 self.view.userInteractionEnabled = false
                 self.restaurantMenuImageArray.removeAll()
