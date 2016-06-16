@@ -28,6 +28,8 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.12.0):
     - FBSDKCoreKit
+  - FLAnimatedImage (1.0.12)
+  - GoogleMaps (1.13.2)
   - ImageSlideshow/Alamofire (0.4.0):
     - AlamofireImage (~> 2.0)
     - ImageSlideshow/Core
@@ -36,6 +38,13 @@ PODS:
   - M13Checkbox (2.1.2)
   - Material (1.41.6)
   - MMMaterialDesignSpinner (0.2.3)
+  - NYTPhotoViewer (1.1.0):
+    - NYTPhotoViewer/AnimatedGifSupport (= 1.1.0)
+    - NYTPhotoViewer/Core (= 1.1.0)
+  - NYTPhotoViewer/AnimatedGifSupport (1.1.0):
+    - FLAnimatedImage (~> 1.0.8)
+    - NYTPhotoViewer/Core
+  - NYTPhotoViewer/Core (1.1.0)
   - ObjectMapper (1.3.0)
   - SCLAlertView (0.5.8)
   - SwiftSpinner (0.9.5)
@@ -53,11 +62,13 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - GoogleMaps
   - ImageSlideshow/Alamofire
   - Kingfisher (~> 2.4)
   - M13Checkbox
   - Material (~> 1.0)
   - MMMaterialDesignSpinner
+  - NYTPhotoViewer (~> 1.1.0)
   - SCLAlertView
   - SwiftSpinner
   - SwiftValidator (from `https://github.com/jpotts18/SwiftValidator.git`, branch `master`)
@@ -85,17 +96,20 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 6e56d5a2a64a755ad4efb5dbeee8f82fb1b99775
   FBSDKLoginKit: 03f68a8d48c2c8bb81d7eb8097973d483543e1f6
   FBSDKShareKit: df1491f064cffc8ebcc3fc8b71be94cc190c728e
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  GoogleMaps: b20a103ff307f58392e603cf142e59d7e30374c1
   ImageSlideshow: 0d3632bc0c2b4d3fff24a49ce4d3022af8238b03
   Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
   M13Checkbox: fbc53145e3ca8ecd1c444a76439bdc0ddb17b008
   Material: fcbcee7543c79e9917a94b3510c0cc9eeefe156b
   MMMaterialDesignSpinner: 55c80b454f7928d0ed789cc3c456fa06bd6a2f16
+  NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
   ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   SCLAlertView: 653e84d1f9fd95333bc54671fbadb7d0c47fce49
   SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
   SwiftValidator: 461a2c00173f001287a8fa1f12704b87ec8a6bc4
   UIImageViewModeScaleAspect: ec78901acfc20d3782154111a21d34390f8f71ad
 
-PODFILE CHECKSUM: 6253a85e8599791eba9ac1d52de050c19ffc006f
+PODFILE CHECKSUM: 4f9a5685b89a59c0604e4e15f1b99c21120d567e
 
 COCOAPODS: 1.0.1

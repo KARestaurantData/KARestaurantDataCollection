@@ -54,7 +54,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MNu-fY-nPu">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Q66-r1-TL7">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Q66-r1-TL7">
                                                             <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
                                                         </imageView>
                                                     </subviews>
@@ -221,7 +221,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="83" height="83"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixS-E3-YOB">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixS-E3-YOB">
                                                                         <rect key="frame" x="0.0" y="0.0" width="83" height="83"/>
                                                                     </imageView>
                                                                 </subviews>
@@ -330,37 +330,23 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Location" id="uZd-x3-pKN">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="3EF-P8-aoY">
-                                        <rect key="frame" x="0.0" y="718" width="600" height="55"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="160" id="3EF-P8-aoY">
+                                        <rect key="frame" x="0.0" y="718" width="600" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3EF-P8-aoY" id="4U8-73-f5b">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADO-3B-Pp5" userLabel="Latitude">
-                                                    <rect key="frame" x="18" y="8" width="564" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="h6G-Eb-HJJ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.67450980390000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OO-Fo-mYM" userLabel="Longitude">
-                                                    <rect key="frame" x="18" y="28" width="564" height="18"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.67450980390000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mer-R4-zZz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="159"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ADO-3B-Pp5" firstAttribute="top" secondItem="4U8-73-f5b" secondAttribute="topMargin" id="0Lg-n3-Rxj"/>
-                                                <constraint firstItem="1OO-Fo-mYM" firstAttribute="top" secondItem="ADO-3B-Pp5" secondAttribute="bottom" constant="2" id="8HU-e6-Rkh"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="1OO-Fo-mYM" secondAttribute="trailing" constant="10" id="DGq-X2-9dX"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ADO-3B-Pp5" secondAttribute="trailing" constant="10" id="IDb-11-DGy"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="1OO-Fo-mYM" secondAttribute="bottom" id="Zxr-dC-5Vq"/>
-                                                <constraint firstItem="1OO-Fo-mYM" firstAttribute="leading" secondItem="4U8-73-f5b" secondAttribute="leadingMargin" constant="10" id="akg-BM-vuT"/>
-                                                <constraint firstItem="ADO-3B-Pp5" firstAttribute="leading" secondItem="4U8-73-f5b" secondAttribute="leadingMargin" constant="10" id="wpU-Sz-QuA"/>
+                                                <constraint firstItem="mer-R4-zZz" firstAttribute="centerY" secondItem="4U8-73-f5b" secondAttribute="centerY" id="D5E-RL-nq6"/>
+                                                <constraint firstItem="mer-R4-zZz" firstAttribute="width" secondItem="4U8-73-f5b" secondAttribute="width" id="IVt-te-fsM"/>
+                                                <constraint firstItem="mer-R4-zZz" firstAttribute="height" secondItem="4U8-73-f5b" secondAttribute="height" id="WIy-W4-d2Z"/>
+                                                <constraint firstItem="mer-R4-zZz" firstAttribute="centerX" secondItem="4U8-73-f5b" secondAttribute="centerX" id="bw8-KS-Bcy"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -369,7 +355,7 @@
                             <tableViewSection headerTitle="Address" id="jLY-cc-6Lf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="Ruj-aU-aF9">
-                                        <rect key="frame" x="0.0" y="801" width="600" height="55"/>
+                                        <rect key="frame" x="0.0" y="906" width="600" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ruj-aU-aF9" id="EoM-t4-5gX">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
@@ -395,7 +381,7 @@
                             <tableViewSection headerTitle="Restaurant Details" id="HvO-bm-0Du">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="j8s-Ph-keX">
-                                        <rect key="frame" x="0.0" y="884" width="600" height="55"/>
+                                        <rect key="frame" x="0.0" y="989" width="600" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j8s-Ph-keX" id="AfL-iH-wZu">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
@@ -428,12 +414,11 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1200"/>
                     <connections>
+                        <outlet property="googleMapView" destination="mer-R4-zZz" id="EqB-7o-BTv"/>
                         <outlet property="menuCollectionview" destination="ihI-ey-Ogg" id="xcy-F7-prm"/>
                         <outlet property="restaurantAddressLabel" destination="R0f-5l-RNT" id="fXz-8Y-nHy"/>
                         <outlet property="restaurantDeliveryLabel" destination="jGm-Ke-D9n" id="tEl-9j-QWF"/>
                         <outlet property="restaurantDetailLabel" destination="kcs-cn-sFl" id="eKp-bp-bS3"/>
-                        <outlet property="restaurantLatitudeLabel" destination="ADO-3B-Pp5" id="UcQ-nL-vS4"/>
-                        <outlet property="restaurantLongtitudeLabel" destination="1OO-Fo-mYM" id="xf3-sa-Zdd"/>
                         <outlet property="restaurantNameLabel" destination="SKB-fu-YYn" id="Jhb-gm-VJP"/>
                         <outlet property="restaurantPhoneNumberLabel" destination="T4b-d6-YCh" id="EQI-NL-LzX"/>
                         <outlet property="restaurantSlideshow" destination="783-xu-U89" id="ASu-rm-iGm"/>
@@ -455,7 +440,7 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="172"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="YIx-a1-Wtu">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="YIx-a1-Wtu">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="172"/>
                                     <gestureRecognizers/>
                                 </imageView>
@@ -817,7 +802,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Is-FO-Gix">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Is-FO-Gix">
                                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                     </imageView>
                                                                 </subviews>
@@ -905,7 +890,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lxz-Gw-F2x">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lxz-Gw-F2x">
                                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                     </imageView>
                                                                 </subviews>
@@ -1022,7 +1007,7 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="172"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Mic-SC-2UC">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Mic-SC-2UC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="172"/>
                                     <gestureRecognizers/>
                                 </imageView>
@@ -1384,7 +1369,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uMq-kg-0x1">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uMq-kg-0x1">
                                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                     </imageView>
                                                                 </subviews>
@@ -1472,7 +1457,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H5L-es-Lw1">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H5L-es-Lw1">
                                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                     </imageView>
                                                                 </subviews>

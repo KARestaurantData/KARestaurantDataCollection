@@ -22,6 +22,8 @@ pod "SwiftSpinner"
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
+pod 'NYTPhotoViewer', '~> 1.1.0'
+pod 'GoogleMaps'
 
 # Recommended: For the most recent version of SwiftValidator (master branch)
 pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :branch => 'master'

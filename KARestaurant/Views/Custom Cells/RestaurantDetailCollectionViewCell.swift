@@ -29,7 +29,6 @@ class RestaurantDetailCollectionViewCell: UICollectionViewCell {
     
     func downloadImage() {
         //  loadingIndicator.startAnimating()
-        
         if let  urlString = restaurantMenu.url {
             self.menuImageView.kf_setImageWithURL(NSURL(string: urlString)!, placeholderImage: UIImage(named: "defaultPhoto"), optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
             }
