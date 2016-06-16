@@ -353,6 +353,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F0754361CE0506700F7BB95 /* Build configuration list for PBXNativeTarget "KARestaurant" */;
 			buildPhases = (
+				8F9859A778EEC5479F317E3B /* 📦 Check Pods Manifest.lock */,
 				DEB6EAFCA6803313E6F443CC /* [CP] Check Pods Manifest.lock */,
 				0F0900DDDA1A931C8C43A872 /* [CP] Check Pods Manifest.lock */,
 				6F07540A1CE0506700F7BB95 /* Sources */,
@@ -376,6 +377,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F0754391CE0506700F7BB95 /* Build configuration list for PBXNativeTarget "KARestaurantTests" */;
 			buildPhases = (
+				96EF5FCD9F8A9007D223F0F6 /* 📦 Check Pods Manifest.lock */,
 				E7DD9E0D338128B77ED12455 /* [CP] Check Pods Manifest.lock */,
 				15A9852AFB230C89D1B0C888 /* [CP] Check Pods Manifest.lock */,
 				6F07541E1CE0506700F7BB95 /* Sources */,
@@ -400,6 +402,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F07543C1CE0506700F7BB95 /* Build configuration list for PBXNativeTarget "KARestaurantUITests" */;
 			buildPhases = (
+				20E5F4D67995D44182180EB4 /* 📦 Check Pods Manifest.lock */,
 				7AA77F39B9A77B3AD54D3F8F /* [CP] Check Pods Manifest.lock */,
 				FDF1A6209C6965EB12BF0886 /* [CP] Check Pods Manifest.lock */,
 				6F0754291CE0506700F7BB95 /* Sources */,
@@ -563,6 +566,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		20E5F4D67995D44182180EB4 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		4CA546F8F8DCE8A88D498F84 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -681,6 +699,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KARestaurant/Pods-KARestaurant-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F9859A778EEC5479F317E3B /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		96EF5FCD9F8A9007D223F0F6 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9869DAA33955945F2A44BDE4 /* 📦 Copy Pods Resources */ = {
