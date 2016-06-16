@@ -51,8 +51,11 @@ class LoginViewController: UIViewController {
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler { (connection, result, error) in
             if error != nil{
                 print(error)
+                // Start & stop animations
+                self.footerSpinner.stopAnimating()
                 return
             }
+            
             let facebookID = result["id"] as! String
             
             // get restuarant
@@ -94,7 +97,8 @@ class LoginViewController: UIViewController {
         login.logInWithReadPermissions(parameters, fromViewController: self) { (result, error) in
             
             if ((error) != nil) {
-                //print("Process error")
+                // Start & stop animations
+                self.footerSpinner.stopAnimating()
             } else if (result.isCancelled) {
                 //print("Cancelled")
             } else {

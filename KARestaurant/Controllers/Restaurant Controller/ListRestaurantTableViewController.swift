@@ -50,7 +50,6 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     }
     
     override func viewWillAppear(animated: Bool) {
-        print("viewWillAppear")
         prepareDataForFirstStartup()
     }
     
