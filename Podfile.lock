@@ -1,0 +1,115 @@
+PODS:
+  - Alamofire (3.4.0)
+  - AlamofireImage (2.4.0):
+    - Alamofire (~> 3.3)
+  - AlamofireObjectMapper (3.0.0):
+    - Alamofire (~> 3.2)
+    - ObjectMapper (~> 1.0)
+  - Bolts (1.7.0):
+    - Bolts/AppLinks (= 1.7.0)
+    - Bolts/Tasks (= 1.7.0)
+  - Bolts/AppLinks (1.7.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.7.0)
+  - BSGridCollectionViewLayout (1.1.1)
+  - BSImagePicker (2.3.0):
+    - BSGridCollectionViewLayout (~> 1.1)
+    - UIImageViewModeScaleAspect (~> 1.3)
+  - Device (1.0.1)
+  - DKImagePickerController (3.2.1):
+    - DKImagePickerController/Camera (= 3.2.1)
+    - DKImagePickerController/ImageManager (= 3.2.1)
+  - DKImagePickerController/Camera (3.2.1)
+  - DKImagePickerController/ImageManager (3.2.1)
+  - DownPicker (0.1.34)
+  - FBSDKCoreKit (4.12.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.12.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.12.0):
+    - FBSDKCoreKit
+  - FLAnimatedImage (1.0.12)
+  - GoogleMaps (1.13.2)
+  - ImageSlideshow/Alamofire (0.4.0):
+    - AlamofireImage (~> 2.0)
+    - ImageSlideshow/Core
+  - ImageSlideshow/Core (0.4.0)
+  - Kingfisher (2.4.1)
+  - M13Checkbox (2.1.2)
+  - Material (1.41.6)
+  - MMMaterialDesignSpinner (0.2.3)
+  - NYTPhotoViewer (1.1.0):
+    - NYTPhotoViewer/AnimatedGifSupport (= 1.1.0)
+    - NYTPhotoViewer/Core (= 1.1.0)
+  - NYTPhotoViewer/AnimatedGifSupport (1.1.0):
+    - FLAnimatedImage (~> 1.0.8)
+    - NYTPhotoViewer/Core
+  - NYTPhotoViewer/Core (1.1.0)
+  - ObjectMapper (1.3.0)
+  - SCLAlertView (0.5.8)
+  - SwiftSpinner (0.9.5)
+  - SwiftValidator (3.0.1)
+  - UIImageViewModeScaleAspect (1.3)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.4)
+  - AlamofireImage (~> 2.0)
+  - AlamofireObjectMapper (~> 3.0)
+  - BSImagePicker (~> 2.3)
+  - Device (~> 1.0.1)
+  - DKImagePickerController
+  - DownPicker
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
+  - GoogleMaps
+  - ImageSlideshow/Alamofire
+  - Kingfisher (~> 2.4)
+  - M13Checkbox
+  - Material (~> 1.0)
+  - MMMaterialDesignSpinner
+  - NYTPhotoViewer (~> 1.1.0)
+  - SCLAlertView
+  - SwiftSpinner
+  - SwiftValidator (from `https://github.com/jpotts18/SwiftValidator.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  SwiftValidator:
+    :branch: master
+    :git: https://github.com/jpotts18/SwiftValidator.git
+
+CHECKOUT OPTIONS:
+  SwiftValidator:
+    :commit: ca7ec31141d8724fca018e3810dfaed29b7637c1
+    :git: https://github.com/jpotts18/SwiftValidator.git
+
+SPEC CHECKSUMS:
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  BSGridCollectionViewLayout: d7304dcb35c6b3b4420c527e9f9b77ff322250f3
+  BSImagePicker: 591b28ce4994c44cbc4ac896717c1db9f9fadd18
+  Device: 7ed5b87db148886e8c3cbcdde5dc997baddbe10b
+  DKImagePickerController: 8fd00d31c1688dce35d5fce15d3231a79ac2d38c
+  DownPicker: c00ea63f08ae82116cc93d0eba74e86bf3d4c68e
+  FBSDKCoreKit: 6e56d5a2a64a755ad4efb5dbeee8f82fb1b99775
+  FBSDKLoginKit: 03f68a8d48c2c8bb81d7eb8097973d483543e1f6
+  FBSDKShareKit: df1491f064cffc8ebcc3fc8b71be94cc190c728e
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  GoogleMaps: b20a103ff307f58392e603cf142e59d7e30374c1
+  ImageSlideshow: 0d3632bc0c2b4d3fff24a49ce4d3022af8238b03
+  Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
+  M13Checkbox: fbc53145e3ca8ecd1c444a76439bdc0ddb17b008
+  Material: fcbcee7543c79e9917a94b3510c0cc9eeefe156b
+  MMMaterialDesignSpinner: 55c80b454f7928d0ed789cc3c456fa06bd6a2f16
+  NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
+  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
+  SCLAlertView: 653e84d1f9fd95333bc54671fbadb7d0c47fce49
+  SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
+  SwiftValidator: 461a2c00173f001287a8fa1f12704b87ec8a6bc4
+  UIImageViewModeScaleAspect: ec78901acfc20d3782154111a21d34390f8f71ad
+
+PODFILE CHECKSUM: 4f9a5685b89a59c0604e4e15f1b99c21120d567e
+
+COCOAPODS: 1.0.1
