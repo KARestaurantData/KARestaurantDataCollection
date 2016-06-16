@@ -42,7 +42,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var browseRestaurantImageButton: RaisedButton!
     @IBOutlet weak var restaurantMenuImageLabel: MaterialLabel!
     @IBOutlet weak var browseRestaurantMenuImageButton: RaisedButton!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var updateButton: UIButton!
     
     @IBOutlet weak var restaurantImageCollectionView: UICollectionView!
     @IBOutlet weak var restaurantMenuImageCollectionView: UICollectionView!
@@ -382,7 +382,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     func textFieldDidBeginEditing(textField: UITextField) {
         // Disable the Save button while editing.
-        saveButton.enabled = false
+        updateButton.enabled = false
     }
     
     func checkValidRestuarantField() {
@@ -399,10 +399,10 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             && rootRestaurantImageArray.count != 0
             && rootRestaurantMenuImageArray.count != 0
         {
-            saveButton.enabled = true
+            updateButton.enabled = true
             print("true")
         }else{
-            saveButton.enabled = false
+            updateButton.enabled = false
             print("false")
         }
     }
@@ -420,7 +420,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     // MARK: Navigation
-    @IBAction func cancel(sender: UIBarButtonItem) {
+    @IBAction func cancel(sender: UIButton) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         let isPresentingInAddMealMode = presentingViewController is UINavigationController
         
@@ -513,9 +513,9 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
         
     }
     
-    @IBAction func saveAction(sender: AnyObject) {
-        print("save click")
-        self.saveButton.enabled = false
+    @IBAction func updateAction(sender: AnyObject) {
+        print("update click")
+        self.updateButton.enabled = false
         self.tableView.setContentOffset(CGPointZero, animated:true)
         centerSpinnerStartLoading()
         uploadImage()
@@ -589,7 +589,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
                         print(response.debugDescription)
-                        self.saveButton.enabled = true
+                        self.updateButton.enabled = true
                         switch response.result {
                         case .Success:
                             print(response)
@@ -604,7 +604,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                                 if buttonName == "Close" {
                                     // fetch data for first load
                                     self.centerSpinnerStopLoading()
-                                    self.saveButton.enabled = true
+                                    self.updateButton.enabled = true
                                 }
                             })
                         }

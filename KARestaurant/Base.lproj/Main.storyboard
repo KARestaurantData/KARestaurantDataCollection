@@ -83,38 +83,26 @@
                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4F-7N-dvl" customClass="MaterialPulseView" customModule="Material">
-                                                                    <rect key="frame" x="562" y="8" width="30" height="30"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    <gestureRecognizers/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deU-zW-TI8">
+                                                                    <rect key="frame" x="550" y="12" width="50" height="25"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="ZMy-IF-Jz9"/>
-                                                                        <constraint firstAttribute="width" constant="30" id="zK7-5a-F44"/>
+                                                                        <constraint firstAttribute="height" constant="25" id="Esx-uG-b6s"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="RNX-5R-Z8b"/>
                                                                     </constraints>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
-                                                                            <color key="value" red="0.0" green="0.67450980390000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </view>
+                                                                    <state key="normal" image="edit"/>
+                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="U4F-7N-dvl" secondAttribute="trailing" constant="8" id="3Nh-kj-yON"/>
+                                                                <constraint firstAttribute="trailing" secondItem="deU-zW-TI8" secondAttribute="trailing" id="2ay-s6-jdF"/>
                                                                 <constraint firstItem="apf-Qk-Bji" firstAttribute="leading" secondItem="zsS-7n-H5N" secondAttribute="leadingMargin" id="AdW-OP-w6m"/>
+                                                                <constraint firstItem="deU-zW-TI8" firstAttribute="top" secondItem="zsS-7n-H5N" secondAttribute="top" constant="12" id="CMC-Rr-sb0"/>
                                                                 <constraint firstItem="FMJ-eD-gy4" firstAttribute="leading" secondItem="zsS-7n-H5N" secondAttribute="leadingMargin" id="HfJ-XC-rkz"/>
                                                                 <constraint firstItem="FMJ-eD-gy4" firstAttribute="top" secondItem="zsS-7n-H5N" secondAttribute="topMargin" id="J28-Yw-rnb"/>
                                                                 <constraint firstAttribute="bottom" secondItem="x9L-PN-ZuQ" secondAttribute="bottom" constant="21" id="Xab-FZ-yp5"/>
                                                                 <constraint firstItem="x9L-PN-ZuQ" firstAttribute="top" secondItem="apf-Qk-Bji" secondAttribute="bottom" constant="5" id="fDN-0D-1rt"/>
                                                                 <constraint firstItem="apf-Qk-Bji" firstAttribute="top" secondItem="FMJ-eD-gy4" secondAttribute="bottom" constant="5" id="fNI-ll-pfh"/>
                                                                 <constraint firstItem="x9L-PN-ZuQ" firstAttribute="trailing" secondItem="zsS-7n-H5N" secondAttribute="trailingMargin" id="fiR-PD-eeo"/>
-                                                                <constraint firstItem="U4F-7N-dvl" firstAttribute="top" secondItem="zsS-7n-H5N" secondAttribute="top" constant="8" id="hMi-Wj-Ua2"/>
                                                                 <constraint firstItem="apf-Qk-Bji" firstAttribute="trailing" secondItem="zsS-7n-H5N" secondAttribute="trailingMargin" id="jnE-S1-UyQ"/>
                                                                 <constraint firstItem="x9L-PN-ZuQ" firstAttribute="leading" secondItem="zsS-7n-H5N" secondAttribute="leadingMargin" id="pbw-hI-xMT"/>
                                                                 <constraint firstAttribute="trailingMargin" secondItem="FMJ-eD-gy4" secondAttribute="trailing" id="t9B-DO-hbB"/>
@@ -142,14 +130,9 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
-                                        <color key="value" red="0.0" green="0.67450980392156867" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="deliveryLabel" destination="apf-Qk-Bji" id="T38-oJ-Uop"/>
-                                    <outlet property="editButton" destination="U4F-7N-dvl" id="dSx-sX-NwU"/>
+                                    <outlet property="editButton" destination="deU-zW-TI8" id="4WN-cq-Izz"/>
                                     <outlet property="restaurantDetailLabel" destination="x9L-PN-ZuQ" id="fyu-0P-pU1"/>
                                     <outlet property="restaurantImageView" destination="Q66-r1-TL7" id="iau-GQ-dCU"/>
                                     <outlet property="titleLabel" destination="FMJ-eD-gy4" id="Xv1-Ky-z5E"/>
@@ -961,15 +944,25 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Register" id="oTT-97-NLu">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="U3D-rY-qFg">
-                            <connections>
-                                <action selector="cancel:" destination="Gpn-RF-UgH" id="wx4-yT-OGO"/>
-                            </connections>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="A0f-NH-aI5">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="93j-xl-MPf">
+                                <rect key="frame" x="20" y="9" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="left-arrow"/>
+                                <connections>
+                                    <action selector="cancel:" destination="Gpn-RF-UgH" eventType="touchUpInside" id="365-WG-NlR"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="fUa-ne-KkE">
-                            <connections>
-                                <action selector="saveAction:" destination="Gpn-RF-UgH" id="zeu-vo-2dk"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="lSO-hw-Ygs">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="q37-xg-Ckq">
+                                <rect key="frame" x="555" y="9" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="upload"/>
+                                <connections>
+                                    <action selector="saveAction:" destination="Gpn-RF-UgH" eventType="touchUpInside" id="dPS-Pt-qZx"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -991,7 +984,7 @@
                         <outlet property="restaurantMenuImageCollectionView" destination="ZsE-ao-Jox" id="ej9-iX-KW5"/>
                         <outlet property="restaurantMenuImageLabel" destination="u8J-hN-ayn" id="on8-pZ-jZO"/>
                         <outlet property="restaurantTypeTextField" destination="CMP-R4-iw6" id="9dI-Sz-M65"/>
-                        <outlet property="saveButton" destination="fUa-ne-KkE" id="fIc-K4-S3R"/>
+                        <outlet property="saveButton" destination="q37-xg-Ckq" id="QMX-Yv-kF7"/>
                         <outlet property="streetTextField" destination="qYa-zW-gVk" id="GCw-6s-ncH"/>
                     </connections>
                 </tableViewController>
@@ -1518,15 +1511,25 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Update Restuarant" id="WRz-zc-p6G">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="9Of-f6-Qaj">
-                            <connections>
-                                <action selector="cancel:" destination="dUL-Zh-jTI" id="UD1-ay-mlD"/>
-                            </connections>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="N2a-bU-GdK">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="P79-lX-gFM">
+                                <rect key="frame" x="20" y="9" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="left-arrow"/>
+                                <connections>
+                                    <action selector="cancel:" destination="dUL-Zh-jTI" eventType="touchUpInside" id="rJb-uj-mRH"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="OZk-37-Nb9">
-                            <connections>
-                                <action selector="saveAction:" destination="dUL-Zh-jTI" id="v7b-AI-MQ0"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="M6Y-Gu-9fj">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kfq-t7-bJc">
+                                <rect key="frame" x="555" y="9" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="update"/>
+                                <connections>
+                                    <action selector="updateAction:" destination="dUL-Zh-jTI" eventType="touchUpInside" id="DwU-UG-keH"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -1548,8 +1551,8 @@
                         <outlet property="restaurantMenuImageCollectionView" destination="NuC-j1-4s5" id="L2z-Dh-smf"/>
                         <outlet property="restaurantMenuImageLabel" destination="4e5-3T-Ieq" id="m6Z-B6-zgm"/>
                         <outlet property="restaurantTypeTextField" destination="GcX-W9-eDp" id="tMw-7O-w1g"/>
-                        <outlet property="saveButton" destination="OZk-37-Nb9" id="kcc-ly-Mo8"/>
                         <outlet property="streetTextField" destination="taf-le-yeF" id="S4c-pW-73p"/>
+                        <outlet property="updateButton" destination="kfq-t7-bJc" id="jFJ-9R-uXH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XgI-kl-Pbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1559,8 +1562,12 @@
     </scenes>
     <resources>
         <image name="defaultPhoto" width="540" height="540"/>
+        <image name="edit" width="512" height="512"/>
+        <image name="left-arrow" width="512" height="512"/>
         <image name="options" width="512" height="512"/>
         <image name="photo-camera" width="512" height="512"/>
         <image name="stop" width="626" height="626"/>
+        <image name="update" width="512" height="512"/>
+        <image name="upload" width="512" height="512"/>
     </resources>
 </document>

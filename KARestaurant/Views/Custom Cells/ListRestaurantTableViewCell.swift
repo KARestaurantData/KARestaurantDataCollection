@@ -17,7 +17,7 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var deliveryLabel: UILabel!
     @IBOutlet weak var restaurantDetailLabel: UILabel!
-    @IBOutlet weak var editButton: MaterialPulseView!
+    @IBOutlet weak var editButton: UIButton!
     
     var restaurant: Restaurant!
  
@@ -50,9 +50,7 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
         titleLabel.text = restaurant.name
         restaurantDetailLabel.text = restaurant.restDescription
         deliveryLabel.text = NSString.init(string: restaurant.isDeliver!).boolValue ? "Delivery" : "No Delivery"
-        editButton.image = UIImage(named: "share")
-        editButton.contentMode = UIViewContentMode.ScaleToFill
-        editButton.depth = .Depth2
+        editButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         
         //showField()
     }

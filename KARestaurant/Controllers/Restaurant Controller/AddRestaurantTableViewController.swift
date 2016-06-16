@@ -40,7 +40,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var browseRestaurantImageButton: RaisedButton!
     @IBOutlet weak var restaurantMenuImageLabel: MaterialLabel!
     @IBOutlet weak var browseRestaurantMenuImageButton: RaisedButton!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIButton!
     
     @IBOutlet weak var restaurantImageCollectionView: UICollectionView!
     @IBOutlet weak var restaurantMenuImageCollectionView: UICollectionView!
@@ -344,7 +344,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     // MARK: Navigation
-    @IBAction func cancel(sender: UIBarButtonItem) {
+    @IBAction func cancel(sender: UIButton) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         let isPresentingInAddMealMode = presentingViewController is UINavigationController
         
