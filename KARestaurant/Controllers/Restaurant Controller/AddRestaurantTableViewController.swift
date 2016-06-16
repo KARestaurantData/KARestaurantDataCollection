@@ -40,12 +40,15 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var browseRestaurantImageButton: RaisedButton!
     @IBOutlet weak var restaurantMenuImageLabel: MaterialLabel!
     @IBOutlet weak var browseRestaurantMenuImageButton: RaisedButton!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIButton!
     
     @IBOutlet weak var restaurantImageCollectionView: UICollectionView!
     @IBOutlet weak var restaurantMenuImageCollectionView: UICollectionView!
     
     var isDelivery: Bool = false
+    var isRestaurantTypeLoading: Bool = false
+    var isCommuneLoading: Bool = false
+    var isDistrictLoading: Bool = false
     
     // DKImagePicker Property
     var restaurantImageAssets = [DKAsset]()
@@ -224,7 +227,8 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     // MARK: Fetch Data
     func getRestaurantType(){
-        self.restaurantTypeTextField.enabled = false
+        centerSpinnerStartLoading()
+        isRestaurantTypeLoading = true
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/categories"
         
@@ -241,12 +245,16 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             self.restaurantTypeDownPicker.setPlaceholder("Please select restaurant type")
             self.restaurantTypeDownPicker.setPlaceholderWhileSelecting("Restaurant Type")
             self.restaurantTypeDownPicker.shouldDisplayCancelButton = false
-            self.restaurantTypeTextField.enabled = true
+            self.isRestaurantTypeLoading = false
+            if self.isRestaurantTypeLoading == false && self.isDistrictLoading == false &&  self.isCommuneLoading == false{
+                self.centerSpinnerStopLoading()
+            }
         }
     }
     
     func getDistrict(cityId: Int){
-        self.districtTextField.enabled = false
+        centerSpinnerStartLoading()
+        self.isDistrictLoading = true
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/cities/\(cityId)/districts"
         
@@ -262,13 +270,17 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             self.districtDownPicker.setPlaceholder("Please select district")
             self.districtDownPicker.setPlaceholderWhileSelecting("District")
             self.districtDownPicker.shouldDisplayCancelButton = false
-            self.districtTextField.enabled = true
+            self.isDistrictLoading = false
+            if self.isRestaurantTypeLoading == false && self.isDistrictLoading == false &&  self.isCommuneLoading == false{
+                self.centerSpinnerStopLoading()
+            }
         }
     }
     
     
     func getCommune(districtId: Int){
-        self.communeTextField.enabled = false
+        centerSpinnerStartLoading()
+        self.isCommuneLoading = true
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/districts/\(districtId)/commnunes"
         
@@ -287,7 +299,10 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             self.communeDownPicker.setPlaceholder("Please select commune")
             self.communeDownPicker.setPlaceholderWhileSelecting("Commune")
             self.communeDownPicker.shouldDisplayCancelButton = false
-            self.communeTextField.enabled = true
+            self.isCommuneLoading = false
+            if self.isRestaurantTypeLoading == false && self.isDistrictLoading == false &&  self.isCommuneLoading == false{
+                self.centerSpinnerStopLoading()
+            }
             
         }
     }
@@ -344,7 +359,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     }
     
     // MARK: Navigation
-    @IBAction func cancel(sender: UIBarButtonItem) {
+    @IBAction func cancel(sender: UIButton) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         let isPresentingInAddMealMode = presentingViewController is UINavigationController
         

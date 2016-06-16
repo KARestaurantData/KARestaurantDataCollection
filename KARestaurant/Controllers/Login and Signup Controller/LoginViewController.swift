@@ -17,8 +17,11 @@ import ObjectMapper
 class LoginViewController: UIViewController {
     @IBOutlet weak var footerSpinner: MMMaterialDesignSpinner!
     
+    @IBOutlet weak var fbLoginButton: MaterialButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareRefreshControl()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -27,31 +30,19 @@ class LoginViewController: UIViewController {
             let vc = storyboard.instantiateViewControllerWithIdentifier("RootNavigationViewController")
             self.presentViewController(vc, animated: true, completion: nil)
             
-        }else{
-            // Add a custom login button to your app
-            let fbButton = MaterialButton()
-            fbButton.backgroundColor = MaterialColor.cyan.darken1
-            fbButton.frame = CGRectMake(0, 0, 180, 40)
-            fbButton.center = self.view.center
-            fbButton.setTitle("KA Restaurant Login", forState: UIControlState.Normal)
-            
-            // Handle clicks on the button
-            fbButton.addTarget(self, action: #selector(self.loginButtonClicked), forControlEvents: UIControlEvents.TouchUpInside)
-            
-            // Add the button to the view
-            self.view.addSubview(fbButton)
-            prepareRefreshControl()
         }
     }
     
     
     private func prepareRefreshControl(){
+        // Handle clicks on the button
+        fbLoginButton.addTarget(self, action: #selector(self.loginButtonClicked), forControlEvents: UIControlEvents.TouchUpInside)
         
         // Set the line width of the spinner
         self.footerSpinner.lineWidth = 3
         
         // Set the tint color of the spinner
-        self.footerSpinner.tintColor = MaterialColor.cyan.darken1
+        self.footerSpinner.tintColor = MaterialColor.indigo.darken1
     }
     
     
@@ -60,8 +51,11 @@ class LoginViewController: UIViewController {
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler { (connection, result, error) in
             if error != nil{
                 print(error)
+                // Start & stop animations
+                self.footerSpinner.stopAnimating()
                 return
             }
+            
             let facebookID = result["id"] as! String
             
             // get restuarant
@@ -103,7 +97,8 @@ class LoginViewController: UIViewController {
         login.logInWithReadPermissions(parameters, fromViewController: self) { (result, error) in
             
             if ((error) != nil) {
-                //print("Process error")
+                // Start & stop animations
+                self.footerSpinner.stopAnimating()
             } else if (result.isCancelled) {
                 //print("Cancelled")
             } else {
