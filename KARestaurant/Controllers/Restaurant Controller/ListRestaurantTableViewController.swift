@@ -50,7 +50,6 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     }
     
     override func viewWillAppear(animated: Bool) {
-        print("viewWillAppear")
         prepareDataForFirstStartup()
     }
     
@@ -132,11 +131,11 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         
         // stop animations
         self.view.userInteractionEnabled = true
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MMM d, h:mm a"
-        let title = "Last update: \(formatter.stringFromDate(NSDate()))"
-        let attrsDictionary = NSDictionary(object: MaterialColor.cyan.darken1, forKey: NSForegroundColorAttributeName)
-        self.restuarantRefreshControl.attributedTitle = NSAttributedString(string: title, attributes: attrsDictionary as? [String : AnyObject])
+//        let formatter = NSDateFormatter()
+//        formatter.dateFormat = "MMM d, h:mm a"
+//        let title = "Last update: \(formatter.stringFromDate(NSDate()))"
+//        let attrsDictionary = NSDictionary(object: MaterialColor.cyan.darken1, forKey: NSForegroundColorAttributeName)
+//        self.restuarantRefreshControl.attributedTitle = NSAttributedString(string: title, attributes: attrsDictionary as? [String : AnyObject])
         // End the refreshing
         self.restuarantRefreshControl.endRefreshing()
         self.centerSpinner.stopAnimating()
@@ -363,41 +362,46 @@ extension ListRestaurantTableViewController {
                 
             }else{
                 
-                let restaurant = self.responseRestaurant[sender.indexPath!.row] as Restaurant
-                // get restuarant
-                let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/\(restaurant.id!)"
-                
-                Alamofire.request(.DELETE, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
-                    switch response.result {
-                    case .Success:
-                        let responseData = response.result.value as! NSDictionary
-                        if responseData["CODE"] as! String == "1001" {
-                            
-                            KaAlert.show("KA Restaurant", subTitle: "Restaurant is not exist.", circleIconImage: UIImage(named: "meme"), completeion: { _ in })
-                            
-                            
-                        }else{
-                            
-                            KaAlert.show("KA Restaurant", subTitle: "Restaurant has been deleted successfully.", circleIconImage: UIImage(named: "meme"), firstButton: "Close", completeion: { (buttonName) in
-                                if buttonName == "Close" {
-                                    // No data
-                                    self.prepareDataForFirstStartup()
-                                    return
+                KaAlert.show("KA Restaurant", subTitle: "Are you sure you want to delete this restaurant?", completeText: "NO", showCloseButton: true, firstButton: "YES", completeion: { (buttonName) in
+                    if buttonName == "YES" {
+                        let restaurant = self.responseRestaurant[sender.indexPath!.row] as Restaurant
+                        // get restuarant
+                        let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/restaurants/\(restaurant.id!)"
+                        
+                        Alamofire.request(.DELETE, url, headers: Constant.GlobalConstants.headers).responseJSON { response in
+                            switch response.result {
+                            case .Success:
+                                let responseData = response.result.value as! NSDictionary
+                                if responseData["CODE"] as! String == "1001" {
+                                    
+                                    KaAlert.show("KA Restaurant", subTitle: "Restaurant is not exist.", circleIconImage: UIImage(named: "meme"), completeion: { _ in })
+                                    
+                                    
+                                }else{
+                                    
+                                    KaAlert.show("KA Restaurant", subTitle: "Restaurant has been deleted successfully.", circleIconImage: UIImage(named: "meme"), firstButton: "Close", completeion: { (buttonName) in
+                                        if buttonName == "Close" {
+                                            // No data
+                                            self.prepareDataForFirstStartup()
+                                            return
+                                        }
+                                    })
                                 }
-                            })
+                                
+                                
+                            case .Failure(let error):
+                                KaAlert.show("Connection Error", subTitle: error.localizedDescription, circleIconImage: UIImage(named: "meme"), firstButton: "Close", completeion: { (buttonName) in
+                                    if buttonName == "Close" {
+                                        // fetch data for first load
+                                        self.getRestuarant(1, limit: 20)
+                                    }
+                                })
+                                
+                            }
                         }
                         
-                        
-                    case .Failure(let error):
-                        KaAlert.show("Connection Error", subTitle: error.localizedDescription, circleIconImage: UIImage(named: "meme"), firstButton: "Close", completeion: { (buttonName) in
-                            if buttonName == "Close" {
-                                // fetch data for first load
-                                self.getRestuarant(1, limit: 20)
-                            }
-                        })
-                        
                     }
-                }
+                }) 
             }
         })
     }
