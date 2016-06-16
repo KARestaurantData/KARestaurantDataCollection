@@ -149,8 +149,8 @@ class LoginAndSignUpTableVC: UITableViewController, ValidationDelegate {
             let userRespone = Mapper<UserResponse>().map(response.result.value)
             print(userRespone?.message)
             
-            let user = userRespone?.user
-            print(user?.email)
+            //let user = userRespone?.user
+           // print(user?.email)
         }
     }
     

@@ -22,7 +22,6 @@ import DownPicker
 import ObjectMapper
 import ImageSlideshow
 import Kingfisher
-import SCLAlertView
 import MMMaterialDesignSpinner
 
 class EditRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
@@ -595,32 +594,19 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
                         case .Success:
                             print(response)
                             self.centerSpinnerStopLoading()
-                            self.cancel(UIBarButtonItem())
+            
+                            let vc = self.storyboard!.instantiateViewControllerWithIdentifier("RootNavigationViewController")
+                            self.presentViewController(vc, animated: true, completion: nil)
+
                         case .Failure(let error):
-                            let appearance = SCLAlertView.SCLAppearance(
-                                showCloseButton: false
-                                
-                                //showCircularIcon: false
-                                
-                            )
                             
-                            let alert = SCLAlertView(appearance: appearance)
-                            alert.addButton("Close") {
-                                // fetch data for first load
-                                self.centerSpinnerStopLoading()
-                                self.saveButton.enabled = true
-                            }
-                            
-                            alert.showTitle(
-                                "Connection Error", // Title of view
-                                subTitle: error.localizedDescription, // String of view
-                                duration: 0.0, // Duration to show before closing automatically, default: 0.0
-                                completeText: "", // Optional button value, default: ""
-                                style: .Success, // Styles - see below.
-                                colorStyle: 0x00ACC1,
-                                colorTextButton: 0xFFFFFF,
-                                circleIconImage: UIImage(named: "meme")
-                            )
+                            KaAlert.show("Connection Error", subTitle: error.localizedDescription, circleIconImage: UIImage(named: "meme"),firstButton: "Close", completeion: { (buttonName) in
+                                if buttonName == "Close" {
+                                    // fetch data for first load
+                                    self.centerSpinnerStopLoading()
+                                    self.saveButton.enabled = true
+                                }
+                            })
                         }
 
                         

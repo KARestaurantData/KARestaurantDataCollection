@@ -13,7 +13,6 @@ import Material
 import MMMaterialDesignSpinner
 import Alamofire
 import ObjectMapper
-import SCLAlertView
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var footerSpinner: MMMaterialDesignSpinner!
@@ -76,29 +75,9 @@ class LoginViewController: UIViewController {
                     let responseData = Mapper<UserResponse>().map(response.result.value)
                     
                     if (responseData?.code)! == "7777"{
-                        let appearance = SCLAlertView.SCLAppearance(
-                            showCloseButton: false
-                            
-                            //showCircularIcon: false
-                            
-                        )
-                        let alert = SCLAlertView(appearance: appearance)
-                        alert.addButton("Close") {
-                            //  object
-                            return
-                        }
                         
+                        KaAlert.show("KA Restaurant", subTitle: "Something went wrong", showCloseButton: true, circleIconImage: UIImage(named: "meme"), completeion: { _ in })
                         
-                        alert.showTitle(
-                            "KA Restaurant", // Title of view
-                            subTitle: "Something went wrong", // String of view
-                            duration: 0.0, // Duration to show before closing automatically, default: 0.0
-                            completeText: "", // Optional button value, default: ""
-                            style: .Success, // Styles - see below.
-                            colorStyle: 0x00ACC1,
-                            colorTextButton: 0xFFFFFF,
-                            circleIconImage: UIImage(named: "meme")
-                        )
                     }else{
                         // Set FacebookID to NSUserDefault
                         NSUserDefaults.standardUserDefaults().setObject(responseData?.data?.id, forKey: "FACEBOOK_ID")
@@ -109,30 +88,7 @@ class LoginViewController: UIViewController {
                         
                     }
                 case .Failure(let error):
-                    let appearance = SCLAlertView.SCLAppearance(
-                        showCloseButton: false
-                        
-                        //showCircularIcon: false
-                        
-                    )
-                    let alert = SCLAlertView(appearance: appearance)
-                    alert.addButton("Close") {
-                        // fetch data for first load
-                        return
-                    }
-                    
-                    
-                    alert.showTitle(
-                        "Connection Error", // Title of view
-                        subTitle: error.localizedDescription, // String of view
-                        duration: 0.0, // Duration to show before closing automatically, default: 0.0
-                        completeText: "", // Optional button value, default: ""
-                        style: .Success, // Styles - see below.
-                        colorStyle: 0x00ACC1,
-                        colorTextButton: 0xFFFFFF,
-                        circleIconImage: UIImage(named: "meme")
-                    )
-                    
+                    KaAlert.show("Connection Error", subTitle: error.localizedDescription, showCloseButton: true, circleIconImage: UIImage(named: "meme"), completeion: { _ in })
                 }
             }
         }
