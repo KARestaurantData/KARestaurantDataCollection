@@ -18,13 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome-facebook" translatesAutoresizingMaskIntoConstraints="NO" id="L4i-MX-gRz">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome-facebook" translatesAutoresizingMaskIntoConstraints="NO" id="L4i-MX-gRz">
                                 <rect key="frame" x="120" y="40" width="360" height="360"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="L4i-MX-gRz" secondAttribute="height" multiplier="1:1" id="Snt-QK-jRB"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auz-fd-YgT" customClass="MaterialButton">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auz-fd-YgT" customClass="MaterialButton">
                                 <rect key="frame" x="120" y="420" width="360" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bHP-lr-UlJ"/>
@@ -68,6 +68,7 @@
                     <connections>
                         <outlet property="fbLoginButton" destination="auz-fd-YgT" id="Kxv-XC-hBQ"/>
                         <outlet property="footerSpinner" destination="r4z-vQ-xhQ" id="r4p-bj-PYX"/>
+                        <outlet property="logoImageView" destination="L4i-MX-gRz" id="f3i-71-hkJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="feN-4l-mFF" userLabel="First Responder" sceneMemberID="firstResponder"/>
