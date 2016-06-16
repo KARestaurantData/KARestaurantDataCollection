@@ -49,6 +49,10 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     var isDelivery: Bool = false
     
+    var isRestaurantTypeLoading: Bool = false
+    var isCommuneLoading: Bool = false
+    var isDistrictLoading: Bool = false
+    
     // DKImagePicker Property
     var restaurantImageAssets = [DKAsset]()
     var restaurantMenuImageAssets = [DKAsset]()
@@ -117,7 +121,7 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
         prepareDownPicker()
         prepareEmailField()
         prepareRestaurantThumnail()
-         prepareRefreshControl()
+        prepareRefreshControl()
         
         for image in (restaurant?.images)!{
             restaurantImageFromServerDictionary[image.id!] = image.url
@@ -278,7 +282,8 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
     
     // MARK: Fetch Data
     func getRestaurantType(){
-        self.restaurantTypeTextField.enabled = false
+        centerSpinnerStartLoading()
+        isRestaurantTypeLoading = true
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/categories"
         
@@ -301,12 +306,16 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             self.restaurantTypeDownPicker.setPlaceholderWhileSelecting("Restaurant Type")
             self.restaurantTypeDownPicker.shouldDisplayCancelButton = false
             self.restaurantTypeDownPicker.getTextField().text = categoryName
-            self.restaurantTypeTextField.enabled = true
+            self.isRestaurantTypeLoading = false
+            if self.isRestaurantTypeLoading == false && self.isDistrictLoading == false &&  self.isCommuneLoading == false{
+                self.centerSpinnerStopLoading()
+            }
         }
     }
     
     func getDistrict(cityId: Int){
-        self.districtTextField.enabled = false
+        centerSpinnerStartLoading()
+        self.isDistrictLoading = true
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/cities/\(cityId)/districts"
         
@@ -331,13 +340,17 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             self.districtDownPicker.setPlaceholderWhileSelecting("District")
             self.districtDownPicker.shouldDisplayCancelButton = false
             self.districtDownPicker.getTextField().text = districtName
-            self.districtTextField.enabled = true
+            self.isDistrictLoading = false
+            if self.isRestaurantTypeLoading == false && self.isDistrictLoading == false &&  self.isCommuneLoading == false{
+                self.centerSpinnerStopLoading()
+            }
         }
     }
     
     
     func getCommune(districtId: Int){
-        self.communeTextField.enabled = false
+        centerSpinnerStartLoading()
+        self.isCommuneLoading = true
         // get restuarant
         let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/districts/\(districtId)/commnunes"
         
@@ -362,7 +375,10 @@ class EditRestaurantTableViewController: UITableViewController, UITextFieldDeleg
             self.communeDownPicker.setPlaceholderWhileSelecting("Commune")
             self.communeDownPicker.shouldDisplayCancelButton = false
             self.communeDownPicker.getTextField().text = communeName
-            self.communeTextField.enabled = true
+            self.isCommuneLoading = false
+            if self.isRestaurantTypeLoading == false && self.isDistrictLoading == false &&  self.isCommuneLoading == false{
+                self.centerSpinnerStopLoading()
+            }
         }
     }
     

@@ -132,11 +132,11 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         
         // stop animations
         self.view.userInteractionEnabled = true
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MMM d, h:mm a"
-        let title = "Last update: \(formatter.stringFromDate(NSDate()))"
-        let attrsDictionary = NSDictionary(object: MaterialColor.cyan.darken1, forKey: NSForegroundColorAttributeName)
-        self.restuarantRefreshControl.attributedTitle = NSAttributedString(string: title, attributes: attrsDictionary as? [String : AnyObject])
+//        let formatter = NSDateFormatter()
+//        formatter.dateFormat = "MMM d, h:mm a"
+//        let title = "Last update: \(formatter.stringFromDate(NSDate()))"
+//        let attrsDictionary = NSDictionary(object: MaterialColor.cyan.darken1, forKey: NSForegroundColorAttributeName)
+//        self.restuarantRefreshControl.attributedTitle = NSAttributedString(string: title, attributes: attrsDictionary as? [String : AnyObject])
         // End the refreshing
         self.restuarantRefreshControl.endRefreshing()
         self.centerSpinner.stopAnimating()
