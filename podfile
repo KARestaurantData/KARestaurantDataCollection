@@ -5,6 +5,28 @@ use_frameworks!
 
 target 'KARestaurant' do
 
+pod "Device", '~> 1.0.1'
+pod 'Alamofire', '~> 3.4'
+pod 'AlamofireObjectMapper', '~> 3.0'
+pod 'AlamofireImage', '~> 2.0'
+pod 'DKImagePickerController'
+pod 'Material', '~> 1.0'
+pod "BSImagePicker", "~> 2.3"
+pod 'ImageSlideshow/Alamofire'
+pod 'M13Checkbox'
+pod 'DownPicker'
+pod 'Kingfisher', '~> 2.4'
+pod "MMMaterialDesignSpinner"
+pod 'SCLAlertView'
+pod "SwiftSpinner"
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKShareKit'
+pod 'GoogleMaps'
+
+# Recommended: For the most recent version of SwiftValidator (master branch)
+pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :branch => 'master'
+
 end
 
 target 'KARestaurantTests' do
