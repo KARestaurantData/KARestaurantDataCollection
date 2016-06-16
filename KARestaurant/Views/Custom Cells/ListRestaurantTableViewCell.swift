@@ -50,7 +50,7 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
         titleLabel.text = restaurant.name
         restaurantDetailLabel.text = restaurant.restDescription
         deliveryLabel.text = NSString.init(string: restaurant.isDeliver!).boolValue ? "Delivery" : "No Delivery"
-        editButton.image = UIImage(named: "more")
+        editButton.image = UIImage(named: "share")
         editButton.contentMode = UIViewContentMode.ScaleToFill
         editButton.depth = .Depth2
         

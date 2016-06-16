@@ -84,26 +84,37 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4F-7N-dvl" customClass="MaterialPulseView" customModule="Material">
-                                                                    <rect key="frame" x="552" y="8" width="40" height="20"/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <rect key="frame" x="562" y="8" width="30" height="30"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <gestureRecognizers/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="20" id="iuQ-sR-ahb"/>
-                                                                        <constraint firstAttribute="width" constant="40" id="oHM-g9-ve8"/>
+                                                                        <constraint firstAttribute="height" constant="30" id="ZMy-IF-Jz9"/>
+                                                                        <constraint firstAttribute="width" constant="30" id="zK7-5a-F44"/>
                                                                     </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
+                                                                            <color key="value" red="0.0" green="0.67450980390000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </view>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="U4F-7N-dvl" secondAttribute="trailing" constant="8" id="2Ep-PL-mtQ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="U4F-7N-dvl" secondAttribute="trailing" constant="8" id="3Nh-kj-yON"/>
                                                                 <constraint firstItem="apf-Qk-Bji" firstAttribute="leading" secondItem="zsS-7n-H5N" secondAttribute="leadingMargin" id="AdW-OP-w6m"/>
                                                                 <constraint firstItem="FMJ-eD-gy4" firstAttribute="leading" secondItem="zsS-7n-H5N" secondAttribute="leadingMargin" id="HfJ-XC-rkz"/>
                                                                 <constraint firstItem="FMJ-eD-gy4" firstAttribute="top" secondItem="zsS-7n-H5N" secondAttribute="topMargin" id="J28-Yw-rnb"/>
                                                                 <constraint firstAttribute="bottom" secondItem="x9L-PN-ZuQ" secondAttribute="bottom" constant="21" id="Xab-FZ-yp5"/>
-                                                                <constraint firstItem="U4F-7N-dvl" firstAttribute="top" secondItem="zsS-7n-H5N" secondAttribute="top" constant="8" id="bHC-HS-AbV"/>
                                                                 <constraint firstItem="x9L-PN-ZuQ" firstAttribute="top" secondItem="apf-Qk-Bji" secondAttribute="bottom" constant="5" id="fDN-0D-1rt"/>
                                                                 <constraint firstItem="apf-Qk-Bji" firstAttribute="top" secondItem="FMJ-eD-gy4" secondAttribute="bottom" constant="5" id="fNI-ll-pfh"/>
                                                                 <constraint firstItem="x9L-PN-ZuQ" firstAttribute="trailing" secondItem="zsS-7n-H5N" secondAttribute="trailingMargin" id="fiR-PD-eeo"/>
+                                                                <constraint firstItem="U4F-7N-dvl" firstAttribute="top" secondItem="zsS-7n-H5N" secondAttribute="top" constant="8" id="hMi-Wj-Ua2"/>
                                                                 <constraint firstItem="apf-Qk-Bji" firstAttribute="trailing" secondItem="zsS-7n-H5N" secondAttribute="trailingMargin" id="jnE-S1-UyQ"/>
                                                                 <constraint firstItem="x9L-PN-ZuQ" firstAttribute="leading" secondItem="zsS-7n-H5N" secondAttribute="leadingMargin" id="pbw-hI-xMT"/>
                                                                 <constraint firstAttribute="trailingMargin" secondItem="FMJ-eD-gy4" secondAttribute="trailing" id="t9B-DO-hbB"/>
@@ -153,19 +164,24 @@
                     <navigationItem key="navigationItem" title="KA Restaurant" id="dQ6-72-flY">
                         <barButtonItem key="backBarButtonItem" title=" " id="3NK-Vg-cYD"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="m0R-jl-7CP">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b2N-Eg-Txz">
-                                <rect key="frame" x="20" y="7" width="40" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b2N-Eg-Txz">
+                                <rect key="frame" x="20" y="9" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Take"/>
+                                <state key="normal" image="photo-camera"/>
                                 <connections>
                                     <action selector="takePhotoAction:" destination="1MP-C5-P5k" eventType="touchUpInside" id="97T-1G-az5"/>
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="More" id="y6H-Pf-Unn">
-                            <connections>
-                                <action selector="moreAction:" destination="1MP-C5-P5k" id="vTu-HP-Uih"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="LoG-N4-cDP">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eEW-aW-MCX">
+                                <rect key="frame" x="555" y="9" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="options"/>
+                                <connections>
+                                    <action selector="moreAction:" destination="1MP-C5-P5k" eventType="touchUpInside" id="aUo-V2-iXh"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1543,6 +1559,8 @@
     </scenes>
     <resources>
         <image name="defaultPhoto" width="540" height="540"/>
+        <image name="options" width="512" height="512"/>
+        <image name="photo-camera" width="512" height="512"/>
         <image name="stop" width="626" height="626"/>
     </resources>
 </document>
