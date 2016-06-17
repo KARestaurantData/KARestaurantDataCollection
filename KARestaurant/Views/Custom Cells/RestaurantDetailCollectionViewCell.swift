@@ -33,6 +33,7 @@ class RestaurantDetailCollectionViewCell: UICollectionViewCell {
     }
     
     func loadImageToCellImageSlideshow(){
+        menuImageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "defaultPhoto")!)])
         // Config ImageSlideShow and PageControl
         menuImageSlideshow.backgroundColor = UIColor.whiteColor()
         menuImageSlideshow.contentScaleMode = UIViewContentMode.ScaleAspectFill

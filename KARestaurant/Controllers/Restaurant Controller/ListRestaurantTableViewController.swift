@@ -45,13 +45,10 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        prepareDataForFirstStartup()
         self.prepareRefreshControl()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        prepareDataForFirstStartup()
-    }
     
     private func prepareDataForFirstStartup(){
         centerSpinnerStartLoading()
@@ -201,7 +198,7 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
                     self.centerSpinner.stopAnimating()
                     self.footerSpinner.stopAnimating()
                     self.restuarantRefreshControl.endRefreshing()
-                    self.performSelectorOnMainThread(#selector(ListRestaurantTableViewController.reloadData), withObject: nil, waitUntilDone: false)
+                    self.performSelectorOnMainThread(#selector(self.reloadData), withObject: nil, waitUntilDone: false)
                     
                 }
                 

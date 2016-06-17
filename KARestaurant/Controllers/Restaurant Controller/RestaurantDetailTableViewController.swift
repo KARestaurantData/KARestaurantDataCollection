@@ -77,7 +77,7 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         self.restaurantDetailLabel.text = (restaurant?.restDescription)
         
         
-        
+        self.restaurantSlideshow.setImageInputs([ImageSource(image: UIImage(named: "defaultPhoto")!)])
         
         for index in 0...restaurant!.images!.count {
             
@@ -126,8 +126,8 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         marker.snippet = snippet
         marker.appearAnimation = kGMSMarkerAnimationPop
         marker.icon = UIImage(named: "restaurant-pin")
-        
         marker.map = mapView
+        mapView.selectedMarker = marker
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
