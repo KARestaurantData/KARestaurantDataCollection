@@ -46,7 +46,7 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         
         
         // Config ImageSlideShow and PageControl
-        restaurantSlideshow.backgroundColor = UIColor.whiteColor()
+        restaurantSlideshow.backgroundColor = MaterialColor.cyan.darken1
         restaurantSlideshow.slideshowInterval = 5.0
         restaurantSlideshow.contentScaleMode = UIViewContentMode.ScaleAspectFill
         restaurantSlideshow.pageControlPosition = PageControlPosition.InsideScrollView
@@ -77,7 +77,7 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         self.restaurantDetailLabel.text = (restaurant?.restDescription)
         
         
-        self.restaurantSlideshow.setImageInputs([ImageSource(image: UIImage(named: "defaultPhoto")!)])
+        self.restaurantSlideshow.setImageInputs([ImageSource(image: UIImage(named: "loadingImage")!)])
         
         for index in 0...restaurant!.images!.count {
             

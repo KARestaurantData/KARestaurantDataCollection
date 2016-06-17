@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import ImageSlideshow
+import Material
 
 protocol menuImageDelegate {
     func presentViewController(viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
@@ -33,9 +34,9 @@ class RestaurantDetailCollectionViewCell: UICollectionViewCell {
     }
     
     func loadImageToCellImageSlideshow(){
-        menuImageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "defaultPhoto")!)])
+        menuImageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "loadingImage")!)])
         // Config ImageSlideShow and PageControl
-        menuImageSlideshow.backgroundColor = UIColor.whiteColor()
+        menuImageSlideshow.backgroundColor = MaterialColor.cyan.darken1
         menuImageSlideshow.contentScaleMode = UIViewContentMode.ScaleAspectFill
         menuImageSlideshow.pageControlPosition = PageControlPosition.InsideScrollView
         menuImageSlideshow.pageControl.currentPageIndicatorTintColor = UIColor.clearColor()

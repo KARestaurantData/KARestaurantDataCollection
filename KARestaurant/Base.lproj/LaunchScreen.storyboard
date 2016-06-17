@@ -28,7 +28,7 @@ Restaurant</string>
                                 <color key="textColor" red="0.0" green="0.67450980392156867" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadingImage" translatesAutoresizingMaskIntoConstraints="NO" id="iSP-RG-ZSf">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="iSP-RG-ZSf">
                                 <rect key="frame" x="213" y="59" width="175" height="175"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="175" id="FdQ-X4-iEp"/>
@@ -51,6 +51,6 @@ Restaurant</string>
         </scene>
     </scenes>
     <resources>
-        <image name="loadingImage" width="800" height="600"/>
+        <image name="LaunchScreenLogo" width="1024" height="1024"/>
     </resources>
 </document>
