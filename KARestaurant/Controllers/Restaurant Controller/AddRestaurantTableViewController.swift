@@ -74,10 +74,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     var categoryArray = [String]()
     
     
-    // Location Property
-    var locationManager: CLLocationManager = CLLocationManager()
-    var startLocation: CLLocation!
-    
     // Restaurant Location
     var restaurantLocation: CLLocation = CLLocation()
     
@@ -92,11 +88,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         self.restaurantMenuImageCollectionView.delegate = self
         self.restaurantMenuImageCollectionView.dataSource = self
         
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        startLocation = nil
         
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
@@ -149,41 +140,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         // add refresh control to view
         self.view.userInteractionEnabled = true
     }
-    
-    
-    
-    
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let latestLocation: AnyObject = locations[locations.count - 1]
-        
-        //        print(String(format: "latitude %.4f",
-        //            latestLocation.coordinate.latitude))
-        //        print(String(format: "longitude %.4f",
-        //            latestLocation.coordinate.longitude))
-        //        print( String(format: "horizontalAccuracy %.4f",
-        //            latestLocation.horizontalAccuracy))
-        //        print(String(format: "altitude %.4f",
-        //            latestLocation.altitude))
-        //        print( String(format: "verticalAccuracy %.4f",
-        //            latestLocation.verticalAccuracy))
-        //
-        
-        if startLocation == nil {
-            startLocation = latestLocation as! CLLocation
-        }
-        
-        let distanceBetween: CLLocationDistance =
-            latestLocation.distanceFromLocation(startLocation)
-        
-        //print(String(format: "distanceBetween %.2f", distanceBetween))
-    }
-    
-    func locationManager(manager: CLLocationManager,
-                         didFailWithError error: NSError) {
-        print( error)
-    }
-    
     
     /// General preparation statements.
     private func prepareView() {
