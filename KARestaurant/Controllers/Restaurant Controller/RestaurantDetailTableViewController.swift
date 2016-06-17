@@ -10,6 +10,7 @@ import UIKit
 import ImageSlideshow
 import GoogleMaps
 import Kingfisher
+import Material
 
 class RestaurantDetailTableViewController: UITableViewController, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, menuImageDelegate {
     // MARK: Property
@@ -49,8 +50,8 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         restaurantSlideshow.slideshowInterval = 5.0
         restaurantSlideshow.contentScaleMode = UIViewContentMode.ScaleAspectFill
         restaurantSlideshow.pageControlPosition = PageControlPosition.InsideScrollView
-        restaurantSlideshow.pageControl.currentPageIndicatorTintColor = UIColor.lightGrayColor()
-        restaurantSlideshow.pageControl.pageIndicatorTintColor = UIColor.blackColor()
+        restaurantSlideshow.pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
+        restaurantSlideshow.pageControl.pageIndicatorTintColor = MaterialColor.cyan.darken1
         
         
         // Set data to Control
@@ -108,22 +109,6 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
                 
             }
         }
-
-        
-//        // Set image to array of slide show
-//        for restImage in (restaurant?.images)! {
-//
-//            if let urlString = restImage.url {
-//                KingfisherManager.sharedManager.retrieveImageWithURL(NSURL(string: urlString)!, optionsInfo: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) in
-//                    print(imageURL)
-//                     self.restuarantImageArray.append(ImageSource(image: image! as Image))
-//                })
-//            }else{
-//                self.restuarantImageArray.append(ImageSource(image: UIImage(named: "null")!))
-//            }
-//        }
-        
-
     }
     
     private func loadMap(latitude: Double, longtitude: Double, title: String, snippet: String) {
@@ -139,6 +124,9 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         marker.position = CLLocationCoordinate2DMake(latitude, longtitude)
         marker.title = title
         marker.snippet = snippet
+        marker.appearAnimation = kGMSMarkerAnimationPop
+        marker.icon = UIImage(named: "restaurant-pin")
+        
         marker.map = mapView
     }
     
