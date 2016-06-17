@@ -45,13 +45,16 @@ class RestaurantDetailCollectionViewCell: UICollectionViewCell {
         //  loadingIndicator.startAnimating()
         if let urlString = restaurantMenu.url {
             KingfisherManager.sharedManager.retrieveImageWithURL(NSURL(string: urlString)!, optionsInfo: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) in
-                // Set image to slide show
-                self.menuImageSlideshow.setImageInputs([ImageSource(image: image! as Image)])
-                let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.restaurantMenuSlideshowClick))
-                self.menuImageSlideshow.addGestureRecognizer(recognizer)
+                
+                if let img = image{
+                    // Set image to slide show
+                    self.menuImageSlideshow.setImageInputs([ImageSource(image: img as Image)])
+                    let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.restaurantMenuSlideshowClick))
+                    self.menuImageSlideshow.addGestureRecognizer(recognizer)
+                }else{
+                    self.menuImageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "null")!)])
+                }
             })
-            
-            
         }else{
             menuImageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "null")!)])
         }

@@ -85,14 +85,26 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
                 
                 if let urlString = restaurant!.images![index].url {
                     KingfisherManager.sharedManager.retrieveImageWithURL(NSURL(string: urlString)!, optionsInfo: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) in
-                        self.restuarantImageArray.append(ImageSource(image: image! as Image))
                         
-                        if index == self.restaurant!.images!.count - 1 {
+                        if let img = image {
+                            self.restuarantImageArray.append(ImageSource(image: img as Image))
                             
-                            // Set image to slide show
-                            self.restaurantSlideshow.setImageInputs(self.restuarantImageArray)
-                            let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
-                            self.restaurantSlideshow.addGestureRecognizer(recognizer)
+                            if index == self.restaurant!.images!.count - 1 {
+                                
+                                // Set image to slide show
+                                self.restaurantSlideshow.setImageInputs(self.restuarantImageArray)
+                                let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
+                                self.restaurantSlideshow.addGestureRecognizer(recognizer)
+                            }
+                        }else{
+                            self.restuarantImageArray.append(ImageSource(image: UIImage(named: "null")!))
+                            if index == self.restaurant!.images!.count - 1 {
+                                
+                                // Set image to slide show
+                                self.restaurantSlideshow.setImageInputs(self.restuarantImageArray)
+                                let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
+                                self.restaurantSlideshow.addGestureRecognizer(recognizer)
+                            }
                         }
                     })
                 }else{
