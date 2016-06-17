@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SUG-bm-tHI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SUG-bm-tHI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -221,20 +221,21 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="83" height="83"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixS-E3-YOB">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="83" height="83"/>
-                                                                    </imageView>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlW-u9-Oxc" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                                                                        <rect key="frame" x="-1" y="0.0" width="84" height="83"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
                                                             <constraints>
-                                                                <constraint firstItem="ixS-E3-YOB" firstAttribute="top" secondItem="3G2-k7-GEy" secondAttribute="top" id="JcW-Wo-2mg"/>
-                                                                <constraint firstItem="ixS-E3-YOB" firstAttribute="leading" secondItem="3G2-k7-GEy" secondAttribute="leading" id="vuu-hT-DJH"/>
-                                                                <constraint firstAttribute="bottom" secondItem="ixS-E3-YOB" secondAttribute="bottom" id="wD3-Qp-fJf"/>
-                                                                <constraint firstAttribute="trailing" secondItem="ixS-E3-YOB" secondAttribute="trailing" id="wYE-42-Fs9"/>
+                                                                <constraint firstItem="rlW-u9-Oxc" firstAttribute="centerX" secondItem="3G2-k7-GEy" secondAttribute="centerX" id="33g-SF-TgH"/>
+                                                                <constraint firstItem="rlW-u9-Oxc" firstAttribute="width" secondItem="3G2-k7-GEy" secondAttribute="width" id="5Bx-Bh-cep"/>
+                                                                <constraint firstItem="rlW-u9-Oxc" firstAttribute="height" secondItem="3G2-k7-GEy" secondAttribute="height" id="9pN-1v-W6f"/>
+                                                                <constraint firstItem="rlW-u9-Oxc" firstAttribute="centerY" secondItem="3G2-k7-GEy" secondAttribute="centerY" id="MtD-GN-WB3"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="menuImageView" destination="ixS-E3-YOB" id="92C-sU-Gqm"/>
+                                                                <outlet property="menuImageSlideshow" destination="rlW-u9-Oxc" id="dDe-GI-J7V"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -812,6 +813,13 @@
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Is-FO-Gix">
                                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                     </imageView>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="4pT-SA-auY">
+                                                                        <rect key="frame" x="63" y="2" width="15" height="15"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="15" id="EiP-93-o5J"/>
+                                                                            <constraint firstAttribute="height" constant="15" id="NIe-BT-gst"/>
+                                                                        </constraints>
+                                                                    </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
@@ -819,6 +827,8 @@
                                                                 <constraint firstAttribute="bottom" secondItem="2Is-FO-Gix" secondAttribute="bottom" id="AnH-EB-xH1"/>
                                                                 <constraint firstItem="2Is-FO-Gix" firstAttribute="top" secondItem="FTX-LD-B0K" secondAttribute="top" id="Mxw-VG-Esn"/>
                                                                 <constraint firstItem="2Is-FO-Gix" firstAttribute="leading" secondItem="FTX-LD-B0K" secondAttribute="leading" id="R0d-gA-u7u"/>
+                                                                <constraint firstAttribute="trailing" secondItem="4pT-SA-auY" secondAttribute="trailing" constant="2" id="Tb7-mq-oPD"/>
+                                                                <constraint firstItem="4pT-SA-auY" firstAttribute="top" secondItem="FTX-LD-B0K" secondAttribute="top" constant="2" id="vep-0U-T1Q"/>
                                                                 <constraint firstAttribute="trailing" secondItem="2Is-FO-Gix" secondAttribute="trailing" id="voi-Y7-xHf"/>
                                                             </constraints>
                                                             <connections>
@@ -900,6 +910,13 @@
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lxz-Gw-F2x">
                                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                     </imageView>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="O5d-4F-OWm">
+                                                                        <rect key="frame" x="63" y="2" width="15" height="15"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="15" id="gkq-2P-p7r"/>
+                                                                            <constraint firstAttribute="width" constant="15" id="zBT-pG-lHQ"/>
+                                                                        </constraints>
+                                                                    </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
@@ -907,7 +924,9 @@
                                                                 <constraint firstItem="Lxz-Gw-F2x" firstAttribute="top" secondItem="pcE-i1-t67" secondAttribute="top" id="4wo-bt-Sni"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Lxz-Gw-F2x" secondAttribute="trailing" id="BW1-FL-8xs"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Lxz-Gw-F2x" secondAttribute="bottom" id="Knd-yO-Yw4"/>
+                                                                <constraint firstItem="O5d-4F-OWm" firstAttribute="top" secondItem="pcE-i1-t67" secondAttribute="top" constant="2" id="RwT-Tx-jnE"/>
                                                                 <constraint firstItem="Lxz-Gw-F2x" firstAttribute="leading" secondItem="pcE-i1-t67" secondAttribute="leading" id="b1y-Gf-xES"/>
+                                                                <constraint firstAttribute="trailing" secondItem="O5d-4F-OWm" secondAttribute="trailing" constant="2" id="ju6-B6-1cL"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="collectionViewImage" destination="Lxz-Gw-F2x" id="ZxF-47-kJu"/>
@@ -1386,13 +1405,22 @@
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uMq-kg-0x1">
                                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                     </imageView>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="4Yk-ET-Wdp">
+                                                                        <rect key="frame" x="63" y="2" width="15" height="15"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="15" id="LZU-CQ-xPd"/>
+                                                                            <constraint firstAttribute="width" constant="15" id="Ljs-oQ-epn"/>
+                                                                        </constraints>
+                                                                    </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="uMq-kg-0x1" secondAttribute="bottom" id="KhA-SP-1vf"/>
+                                                                <constraint firstAttribute="trailing" secondItem="4Yk-ET-Wdp" secondAttribute="trailing" constant="2" id="Rik-lc-pZg"/>
                                                                 <constraint firstAttribute="trailing" secondItem="uMq-kg-0x1" secondAttribute="trailing" id="V7G-5q-rH8"/>
                                                                 <constraint firstItem="uMq-kg-0x1" firstAttribute="leading" secondItem="EWL-hm-twv" secondAttribute="leading" id="Wqd-Wa-wFe"/>
+                                                                <constraint firstItem="4Yk-ET-Wdp" firstAttribute="top" secondItem="EWL-hm-twv" secondAttribute="top" constant="2" id="p8P-tJ-2aS"/>
                                                                 <constraint firstItem="uMq-kg-0x1" firstAttribute="top" secondItem="EWL-hm-twv" secondAttribute="top" id="w3V-Qe-V6U"/>
                                                             </constraints>
                                                             <connections>
@@ -1474,11 +1502,20 @@
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H5L-es-Lw1">
                                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                                     </imageView>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="sMc-bj-WO4">
+                                                                        <rect key="frame" x="63" y="2" width="15" height="15"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="15" id="W3s-OH-P6d"/>
+                                                                            <constraint firstAttribute="height" constant="15" id="gDK-NE-DHT"/>
+                                                                        </constraints>
+                                                                    </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
                                                             <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="sMc-bj-WO4" secondAttribute="trailing" constant="2" id="A6n-b0-Zug"/>
                                                                 <constraint firstItem="H5L-es-Lw1" firstAttribute="leading" secondItem="dMF-qD-Ifz" secondAttribute="leading" id="Fdo-d9-EWl"/>
+                                                                <constraint firstItem="sMc-bj-WO4" firstAttribute="top" secondItem="dMF-qD-Ifz" secondAttribute="top" constant="2" id="NDJ-xN-0AL"/>
                                                                 <constraint firstAttribute="trailing" secondItem="H5L-es-Lw1" secondAttribute="trailing" id="X1q-5c-fzm"/>
                                                                 <constraint firstItem="H5L-es-Lw1" firstAttribute="top" secondItem="dMF-qD-Ifz" secondAttribute="top" id="XjV-v7-tp2"/>
                                                                 <constraint firstAttribute="bottom" secondItem="H5L-es-Lw1" secondAttribute="bottom" id="o7q-qZ-zTy"/>
@@ -1561,6 +1598,7 @@
     </scenes>
     <resources>
         <image name="defaultPhoto" width="540" height="540"/>
+        <image name="delete" width="512" height="512"/>
         <image name="edit" width="512" height="512"/>
         <image name="left-arrow" width="512" height="512"/>
         <image name="options" width="512" height="512"/>

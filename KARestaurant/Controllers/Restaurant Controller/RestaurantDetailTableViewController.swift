@@ -9,16 +9,14 @@
 import UIKit
 import ImageSlideshow
 import GoogleMaps
+import Kingfisher
 
-class RestaurantDetailTableViewController: UITableViewController, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource {
+class RestaurantDetailTableViewController: UITableViewController, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, menuImageDelegate {
     // MARK: Property
     // ImageSlideShow Property
     @IBOutlet var restaurantSlideshow: ImageSlideshow!
     var transitionDelegate: ZoomAnimatedTransitioningDelegate?
-    var restuarantImageArray = [AlamofireSource]();
-    
-    var restaurantMenuSlideshow: ImageSlideshow!
-    var restuarantMenuImageArray = [AlamofireSource]();
+    var restuarantImageArray = [InputSource]();
     
     // RestaurantDetail outlet
     @IBOutlet weak var menuCollectionview: UICollectionView!
@@ -78,23 +76,54 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         self.restaurantDetailLabel.text = (restaurant?.restDescription)
         
         
-        // Set image to array of slide show
-        for restImage in (restaurant?.images)! {
-            restuarantImageArray.append(AlamofireSource(urlString: restImage.url!)!)
+        
+        
+        for index in 0...restaurant!.images!.count {
+            
+            if self.restaurant!.images!.count !=  0 && index < restaurant!.images!.count {
+                
+                if let urlString = restaurant!.images![index].url {
+                    KingfisherManager.sharedManager.retrieveImageWithURL(NSURL(string: urlString)!, optionsInfo: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) in
+                        self.restuarantImageArray.append(ImageSource(image: image! as Image))
+                        
+                        if index == self.restaurant!.images!.count - 1 {
+                            
+                            // Set image to slide show
+                            self.restaurantSlideshow.setImageInputs(self.restuarantImageArray)
+                            let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
+                            self.restaurantSlideshow.addGestureRecognizer(recognizer)
+                        }
+                    })
+                }else{
+                    self.restuarantImageArray.append(ImageSource(image: UIImage(named: "null")!))
+                    if index == self.restaurant!.images!.count - 1 {
+                        
+                        // Set image to slide show
+                        self.restaurantSlideshow.setImageInputs(self.restuarantImageArray)
+                        let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
+                        self.restaurantSlideshow.addGestureRecognizer(recognizer)
+                    }
+                }
+                
+                
+            }
         }
+
         
-        // Set image to array of slide show
-        for menuImage in (restaurant?.menus)! {
-            restuarantMenuImageArray.append(AlamofireSource(urlString: menuImage.url!)!)
-        }
+//        // Set image to array of slide show
+//        for restImage in (restaurant?.images)! {
+//
+//            if let urlString = restImage.url {
+//                KingfisherManager.sharedManager.retrieveImageWithURL(NSURL(string: urlString)!, optionsInfo: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) in
+//                    print(imageURL)
+//                     self.restuarantImageArray.append(ImageSource(image: image! as Image))
+//                })
+//            }else{
+//                self.restuarantImageArray.append(ImageSource(image: UIImage(named: "null")!))
+//            }
+//        }
         
-        
-        
-        // Set image to slide show
-        restaurantSlideshow.setImageInputs(restuarantImageArray)
-        restaurantMenuSlideshow.setImageInputs(restuarantMenuImageArray)
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
-        restaurantSlideshow.addGestureRecognizer(recognizer)
+
     }
     
     private func loadMap(latitude: Double, longtitude: Double, title: String, snippet: String) {
@@ -177,33 +206,11 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MenuCellIdentifier", forIndexPath: indexPath) as! RestaurantDetailCollectionViewCell
-        
+        cell.delegate = self
         cell.configureMenu((restaurant?.menus![indexPath.row])!)
-        
-        // Set image to slide show
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.restaurantMenuSlideshowClick))
-        cell.addGestureRecognizer(recognizer)
         
         return cell
     }
-    
-    func restaurantMenuSlideshowClick() {
-        print("cell")
-        let ctr = FullScreenSlideshowViewController()
-        // called when full-screen VC dismissed and used to set the page to our original slideshow
-        ctr.pageSelected = {(page: Int) in
-            self.restaurantMenuSlideshow.setScrollViewPage(page, animated: false)
-        }
-        
-        // set the initial page
-        ctr.initialPage = restaurantSlideshow.scrollViewPage
-        // set the inputs
-        ctr.inputs = restaurantMenuSlideshow.images
-        self.transitionDelegate = ZoomAnimatedTransitioningDelegate(slideshowView: restaurantMenuSlideshow)
-        ctr.transitioningDelegate = self.transitionDelegate
-        self.presentViewController(ctr, animated: true, completion: nil)
-    }
-
 }
 
 // MARK: - Table view data source

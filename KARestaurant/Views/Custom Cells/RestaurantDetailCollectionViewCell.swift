@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import Kingfisher
+import ImageSlideshow
 
+protocol menuImageDelegate {
+    func presentViewController(viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
+}
 class RestaurantDetailCollectionViewCell: UICollectionViewCell {
+    var delegate : menuImageDelegate? = nil
     
-    @IBOutlet weak var menuImageView: UIImageView!
+    @IBOutlet weak var menuImageSlideshow: ImageSlideshow!
+    var transitionDelegate: ZoomAnimatedTransitioningDelegate?
     
     var restaurantMenu: Menu!
     
@@ -18,24 +25,66 @@ class RestaurantDetailCollectionViewCell: UICollectionViewCell {
     func configureMenu(menu: Menu) {
         self.restaurantMenu = menu
         reset()
-        downloadImage()
+        loadImageToCellImageSlideshow()
     }
     
     func reset() {
-        menuImageView.image = nil
+        //menuImageView.image = nil
     }
     
-   
-    
-    func downloadImage() {
+    func loadImageToCellImageSlideshow(){
+        // Config ImageSlideShow and PageControl
+        menuImageSlideshow.backgroundColor = UIColor.whiteColor()
+        menuImageSlideshow.contentScaleMode = UIViewContentMode.ScaleAspectFill
+        menuImageSlideshow.pageControlPosition = PageControlPosition.InsideScrollView
+        menuImageSlideshow.pageControl.currentPageIndicatorTintColor = UIColor.clearColor()
+        menuImageSlideshow.pageControl.pageIndicatorTintColor = UIColor.clearColor()
+        
         //  loadingIndicator.startAnimating()
-        if let  urlString = restaurantMenu.url {
-            self.menuImageView.kf_setImageWithURL(NSURL(string: urlString)!, placeholderImage: UIImage(named: "defaultPhoto"), optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
-            }
+        if let urlString = restaurantMenu.url {
+            KingfisherManager.sharedManager.retrieveImageWithURL(NSURL(string: urlString)!, optionsInfo: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) in
+                // Set image to slide show
+                self.menuImageSlideshow.setImageInputs([ImageSource(image: image! as Image)])
+                let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.restaurantMenuSlideshowClick))
+                self.menuImageSlideshow.addGestureRecognizer(recognizer)
+            })
+            
+            
         }else{
-            self.menuImageView.image = UIImage(named: "null")
+            menuImageSlideshow.setImageInputs([ImageSource(image: UIImage(named: "null")!)])
+        }
+        
+        
+    }
+    
+    func restaurantMenuSlideshowClick() {
+        let ctr = FullScreenSlideshowViewController()
+        // called when full-screen VC dismissed and used to set the page to our original slideshow
+        ctr.pageSelected = {(page: Int) in
+            self.menuImageSlideshow.setScrollViewPage(page, animated: false)
+        }
+        
+        // set the initial page
+        ctr.initialPage = menuImageSlideshow.scrollViewPage
+        // set the inputs
+        ctr.inputs = menuImageSlideshow.images
+        self.transitionDelegate = ZoomAnimatedTransitioningDelegate(slideshowView: menuImageSlideshow)
+        ctr.transitioningDelegate = self.transitionDelegate
+        
+        if (delegate != nil){
+            delegate?.presentViewController(ctr, animated: true, completion: nil)
         }
     }
+    
+    //    func downloadImage() {
+    //        //  loadingIndicator.startAnimating()
+    //        if let  urlString = restaurantMenu.url {
+    //            self.menuImageView.kf_setImageWithURL(NSURL(string: urlString)!, placeholderImage: UIImage(named: "defaultPhoto"), optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
+    //            }
+    //        }else{
+    //            self.menuImageView.image = UIImage(named: "null")
+    //        }
+    //    }
 }
 
 
