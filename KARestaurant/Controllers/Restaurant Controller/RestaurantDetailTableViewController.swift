@@ -17,6 +17,9 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
     var transitionDelegate: ZoomAnimatedTransitioningDelegate?
     var restuarantImageArray = [AlamofireSource]();
     
+    var restaurantMenuSlideshow: ImageSlideshow!
+    var restuarantMenuImageArray = [AlamofireSource]();
+    
     // RestaurantDetail outlet
     @IBOutlet weak var menuCollectionview: UICollectionView!
     @IBOutlet weak var restaurantNameLabel: UILabel!
@@ -80,9 +83,16 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
             restuarantImageArray.append(AlamofireSource(urlString: restImage.url!)!)
         }
         
+        // Set image to array of slide show
+        for menuImage in (restaurant?.menus)! {
+            restuarantMenuImageArray.append(AlamofireSource(urlString: menuImage.url!)!)
+        }
+        
+        
+        
         // Set image to slide show
         restaurantSlideshow.setImageInputs(restuarantImageArray)
-        
+        restaurantMenuSlideshow.setImageInputs(restuarantMenuImageArray)
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
         restaurantSlideshow.addGestureRecognizer(recognizer)
     }
@@ -170,8 +180,30 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         
         cell.configureMenu((restaurant?.menus![indexPath.row])!)
         
+        // Set image to slide show
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.restaurantMenuSlideshowClick))
+        cell.addGestureRecognizer(recognizer)
+        
         return cell
     }
+    
+    func restaurantMenuSlideshowClick() {
+        print("cell")
+        let ctr = FullScreenSlideshowViewController()
+        // called when full-screen VC dismissed and used to set the page to our original slideshow
+        ctr.pageSelected = {(page: Int) in
+            self.restaurantMenuSlideshow.setScrollViewPage(page, animated: false)
+        }
+        
+        // set the initial page
+        ctr.initialPage = restaurantSlideshow.scrollViewPage
+        // set the inputs
+        ctr.inputs = restaurantMenuSlideshow.images
+        self.transitionDelegate = ZoomAnimatedTransitioningDelegate(slideshowView: restaurantMenuSlideshow)
+        ctr.transitioningDelegate = self.transitionDelegate
+        self.presentViewController(ctr, animated: true, completion: nil)
+    }
+
 }
 
 // MARK: - Table view data source
