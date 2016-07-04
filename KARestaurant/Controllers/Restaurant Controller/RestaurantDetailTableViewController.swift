@@ -9,13 +9,15 @@
 import UIKit
 import ImageSlideshow
 import GoogleMaps
+import Kingfisher
+import Material
 
-class RestaurantDetailTableViewController: UITableViewController, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource {
+class RestaurantDetailTableViewController: UITableViewController, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, menuImageDelegate {
     // MARK: Property
     // ImageSlideShow Property
     @IBOutlet var restaurantSlideshow: ImageSlideshow!
     var transitionDelegate: ZoomAnimatedTransitioningDelegate?
-    var restuarantImageArray = [AlamofireSource]();
+    var restuarantImageArray = [InputSource]();
     
     // RestaurantDetail outlet
     @IBOutlet weak var menuCollectionview: UICollectionView!
@@ -44,12 +46,12 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         
         
         // Config ImageSlideShow and PageControl
-        restaurantSlideshow.backgroundColor = UIColor.whiteColor()
+        restaurantSlideshow.backgroundColor = MaterialColor.cyan.darken1
         restaurantSlideshow.slideshowInterval = 5.0
         restaurantSlideshow.contentScaleMode = UIViewContentMode.ScaleAspectFill
         restaurantSlideshow.pageControlPosition = PageControlPosition.InsideScrollView
-        restaurantSlideshow.pageControl.currentPageIndicatorTintColor = UIColor.lightGrayColor()
-        restaurantSlideshow.pageControl.pageIndicatorTintColor = UIColor.blackColor()
+        restaurantSlideshow.pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
+        restaurantSlideshow.pageControl.pageIndicatorTintColor = MaterialColor.cyan.darken1
         
         
         // Set data to Control
@@ -75,16 +77,50 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         self.restaurantDetailLabel.text = (restaurant?.restDescription)
         
         
-        // Set image to array of slide show
-        for restImage in (restaurant?.images)! {
-            restuarantImageArray.append(AlamofireSource(urlString: restImage.url!)!)
+        self.restaurantSlideshow.setImageInputs([ImageSource(image: UIImage(named: "loadingImage")!)])
+        
+        for index in 0...restaurant!.images!.count {
+            
+            if self.restaurant!.images!.count !=  0 && index < restaurant!.images!.count {
+                
+                if let urlString = restaurant!.images![index].url {
+                    KingfisherManager.sharedManager.retrieveImageWithURL(NSURL(string: urlString)!, optionsInfo: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) in
+                        
+                        if let img = image {
+                            self.restuarantImageArray.append(ImageSource(image: img as Image))
+                            
+                            if index == self.restaurant!.images!.count - 1 {
+                                
+                                // Set image to slide show
+                                self.restaurantSlideshow.setImageInputs(self.restuarantImageArray)
+                                let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
+                                self.restaurantSlideshow.addGestureRecognizer(recognizer)
+                            }
+                        }else{
+                            self.restuarantImageArray.append(ImageSource(image: UIImage(named: "null")!))
+                            if index == self.restaurant!.images!.count - 1 {
+                                
+                                // Set image to slide show
+                                self.restaurantSlideshow.setImageInputs(self.restuarantImageArray)
+                                let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
+                                self.restaurantSlideshow.addGestureRecognizer(recognizer)
+                            }
+                        }
+                    })
+                }else{
+                    self.restuarantImageArray.append(ImageSource(image: UIImage(named: "null")!))
+                    if index == self.restaurant!.images!.count - 1 {
+                        
+                        // Set image to slide show
+                        self.restaurantSlideshow.setImageInputs(self.restuarantImageArray)
+                        let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
+                        self.restaurantSlideshow.addGestureRecognizer(recognizer)
+                    }
+                }
+                
+                
+            }
         }
-        
-        // Set image to slide show
-        restaurantSlideshow.setImageInputs(restuarantImageArray)
-        
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(RestaurantDetailTableViewController.restaurantSlideshowClick))
-        restaurantSlideshow.addGestureRecognizer(recognizer)
     }
     
     private func loadMap(latitude: Double, longtitude: Double, title: String, snippet: String) {
@@ -100,7 +136,10 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
         marker.position = CLLocationCoordinate2DMake(latitude, longtitude)
         marker.title = title
         marker.snippet = snippet
+        marker.appearAnimation = kGMSMarkerAnimationPop
+        marker.icon = UIImage(named: "restaurant-pin")
         marker.map = mapView
+        mapView.selectedMarker = marker
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -167,7 +206,7 @@ class RestaurantDetailTableViewController: UITableViewController, UINavigationCo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MenuCellIdentifier", forIndexPath: indexPath) as! RestaurantDetailCollectionViewCell
-        
+        cell.delegate = self
         cell.configureMenu((restaurant?.menus![indexPath.row])!)
         
         return cell

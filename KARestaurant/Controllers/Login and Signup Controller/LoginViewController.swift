@@ -17,11 +17,12 @@ import ObjectMapper
 class LoginViewController: UIViewController {
     @IBOutlet weak var footerSpinner: MMMaterialDesignSpinner!
     
+    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var fbLoginButton: MaterialButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareRefreshControl()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -29,12 +30,15 @@ class LoginViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("RootNavigationViewController")
             self.presentViewController(vc, animated: true, completion: nil)
-            
+        }else{
+            prepareRefreshControl()
         }
     }
     
     
     private func prepareRefreshControl(){
+        self.logoImageView.hidden = false
+        self.fbLoginButton.hidden = false
         // Handle clicks on the button
         fbLoginButton.addTarget(self, action: #selector(self.loginButtonClicked), forControlEvents: UIControlEvents.TouchUpInside)
         

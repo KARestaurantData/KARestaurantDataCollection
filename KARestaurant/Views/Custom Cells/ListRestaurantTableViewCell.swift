@@ -38,7 +38,7 @@ class ListRestaurantTableViewCell: MaterialTableViewCell {
     private func downloadImage(){
         if let  urlString = restaurant.thumbnail {
             
-            self.restaurantImageView.kf_setImageWithURL(NSURL(string: urlString)!, placeholderImage: UIImage(named: "defaultPhoto"), optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
+            self.restaurantImageView.kf_setImageWithURL(NSURL(string: urlString)!, placeholderImage: UIImage(named: "loadingImage"), optionsInfo: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
                 //populateCell()
             }
         }else{

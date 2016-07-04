@@ -18,13 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome-facebook" translatesAutoresizingMaskIntoConstraints="NO" id="L4i-MX-gRz">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome-facebook" translatesAutoresizingMaskIntoConstraints="NO" id="L4i-MX-gRz">
                                 <rect key="frame" x="120" y="40" width="360" height="360"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="L4i-MX-gRz" secondAttribute="height" multiplier="1:1" id="Snt-QK-jRB"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auz-fd-YgT" customClass="MaterialButton">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auz-fd-YgT" customClass="MaterialButton">
                                 <rect key="frame" x="120" y="420" width="360" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bHP-lr-UlJ"/>
@@ -38,7 +38,7 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                        <color key="value" red="0.27843137254901962" green="0.35294117647058826" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.27843137254901962" green="0.3529411764705882" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="5"/>
@@ -68,6 +68,7 @@
                     <connections>
                         <outlet property="fbLoginButton" destination="auz-fd-YgT" id="Kxv-XC-hBQ"/>
                         <outlet property="footerSpinner" destination="r4z-vQ-xhQ" id="r4p-bj-PYX"/>
+                        <outlet property="logoImageView" destination="L4i-MX-gRz" id="f3i-71-hkJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="feN-4l-mFF" userLabel="First Responder" sceneMemberID="firstResponder"/>

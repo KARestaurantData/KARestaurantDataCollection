@@ -28,11 +28,20 @@ Restaurant</string>
                                 <color key="textColor" red="0.0" green="0.67450980392156867" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="iSP-RG-ZSf">
+                                <rect key="frame" x="213" y="59" width="175" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="FdQ-X4-iEp"/>
+                                    <constraint firstAttribute="height" constant="175" id="ywI-Xx-FVL"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="J5K-Qb-9cC" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Cc3-DP-mr4"/>
+                            <constraint firstItem="J5K-Qb-9cC" firstAttribute="top" secondItem="iSP-RG-ZSf" secondAttribute="bottom" constant="8" id="OPe-ge-iPC"/>
                             <constraint firstItem="J5K-Qb-9cC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OeB-iD-XgE"/>
+                            <constraint firstItem="iSP-RG-ZSf" firstAttribute="centerX" secondItem="J5K-Qb-9cC" secondAttribute="centerX" id="s7w-HD-I7g"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -41,4 +50,7 @@ Restaurant</string>
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LaunchScreenLogo" width="1024" height="1024"/>
+    </resources>
 </document>
