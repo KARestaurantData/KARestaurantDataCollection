@@ -22,7 +22,7 @@
 		6F2E8C721D2F82FF00117972 /* BreakpointsViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F2E8C701D2F82FF00117972 /* BreakpointsViewController~iphone.xib */; };
 		6F2E8C741D2F838700117972 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2E8C731D2F838700117972 /* TableViewCell.swift */; };
 		6F2E8C761D2F83B500117972 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2E8C751D2F83B500117972 /* HomeTableViewCell.swift */; };
-		6F2E8C7A1D2F85CC00117972 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F2E8C791D2F85CC00117972 /* Info.plist */; };
+		6F2E8C811D2F8F7E00117972 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F2E8C801D2F8F7E00117972 /* Info.plist */; };
 		6F438EE91D1146A10089D17C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F438EE81D1146A10089D17C /* Login.storyboard */; };
 		6F438EEE1D114F7B0089D17C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F438EEC1D114F7B0089D17C /* FBSDKCoreKit.framework */; };
 		6F438EEF1D114F7B0089D17C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F438EED1D114F7B0089D17C /* FBSDKLoginKit.framework */; };
@@ -116,7 +116,7 @@
 		6F2E8C701D2F82FF00117972 /* BreakpointsViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BreakpointsViewController~iphone.xib"; sourceTree = "<group>"; };
 		6F2E8C731D2F838700117972 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		6F2E8C751D2F83B500117972 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		6F2E8C791D2F85CC00117972 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F2E8C801D2F8F7E00117972 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F438EE81D1146A10089D17C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		6F438EEC1D114F7B0089D17C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/KARestaurant-azyzutuqezlpewagbdarlsxcbkdr/Build/Products/Debug-iphoneos/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		6F438EED1D114F7B0089D17C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/KARestaurant-azyzutuqezlpewagbdarlsxcbkdr/Build/Products/Debug-iphoneos/FBSDKLoginKit/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 				6F0890231D065F2200DC95EA /* Utilities */,
 				6FF7DEE31D06704300D1EB77 /* Services */,
 				6FF7DEEA1D06707900D1EB77 /* Resources */,
-				6F3C432D1CE088D2007EEAB7 /* Supporting Files */,
+				6F2E8C7B1D2F8E8A00117972 /* Supporting Files */,
 			);
 			path = KARestaurant;
 			sourceTree = "<group>";
@@ -277,11 +277,12 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		6F3C432D1CE088D2007EEAB7 /* Supporting Files */ = {
+		6F2E8C7B1D2F8E8A00117972 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6F2E8C801D2F8F7E00117972 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		6F756A7A1D2F69780001F777 /* Localizations */ = {
@@ -511,7 +512,6 @@
 		6F756B0A1D2F79E60001F777 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				6F2E8C791D2F85CC00117972 /* Info.plist */,
 				6F756B161D2F7AC50001F777 /* readme-application */,
 				6F756B0B1D2F79E60001F777 /* AppDelegate.swift */,
 			);
@@ -779,7 +779,7 @@
 				6F756A951D2F69790001F777 /* utils.py in Resources */,
 				6F756A921D2F69790001F777 /* meme_jackie_chan.jpg in Resources */,
 				6F438EE91D1146A10089D17C /* Login.storyboard in Resources */,
-				6F2E8C7A1D2F85CC00117972 /* Info.plist in Resources */,
+				6F2E8C811D2F8F7E00117972 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1266,7 +1266,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = KARestaurant/Application/Info.plist;
+				INFOPLIST_FILE = "KARestaurant/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.kshrd.KARestaurant;
@@ -1284,7 +1284,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = KARestaurant/Application/Info.plist;
+				INFOPLIST_FILE = "KARestaurant/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.kshrd.KARestaurant;
