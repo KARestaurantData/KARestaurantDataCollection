@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        GMSServices.provideAPIKey("AIzaSyA_jAhE15RN_ssMqxKsDAZEDrgtMvfIAgM")
+        GMSServices.provideAPIKey("AIzaSyCQptYM824MiNZ1WS6aSgj6ATB8QVBDQEU")
         return true
     }
     

@@ -45,13 +45,10 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        prepareDataForFirstStartup()
         self.prepareRefreshControl()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        prepareDataForFirstStartup()
-    }
     
     private func prepareDataForFirstStartup(){
         centerSpinnerStartLoading()
@@ -144,8 +141,8 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
         
     }
     @IBAction func moreAction(sender: AnyObject) {
-        KaAlert.show("KA Restaurant", subTitle: "Options", completeText: "Cancel", showCloseButton: true, firstButton: "Add", secondButton: "Logout") { (buttonName) in
-            if buttonName == "Add" {
+        KaAlert.show("KA Restaurant", subTitle: "Options", completeText: "Cancel", showCloseButton: true, firstButton: "New Restaurant", secondButton: "Logout") { (buttonName) in
+            if buttonName == "New Restaurant" {
                 //  object
                 self.performSegueWithIdentifier("RegisterRestuarant", sender: nil)
                 return
@@ -201,7 +198,7 @@ class ListRestaurantTableViewController: UITableViewController, UIImagePickerCon
                     self.centerSpinner.stopAnimating()
                     self.footerSpinner.stopAnimating()
                     self.restuarantRefreshControl.endRefreshing()
-                    self.performSelectorOnMainThread(#selector(ListRestaurantTableViewController.reloadData), withObject: nil, waitUntilDone: false)
+                    self.performSelectorOnMainThread(#selector(self.reloadData), withObject: nil, waitUntilDone: false)
                     
                 }
                 
@@ -354,8 +351,8 @@ extension ListRestaurantTableViewController {
     
     func handleTap(sender: CustomeTapGestureRecognizer) {
         
-        KaAlert.show("KA Restaurant", subTitle: "Update or Delete", showCloseButton: true, firstButton: "Edit", secondButton: "Delete", completeion: { (buttonName) in
-            if buttonName == "Edit" {
+        KaAlert.show("KA Restaurant", subTitle: "Update or Delete", showCloseButton: true, firstButton: "Update", secondButton: "Delete", completeion: { (buttonName) in
+            if buttonName == "Update" {
                 // Open edit screen
                 self.performSegueWithIdentifier("EditRestuarantDetail", sender: self.tableView.cellForRowAtIndexPath(sender.indexPath!))
                 

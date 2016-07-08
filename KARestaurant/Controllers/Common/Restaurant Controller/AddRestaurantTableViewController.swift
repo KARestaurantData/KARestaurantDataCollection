@@ -22,12 +22,13 @@ import DownPicker
 import ObjectMapper
 import MMMaterialDesignSpinner
 
-class AddRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
+class AddRestaurantTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate,UINavigationControllerDelegate, UICollectionViewDelegate,UICollectionViewDataSource, CLLocationManagerDelegate {
     
     // MARK: Properties
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var nameTextField: TextField!
-    @IBOutlet weak var restaurantDescriptionTextField: TextField!
+    @IBOutlet weak var restaurantDescriptionLabel: MaterialLabel!
+    @IBOutlet weak var restaurantDescriptionTextView: UITextView!
     @IBOutlet weak var deliveryLabel: MaterialLabel!
     @IBOutlet weak var deliveryCheckBox: M13Checkbox!
     @IBOutlet weak var homeTextField: TextField!
@@ -73,10 +74,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     var categoryArray = [String]()
     
     
-    // Location Property
-    var locationManager: CLLocationManager = CLLocationManager()
-    var startLocation: CLLocation!
-    
     // Restaurant Location
     var restaurantLocation: CLLocation = CLLocation()
     
@@ -91,15 +88,10 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         self.restaurantMenuImageCollectionView.delegate = self
         self.restaurantMenuImageCollectionView.dataSource = self
         
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        startLocation = nil
         
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
-        restaurantDescriptionTextField.delegate = self
+        restaurantDescriptionTextView.delegate = self
         homeTextField.delegate = self
         streetTextField.delegate = self
         phoneTextField.delegate = self
@@ -149,41 +141,6 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         self.view.userInteractionEnabled = true
     }
     
-    
-    
-    
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let latestLocation: AnyObject = locations[locations.count - 1]
-        
-        //        print(String(format: "latitude %.4f",
-        //            latestLocation.coordinate.latitude))
-        //        print(String(format: "longitude %.4f",
-        //            latestLocation.coordinate.longitude))
-        //        print( String(format: "horizontalAccuracy %.4f",
-        //            latestLocation.horizontalAccuracy))
-        //        print(String(format: "altitude %.4f",
-        //            latestLocation.altitude))
-        //        print( String(format: "verticalAccuracy %.4f",
-        //            latestLocation.verticalAccuracy))
-        //
-        
-        if startLocation == nil {
-            startLocation = latestLocation as! CLLocation
-        }
-        
-        let distanceBetween: CLLocationDistance =
-            latestLocation.distanceFromLocation(startLocation)
-        
-        //print(String(format: "distanceBetween %.2f", distanceBetween))
-    }
-    
-    func locationManager(manager: CLLocationManager,
-                         didFailWithError error: NSError) {
-        print( error)
-    }
-    
-    
     /// General preparation statements.
     private func prepareView() {
         view.backgroundColor = MaterialColor.white
@@ -192,9 +149,14 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
     
     /// Prepares the TextField.
     private func prepareTextField() {
+        // typically inside of the -(void) viewDidLoad method
+        self.restaurantDescriptionTextView.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1).CGColor
+        self.restaurantDescriptionTextView.layer.cornerRadius = 3.0
+        self.restaurantDescriptionTextView.layer.borderWidth = 1.0
     }
     
     private func prepareLabel() {
+        restaurantDescriptionLabel.font = restaurantDescriptionLabel.font.fontWithSize(16)
         deliveryLabel.font = deliveryLabel.font.fontWithSize(16)
         restaurantImageLabel.font = restaurantImageLabel.font.fontWithSize(16)
         restaurantMenuImageLabel.font = restaurantMenuImageLabel.font.fontWithSize(16)
@@ -326,11 +288,20 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
         saveButton.enabled = false
     }
     
+    func textViewDidEndEditing(textView: UITextView) {
+        checkValidRestuarantField()
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        // Disable the Save button while editing.
+        saveButton.enabled = false
+    }
+    
     func checkValidRestuarantField() {
         
         // Disable the Save button if the text field is empty.
         if !(nameTextField.text?.isEmpty)!
-            && !(restaurantDescriptionTextField.text?.isEmpty)!
+            && !(restaurantDescriptionTextView.text?.isEmpty)!
             && !(homeTextField.text?.isEmpty)!
             && !(streetTextField.text?.isEmpty)!
             && !(phoneTextField.text?.isEmpty)!
@@ -516,7 +487,7 @@ class AddRestaurantTableViewController: UITableViewController, UITextFieldDelega
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: self.nameTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "NAME")
                 
-                multipartFormData.appendBodyPart(data: self.restaurantDescriptionTextField.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "DESCRIPTION")
+                multipartFormData.appendBodyPart(data: self.restaurantDescriptionTextView.text!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "DESCRIPTION")
                 
                 multipartFormData.appendBodyPart(data: address.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "ADDRESS")
                 
