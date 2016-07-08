@@ -22,7 +22,6 @@
 		6F2E8C721D2F82FF00117972 /* BreakpointsViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F2E8C701D2F82FF00117972 /* BreakpointsViewController~iphone.xib */; };
 		6F2E8C741D2F838700117972 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2E8C731D2F838700117972 /* TableViewCell.swift */; };
 		6F2E8C761D2F83B500117972 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2E8C751D2F83B500117972 /* HomeTableViewCell.swift */; };
-		6F2E8C871D2F915500117972 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F2E8C861D2F915500117972 /* Info.plist */; };
 		6F438EE91D1146A10089D17C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F438EE81D1146A10089D17C /* Login.storyboard */; };
 		6F438EEE1D114F7B0089D17C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F438EEC1D114F7B0089D17C /* FBSDKCoreKit.framework */; };
 		6F438EEF1D114F7B0089D17C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F438EED1D114F7B0089D17C /* FBSDKLoginKit.framework */; };
@@ -47,7 +46,6 @@
 		6F756B0F1D2F79E60001F777 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F756B0B1D2F79E60001F777 /* AppDelegate.swift */; };
 		6F756B141D2F7A720001F777 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F756B121D2F7A720001F777 /* LaunchScreen.storyboard */; };
 		6F756B151D2F7A720001F777 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F756B131D2F7A720001F777 /* Main.storyboard */; };
-		6F756B171D2F7AC50001F777 /* readme-application in Resources */ = {isa = PBXBuildFile; fileRef = 6F756B161D2F7AC50001F777 /* readme-application */; };
 		6F756B191D2F7B7D0001F777 /* readme-application in Resources */ = {isa = PBXBuildFile; fileRef = 6F756B181D2F7B7D0001F777 /* readme-application */; };
 		6F756B1C1D2F7C4C0001F777 /* KaAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F756B1B1D2F7C4B0001F777 /* KaAlert.swift */; };
 		6F756B2A1D2F7F520001F777 /* ArcIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F756B281D2F7F520001F777 /* ArcIssueViewController.swift */; };
@@ -767,7 +765,6 @@
 				6F756B301D2F81D00001F777 /* ArcIssuesViewController~ipad.xib in Resources */,
 				6F756A941D2F69790001F777 /* KMRMArgument_summary.py in Resources */,
 				6F2E8C6C1D2F82C200117972 /* ToolsViewController~iphone.xib in Resources */,
-				6F756B171D2F7AC50001F777 /* readme-application in Resources */,
 				6FF7DED01D066EB700D1EB77 /* readme-view in Resources */,
 				6F756B151D2F7A720001F777 /* Main.storyboard in Resources */,
 				6FF7DEDD1D066F7100D1EB77 /* readme-controller in Resources */,
@@ -779,7 +776,6 @@
 				6F756A951D2F69790001F777 /* utils.py in Resources */,
 				6F756A921D2F69790001F777 /* meme_jackie_chan.jpg in Resources */,
 				6F438EE91D1146A10089D17C /* Login.storyboard in Resources */,
-				6F2E8C871D2F915500117972 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
