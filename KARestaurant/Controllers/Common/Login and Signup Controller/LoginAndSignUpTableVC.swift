@@ -155,7 +155,6 @@ class LoginAndSignUpTableVC: UITableViewController, ValidationDelegate {
     }
     
     func uploadImage(){
-        var imageName = [String]()
         
         let pic1 = UIImageJPEGRepresentation(UIImage.init(named: "pic1")!, 1.0)!
         let pic2 = UIImageJPEGRepresentation(UIImage.init(named: "pic2")!, 1.0)!

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SUG-bm-tHI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SUG-bm-tHI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--KA Restaurant-->
@@ -157,16 +158,28 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="LoG-N4-cDP">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eEW-aW-MCX">
-                                <rect key="frame" x="555" y="9" width="25" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="options"/>
-                                <connections>
-                                    <action selector="moreAction:" destination="1MP-C5-P5k" eventType="touchUpInside" id="aUo-V2-iXh"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="LoG-N4-cDP">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eEW-aW-MCX">
+                                    <rect key="frame" x="555" y="9" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="options"/>
+                                    <connections>
+                                        <action selector="moreAction:" destination="1MP-C5-P5k" eventType="touchUpInside" id="aUo-V2-iXh"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="LYc-yR-S0g">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qss-BO-ulo">
+                                    <rect key="frame" x="522" y="9" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="user"/>
+                                    <connections>
+                                        <segue destination="BjK-SU-IBg" kind="show" id="XpS-ds-gXH"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="footerImageView" destination="blZ-hD-B5d" id="gI3-TF-IPt"/>
@@ -1626,10 +1639,124 @@
             </objects>
             <point key="canvasLocation" x="2287" y="405"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="Fbd-Nd-GmO">
+            <objects>
+                <viewController id="BjK-SU-IBg" customClass="ProfileViewController" customModule="KARestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iAf-k9-ffe"/>
+                        <viewControllerLayoutGuide type="bottom" id="gXA-5G-MML"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PoY-Zb-NtA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pC1-Fe-Vcw">
+                                <rect key="frame" x="0.0" y="64" width="600" height="136"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="desk_restaurant" translatesAutoresizingMaskIntoConstraints="NO" id="BNY-x6-Wlt">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="136"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.16470588235294117" green="0.61568627450980395" blue="0.70588235294117652" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="BNY-x6-Wlt" firstAttribute="width" secondItem="pC1-Fe-Vcw" secondAttribute="width" id="Bz8-4T-ok2"/>
+                                    <constraint firstItem="BNY-x6-Wlt" firstAttribute="height" secondItem="pC1-Fe-Vcw" secondAttribute="height" id="Eac-hz-czK"/>
+                                    <constraint firstAttribute="height" constant="136" id="PWW-X6-nFq"/>
+                                    <constraint firstItem="BNY-x6-Wlt" firstAttribute="centerY" secondItem="pC1-Fe-Vcw" secondAttribute="centerY" id="kdH-W5-zUd"/>
+                                    <constraint firstItem="BNY-x6-Wlt" firstAttribute="centerX" secondItem="pC1-Fe-Vcw" secondAttribute="centerX" id="uAn-dA-MEH"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gAI-eW-YD1">
+                                <rect key="frame" x="250" y="150" width="100" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="ifp-X1-5yz"/>
+                                    <constraint firstAttribute="height" constant="100" id="vsg-UE-rBt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYi-nn-JXl">
+                                <rect key="frame" x="160" y="267" width="280" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="Cek-s1-ue0"/>
+                                    <constraint firstAttribute="height" constant="21" id="MOO-oW-kbN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28S-fH-UtV">
+                                <rect key="frame" x="160" y="310" width="280" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="5H3-GA-BTm"/>
+                                    <constraint firstAttribute="width" constant="280" id="i4S-5s-JhL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xul-fu-rc9">
+                                <rect key="frame" x="160" y="355" width="280" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="dAc-pe-pXt"/>
+                                    <constraint firstAttribute="width" constant="280" id="hLd-Nq-Xak"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2016 KA Restaurant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbb-z8-hF3">
+                                <rect key="frame" x="150" y="571" width="300" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="MHQ-GT-Mjf"/>
+                                    <constraint firstAttribute="width" constant="300" id="zSH-w7-nZg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.67450980392156867" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="champagne" translatesAutoresizingMaskIntoConstraints="NO" id="hcK-Zq-7pd">
+                                <rect key="frame" x="250" y="463" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="BE9-d4-85D"/>
+                                    <constraint firstAttribute="width" constant="100" id="oEj-Tp-uW7"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hcK-Zq-7pd" firstAttribute="centerX" secondItem="Wbb-z8-hF3" secondAttribute="centerX" id="4lm-ND-b63"/>
+                            <constraint firstItem="Wbb-z8-hF3" firstAttribute="top" secondItem="hcK-Zq-7pd" secondAttribute="bottom" constant="8" id="AQg-5f-Dmw"/>
+                            <constraint firstItem="gXA-5G-MML" firstAttribute="top" secondItem="Wbb-z8-hF3" secondAttribute="bottom" constant="8" id="G3f-yg-BZO"/>
+                            <constraint firstItem="pC1-Fe-Vcw" firstAttribute="width" secondItem="PoY-Zb-NtA" secondAttribute="width" id="Ik5-ro-Tmo"/>
+                            <constraint firstItem="yYi-nn-JXl" firstAttribute="top" secondItem="gAI-eW-YD1" secondAttribute="bottom" constant="17" id="LPV-oq-DGY"/>
+                            <constraint firstItem="Wbb-z8-hF3" firstAttribute="centerX" secondItem="PoY-Zb-NtA" secondAttribute="centerX" id="PQL-wG-HQo"/>
+                            <constraint firstItem="gAI-eW-YD1" firstAttribute="centerX" secondItem="pC1-Fe-Vcw" secondAttribute="centerX" id="Q1U-dL-7sP"/>
+                            <constraint firstItem="yYi-nn-JXl" firstAttribute="centerX" secondItem="gAI-eW-YD1" secondAttribute="centerX" id="UMB-QY-Rac"/>
+                            <constraint firstItem="28S-fH-UtV" firstAttribute="top" secondItem="yYi-nn-JXl" secondAttribute="bottom" constant="22" id="Zdy-vx-JcV"/>
+                            <constraint firstItem="pC1-Fe-Vcw" firstAttribute="centerX" secondItem="PoY-Zb-NtA" secondAttribute="centerX" id="aCF-8g-gW4"/>
+                            <constraint firstItem="Xul-fu-rc9" firstAttribute="top" secondItem="28S-fH-UtV" secondAttribute="bottom" constant="24" id="cL3-EI-XhL"/>
+                            <constraint firstItem="gAI-eW-YD1" firstAttribute="top" secondItem="pC1-Fe-Vcw" secondAttribute="bottom" constant="-50" id="d2q-lG-6cE"/>
+                            <constraint firstItem="pC1-Fe-Vcw" firstAttribute="top" secondItem="iAf-k9-ffe" secondAttribute="bottom" id="ev6-Cy-oyQ"/>
+                            <constraint firstItem="28S-fH-UtV" firstAttribute="centerX" secondItem="yYi-nn-JXl" secondAttribute="centerX" id="g8j-hA-OvS"/>
+                            <constraint firstItem="Xul-fu-rc9" firstAttribute="centerX" secondItem="28S-fH-UtV" secondAttribute="centerX" id="jYe-8L-SDm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Profile" id="bCS-5A-rux"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="Xul-fu-rc9" id="1F3-Px-BVS"/>
+                        <outlet property="genderLabel" destination="28S-fH-UtV" id="z36-bg-8PQ"/>
+                        <outlet property="nameLabel" destination="yYi-nn-JXl" id="Gl8-px-DKn"/>
+                        <outlet property="profileImageView" destination="gAI-eW-YD1" id="cBy-Lz-D6H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kk3-Vw-5fx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="926" y="-323"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="champagne" width="512" height="512"/>
         <image name="defaultPhoto" width="540" height="540"/>
         <image name="delete" width="512" height="512"/>
+        <image name="desk_restaurant" width="1200" height="500"/>
         <image name="edit" width="512" height="512"/>
         <image name="left-arrow" width="512" height="512"/>
         <image name="loadingImage" width="1080" height="1080"/>
@@ -1638,5 +1765,6 @@
         <image name="stop" width="626" height="626"/>
         <image name="update" width="512" height="512"/>
         <image name="upload" width="512" height="512"/>
+        <image name="user" width="512" height="512"/>
     </resources>
 </document>

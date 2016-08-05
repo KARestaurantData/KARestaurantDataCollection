@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
     
     
     func fetchProfile() {
-        let parameters = ["fields": "email, first_name, last_name, picture.type(large)"]
+        let parameters = ["fields": "email, first_name, last_name, gender, picture.type(large)"]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler { (connection, result, error) in
             if error != nil{
                 print(error)
@@ -61,6 +61,7 @@ class LoginViewController: UIViewController {
             }
             
             let facebookID = result["id"] as! String
+            
             
             // get restuarant
             let url = Constant.GlobalConstants.URL_BASE + "/v1/api/admin/users"
@@ -79,7 +80,7 @@ class LoginViewController: UIViewController {
                     }else{
                         // Set FacebookID to NSUserDefault
                         NSUserDefaults.standardUserDefaults().setObject(responseData?.data?.id, forKey: "FACEBOOK_ID")
-                        
+                        NSUserDefaults.standardUserDefaults().setObject(result, forKey: "FACEBOOK_USER")
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let vc = storyboard.instantiateViewControllerWithIdentifier("RootNavigationViewController")
                         self.presentViewController(vc, animated: true, completion: nil)
